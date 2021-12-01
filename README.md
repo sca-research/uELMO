@@ -1,4 +1,4 @@
-# $\mu$ ELMO: micro-arhictecture enhanced Emulator for power Leakages for 3-stage pipelined ARM Cortex-M cores
+# &#956 ELMO: micro-arhictecture enhanced Emulator for power Leakages for 3-stage pipelined ARM Cortex-M cores
 ## Intro
 ### What is ELMO?
 ELMO is an elmentary statistical leakage simulator for the ARM M0 family, originally designed by David McCann, Elisabeth Oswald and Carolyn Whitnall, published at [USENIX 2017](https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/mccann).
@@ -30,8 +30,8 @@ However, the chance of solving the other issues while staying in the ELMO framew
 
 Despite the realistic RTL source code for Cortex M0 is not available (ARM provided an obfuscated version for academic usage), for Cortex M3, ARM provides a readable version for academic/education purpose. The M3 leakage simulator [MAPS](https://link.springer.com/chapter/10.1007%2F978-3-319-89641-0_5) was built on the knowledge of this HDL code. Although there is no guarantee any M3 core or M0 core on the market must follow the same design, for some instructions, the pipeline registers convention is actually quite different from what ELMO predicted.  Since all extensions did not update the pipeline register assignments made in ELMO, they share the same short-come when ELMO failed to predict the micro-architectural data flow.
   
-## Meet $\mu$ELMO
-As the name suggests, $\mu$ELMO aims at taking the leakage-relevant micro-architecture features into account. Unlike MAPS, we insist our tool be a grey-box one, where the accurate HDL source of the design is not given. Considering that:
+## Meet &#956ELMO
+As the name suggests, &#956ELMO aims at taking the leakage-relevant micro-architecture features into account. Unlike MAPS, we insist our tool be a grey-box one, where the accurate HDL source of the design is not given. Considering that:
 - ARM only reveals one Cortex M3 and one (obfuscated) Cortex M0. The source code for other cores is not given for now.
 - Even for the given Cortex M3, there is no guarantee that ARM has only one universal design. Both the manufacturers and ARM themselves might use a different version in off-the-shelf products.
 - In a RISC-V platform, the manufacturers can still customise their architecture. The ISA is open-sourced, but the core design is not necessarily the same.
@@ -46,31 +46,31 @@ Similarity:
 - Inherit some functional code from ELMO 
 
 Difference:
-- $\mu$ELMO was built on a Cortex M3 core(NXP LPC1313). However, as the modelling methodology is designed for a 3-stage pipelined core in general, we expect the methodology (not the built model) can be extended to other cores.
-- Unlike ELMO, $\mu$ELMO uses nominal models. In other words, ELMO simulates a leakage point on the trace, while $\mu$ELMO only tells **what is leaking on this point** (e.g. operand, bus, etc.). This abstract model helps to overcome various "board effects", i.e. the individual chip difference
-- $\mu$ELMO has a real concept of *cycle*. Unlike ELMO, $\mu$ELMO simulates a 3-stage pipeline. As a comparison, ELMO emulates one instruction at one go: if it is set to the "CYCLE ACCURATE" mode and the instruction could last for 2 cycles (e.g. LDR), ELMO will simply replicate the current leakage point to 2 leakage points. Of course, both can be wrong sometimes, but in our experience on a Cortex M3(NXP lpc1313), $\mu$ELMO is more accurate. 
-- For $N$ traces, $\mu$ELMO requires the ARM binary for only one trace. N can be set through the command line.
+- &#956ELMO was built on a Cortex M3 core(NXP LPC1313). However, as the modelling methodology is designed for a 3-stage pipelined core in general, we expect the methodology (not the built model) can be extended to other cores.
+- Unlike ELMO, &#956ELMO uses nominal models. In other words, ELMO simulates a leakage point on the trace, while &#956ELMO only tells **what is leaking on this point** (e.g. operand, bus, etc.). This abstract model helps to overcome various "board effects", i.e. the individual chip difference
+- &#956ELMO has a real concept of *cycle*. Unlike ELMO, &#956ELMO simulates a 3-stage pipeline. As a comparison, ELMO emulates one instruction at one go: if it is set to the "CYCLE ACCURATE" mode and the instruction could last for 2 cycles (e.g. LDR), ELMO will simply replicate the current leakage point to 2 leakage points. Of course, both can be wrong sometimes, but in our experience on a Cortex M3(NXP lpc1313), &#956ELMO is more accurate. 
+- For $N$ traces, &#956ELMO requires the ARM binary for only one trace. N can be set through the command line.
 - For leakage detections, users do not set up the inputs for the fix or random in ARM binary. Instead, users use readbyte() for FvR input and turn on -fvr in command line. In this case, the first half of the traces get a fixed 0 for readbyte(), while the other half gets randomness. This is a long-standing issue in ELMO: sometimes the fixed or random setup in ARM binary affects the simulated traces, which brings false positives that should not appear in practice.
 
--  $\mu$ELMO captures leakage from the decoder, ALU and the memory subsystem.
--  $\mu$ELMO extensively evaluated the **quality** of the built model, details see [our paper](https://eprint.iacr.org/2021/794). 
+-  &#956ELMO captures leakage from the decoder, ALU and the memory subsystem.
+-  &#956ELMO extensively evaluated the **quality** of the built model, details see [our paper](https://eprint.iacr.org/2021/794). 
 
 ### Modelling methodology
-Unlike ELMO which relies on David's micro-architectural guess, $\mu$ELMO involves intensive reverse engineering effort. Although this step turns out to be inefficient and requires manual effort, it also highlights the threat of side-channel based reverse engineering against unprotected cores, which is in fact, of its interest. On the other hand, our statistical technique ensures the quality of the built leakage model is not too far from practice, which is not provided by any previous tool. More details can be found in [our paper](https://eprint.iacr.org/2021/794). 
+Unlike ELMO which relies on David's micro-architectural guess, &#956ELMO involves intensive reverse engineering effort. Although this step turns out to be inefficient and requires manual effort, it also highlights the threat of side-channel based reverse engineering against unprotected cores, which is in fact, of its interest. On the other hand, our statistical technique ensures the quality of the built leakage model is not too far from practice, which is not provided by any previous tool. More details can be found in [our paper](https://eprint.iacr.org/2021/794). 
 
 The reverse-engineered micro-architecture/leakage model was built by Si Gao, Elisabeth Oswald and Dan Page. We would also like to thank Ben Marshall for his insightful feedback and wisdom in the early discussion phase of this project.
 
-### Workflow for $\mu$ELMO
+### Workflow for &#956ELMO
 A straightforward challenge for leakage detections on nominal model-based leakage simulators is, the leakage point does not have any numeric meaning, which suggests the TVLA-like technique is not applicable. Besides, to ensure the entire project can be extended to other platforms (e.g. RISC-V) as well, it is better to have a general framework, where the leakage model and emulator does not have to be bound in source code. 
 
-For this purpose, the current workflow of $\mu$ELMO is:
+For this purpose, the current workflow of &#956ELMO is:
 1. Run micro-architecture enhanced emulator, output the entire core status at each cycle (including micro-architecture and memory status) to a file called execution data file (*.dat). 
 2. Read in the produced execution data file. According to the assigned leakage model (whether set from code or some configuration file), produced the nominal leaking binary file (*.bin).
 3. Run a separate python script to analyse the leaking binary file, whether performing leakage detection or, analysing the model quality.
 
 Currently Step 1 is called "uELMO", Step 2 is called "LeakageExtractor" and Elmo_verif_Test() for Step 3. 
 
-Currently, the framework development is led by Yan Yan, while the initial $\mu$ELMO tool is coded by Si Gao. 
+Currently, the framework development is led by Yan Yan, while the initial &#956ELMO tool is coded by Si Gao. 
 
 ### Tutorial: Masked 2-share ISW bitwise multiplication
 > ARM source code in "Windows/uELMO/Examples/ISWd2/Detection" 
