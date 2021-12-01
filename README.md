@@ -22,9 +22,9 @@ The ELMO tool can be found at https://github.com/sca-research/ELMO
 - No quality evaluation: CPA/TVLA/raw trace "looks alike" type of argument (same as all other leakage simulators)
 
 Some limitations above are easier to solve, e.g.
-- Verify the same technology on another M0 core from NXP (Si Gao, 2018.09, newly built model can be found in [coeffs_LPC.txt](https://github.com/sca-research/ELMO/coeffs_LPC.txt)
+- Verify the same technology on another M0 core from NXP (Si Gao, 2018.09, newly built model can be found in [coeffs_LPC.txt](https://github.com/sca-research/ELMO/blob/master/coeffs_LPC.txt)
 - Select the number of traces from command line arguments(Si Gao, 2018.11)
-- Memory extensions individually developed from Si Gao (2020.02 at https://github.com/sca-research/ELMO/tree/7ed16280fab83631dcb11ed0fec97e054b1fcb24) and the ROSITA team's [ELMO*](https://github.com/0xADE1A1DE/Rosita)
+- Memory extensions individually developed by Si Gao (2020.02 at https://github.com/sca-research/ELMO/tree/7ed16280fab83631dcb11ed0fec97e054b1fcb24) and the ROSITA team's [ELMO*](https://github.com/0xADE1A1DE/Rosita)
 
 However, the chance of solving the other issues while staying in the ELMO framework seems gloomy. For instance, the dominating leakage of ELMO is from the two [operand data-buses](https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/mccann) within the ALU. Unfortunately, both two operands lie in the **micro-architecture**, which is not entirely infer-able from the Thumb instruction. In other words, although not mentioned explicitly, all ELMO extensions are restricted by the original micro-architecture guess (i.e. from Dr. David McCann).
 
@@ -61,11 +61,11 @@ Unlike ELMO which relies on David's micro-architectural guess, &#956;ELMO involv
 The reverse-engineered micro-architecture/leakage model was built by Si Gao, Elisabeth Oswald and Dan Page. We would also like to thank Ben Marshall for his insightful feedback and wisdom in the early discussion phase of this project.
 
 ### Workflow for &#956;ELMO
-A straightforward challenge for leakage detections on nominal model-based leakage simulators is, the leakage point does not have any numeric meaning, which suggests the TVLA-like technique is not applicable. Besides, to ensure the entire project can be extended to other platforms (e.g. RISC-V) as well, it is better to have a general framework, where the leakage model and emulator does not have to be bound in source code. 
+A straightforward challenge for leakage detections on nominal model-based leakage simulators is, the leakage point does not have any numeric meaning, which suggests the TVLA-like technique is not applicable. Besides, to ensure the entire project can be extended to other platforms (e.g. RISC-V) as well, it is better to have a general framework, where the leakage model and emulator do not have to be bounded in source code. 
 
 For this purpose, the current workflow of &#956;ELMO is:
 1. Run micro-architecture enhanced emulator, output the entire core status at each cycle (including micro-architecture and memory status) to a file called execution data file (*.dat). 
-2. Read in the produced execution data file. According to the assigned leakage model (whether set from code or some configuration file), produced the nominal leaking binary file (*.bin).
+2. Read in the produced execution data file. According to the assigned leakage model (whether set from code or some configuration file), produce a nominal leaking binary file (*.bin).
 3. Run a separate python script to analyse the leaking binary file, whether performing leakage detection or, analysing the model quality.
 
 Currently Step 1 is called "uELMO", Step 2 is called "LeakageExtractor" and Elmo_verif_Test() for Step 3. 
@@ -90,7 +90,7 @@ Currently, the framework development is led by Yan Yan, while the initial &#956;
 #### Step 2: Apply the leakage model, produce the nominal leaking binary file 
 
 Command line
-`LeakageExtractor.exe [EXECUTION_DATA.dat] -[LEAKY_STATES.bin]`
+`LeakageExtractor.exe [EXECUTION_DATA.dat] -o [LEAKY_STATES.bin]`
 
 - `EXECUTION_DATA.dat`: the execution data file from Step 1
 - `LEAKY_STATES.bin`: output file for Step 3
@@ -147,7 +147,7 @@ This suggests most cycles on the trace should be leaky. If we check why they are
 It is trivial to see that matches quite well with our table above.  
 Note that it is unclear whether Cycle 13 and Cycle 18 will turn into exploitable leakage in the end. In our current 50k traces, it seems that they might. That leakage has a reason to be weaker, yet can still be exploitable. We did not claim a reasonable cut-off point here: rather, we would prefer to let users define a cut-off point as he or she needs. Even neighbouring effects can be exploited in certain application scenarios; there is no guarantee they won't show up if we increase the number of traces to a larger number, say 1 million. However, there is also no guarantee that they will be a problem either, as the statistics only ensures there is some interaction, but not necessarily an exploitable one.
 
-For different setups, users can adjust `Windows/LeakageExtractor/LeakageExtractor/LeakageModel.h` to add/remove a certain component. For instance, to add the so-called [Neightbouring effect](https://doi.org/10.1007/978-3-319-64647-3_17), one can 
+For different setups, users can adjust `Windows/LeakageExtractor/LeakageExtractor/LeakageModel.h` to add/remove a certain component. For instance, to add the so-called [Neightbouring effect](https://doi.org/10.1007/978-3-319-64647-3_17), one can set the following to 1
 > #define LSB_NEIGHBOUR 0//Allows for LSB based neibouring effect
 Re-run Step 2 and 3 shall add the neightbouring effect into consideration.
 
