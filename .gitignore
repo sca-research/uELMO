@@ -1,0 +1,7 @@
+*.trs
+*.bin
+*.dat
+Windows/LeakageExtractor/LeakageExtractor/Debug/*
+Windows/uELMO/Debug/*
+Windows/uELMO/ipch/*
+Windows/uELMO/uELMO/Debug/*

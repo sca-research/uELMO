@@ -1,0 +1,234 @@
+
+Discarded input sections
+
+ .text          0x0000000000000000        0x0 vector.o
+ .data          0x0000000000000000        0x0 vector.o
+ .bss           0x0000000000000000        0x0 vector.o
+ .data          0x0000000000000000        0x0 /tmp/ccOYWaMh.o
+ .bss           0x0000000000000000        0x0 /tmp/ccOYWaMh.o
+ .text          0x0000000000000000        0x0 ISWMult.o
+ .data          0x0000000000000000        0x0 ISWMult.o
+ .bss           0x0000000000000000        0x0 ISWMult.o
+ .data          0x0000000000000000        0x0 elmoasmfunctions.o
+ .bss           0x0000000000000000        0x0 elmoasmfunctions.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+rom              0x0000000008000000 0x0000000000010000 xr
+ram              0x0000000020000000 0x0000000000002000 xrw
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD vector.o
+LOAD /tmp/ccOYWaMh.o
+LOAD ISWMult.o
+LOAD elmoasmfunctions.o
+START GROUP
+LOAD /usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/lib/thumb/v6-m/libc.a
+LOAD /usr/lib/gcc/arm-none-eabi/6.3.1/thumb/v6-m/libgcc.a
+LOAD /usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/lib/thumb/v6-m/libnosys.a
+END GROUP
+START GROUP
+LOAD /usr/lib/gcc/arm-none-eabi/6.3.1/thumb/v6-m/libgcc.a
+LOAD /usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/lib/thumb/v6-m/libc.a
+END GROUP
+
+.text           0x0000000008000000      0x324
+ *(.vectors)
+ .vectors       0x0000000008000000       0xc0 vector.o
+                0x0000000008000000                vector_table
+ *(.text*)
+ .text.blocking_handler
+                0x00000000080000c0        0x2 vector.o
+                0x00000000080000c0                rtc_isr
+                0x00000000080000c0                tim7_isr
+                0x00000000080000c0                blocking_handler
+                0x00000000080000c0                tsc_isr
+                0x00000000080000c0                spi1_isr
+                0x00000000080000c0                i2c1_isr
+                0x00000000080000c0                tim17_isr
+                0x00000000080000c0                i2c2_isr
+                0x00000000080000c0                usart1_isr
+                0x00000000080000c0                usart3_4_isr
+                0x00000000080000c0                tim1_cc_isr
+                0x00000000080000c0                exti2_3_isr
+                0x00000000080000c0                tim16_isr
+                0x00000000080000c0                pvd_isr
+                0x00000000080000c0                rcc_isr
+                0x00000000080000c0                flash_isr
+                0x00000000080000c0                hard_fault_handler
+                0x00000000080000c0                tim14_isr
+                0x00000000080000c0                spi2_isr
+                0x00000000080000c0                usb_isr
+                0x00000000080000c0                tim15_isr
+                0x00000000080000c0                tim3_isr
+                0x00000000080000c0                usart2_isr
+                0x00000000080000c0                adc_comp_isr
+                0x00000000080000c0                dma1_channel1_isr
+                0x00000000080000c0                tim6_dac_isr
+                0x00000000080000c0                tim1_brk_up_trg_com_isr
+                0x00000000080000c0                dma1_channel2_3_isr
+                0x00000000080000c0                exti4_15_isr
+                0x00000000080000c0                cec_can_isr
+                0x00000000080000c0                wwdg_isr
+                0x00000000080000c0                tim2_isr
+                0x00000000080000c0                dma1_channel4_5_isr
+                0x00000000080000c0                exti0_1_isr
+ .text.null_handler
+                0x00000000080000c2        0x2 vector.o
+                0x00000000080000c2                null_handler
+                0x00000000080000c2                sv_call_handler
+                0x00000000080000c2                pend_sv_handler
+                0x00000000080000c2                sys_tick_handler
+                0x00000000080000c2                nmi_handler
+ .text.reset_handler
+                0x00000000080000c4       0x7c vector.o
+                0x00000000080000c4                reset_handler
+ .text          0x0000000008000140       0x66 /tmp/ccOYWaMh.o
+                0x0000000008000140                ISWd2
+ .text.startup.main
+                0x00000000080001a6       0xa4 ISWMult.o
+                0x00000000080001a6                main
+ .text          0x000000000800024a       0xda elmoasmfunctions.o
+                0x000000000800024a                starttrigger
+                0x000000000800025c                endtrigger
+                0x000000000800026e                readbyte
+                0x000000000800027c                LoadN
+                0x000000000800028e                randbyte
+                0x00000000080002a0                getstart
+                0x00000000080002b2                getruncount
+                0x00000000080002c4                printbyte
+                0x00000000080002d2                endprogram
+                0x00000000080002e0                initialisemaskflow
+                0x00000000080002f0                resetmaskflow
+                0x0000000008000302                setmaskflowstart
+                0x0000000008000312                resetdatafile
+                0x0000000008000324                . = ALIGN (0x4)
+ *(.rodata*)
+                0x0000000008000324                . = ALIGN (0x4)
+
+.glue_7         0x0000000008000324        0x0
+ .glue_7        0x0000000008000324        0x0 linker stubs
+
+.glue_7t        0x0000000008000324        0x0
+ .glue_7t       0x0000000008000324        0x0 linker stubs
+
+.vfp11_veneer   0x0000000008000324        0x0
+ .vfp11_veneer  0x0000000008000324        0x0 linker stubs
+
+.v4_bx          0x0000000008000324        0x0
+ .v4_bx         0x0000000008000324        0x0 linker stubs
+
+.iplt           0x0000000008000324        0x0
+ .iplt          0x0000000008000324        0x0 vector.o
+
+.rel.dyn        0x0000000008000324        0x0
+ .rel.iplt      0x0000000008000324        0x0 vector.o
+
+.preinit_array  0x0000000008000324        0x0
+                0x0000000008000324                . = ALIGN (0x4)
+                0x0000000008000324                __preinit_array_start = .
+ *(.preinit_array)
+                0x0000000008000324                __preinit_array_end = .
+
+.init_array     0x0000000008000324        0x0
+                0x0000000008000324                . = ALIGN (0x4)
+                0x0000000008000324                __init_array_start = .
+ *(SORT(.init_array.*))
+ *(.init_array)
+                0x0000000008000324                __init_array_end = .
+
+.fini_array     0x0000000008000324        0x0
+                0x0000000008000324                . = ALIGN (0x4)
+                0x0000000008000324                __fini_array_start = .
+ *(.fini_array)
+ *(SORT(.fini_array.*))
+                0x0000000008000324                __fini_array_end = .
+
+.ARM.extab
+ *(.ARM.extab*)
+
+.ARM.exidx      0x0000000008000324        0x0
+                0x0000000008000324                __exidx_start = .
+ *(.ARM.exidx*)
+                0x0000000008000324                __exidx_end = .
+                0x0000000008000324                . = ALIGN (0x4)
+                0x0000000008000324                _etext = .
+
+.data           0x0000000020000000        0x0 load address 0x0000000008000324
+                0x0000000020000000                _data = .
+ *(.data*)
+                0x0000000020000000                . = ALIGN (0x4)
+                0x0000000020000000                _edata = .
+                0x0000000008000324                _data_loadaddr = LOADADDR (.data)
+
+.igot.plt       0x0000000020000000        0x0 load address 0x0000000008000324
+ .igot.plt      0x0000000020000000        0x0 vector.o
+
+.bss            0x0000000020000000        0x0 load address 0x0000000008000324
+ *(.bss*)
+ *(COMMON)
+                0x0000000020000000                . = ALIGN (0x4)
+                0x0000000020000000                _ebss = .
+
+/DISCARD/
+ *(.eh_frame)
+                0x0000000020000000                . = ALIGN (0x4)
+                0x0000000020000000                end = .
+                0x0000000020002000                PROVIDE (_stack, (ORIGIN (ram) + LENGTH (ram)))
+OUTPUT(ISWMult.elf elf32-littlearm)
+
+.debug_info     0x0000000000000000      0x4f1
+ .debug_info    0x0000000000000000      0x2d1 vector.o
+ .debug_info    0x00000000000002d1      0x220 ISWMult.o
+
+.debug_abbrev   0x0000000000000000      0x1ef
+ .debug_abbrev  0x0000000000000000      0x12a vector.o
+ .debug_abbrev  0x000000000000012a       0xc5 ISWMult.o
+
+.debug_loc      0x0000000000000000      0x155
+ .debug_loc     0x0000000000000000       0xee vector.o
+ .debug_loc     0x00000000000000ee       0x67 ISWMult.o
+
+.debug_aranges  0x0000000000000000       0x50
+ .debug_aranges
+                0x0000000000000000       0x30 vector.o
+ .debug_aranges
+                0x0000000000000030       0x20 ISWMult.o
+
+.debug_ranges   0x0000000000000000       0x30
+ .debug_ranges  0x0000000000000000       0x20 vector.o
+ .debug_ranges  0x0000000000000020       0x10 ISWMult.o
+
+.debug_line     0x0000000000000000      0x1cf
+ .debug_line    0x0000000000000000       0xf9 vector.o
+ .debug_line    0x00000000000000f9       0xd6 ISWMult.o
+
+.debug_str      0x0000000000000000      0x381
+ .debug_str     0x0000000000000000      0x285 vector.o
+                                        0x2be (size before relaxing)
+ .debug_str     0x0000000000000285       0xfc ISWMult.o
+                                        0x19f (size before relaxing)
+
+.comment        0x0000000000000000       0xa1
+ .comment       0x0000000000000000       0x70 vector.o
+                                         0x71 (size before relaxing)
+ .comment       0x0000000000000070       0x31 ISWMult.o
+                                         0x32 (size before relaxing)
+
+.ARM.attributes
+                0x0000000000000000       0x2f
+ .ARM.attributes
+                0x0000000000000000       0x31 vector.o
+ .ARM.attributes
+                0x0000000000000031       0x21 /tmp/ccOYWaMh.o
+ .ARM.attributes
+                0x0000000000000052       0x31 ISWMult.o
+ .ARM.attributes
+                0x0000000000000083       0x21 elmoasmfunctions.o
+
+.debug_frame    0x0000000000000000       0x70
+ .debug_frame   0x0000000000000000       0x40 vector.o
+ .debug_frame   0x0000000000000040       0x30 ISWMult.o

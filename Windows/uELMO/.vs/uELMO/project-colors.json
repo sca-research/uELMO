@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "ab2f728c-9af4-41b3-9add-fd94fa94581e": {
+      "ProjectGuid": "ab2f728c-9af4-41b3-9add-fd94fa94581e",
+      "DisplayName": "uELMO",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "865803c1-cb06-446b-8ec8-f8dd01f05bc1": {
+      "ProjectGuid": "865803c1-cb06-446b-8ec8-f8dd01f05bc1",
+      "DisplayName": "LeakageExtractor",
+      "ColorIndex": 1
+    },
+    "a7a2a36c-3c53-4ccb-b52e-425623e2dda5": {
+      "ProjectGuid": "a7a2a36c-3c53-4ccb-b52e-425623e2dda5",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}

@@ -1,0 +1,388 @@
+
+ISWMult.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+08000000 <vector_table>:
+ 8000000:	00 20 00 20 c5 00 00 08 c3 00 00 08 c1 00 00 08     . . ............
+	...
+ 800002c:	c3 00 00 08 00 00 00 00 00 00 00 00 c3 00 00 08     ................
+ 800003c:	c3 00 00 08 c1 00 00 08 c1 00 00 08 c1 00 00 08     ................
+ 800004c:	c1 00 00 08 c1 00 00 08 c1 00 00 08 c1 00 00 08     ................
+ 800005c:	c1 00 00 08 c1 00 00 08 c1 00 00 08 c1 00 00 08     ................
+ 800006c:	c1 00 00 08 c1 00 00 08 c1 00 00 08 c1 00 00 08     ................
+ 800007c:	c1 00 00 08 c1 00 00 08 c1 00 00 08 c1 00 00 08     ................
+ 800008c:	c1 00 00 08 c1 00 00 08 c1 00 00 08 c1 00 00 08     ................
+ 800009c:	c1 00 00 08 c1 00 00 08 c1 00 00 08 c1 00 00 08     ................
+ 80000ac:	c1 00 00 08 c1 00 00 08 c1 00 00 08 c1 00 00 08     ................
+ 80000bc:	c1 00 00 08                                         ....
+
+080000c0 <blocking_handler>:
+ 80000c0:	e7fe      	b.n	80000c0 <blocking_handler>
+
+080000c2 <null_handler>:
+ 80000c2:	4770      	bx	lr
+
+080000c4 <reset_handler>:
+ 80000c4:	2200      	movs	r2, #0
+ 80000c6:	4814      	ldr	r0, [pc, #80]	; (8000118 <reset_handler+0x54>)
+ 80000c8:	4b14      	ldr	r3, [pc, #80]	; (800011c <reset_handler+0x58>)
+ 80000ca:	4915      	ldr	r1, [pc, #84]	; (8000120 <reset_handler+0x5c>)
+ 80000cc:	1814      	adds	r4, r2, r0
+ 80000ce:	18d0      	adds	r0, r2, r3
+ 80000d0:	4288      	cmp	r0, r1
+ 80000d2:	d203      	bcs.n	80000dc <reset_handler+0x18>
+ 80000d4:	6824      	ldr	r4, [r4, #0]
+ 80000d6:	3204      	adds	r2, #4
+ 80000d8:	6004      	str	r4, [r0, #0]
+ 80000da:	e7f4      	b.n	80000c6 <reset_handler+0x2>
+ 80000dc:	4a11      	ldr	r2, [pc, #68]	; (8000124 <reset_handler+0x60>)
+ 80000de:	4290      	cmp	r0, r2
+ 80000e0:	d202      	bcs.n	80000e8 <reset_handler+0x24>
+ 80000e2:	2100      	movs	r1, #0
+ 80000e4:	c002      	stmia	r0!, {r1}
+ 80000e6:	e7f9      	b.n	80000dc <reset_handler+0x18>
+ 80000e8:	4c0f      	ldr	r4, [pc, #60]	; (8000128 <reset_handler+0x64>)
+ 80000ea:	4810      	ldr	r0, [pc, #64]	; (800012c <reset_handler+0x68>)
+ 80000ec:	4284      	cmp	r4, r0
+ 80000ee:	d202      	bcs.n	80000f6 <reset_handler+0x32>
+ 80000f0:	cc08      	ldmia	r4!, {r3}
+ 80000f2:	4798      	blx	r3
+ 80000f4:	e7f9      	b.n	80000ea <reset_handler+0x26>
+ 80000f6:	4c0e      	ldr	r4, [pc, #56]	; (8000130 <reset_handler+0x6c>)
+ 80000f8:	4b0e      	ldr	r3, [pc, #56]	; (8000134 <reset_handler+0x70>)
+ 80000fa:	429c      	cmp	r4, r3
+ 80000fc:	d202      	bcs.n	8000104 <reset_handler+0x40>
+ 80000fe:	cc01      	ldmia	r4!, {r0}
+ 8000100:	4780      	blx	r0
+ 8000102:	e7f9      	b.n	80000f8 <reset_handler+0x34>
+ 8000104:	f000 f84f 	bl	80001a6 <main>
+ 8000108:	4c0b      	ldr	r4, [pc, #44]	; (8000138 <reset_handler+0x74>)
+ 800010a:	490c      	ldr	r1, [pc, #48]	; (800013c <reset_handler+0x78>)
+ 800010c:	428c      	cmp	r4, r1
+ 800010e:	d202      	bcs.n	8000116 <reset_handler+0x52>
+ 8000110:	cc04      	ldmia	r4!, {r2}
+ 8000112:	4790      	blx	r2
+ 8000114:	e7f9      	b.n	800010a <reset_handler+0x46>
+ 8000116:	46c0      	nop			; (mov r8, r8)
+ 8000118:	08000324 	.word	0x08000324
+ 800011c:	20000000 	.word	0x20000000
+ 8000120:	20000000 	.word	0x20000000
+ 8000124:	20000000 	.word	0x20000000
+ 8000128:	08000324 	.word	0x08000324
+ 800012c:	08000324 	.word	0x08000324
+ 8000130:	08000324 	.word	0x08000324
+ 8000134:	08000324 	.word	0x08000324
+ 8000138:	08000324 	.word	0x08000324
+ 800013c:	08000324 	.word	0x08000324
+
+08000140 <ISWd2>:
+ 8000140:	46c0      	nop			; (mov r8, r8)
+ 8000142:	46c0      	nop			; (mov r8, r8)
+ 8000144:	b4f0      	push	{r4, r5, r6, r7}
+ 8000146:	464f      	mov	r7, r9
+ 8000148:	b480      	push	{r7}
+ 800014a:	2700      	movs	r7, #0
+ 800014c:	463b      	mov	r3, r7
+ 800014e:	463c      	mov	r4, r7
+ 8000150:	463d      	mov	r5, r7
+ 8000152:	463e      	mov	r6, r7
+ 8000154:	46b9      	mov	r9, r7
+ 8000156:	27e0      	movs	r7, #224	; 0xe0
+ 8000158:	063f      	lsls	r7, r7, #24
+ 800015a:	3704      	adds	r7, #4
+ 800015c:	2601      	movs	r6, #1
+ 800015e:	603e      	str	r6, [r7, #0]
+ 8000160:	46c0      	nop			; (mov r8, r8)
+ 8000162:	46c0      	nop			; (mov r8, r8)
+ 8000164:	46c0      	nop			; (mov r8, r8)
+ 8000166:	4691      	mov	r9, r2
+ 8000168:	680d      	ldr	r5, [r1, #0]
+ 800016a:	6801      	ldr	r1, [r0, #0]
+ 800016c:	6883      	ldr	r3, [r0, #8]
+ 800016e:	6842      	ldr	r2, [r0, #4]
+ 8000170:	68c4      	ldr	r4, [r0, #12]
+ 8000172:	460e      	mov	r6, r1
+ 8000174:	401e      	ands	r6, r3
+ 8000176:	4627      	mov	r7, r4
+ 8000178:	4017      	ands	r7, r2
+ 800017a:	4021      	ands	r1, r4
+ 800017c:	4069      	eors	r1, r5
+ 800017e:	401a      	ands	r2, r3
+ 8000180:	4051      	eors	r1, r2
+ 8000182:	404e      	eors	r6, r1
+ 8000184:	406f      	eors	r7, r5
+ 8000186:	464a      	mov	r2, r9
+ 8000188:	46c0      	nop			; (mov r8, r8)
+ 800018a:	46c0      	nop			; (mov r8, r8)
+ 800018c:	6016      	str	r6, [r2, #0]
+ 800018e:	6057      	str	r7, [r2, #4]
+ 8000190:	46c0      	nop			; (mov r8, r8)
+ 8000192:	46c0      	nop			; (mov r8, r8)
+ 8000194:	27e0      	movs	r7, #224	; 0xe0
+ 8000196:	063f      	lsls	r7, r7, #24
+ 8000198:	3704      	adds	r7, #4
+ 800019a:	2600      	movs	r6, #0
+ 800019c:	603e      	str	r6, [r7, #0]
+ 800019e:	bc80      	pop	{r7}
+ 80001a0:	46b9      	mov	r9, r7
+ 80001a2:	bcf0      	pop	{r4, r5, r6, r7}
+ 80001a4:	4770      	bx	lr
+
+080001a6 <main>:
+
+
+#include "elmoasmfunctionsdef.h"
+#include <stdint.h>
+extern void ISWd2(uint32_t*,uint32_t*,uint32_t*);
+int main() {
+ 80001a6:	b570      	push	{r4, r5, r6, lr}
+ 80001a8:	b08c      	sub	sp, #48	; 0x30
+
+  uint8_t plain[16];
+  uint32_t input[4];
+  uint32_t output[2];
+  uint32_t random;
+  uint8_t t=0;
+ 80001aa:	466b      	mov	r3, sp
+ 80001ac:	2400      	movs	r4, #0
+ 80001ae:	1cde      	adds	r6, r3, #3
+  int i;
+ 		readbyte(&t);//as real a
+ 80001b0:	0030      	movs	r0, r6
+  uint8_t t=0;
+ 80001b2:	7034      	strb	r4, [r6, #0]
+ 		readbyte(&t);//as real a
+ 80001b4:	f000 f85b 	bl	800026e <readbyte>
+
+		for (i=0;i<16;i++)
+		{
+			randbyte(plain+i);
+ 80001b8:	ad04      	add	r5, sp, #16
+ 80001ba:	1928      	adds	r0, r5, r4
+		for (i=0;i<16;i++)
+ 80001bc:	3401      	adds	r4, #1
+			randbyte(plain+i);
+ 80001be:	f000 f866 	bl	800028e <randbyte>
+		for (i=0;i<16;i++)
+ 80001c2:	2c10      	cmp	r4, #16
+ 80001c4:	d1f8      	bne.n	80001b8 <main+0x12>
+ 80001c6:	2200      	movs	r2, #0
+		}
+		for (i=0;i<4;i++)
+		{
+			input[i]=plain[4*i]^(plain[4*i+1]<<8)^(plain[4*i+2]<<16)^(plain[4*i+3]<<24);
+ 80001c8:	ac08      	add	r4, sp, #32
+ 80001ca:	18a9      	adds	r1, r5, r2
+ 80001cc:	784b      	ldrb	r3, [r1, #1]
+ 80001ce:	7888      	ldrb	r0, [r1, #2]
+ 80001d0:	021b      	lsls	r3, r3, #8
+ 80001d2:	0400      	lsls	r0, r0, #16
+ 80001d4:	4043      	eors	r3, r0
+ 80001d6:	78c9      	ldrb	r1, [r1, #3]
+ 80001d8:	5ca8      	ldrb	r0, [r5, r2]
+ 80001da:	0609      	lsls	r1, r1, #24
+ 80001dc:	4043      	eors	r3, r0
+ 80001de:	404b      	eors	r3, r1
+ 80001e0:	5113      	str	r3, [r2, r4]
+ 80001e2:	3204      	adds	r2, #4
+		for (i=0;i<4;i++)
+ 80001e4:	2a10      	cmp	r2, #16
+ 80001e6:	d1f0      	bne.n	80001ca <main+0x24>
+		}
+		input[0]=input[1]^(t^(t<<8)^(t<<16)^(t<<24));
+ 80001e8:	7832      	ldrb	r2, [r6, #0]
+		randbyte(&t);//erase
+ 80001ea:	0030      	movs	r0, r6
+		input[0]=input[1]^(t^(t<<8)^(t<<16)^(t<<24));
+ 80001ec:	0411      	lsls	r1, r2, #16
+ 80001ee:	0213      	lsls	r3, r2, #8
+ 80001f0:	404b      	eors	r3, r1
+ 80001f2:	4053      	eors	r3, r2
+ 80001f4:	0612      	lsls	r2, r2, #24
+ 80001f6:	4053      	eors	r3, r2
+ 80001f8:	6862      	ldr	r2, [r4, #4]
+ 80001fa:	4053      	eors	r3, r2
+ 80001fc:	6023      	str	r3, [r4, #0]
+		randbyte(&t);//erase
+ 80001fe:	f000 f846 	bl	800028e <randbyte>
+                for (i=0;i<4;i++)
+		    randbyte(plain+i);
+ 8000202:	0028      	movs	r0, r5
+ 8000204:	f000 f843 	bl	800028e <randbyte>
+ 8000208:	2011      	movs	r0, #17
+ 800020a:	4468      	add	r0, sp
+ 800020c:	f000 f83f 	bl	800028e <randbyte>
+ 8000210:	2012      	movs	r0, #18
+ 8000212:	4468      	add	r0, sp
+ 8000214:	f000 f83b 	bl	800028e <randbyte>
+ 8000218:	2013      	movs	r0, #19
+ 800021a:	4468      	add	r0, sp
+ 800021c:	f000 f837 	bl	800028e <randbyte>
+		random=plain[0]^(plain[1]<<8)^(plain[2]<<16)^(plain[3]<<24);
+ 8000220:	786b      	ldrb	r3, [r5, #1]
+ 8000222:	78aa      	ldrb	r2, [r5, #2]
+ 8000224:	021b      	lsls	r3, r3, #8
+ 8000226:	0412      	lsls	r2, r2, #16
+ 8000228:	4053      	eors	r3, r2
+ 800022a:	782a      	ldrb	r2, [r5, #0]
+		ISWd2(input,&random,output);
+ 800022c:	0020      	movs	r0, r4
+		random=plain[0]^(plain[1]<<8)^(plain[2]<<16)^(plain[3]<<24);
+ 800022e:	4053      	eors	r3, r2
+ 8000230:	78ea      	ldrb	r2, [r5, #3]
+		ISWd2(input,&random,output);
+ 8000232:	a901      	add	r1, sp, #4
+		random=plain[0]^(plain[1]<<8)^(plain[2]<<16)^(plain[3]<<24);
+ 8000234:	0612      	lsls	r2, r2, #24
+ 8000236:	4053      	eors	r3, r2
+		ISWd2(input,&random,output);
+ 8000238:	aa02      	add	r2, sp, #8
+		random=plain[0]^(plain[1]<<8)^(plain[2]<<16)^(plain[3]<<24);
+ 800023a:	9301      	str	r3, [sp, #4]
+		ISWd2(input,&random,output);
+ 800023c:	f7ff ff80 	bl	8000140 <ISWd2>
+    	
+  endprogram();
+ 8000240:	f000 f847 	bl	80002d2 <endprogram>
+  return 0;
+}
+ 8000244:	2000      	movs	r0, #0
+ 8000246:	b00c      	add	sp, #48	; 0x30
+ 8000248:	bd70      	pop	{r4, r5, r6, pc}
+
+0800024a <starttrigger>:
+ 800024a:	b4ff      	push	{r0, r1, r2, r3, r4, r5, r6, r7}
+ 800024c:	24e0      	movs	r4, #224	; 0xe0
+ 800024e:	0624      	lsls	r4, r4, #24
+ 8000250:	2504      	movs	r5, #4
+ 8000252:	406c      	eors	r4, r5
+ 8000254:	2501      	movs	r5, #1
+ 8000256:	6025      	str	r5, [r4, #0]
+ 8000258:	bcff      	pop	{r0, r1, r2, r3, r4, r5, r6, r7}
+ 800025a:	4770      	bx	lr
+
+0800025c <endtrigger>:
+ 800025c:	b4ff      	push	{r0, r1, r2, r3, r4, r5, r6, r7}
+ 800025e:	24e0      	movs	r4, #224	; 0xe0
+ 8000260:	0624      	lsls	r4, r4, #24
+ 8000262:	2504      	movs	r5, #4
+ 8000264:	406c      	eors	r4, r5
+ 8000266:	2500      	movs	r5, #0
+ 8000268:	6025      	str	r5, [r4, #0]
+ 800026a:	bcff      	pop	{r0, r1, r2, r3, r4, r5, r6, r7}
+ 800026c:	4770      	bx	lr
+
+0800026e <readbyte>:
+ 800026e:	b4ff      	push	{r0, r1, r2, r3, r4, r5, r6, r7}
+ 8000270:	24e1      	movs	r4, #225	; 0xe1
+ 8000272:	0624      	lsls	r4, r4, #24
+ 8000274:	6821      	ldr	r1, [r4, #0]
+ 8000276:	7001      	strb	r1, [r0, #0]
+ 8000278:	bcff      	pop	{r0, r1, r2, r3, r4, r5, r6, r7}
+ 800027a:	4770      	bx	lr
+
+0800027c <LoadN>:
+ 800027c:	b4ff      	push	{r0, r1, r2, r3, r4, r5, r6, r7}
+ 800027e:	24e1      	movs	r4, #225	; 0xe1
+ 8000280:	0624      	lsls	r4, r4, #24
+ 8000282:	2510      	movs	r5, #16
+ 8000284:	406c      	eors	r4, r5
+ 8000286:	6821      	ldr	r1, [r4, #0]
+ 8000288:	6001      	str	r1, [r0, #0]
+ 800028a:	bcff      	pop	{r0, r1, r2, r3, r4, r5, r6, r7}
+ 800028c:	4770      	bx	lr
+
+0800028e <randbyte>:
+ 800028e:	b4ff      	push	{r0, r1, r2, r3, r4, r5, r6, r7}
+ 8000290:	24e1      	movs	r4, #225	; 0xe1
+ 8000292:	0624      	lsls	r4, r4, #24
+ 8000294:	2504      	movs	r5, #4
+ 8000296:	406c      	eors	r4, r5
+ 8000298:	6821      	ldr	r1, [r4, #0]
+ 800029a:	7001      	strb	r1, [r0, #0]
+ 800029c:	bcff      	pop	{r0, r1, r2, r3, r4, r5, r6, r7}
+ 800029e:	4770      	bx	lr
+
+080002a0 <getstart>:
+ 80002a0:	b4ff      	push	{r0, r1, r2, r3, r4, r5, r6, r7}
+ 80002a2:	24e1      	movs	r4, #225	; 0xe1
+ 80002a4:	0624      	lsls	r4, r4, #24
+ 80002a6:	2508      	movs	r5, #8
+ 80002a8:	406c      	eors	r4, r5
+ 80002aa:	6821      	ldr	r1, [r4, #0]
+ 80002ac:	6001      	str	r1, [r0, #0]
+ 80002ae:	bcff      	pop	{r0, r1, r2, r3, r4, r5, r6, r7}
+ 80002b0:	4770      	bx	lr
+
+080002b2 <getruncount>:
+ 80002b2:	b4ff      	push	{r0, r1, r2, r3, r4, r5, r6, r7}
+ 80002b4:	24e1      	movs	r4, #225	; 0xe1
+ 80002b6:	0624      	lsls	r4, r4, #24
+ 80002b8:	250c      	movs	r5, #12
+ 80002ba:	406c      	eors	r4, r5
+ 80002bc:	6821      	ldr	r1, [r4, #0]
+ 80002be:	6001      	str	r1, [r0, #0]
+ 80002c0:	bcff      	pop	{r0, r1, r2, r3, r4, r5, r6, r7}
+ 80002c2:	4770      	bx	lr
+
+080002c4 <printbyte>:
+ 80002c4:	b4ff      	push	{r0, r1, r2, r3, r4, r5, r6, r7}
+ 80002c6:	24e0      	movs	r4, #224	; 0xe0
+ 80002c8:	0624      	lsls	r4, r4, #24
+ 80002ca:	7805      	ldrb	r5, [r0, #0]
+ 80002cc:	6025      	str	r5, [r4, #0]
+ 80002ce:	bcff      	pop	{r0, r1, r2, r3, r4, r5, r6, r7}
+ 80002d0:	4770      	bx	lr
+
+080002d2 <endprogram>:
+ 80002d2:	b4ff      	push	{r0, r1, r2, r3, r4, r5, r6, r7}
+ 80002d4:	24f0      	movs	r4, #240	; 0xf0
+ 80002d6:	0624      	lsls	r4, r4, #24
+ 80002d8:	2500      	movs	r5, #0
+ 80002da:	6025      	str	r5, [r4, #0]
+ 80002dc:	bcff      	pop	{r0, r1, r2, r3, r4, r5, r6, r7}
+ 80002de:	4770      	bx	lr
+
+080002e0 <initialisemaskflow>:
+ 80002e0:	b4ff      	push	{r0, r1, r2, r3, r4, r5, r6, r7}
+ 80002e2:	24e0      	movs	r4, #224	; 0xe0
+ 80002e4:	0624      	lsls	r4, r4, #24
+ 80002e6:	2540      	movs	r5, #64	; 0x40
+ 80002e8:	406c      	eors	r4, r5
+ 80002ea:	6020      	str	r0, [r4, #0]
+ 80002ec:	bcff      	pop	{r0, r1, r2, r3, r4, r5, r6, r7}
+ 80002ee:	4770      	bx	lr
+
+080002f0 <resetmaskflow>:
+ 80002f0:	b4ff      	push	{r0, r1, r2, r3, r4, r5, r6, r7}
+ 80002f2:	24e0      	movs	r4, #224	; 0xe0
+ 80002f4:	0624      	lsls	r4, r4, #24
+ 80002f6:	2542      	movs	r5, #66	; 0x42
+ 80002f8:	406c      	eors	r4, r5
+ 80002fa:	2500      	movs	r5, #0
+ 80002fc:	6025      	str	r5, [r4, #0]
+ 80002fe:	bcff      	pop	{r0, r1, r2, r3, r4, r5, r6, r7}
+ 8000300:	4770      	bx	lr
+
+08000302 <setmaskflowstart>:
+ 8000302:	b4ff      	push	{r0, r1, r2, r3, r4, r5, r6, r7}
+ 8000304:	24e0      	movs	r4, #224	; 0xe0
+ 8000306:	0624      	lsls	r4, r4, #24
+ 8000308:	2544      	movs	r5, #68	; 0x44
+ 800030a:	406c      	eors	r4, r5
+ 800030c:	6020      	str	r0, [r4, #0]
+ 800030e:	bcff      	pop	{r0, r1, r2, r3, r4, r5, r6, r7}
+ 8000310:	4770      	bx	lr
+
+08000312 <resetdatafile>:
+ 8000312:	b4ff      	push	{r0, r1, r2, r3, r4, r5, r6, r7}
+ 8000314:	24e0      	movs	r4, #224	; 0xe0
+ 8000316:	0624      	lsls	r4, r4, #24
+ 8000318:	2546      	movs	r5, #70	; 0x46
+ 800031a:	406c      	eors	r4, r5
+ 800031c:	2500      	movs	r5, #0
+ 800031e:	6025      	str	r5, [r4, #0]
+ 8000320:	bcff      	pop	{r0, r1, r2, r3, r4, r5, r6, r7}
+ 8000322:	4770      	bx	lr

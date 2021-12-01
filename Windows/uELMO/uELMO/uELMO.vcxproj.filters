@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="uELMO.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Emulator.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="EmuIO.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="core.h">
+      <Filter>头文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Execute.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Decode.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Fetch.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="core.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Memory.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="EmuIO.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Emulator.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Configure.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Execute.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Decode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Fetch.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
