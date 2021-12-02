@@ -180,3 +180,28 @@ The same setup can apply to ELMO. Yet, the comparison can be tricky, since ELMO 
 |   Cycle 24   | 6000-6250   | nop               |              |
 
 As one can see here, ELMO captures the most significant register/bus HD leakage: that is perhaps the reason ELMO is still effective in many cases. As long as the underlying micro-architectural registers assumption is not wrong, ELMO finds the most leaking part. 
+
+### Other Examples: Trivial 1st order masked AES (first round)
+Let us move on to a more complicated example: the 1st order table-based masked AES in the DPA book. The source code can be found in `Windows/uELMO/Examples/MaskedAES_R1/xxx/`
+#### Add Round Key (aka ADK)
+The source code exists in `Windows/uELMO/Examples/MaskedAES_R1/ADK/`. Following similar Step 1-3, we have the following leaky cycles from python analysis:
+ 
+| Cycle no     | Time sample | Instruction           | Leaky states |
+|--------------|-------------|-----------------------|--------------|
+|  Cycle 24    | 5750-6000   | ADK: lsls r5, r4, #2  |              |
+|  Cycle 25    | 6000-6250   | ldr r6,[r0,r5]        |              |
+|  Cycle 26    | 6250-6500   | ldr r7,[r1,r5]        |              |
+|**Cycle 27**  | 6500-6750   | LDR delay             |    r6 HD     |
+|  Cycle 28    | 6750-7000   |  eors r7,r6           |              |
+|  Cycle 29    | 7000-7250   |  str r7,[r0,r5]       |              |
+|  Cycle 30    | 7250-7500   |  STR delay            |              |
+|**Cycle 31**  | 7500-7750   |  subs r4,#0x01        |Write Bus HD  |
+|  Cycle 32-34 | 7750-8500   |  bge 0x080001BF       |              |
+
+Within this loop, Cycle 27 and Cycle 31 are leaking: as each plaintext byte is always protected with mask $U$, loading the new word into the same register as the previous word causes a HD leakage, which is not depending on random mask $U$. Cycle 31 represents the transition on the write bus: as the write bus always masked with the same mask $U+V$, its bit-flips are always unprotected. Intriguingly, it seems the write bus and the read bus flip with each other, but at least the write bus has its own buffer.
+
+`ADK_Ttest-O1_RNGON.txt` in `Windows/uELMO/Examples/MaskedAES_R1/ADK/Detection` is the 1st order TVLA results with the same piece of code. 
+
+ ![Realistic_Ttest](Windows/uELMO/Examples/MaskedAES_R1/ADK/Realistic_T.png)
+
+It is trivial to see that matches quite well with our table above.  

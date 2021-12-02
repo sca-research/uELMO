@@ -155,7 +155,8 @@ void Clock(bool pause)
 		core_current.D2E_instrreg=core_current.F2D_instrreg;
 		core_current.Execute_valid=core_current.Decode_valid;
 		core_current.F2D_instrreg=core_current.Fetch_instruction_new;
-		core_current.Decode_valid=true;
+		core_current.Decode_valid= core_current.Fetch_valid;
+		core_current.Fetch_valid = true;
 	}
 
 

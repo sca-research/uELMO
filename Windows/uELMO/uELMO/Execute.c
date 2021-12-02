@@ -576,6 +576,7 @@ bool Execute_OneCylce(bool wait_mem)
 			core_current.Execute_destination_regindex=0xff;
 			core_current.Decode_destination_regindex=0xff;
 			//Set the following two instruction to invalid
+			core_current.Fetch_valid = false;
 			core_current.Decode_valid=false;
 			core_current.Execute_valid=false;
 			core_current.cpsr_valid=false;
@@ -697,6 +698,7 @@ bool Execute_OneCylce(bool wait_mem)
 			core_current.Execute_destination_regindex=0xff;
 			core_current.Decode_destination_regindex=0xff;
             //Set the following two instruction to invalid
+			core_current.Fetch_valid = false;
 			core_current.Decode_valid=false;
 			core_current.Execute_valid=false;
 			return false;
@@ -724,6 +726,7 @@ bool Execute_OneCylce(bool wait_mem)
 			core_current.Execute_destination_regindex=0xff;
 			core_current.Decode_destination_regindex=0xff;
             //Set the following two instruction to invalid
+			core_current.Fetch_valid = false;
 			core_current.Decode_valid=false;
 			core_current.Execute_valid=false;
 			return false;
@@ -755,6 +758,7 @@ bool Execute_OneCylce(bool wait_mem)
 			core_current.Execute_destination_regindex=0xff;
 			core_current.Decode_destination_regindex=0xff;
             //Set the following two instruction to invalid
+			core_current.Fetch_valid = false;
 			core_current.Decode_valid=false;
 			core_current.Execute_valid=false;
 			return false;
@@ -787,6 +791,7 @@ bool Execute_OneCylce(bool wait_mem)
 			core_current.Execute_destination_regindex=0xff;
 			core_current.Decode_destination_regindex=0xff;
             //Set the following two instruction to invalid
+			core_current.Fetch_valid = false;
 			core_current.Decode_valid=false;
 			core_current.Execute_valid=false;
 			return false;
@@ -904,6 +909,7 @@ bool Execute_OneCylce(bool wait_mem)
 		//Update ALU output
 		core_current.Execute_ALU_result=rc;
 		core_current.Execute_destination_regindex=0xff;
+		return;
     }
 	#pragma endregion
     //CPS change processor state
@@ -1832,6 +1838,7 @@ bool Execute_OneCylce(bool wait_mem)
 				//Set the following two instruction to invalid
 				core_current.Decode_destination_regindex=0xff;
 				core_current.Execute_destination_regindex=0xff;
+				core_current.Fetch_valid = false;
 				core_current.Decode_valid=false;
 				core_current.Execute_valid=false;
 				return true;
@@ -2117,6 +2124,7 @@ bool Execute_OneCylce(bool wait_mem)
 				ra=ra+4;
 				write_register( ra_ind, ra);//update address
 				//Set the following two instruction to invalid
+				core_current.Fetch_valid = false;
 				core_current.Decode_valid=false;
 				core_current.Execute_valid=false;
 				return true;

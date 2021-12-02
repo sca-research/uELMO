@@ -29,7 +29,7 @@ typedef struct {
 		unsigned int D2E_reg2_data;//input data for pipeline register 2, barrier between Decode and Execute	(i.e. D.10)
 		//Fetch
 		uint16_t Fetch_instruction_new;//Fetched new instruction (i.e. F.3)
-
+		bool  Fetch_valid;//A flag that stall the pipeline when jump happens
 		//Decode
 		uint8_t  Decode_port_regindex[3];//Current Decoding Read ports index (0-15, often 0-7) (i.e. D.2-D.4)
 		unsigned int Decode_port_data[3];//Current Decoding Read ports data (i.e. D.5-D.7)

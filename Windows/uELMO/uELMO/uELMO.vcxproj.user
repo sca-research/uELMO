@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LocalDebuggerCommandArguments>../Examples/MaskedAES_Full/ADK/MaskedAES_R1.bin -o ../Examples/MaskedAES_Full/ADK/MaskedAES_R1_Execution.dat -r ../Examples/ISWd2/randdata_ISWd2_Board0.txt -N 1000 -fvr</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+</Project>

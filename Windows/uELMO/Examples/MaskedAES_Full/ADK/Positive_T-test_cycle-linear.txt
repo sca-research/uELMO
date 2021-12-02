@@ -1,0 +1,40 @@
+Cycle 16: Instr=Execute: stall by LDR
+Decode: stall
+Memory: load [0x20001FA8]=0xB3E92EE9
+, Term=Reg 6 HD, Tvalue=121.78158846821336
+Cycle 16: Instr=Execute: stall by LDR
+Decode: stall
+Memory: load [0x20001FA8]=0xB3E92EE9
+, Term=Decoding port 1 HD, Tvalue=121.78158846821336
+Cycle 27: Instr=Execute: stall by LDR
+Decode: stall
+Memory: load [0x20001FA4]=0x330B5282
+, Term=Reg 6 HD, Tvalue=119.23082348425397
+Cycle 27: Instr=Execute: stall by LDR
+Decode: stall
+Memory: load [0x20001FA4]=0x330B5282
+, Term=Decoding port 1 HD, Tvalue=119.23082348425397
+Cycle 31: Instr=Execute:subs r4,#0x01
+Decode:b * Imm = 0x 000000F8
+Memory: store [0x20001FD4]=0xDAE2BB6B
+, Term=Memory write buffer HD, Tvalue=8.353937757125374
+Cycle 32: Instr=Execute: bge 0x080001CD
+Decode:b * Imm = 0x 000000F8
+Memory: idle
+, Term=Memory write buffer delayed HD, Tvalue=8.353937757125374
+Cycle 38: Instr=Execute: stall by LDR
+Decode: stall
+Memory: load [0x20001FA0]=0xF557D4D7
+, Term=Reg 6 HD, Tvalue=124.97701666769167
+Cycle 38: Instr=Execute: stall by LDR
+Decode: stall
+Memory: load [0x20001FA0]=0xF557D4D7
+, Term=Decoding port 1 HD, Tvalue=124.97701666769167
+Cycle 42: Instr=Execute:subs r4,#0x01
+Decode:b * Imm = 0x 000000F8
+Memory: store [0x20001FD0]=0x1CBE3D3E
+, Term=Memory write buffer HD, Tvalue=8.669552690232527
+Cycle 43: Instr=Execute: bge 0x080001CD
+Decode:b * Imm = 0x 000000F8
+Memory: idle
+, Term=Memory write buffer delayed HD, Tvalue=8.669552690232527

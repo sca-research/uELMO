@@ -3,5 +3,7 @@
 *.dat
 Windows/LeakageExtractor/LeakageExtractor/Debug/*
 Windows/uELMO/Debug/*
+Windows/uELMO/x64/*
 Windows/uELMO/ipch/*
 Windows/uELMO/uELMO/Debug/*
+Windows/uELMO/.vs/*

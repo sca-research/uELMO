@@ -76,6 +76,7 @@ int reset ( void )
     core_current.reg[15]+=2;
 	core_current.Read_valid=false;
 	core_current.Write_valid=false;
+	core_current.Fetch_valid = true;
 	core_current.Decode_valid=false;
 	core_current.Execute_valid=false;
 	core_current.Read_reg_update=false;

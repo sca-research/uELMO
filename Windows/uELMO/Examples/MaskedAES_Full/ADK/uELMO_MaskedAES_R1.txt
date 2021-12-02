@@ -1,0 +1,6208 @@
+Sample 1:	 Execute: movs r4,#0x03
+Decode: lsls r5,r4,#0x2
+Memory: store [0xE0000004]=0x1
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 2:	 Execute: lsls r5,r5,#0x2
+Decode:ldr r6,[r0,r5]
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 3:	 Execute: ldr r6,[r0,r5]
+Decode:ldr r7,[r1,r5]
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 4:	 Execute: ldr r7,[r1,r5]
+Decode:eors r7,r6
+Memory: load [0x20001FDC]=0xE9E9E9E9
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 5:	 Execute: stall by LDR
+Decode: stall
+Memory: load [0x20001FAC]=0xC0745AEA
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 6:	 Execute:eors r7,r6
+Decode:str r7,[r0,r5]
+
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 7:	 Execute C1: str r7,[r0,r5]
+Decode: stall
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 8:	 Execute C2: str r7,[r0,r5]
+Decode: subs r4,#0x1
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 9:	 Execute:subs r4,#0x01
+Decode:b * Imm = 0x 000000F8
+Memory: store [0x20001FDC]=0x299DB303
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 10:	 Execute: bge 0x080001CD
+Decode:b * Imm = 0x 000000F8
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 11:	 Execute: bge 0x080001CD
+Decode:b * Imm = 0x 000000F8
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 12:	 Execute: bge 0x080001CD
+Decode: lsls r5,r4,#0x2
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 13:	 Execute: lsls r5,r5,#0x2
+Decode:ldr r6,[r0,r5]
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 14:	 Execute: ldr r6,[r0,r5]
+Decode:ldr r7,[r1,r5]
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 15:	 Execute: ldr r7,[r1,r5]
+Decode:eors r7,r6
+Memory: load [0x20001FD8]=0xE9E9E9E9
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 16:	 Execute: stall by LDR
+Decode: stall
+Memory: load [0x20001FA8]=0xB3E92EE9
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 17:	 Execute:eors r7,r6
+Decode:str r7,[r0,r5]
+
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 18:	 Execute C1: str r7,[r0,r5]
+Decode: stall
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 19:	 Execute C2: str r7,[r0,r5]
+Decode: subs r4,#0x1
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 20:	 Execute:subs r4,#0x01
+Decode:b * Imm = 0x 000000F8
+Memory: store [0x20001FD8]=0x5A00C700
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 21:	 Execute: bge 0x080001CD
+Decode:b * Imm = 0x 000000F8
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 22:	 Execute: bge 0x080001CD
+Decode:b * Imm = 0x 000000F8
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 23:	 Execute: bge 0x080001CD
+Decode: lsls r5,r4,#0x2
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 24:	 Execute: lsls r5,r5,#0x2
+Decode:ldr r6,[r0,r5]
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 25:	 Execute: ldr r6,[r0,r5]
+Decode:ldr r7,[r1,r5]
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 26:	 Execute: ldr r7,[r1,r5]
+Decode:eors r7,r6
+Memory: load [0x20001FD4]=0xE9E9E9E9
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 27:	 Execute: stall by LDR
+Decode: stall
+Memory: load [0x20001FA4]=0x330B5282
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 28:	 Execute:eors r7,r6
+Decode:str r7,[r0,r5]
+
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 29:	 Execute C1: str r7,[r0,r5]
+Decode: stall
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 30:	 Execute C2: str r7,[r0,r5]
+Decode: subs r4,#0x1
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 31:	 Execute:subs r4,#0x01
+Decode:b * Imm = 0x 000000F8
+Memory: store [0x20001FD4]=0xDAE2BB6B
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 32:	 Execute: bge 0x080001CD
+Decode:b * Imm = 0x 000000F8
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 33:	 Execute: bge 0x080001CD
+Decode:b * Imm = 0x 000000F8
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 34:	 Execute: bge 0x080001CD
+Decode: lsls r5,r4,#0x2
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 35:	 Execute: lsls r5,r5,#0x2
+Decode:ldr r6,[r0,r5]
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 36:	 Execute: ldr r6,[r0,r5]
+Decode:ldr r7,[r1,r5]
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 37:	 Execute: ldr r7,[r1,r5]
+Decode:eors r7,r6
+Memory: load [0x20001FD0]=0xE9E9E9E9
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 38:	 Execute: stall by LDR
+Decode: stall
+Memory: load [0x20001FA0]=0xF557D4D7
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 39:	 Execute:eors r7,r6
+Decode:str r7,[r0,r5]
+
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 40:	 Execute C1: str r7,[r0,r5]
+Decode: stall
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 41:	 Execute C2: str r7,[r0,r5]
+Decode: subs r4,#0x1
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 42:	 Execute:subs r4,#0x01
+Decode:b * Imm = 0x 000000F8
+Memory: store [0x20001FD0]=0x1CBE3D3E
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 43:	 Execute: bge 0x080001CD
+Decode:b * Imm = 0x 000000F8
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 44:	 Execute: bge 0x080001CD
+Decode:b * Imm = 0x 000000F8
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 45:	 Execute: bge 0x080001CD
+Decode: movs r3,#0x00
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 46:	 Execute: movs r3,#0x00
+Decode:str r3,[r2,#0x0]
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
+Sample 47:	 Execute: str r3,[r2,#0x0]
+Decode: pop
+Memory: idle
+ 
+	 Term 1: 
+		CPSR,	Type=Linear
+	 Term 2: 
+		Pipeline Reg 1,	Type=Full
+	 Term 3: 
+		Pipeline Reg 2,	Type=Full
+	 Term 4: 
+		Decoding port 0,	Type=Linear
+	 Term 5: 
+		Decoding port 1,	Type=Linear
+	 Term 6: 
+		Decoding port 2,	Type=Linear
+	 Term 7: 
+		ALU output,	Type=Full
+	 Term 8: 
+		Memory address,	Type=Full
+	 Term 9: 
+		Memory data,	Type=Full
+	 Term 10: 
+		Memory write buffer,	Type=Full
+	 Term 11: 
+		Memory write buffer delayed,	Type=Full
+	 Term 12: 
+		Memory read buffer,	Type=Full
+	 Term 13: 
+		Previous Reg 0,	Type=Linear
+	 Term 14: 
+		Previous Reg 1,	Type=Linear
+	 Term 15: 
+		Previous Reg 2,	Type=Linear
+	 Term 16: 
+		Previous Reg 3,	Type=Linear
+	 Term 17: 
+		Previous Reg 4,	Type=Linear
+	 Term 18: 
+		Previous Reg 5,	Type=Linear
+	 Term 19: 
+		Previous Reg 6,	Type=Linear
+	 Term 20: 
+		Previous Reg 7,	Type=Linear
+	 Term 21: 
+		Previous Reg 8,	Type=Linear
+	 Term 22: 
+		Previous Reg 9,	Type=Linear
+	 Term 23: 
+		Previous Reg 10,	Type=Linear
+	 Term 24: 
+		Previous Reg 11,	Type=Linear
+	 Term 25: 
+		Previous Reg 12,	Type=Linear
+	 Term 26: 
+		Reg 0 HD,	Type=Linear
+	 Term 27: 
+		Reg 1 HD,	Type=Linear
+	 Term 28: 
+		Reg 2 HD,	Type=Linear
+	 Term 29: 
+		Reg 3 HD,	Type=Linear
+	 Term 30: 
+		Reg 4 HD,	Type=Linear
+	 Term 31: 
+		Reg 5 HD,	Type=Linear
+	 Term 32: 
+		Reg 6 HD,	Type=Linear
+	 Term 33: 
+		Reg 7 HD,	Type=Linear
+	 Term 34: 
+		Reg 8 HD,	Type=Linear
+	 Term 35: 
+		Reg 9 HD,	Type=Linear
+	 Term 36: 
+		Reg 10 HD,	Type=Linear
+	 Term 37: 
+		Reg 11 HD,	Type=Linear
+	 Term 38: 
+		Reg 12 HD,	Type=Linear
+	 Term 39: 
+		Previous CPSR,	Type=Linear
+	 Term 40: 
+		CPSR HD,	Type=Linear
+	 Term 41: 
+		Previous Pipeline Reg 1,	Type=Linear
+	 Term 42: 
+		Previous Pipeline Reg 2,	Type=Linear
+	 Term 43: 
+		Pipeline Reg 1 HD,	Type=Linear
+	 Term 44: 
+		Pipeline Reg 2 HD,	Type=Linear
+	 Term 45: 
+		Previous Decoding port 0,	Type=Linear
+	 Term 46: 
+		Decoding port 0 HD,	Type=Linear
+	 Term 47: 
+		Previous Decoding port 1,	Type=Linear
+	 Term 48: 
+		Decoding port 1 HD,	Type=Linear
+	 Term 49: 
+		Previous Decoding port 2,	Type=Linear
+	 Term 50: 
+		Decoding port 2 HD,	Type=Linear
+	 Term 51: 
+		Previous ALU output,	Type=Linear
+	 Term 52: 
+		ALU output HD,	Type=Linear
+	 Term 53: 
+		Previous Memory address,	Type=Full
+	 Term 54: 
+		Memory address HD,	Type=Linear
+	 Term 55: 
+		Previous Memory data,	Type=Full
+	 Term 56: 
+		Memory data HD,	Type=Linear
+	 Term 57: 
+		Previous Memory write buffer,	Type=Full
+	 Term 58: 
+		Memory write buffer HD,	Type=Linear
+	 Term 59: 
+		Previous Memory write buffer delayed,	Type=Full
+	 Term 60: 
+		Memory write buffer delayed HD,	Type=Linear
+	 Term 61: 
+		Previous Memory read buffer,	Type=Full
+	 Term 62: 
+		Memory read buffer HD,	Type=Linear
+	 Term 63: 
+		Reg A * Reg B * Previous Reg A * Previous Reg B,	Type=Full
+
+
