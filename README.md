@@ -206,7 +206,7 @@ Now let us move to the enhanced 1st order masking in https://github.com/sca-rese
 
 Further analysis reveals this is likely caused by the byte-wise interaction within the 32-bit data-bus:  in MixColumn, the input state is masked by (U^W[0], U^W[1],U^W[2],U^W[3]), then added with (W[3],W[2],W[1],W[0]). Although this means (U^W[0]^W[3],U^W[1]^W[2],U^W[1]^W[2],U^W[0]^W[3]) won't leak through HW, 2-byte combination will leak information. Previous experience proves byte-wise interaction is significant in the ALU, as well as on the memory bus. Clearly, such leakage cannot be captured with standard HW model: in order to capture such leakage,   we also provide an extend HW detection, which XOR all the adjucent bytes together. With this model, we could find the same leaky cycles in the MixColumn:
 
-![Detection_Ttest_extended](Windows/uELMO/Examples/MaskedAES_R1/Enhanced_MaskedAES_Full/Verif_1stT_ext.png) 
+![Detection_Ttest_extended](Windows/uELMO/Examples/Enhanced_MaskedAES_Full/Verif_1stT_ext.png) 
 
 
 
