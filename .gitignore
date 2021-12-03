@@ -2,6 +2,7 @@
 *.bin
 *.dat
 Windows/LeakageExtractor/LeakageExtractor/Debug/*
+Windows/LeakageExtractor/LeakageExtractor/x64/*
 Windows/uELMO/Debug/*
 Windows/uELMO/x64/*
 Windows/uELMO/ipch/*

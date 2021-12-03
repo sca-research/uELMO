@@ -1,0 +1,48 @@
+Cycle 712: Instr=Execute:eors r1,r3
+Decode: adds r0,#0x1
+Memory: idle
+, Term=ALU output, Tvalue=14.905341641302817
+Cycle 719: Instr=Execute: stall by LDR
+Decode: stall
+Memory: load [0x20001FD0]=0x3B48A983
+, Term=Pipeline Reg 1, Tvalue=14.905341641302817
+Cycle 720: Instr=Execute:eors r1,r5
+Decode: lsrs r4,r1,#0x7
+Memory: idle
+, Term=Pipeline Reg 1, Tvalue=14.905341641302817
+Cycle 777: Instr=Execute:eors r1,r3
+Decode: adds r0,#0x1
+Memory: idle
+, Term=ALU output, Tvalue=16.093287457704374
+Cycle 784: Instr=Execute: stall by LDR
+Decode: stall
+Memory: load [0x20001FDC]=0x3B48A983
+, Term=Pipeline Reg 1, Tvalue=16.093287457704374
+Cycle 785: Instr=Execute:eors r1,r5
+Decode: lsrs r4,r1,#0x7
+Memory: idle
+, Term=Pipeline Reg 1, Tvalue=16.093287457704374
+Cycle 842: Instr=Execute:eors r1,r3
+Decode: adds r0,#0x1
+Memory: idle
+, Term=ALU output, Tvalue=15.883188042831332
+Cycle 849: Instr=Execute: stall by LDR
+Decode: stall
+Memory: load [0x20001FD8]=0x3B48A983
+, Term=Pipeline Reg 1, Tvalue=15.883188042831332
+Cycle 850: Instr=Execute:eors r1,r5
+Decode: lsrs r4,r1,#0x7
+Memory: idle
+, Term=Pipeline Reg 1, Tvalue=15.883188042831332
+Cycle 907: Instr=Execute:eors r1,r3
+Decode: adds r0,#0x1
+Memory: idle
+, Term=ALU output, Tvalue=15.11576907116579
+Cycle 914: Instr=Execute: stall by LDR
+Decode: stall
+Memory: load [0x20001FD4]=0x3B48A983
+, Term=Pipeline Reg 1, Tvalue=15.11576907116579
+Cycle 915: Instr=Execute:eors r1,r5
+Decode: lsrs r4,r1,#0x7
+Memory: idle
+, Term=Pipeline Reg 1, Tvalue=15.11576907116579

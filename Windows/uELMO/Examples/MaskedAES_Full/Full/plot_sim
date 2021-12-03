@@ -1,0 +1,18 @@
+hold on;
+plot(elmoTtestlinear,'k-');
+y=4.5*ones(1,965);
+y1=-4.5*ones(1,965);
+plot(y,'Color','red','LineStyle','--');
+plot(y1,'Color','red','LineStyle','--');
+title('1st order fixed v.s. random T-test on plaintext:extend HW');
+xlabel('Cycle');
+ylabel('T statistics');
+xlim([1 965]);
+ylim([-60 60]);
+xline(177,'b-.','Sbox','LabelOrientation','aligned','LabelHorizontalAlignment','left');
+xline(219,'b-.','ShiftRow','LabelOrientation','aligned','LabelHorizontalAlignment','left', 'LabelVerticalAlignment','bottom');
+xline(504,'b-.','MixColumn','LabelOrientation','aligned','LabelHorizontalAlignment','left');
+xline(786,'b-.','MaskingRoundKey','LabelOrientation','aligned','LabelHorizontalAlignment','left');
+xline(855,'b-.','AddRoundKey','LabelOrientation','aligned','LabelHorizontalAlignment','left', 'LabelVerticalAlignment','bottom');
+%xline(970,'b-.','StateCopy','LabelOrientation','aligned','LabelHorizontalAlignment','left');
+hold off;

@@ -47,8 +47,8 @@ GenMaskedSbox:
   ands r7, r3
   ldr r0, =SRMask
   ldrb r7, [r0, r7]
-  eors r6, r7		@r6=S[UV^i]^U^SRMask[(UV^i)&0x11]
-  strb r6, [ r5, r3 ]	@MS[i]=S[UV^i]^U^SRMask[(UV^i)&0x11]
+  eors r6, r7		@r6=S[UV^i]^U^SRMask[i&0x3]
+  strb r6, [ r5, r3 ]	@MS[i]=S[UV^i]^U^SRMask[i&0x3]
   @@@@@@@@@@@@@@@@@Add SRMask to Sbox output
   subs r3, #1		@i--
   bge.n masksbox
@@ -302,7 +302,7 @@ MMixColumn:
   lsls r6, #8		@r6=2*mask0||0x00
   lsls r3, #8		@r3=mask0||0x00  
   
-  ldrb r1, [r5, #3]	@r1=mask1
+  ldrb r1, [r5, #1]	@r1=mask1
   ldrb r4, [r2, r1]	@r4=xtime(mask1)
   eors r6, r4		@r6=2*mask0||2*mask1
   eors r3, r1		@r3=mask0||mask1
@@ -316,7 +316,7 @@ MMixColumn:
   lsls r6, #8		@r6=2*mask0||2*mask1||2*mask2||0x00
   lsls r3, #8		@r3=2*mask0||2*mask1||2*mask2||0x00  
 
-  ldrb r1, [r5, #1]	@r1=mask3
+  ldrb r1, [r5, #3]	@r1=mask3
   ldrb r4, [r2, r1]	@r4=xtime(mask3)
   eors r6, r4		@r6=2*mask0||2*mask1||2*mask2||2*mask3
   eors r3, r1		@r3=mask0||mask1||mask2||mask3

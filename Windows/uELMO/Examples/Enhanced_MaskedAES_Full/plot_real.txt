@@ -1,0 +1,18 @@
+hold on;
+plot(EnhancedFullTtestO1RNGON,'k-');
+y=4.5*ones(1,31000);
+y1=-4.5*ones(1,31000);
+plot(y,'Color','red','LineStyle','--');
+plot(y1,'Color','red','LineStyle','--');
+title('1st order fixed v.s. random T-test on plaintext');
+xlabel('Time(*4ns)');
+ylabel('T statistics');
+xlim([1 31000]);
+ylim([-10 10]);
+xline(577*83.33/4,'b-.','Sbox','LabelOrientation','aligned','LabelHorizontalAlignment','left');
+xline(664*83.33/4,'b-.','ShiftRow','LabelOrientation','aligned','LabelHorizontalAlignment','left');
+xline(1022*83.33/4,'b-.','MixColumn','LabelOrientation','aligned','LabelHorizontalAlignment','left');
+xline(1282*83.33/4,'b-.','MaskingRoundKey','LabelOrientation','aligned','LabelHorizontalAlignment','left');
+xline(1372*83.33/4,'b-.','AddRoundKey','LabelOrientation','aligned','LabelHorizontalAlignment','left');
+%xline(970*83.33/4,'b-.','StateCopy','LabelOrientation','aligned','LabelHorizontalAlignment','left');
+hold off;

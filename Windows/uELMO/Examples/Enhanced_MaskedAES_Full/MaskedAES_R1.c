@@ -6,51 +6,53 @@
 
 void AES_encrypt(uint8_t* m, uint8_t* c)
 {
-   uint8_t temp[16];
-  for(int j=0;j<16;j++)
-  {
-    m[j]=0;
-    temp[j]=0;
-  }
+uint8_t temp[16];
+for (int j = 0; j < 16; j++)
+{
+    m[j] = 0;
+    temp[j] = 0;
+}
 
-  MaskingKey(RoundKey, temp);
-  MADK(c,temp);
+MaskingKey(RoundKey, temp);
+MADK(c, temp);
 
-  starttrigger();
-
-  for(int i=0;i<10;i++)
-  {
-        MSbox(c);
-
-
-       
-        MShiftRow(c);
+starttrigger();
+for (int i = 0; i < 10; i++)
+{
+    MSbox(c);
 
 
-        if(i!=9)
-        {
+    MShiftRow(c);
 
-           MMixColumn(c, m);
 
-           MaskingKey(RoundKey+(i+1)*16, temp);
 
-           MADK(m,temp);
 
-           SafeCopy(m,c);
+    if (i != 9)
+    {
 
-        }
-        else
-        {
-           MaskingKey(RoundKey+(i+1)*16, temp);
-           MADK(c,temp);
-           SafeCopy(c,m);
-	  
-        }
-      if(i==0)
-          endtrigger();
-  }
-//endtrigger();
-  Finalize(m, c);
+        MMixColumn(c, m);
+
+        MaskingKey(RoundKey + (i + 1) * 16, temp);
+
+        MADK(m, temp);
+
+        SafeCopy(m, c);
+
+    }
+    else
+    {
+        MaskingKey(RoundKey + (i + 1) * 16, temp);
+        MADK(c, temp);
+        SafeCopy(c, m);
+
+    }
+    if (i == 0)
+        endtrigger();
+
+}
+
+
+Finalize(m, c);
 
 
   
@@ -72,15 +74,9 @@ int main() {
     V = 0;
     UV = 0;
    
-    for(j=0;j<N;j++) 
-    {
-
          for( int i = 0; i < 16; i++ ) 
 	 {
-             	randbyte(plain+i);
-		//plain[i]=(plain[i]&0x3)^((plain[i]&0x3)<<2)^((plain[i]&0x3)<<4)^((plain[i]&0x3)<<6);
-		if(j>N/2)
-                    plain[i]=0;
+             	readbyte(plain+i);
          }
          randbyte(&U);
 	 //U=(U&0x3)^((U&0x3)<<2)^((U&0x3)<<4)^((U&0x3)<<6);
@@ -95,9 +91,10 @@ int main() {
          GenMaskedSbox();
          MaskingPlaintext(plain, cipher);
          AES_encrypt(plain, cipher);
-    	
-    }
-
+             for( int i = 0; i < 16; i++ ) 
+	 {
+             	printbyte(cipher+i);
+         }
   endprogram();
     return 0;
 }

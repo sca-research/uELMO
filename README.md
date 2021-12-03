@@ -182,26 +182,31 @@ The same setup can apply to ELMO. Yet, the comparison can be tricky, since ELMO 
 As one can see here, ELMO captures the most significant register/bus HD leakage: that is perhaps the reason ELMO is still effective in many cases. As long as the underlying micro-architectural registers assumption is not wrong, ELMO finds the most leaking part. 
 
 ### Other Examples: Trivial 1st order masked AES (first round)
-Let us move on to a more complicated example: the 1st order table-based masked AES in the DPA book. The source code can be found in `Windows/uELMO/Examples/MaskedAES_R1/xxx/`
-#### Add Round Key (aka ADK)
-The source code exists in `Windows/uELMO/Examples/MaskedAES_R1/ADK/`. Following similar Step 1-3, we have the following leaky cycles from python analysis:
- 
-| Cycle no     | Time sample | Instruction           | Leaky states |
-|--------------|-------------|-----------------------|--------------|
-|  Cycle 24    | 5750-6000   | ADK: lsls r5, r4, #2  |              |
-|  Cycle 25    | 6000-6250   | ldr r6,[r0,r5]        |              |
-|  Cycle 26    | 6250-6500   | ldr r7,[r1,r5]        |              |
-|**Cycle 27**  | 6500-6750   | LDR delay             |    r6 HD     |
-|  Cycle 28    | 6750-7000   |  eors r7,r6           |              |
-|  Cycle 29    | 7000-7250   |  str r7,[r0,r5]       |              |
-|  Cycle 30    | 7250-7500   |  STR delay            |              |
-|**Cycle 31**  | 7500-7750   |  subs r4,#0x01        |Write Bus HD  |
-|  Cycle 32-34 | 7750-8500   |  bge 0x080001BF       |              |
+Let us move on to a more complicated example: the 1st order table-based masked AES in the DPA book. The source code can be found in `Windows/uELMO/Examples/MaskedAES_Full/Full/`
 
-Within this loop, Cycle 27 and Cycle 31 are leaking: as each plaintext byte is always protected with mask $U$, loading the new word into the same register as the previous word causes a HD leakage, which is not depending on random mask $U$. Cycle 31 represents the transition on the write bus: as the write bus always masked with the same mask $U+V$, its bit-flips are always unprotected. Intriguingly, it seems the write bus and the read bus flip with each other, but at least the write bus has its own buffer.
+The 1st order TVLA result with all 0-s input is plotted below:
 
-`ADK_Ttest-O1_RNGON.txt` in `Windows/uELMO/Examples/MaskedAES_R1/ADK/Detection` is the 1st order TVLA results with the same piece of code. 
+ ![Realistic_Ttest](Windows/uELMO/Examples/MaskedAES_R1/Full/TVLA_realistic_1st.png)
+Considering 1MHz would lead to around 240k samples, we switch back to 12MHz: as a consequence, the leakage-cycle correspondence is not clear any more. Moreover, some leakge from the adjacent cycles can even convolute together. Sbox, ShiftRow, MixColumn and AddRoundkey are all leaking: there is even a long-lasting memory effect when generating the masked roundkey. We suspect this is from the remaining data on the memory bus. 
 
- ![Realistic_Ttest](Windows/uELMO/Examples/MaskedAES_R1/ADK/Realistic_T.png)
+As our aim here is comparing the shape of the curve, not pin-point to each leaky cycle, we plot our detection result as below:
 
-It is trivial to see that matches quite well with our table above.  
+ ![Detection_Ttest](Windows/uELMO/Examples/MaskedAES_R1/Full/Detection/Verif_1stT.png)
+
+The realistic trace contains 20k samples, which is about 20k*4ns/(1/12E6)=960 cycles. The detection trace has 965 cycles. Note that both are inaccurate: the simulator is not timingly cycle accurate, while the realistic trace is obtained by manual inspection. However, the length is more-or-less the same. Furthermore, if we compare the shape of both figures, they are indeed quit similar. Our tool is not a propotional one, thus the amplitude is of course not comparable. Nonetheless, with only 1k traces and the HW detection, our result is a reasonbly good-fit of the practice.
+
+As a comparision, ELMO only reports leakage for ShiftRow on the same code:
+
+ ![Detection_ELMO](Windows/uELMO/Examples/MaskedAES_R1/Full/Detection/ELMO1stT.png)
+
+### Other Examples: Enhanced 1st order masked AES (first round)
+Now let us move to the enhanced 1st order masking in https://github.com/sca-research/ASM_MaskedAES. In order to deal with various issues above, the author used 4 additional word-wise mask to protect the round state. In standard 1st order TVLA, no leakage was found within 1M traces. Here we have tested that enhanced code in our simulator: the standard HW testing did not report any leakage; however, realistic measurements show some subtal leakage around MixColumn:
+
+ ![Realistic_Ttest](Windows/uELMO/Examples/Enhanced_MaskedAES_Full/TVLA_realistic_1st.png)
+
+Further analysis reveals this is likely caused by the byte-wise interaction within the 32-bit data-bus:  in MixColumn, the input state is masked by (U^W[0], U^W[1],U^W[2],U^W[3]), then added with (W[3],W[2],W[1],W[0]). Although this means (U^W[0]^W[3],U^W[1]^W[2],U^W[1]^W[2],U^W[0]^W[3]) won't leak through HW, 2-byte combination will leak information. Previous experience proves byte-wise interaction is significant in the ALU, as well as on the memory bus. Clearly, such leakage cannot be captured with standard HW model: in order to capture such leakage,   we also provide an extend HW detection, which XOR all the adjucent bytes together. With this model, we could find the same leaky cycles in the MixColumn:
+
+![Detection_Ttest_extended](/elmo_verif/Examples/MaskedAES_R1/Enhanced_MaskedAES_Full/Verif_1stT_ext.png) 
+
+
+

@@ -1116,6 +1116,7 @@ void Decode_OneCycle(bool prev)
 
 		if(DEBUG_CORE)
 			printf("Decode:ldrb r%u,[r%u,r%u]\n",ra_ind,rb_ind,rc_ind);
+		//if(ra_ind==6 && rb_ind==0 && rc_ind==4)
 		sprintf(core_current.Decode_instr_disp, "Decode:ldrb r%u,[r%u,r%u]", ra_ind, rb_ind, rc_ind);
 
         return;
