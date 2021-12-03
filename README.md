@@ -186,18 +186,18 @@ Let us move on to a more complicated example: the 1st order table-based masked A
 
 The 1st order TVLA result with all 0-s input is plotted below:
 
- ![Realistic_Ttest](Windows/uELMO/Examples/MaskedAES_R1/Full/TVLA_realistic_1st.png)
+ ![Realistic_Ttest](Windows/uELMO/Examples/MaskedAES_Full/Full/TVLA_realistic_1st.png)
 Considering 1MHz would lead to around 240k samples, we switch back to 12MHz: as a consequence, the leakage-cycle correspondence is not clear any more. Moreover, some leakge from the adjacent cycles can even convolute together. Sbox, ShiftRow, MixColumn and AddRoundkey are all leaking: there is even a long-lasting memory effect when generating the masked roundkey. We suspect this is from the remaining data on the memory bus. 
 
 As our aim here is comparing the shape of the curve, not pin-point to each leaky cycle, we plot our detection result as below:
 
- ![Detection_Ttest](Windows/uELMO/Examples/MaskedAES_R1/Full/Detection/Verif_1stT.png)
+ ![Detection_Ttest](Windows/uELMO/Examples/MaskedAES_Full/Full/Verif_1stT.png)
 
 The realistic trace contains 20k samples, which is about 20k*4ns/(1/12E6)=960 cycles. The detection trace has 965 cycles. Note that both are inaccurate: the simulator is not timingly cycle accurate, while the realistic trace is obtained by manual inspection. However, the length is more-or-less the same. Furthermore, if we compare the shape of both figures, they are indeed quit similar. Our tool is not a propotional one, thus the amplitude is of course not comparable. Nonetheless, with only 1k traces and the HW detection, our result is a reasonbly good-fit of the practice.
 
 As a comparision, ELMO only reports leakage for ShiftRow on the same code:
 
- ![Detection_ELMO](Windows/uELMO/Examples/MaskedAES_R1/Full/Detection/ELMO1stT.png)
+ ![Detection_ELMO](Windows/uELMO/Examples/MaskedAES_Full/Full/ELMO1stT.png)
 
 ### Other Examples: Enhanced 1st order masked AES (first round)
 Now let us move to the enhanced 1st order masking in https://github.com/sca-research/ASM_MaskedAES. In order to deal with various issues above, the author used 4 additional word-wise mask to protect the round state. In standard 1st order TVLA, no leakage was found within 1M traces. Here we have tested that enhanced code in our simulator: the standard HW testing did not report any leakage; however, realistic measurements show some subtal leakage around MixColumn:
@@ -206,7 +206,7 @@ Now let us move to the enhanced 1st order masking in https://github.com/sca-rese
 
 Further analysis reveals this is likely caused by the byte-wise interaction within the 32-bit data-bus:  in MixColumn, the input state is masked by (U^W[0], U^W[1],U^W[2],U^W[3]), then added with (W[3],W[2],W[1],W[0]). Although this means (U^W[0]^W[3],U^W[1]^W[2],U^W[1]^W[2],U^W[0]^W[3]) won't leak through HW, 2-byte combination will leak information. Previous experience proves byte-wise interaction is significant in the ALU, as well as on the memory bus. Clearly, such leakage cannot be captured with standard HW model: in order to capture such leakage,   we also provide an extend HW detection, which XOR all the adjucent bytes together. With this model, we could find the same leaky cycles in the MixColumn:
 
-![Detection_Ttest_extended](/elmo_verif/Examples/MaskedAES_R1/Enhanced_MaskedAES_Full/Verif_1stT_ext.png) 
+![Detection_Ttest_extended](Windows/uELMO/Examples/MaskedAES_R1/Enhanced_MaskedAES_Full/Verif_1stT_ext.png) 
 
 
 
