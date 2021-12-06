@@ -228,7 +228,7 @@ In Step 2, we construct leaky states as usual.
 
 For evaluation, we run the function `ModelVerifier.ISWd2_auto_evaluation()` given the leaky states file and the trace set. The alignment is done manually in the code: as this step does not affect normal usage, we did not plan to open this access to ordinary users. The output statistical results will be written to a text file. `ISWd2_Plot` provides some plotting commands in Matlab to make this more readable. The following figures present our basic result:
 
- ![Model_evaluation](Windows/uELMO/Examples/ISWd2/Model_Evaluation/ISWd2.png)
+ ![Model_evaluation](Windows/uELMO/Examples/ISWd2/ModelEvaluation/ISWd2.png)
 
 The upper side illustrates the F-test result between our current (complete) model and the full (best possible) model. If we follow the same rule as TVLA, using p=1E-6 as our threshold, the figure proves our current model is "good enough". The lower side plots the coefficient of determination ("R^2") from the cross-validation. We use the first 20k traces to build both models and then evaluate both with the left 30k traces. As this is from cross-validation, there is no guarantee the full model will have a higher R^2 or even a positive R^2. A negative or lower than current model R^2 could suggest the full model is over-fitting, which provides some side evidence that our current model might be statistically good enough. Under the current number of traces, we believe there is no way to figure out whether the left low p values are all from overfitting, or there is still some subtle leakage left. That has been said, it is fair to say even if there is still something left, the variance of such leakage should be quite limited, according to the power analysis of the F-test.
 
