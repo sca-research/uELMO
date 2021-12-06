@@ -1,0 +1,47 @@
+ISWd2FtestAutoBoard0=ISWd2FtestAuto;
+log_SSE_F=ISWd2FtestAutoBoard0(:,1);
+Df_F=ISWd2FtestAutoBoard0(:,2);
+log_SSE_ext=ISWd2FtestAutoBoard0(:,3);
+Df_ext=ISWd2FtestAutoBoard0(:,4);
+Fstat_ext=ISWd2FtestAutoBoard0(:,5);
+log_pv_ext=ISWd2FtestAutoBoard0(:,6);
+log_SST=ISWd2FtestAutoBoard0(:,7);
+
+SST=10.^log_SST;
+SSE_F=10.^log_SSE_F;
+SSE_ext=10.^log_SSE_ext;
+R2_ext=1-SSE_ext./SST;
+R2_Full=1-SSE_F./SST;
+
+subplot(211);
+hold on;
+plot(log_pv_ext,'k-');
+for i=1:1:16
+   str = sprintf('C%d',i+2);
+   xline(i*250,'b-.',str,'LabelOrientation','horizontal','LabelHorizontalAlignment','left');
+end
+hold off;
+title('F-test: current model v.s. full');
+xlabel('Time(*4ns)');
+ylabel('log_{(p-value)}');
+xlim([1 4000]);
+ylim([0 40]);
+subplot(212);
+hold on;
+plot(R2_ext,'k-' );
+plot(R2_Full,'r--');
+legend('current model','full model')
+for i=1:1:16
+   str = sprintf('C%d',i+2);
+   xline(i*250,'b-.',str,'LabelOrientation','horizontal','LabelHorizontalAlignment','left');
+end
+legendlist = cell(2,1);
+legendlist{1}='current model';
+legendlist{2}='full model';
+legend(legendlist);
+hold off;
+title('Cross validation R^2');
+xlabel('Time(*4ns)');
+ylabel('R^2');
+xlim([1 4000]);
+

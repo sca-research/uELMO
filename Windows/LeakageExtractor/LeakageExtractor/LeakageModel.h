@@ -9,10 +9,10 @@
 #define MICROARCHITECTURAL 1//Allows leakage from the micro-architecture
 #define CPSR 1//Allows leakage from the CPSR register
 #define DECODE_PORT 1//Allows leakage from the decoding register access
-#define GLITCHY_DECODE 0//Allows for glitchy decoding register access
+#define GLITCHY_DECODE 1//Allows for glitchy decoding register access
 
 #define TRANSITION 1//Allows for transition leakage
-#define LSB_NEIGHBOUR 0//Allows for LSB based neibouring effect
+#define LSB_NEIGHBOUR 1//Allows for LSB based neibouring effect
 //print out the instruction discription for current cycle
 void Generate_Leakage_Instr(CORE_STATUS*, bool);
 void Generate_Leakage_Select(CORE_STATUS*,bool);

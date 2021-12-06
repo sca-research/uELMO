@@ -209,4 +209,29 @@ Further analysis reveals this is likely caused by the byte-wise interaction with
 ![Detection_Ttest_extended](Windows/uELMO/Examples/Enhanced_MaskedAES_Full/Verif_1stT_ext.png) 
 
 
+## Tutorial: evaluating the utilised leakage model (with 2-share bitwise ISW multiplication)
+A notable difference between  &#956;ELMO and all previous leakage simulators is, utilising the ``completeness F-test'', we can evaluate the quality of the underlying leakage model within a certain piece of code snippet. In short, if the F-test reported an extremely small p-value (or large log(p-value)), it usually implies something is missing from the leakage model (regardless of whether the missing part is exploitable or not). In other words, if we have acquired some realistic traces with a certain piece of code, we can run &#956;ELMO with it and challenge &#956;ELMO's leakage coverage versus realistic measurements.
 
+`ModelVerifier.py` provides functionalities for evaluation how statistically *good* is our model. To do this, we need to align the randomness in the realistic trace acquisition and ELMO simulation. The current workflow is, do the acquisition and store the TRS file as normal. `ModelVerifier.ExportInputs_XXX()` will write out the TRS's crypto field as ELMO's input randomness data (`RANDOM_INPUT.txt`) that used in Step 1. Of course, the randomness usage must also be aligned in the acquisition-based and ELMO based code. Thus, one must make subtle adjustments in the code to achieve useful comparison.
+
+Step 1/2 can run as usual, with the `-r` in Step 1. `ModelVerifier.XXX_auto_evaluation(tracefilename,leakystate_filename,header_filename,drift,cv_start,outfile)` can perform the F-test and analyse the quality of the model. The TRS file as well as the model-generated leaky states file must be given. Besides, the cycles must be aligned in code. Also, this evaluation does not work with too much randomness (within a reasonable amount of traces), so users must have a plan to limit the randomness usage. All above has to be adjusted in code right now.
+
+### On 2-share bitwise ISW multiplication
+
+First, let us demonstrate our model provides reasonable simulation, by regression \& cross-validation on realistic traces. As stated before, users are responsible for trimming down the randomness, aligning the traces and simulation basis, plus ensuring our tool gets the same randomness input as the trace acquisition. 
+
+Our measured trace set is around 700MB, therefore not provided in the repo. To make sure our tool gets the same randomness, we extract the randomness usage using the function `ModelVerifier.ExportInputs_XXX()` and get the randomness file `RANDOM_INPUT.txt`.
+
+Align the randomness usage in the source code of `Windows/uELMO/Examples/ISWd2/Model_Evaluation` with `Windows/uELMO/Examples/ISWd2/Acquisition`. Then run Step 1 with `RANDOM_INPUT.txt` as the randomness input.
+
+In Step 2, we construct leaky states as usual.
+
+For evaluation, we run the function `ModelVerifier.ISWd2_auto_evaluation()` given the leaky states file and the trace set. The alignment is done manually in the code: as this step does not affect normal usage, we did not plan to open this access to ordinary users. The output statistical results will be written to a text file. `ISWd2_Plot` provides some plotting commands in Matlab to make this more readable. The following figures present our basic result:
+
+ ![Model_evaluation](Windows/uELMO/Examples/ISWd2/Model_Evaluation/ISWd2.png)
+
+The upper side illustrates the F-test result between our current (complete) model and the full (best possible) model. If we follow the same rule as TVLA, using p=1E-6 as our threshold, the figure proves our current model is "good enough". The lower side plots the coefficient of determination ("R^2") from the cross-validation. We use the first 20k traces to build both models and then evaluate both with the left 30k traces. As this is from cross-validation, there is no guarantee the full model will have a higher R^2 or even a positive R^2. A negative or lower than current model R^2 could suggest the full model is over-fitting, which provides some side evidence that our current model might be statistically good enough. Under the current number of traces, we believe there is no way to figure out whether the left low p values are all from overfitting, or there is still some subtle leakage left. That has been said, it is fair to say even if there is still something left, the variance of such leakage should be quite limited, according to the power analysis of the F-test.
+
+## Known limitations---Si Gao, 2021.12.6
+- As stated in the paper, timing is far from accurate. For instance, if the current LDR is using the result of the previous LDR, whether or not it can forward the result without stalling the pipeline. My experience *seems* to suggest some instructions used in the Sbox part take fewer cycles than &#956;ELMO expected.
+- Unlike ELMO, &#956;ELMO did not go through a proper functional testing/verification procedure. ELMO did not either, but ELMO makes no change to the Thumbulator's functionality anyway.  &#956;ELMO on the other hand, explicitly added the 3-stage pipeline, which inevitably changed the functionality of the Thumbulator. I have tested on various masking gadgets. However, if the program uses some less-frequent instructions, it is quite expected if it still has some bugs. 

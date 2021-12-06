@@ -242,7 +242,7 @@ class ModelVerifier(object):
                 fo1.write(str(m) + '\t')
                 fo1.write(str(Fstat) + '\t')
                 fo1.write(str(pv) + '\t')
-                fo1.write(str(np.log10(SST_cv)) + '\r\n')
+                fo1.write(str(np.log10(SST_cv)) + '\n')
             if(pv>maxpv):
                 maxpv=pv
         if (filename != None):
@@ -2431,6 +2431,8 @@ class ModelVerifier(object):
                         Xt=Xt^((X[:,i*4]&bitmask)<<(i*randbit))
                     else:# CPSR takes the high regs
                         Xt=Xt^(((X[:,i*4+3]>>4)&0x0f)<<(i*randbit))
+            #if ('Neighbour' in term.disp):
+            #    continue;
             if(term.type==0):#Full
                 [X,count]=self.RegressionExtend(Xt, randbit*datalen, Terms=None, Linear=None, bit=randbit)
                 if (ExpVars is None):
@@ -2532,8 +2534,8 @@ class ModelVerifier(object):
         trs = TRS_Reader.TRS_Reader(
             tracefilename)
         trs.read_header()
-        N = 1000
-        trs.read_traces(N, 3250, 5750)  # does not matter here
+        N = 50000
+        trs.read_traces(N, 750, 3250+250*6)  # does not matter here
         #Terms = self.Model2Terms(0x0117, 4)
         #[XL, count] = self.RegressionExtend((x16 ^ x15) ^ ((x12 ^ x11) << 2) ^ ((x8 ^ x7) << 4) ^ ((x4 ^ x3) << 6), 8,
         #                                    Terms)
@@ -2548,7 +2550,9 @@ class ModelVerifier(object):
         #self.LRA_Fullbase(trs,b2,0,7000,"LRA_b2.txt")
         #self.LRA_Fullbase(trs,r,0,7000,"LRA_r.txt")
         #self.LRA_Fullbase(trs,r^a1,0,7000,"LRA_rxa1.txt")
-        #self.LRA_Fullbase(trs,b1^a1,0,7000,"LRA_b1xa1.txt")
+        #self.LRA_Fullbase(trs,b1^b2,0,500,"LRA_r3xr4.txt")
+        #self.LRA_Fullbase(trs,r^b2,0,500,"LRA_r4xr5.txt")
+        #self.LRA_Fullbase(trs,(a1&b1)^(a1&b2)&(a2&b1),0,500,"LRA_r5xr6.txt")
         #self.LRA_Fullbase(trs,b1^a2,0,7000,"LRA_b1xa2.txt")
         #self.LRA_Fullbase(trs,b2^a2,0,7000,"LRA_b2xa2.txt")
         #self.LRA(trs, XL, 8, 0, 5500, "LRA_xHD_linear.txt")
@@ -2558,15 +2562,15 @@ class ModelVerifier(object):
             header_filename, N)
         Expvar=[]
         print("Analysing leaky states\n")
-        for cycle_no in range(15,25):
+        for cycle_no in range(5,21):
             print("Cycle {0}\n".format(cycle_no))
             Expvar_sample = self.GenRegressionBasis_OneSample(cycle_no, randbit)
             Expvar.append(Expvar_sample)
-        self.autoRegression_5bit(trs, Expvar, 2, drift, cv_start, outfile,N,10)
-        #no=7
+        self.autoRegression_5bit(trs, Expvar, 2, drift, cv_start, outfile,N,16)
+        # no=25
         #Expvar_sample = self.GenRegressionBasis_OneSample(no, 2)
         #print("Instr={0}".format(self.lsReader.Samples[no].inst))
-        #self.Regression_OneSample_ISWd2(trs, no-2, Expvar_sample,2, drift, cv_start, "F-test.txt", N)
+        #self.Regression_OneSample_ISWd2(trs,0, Expvar_sample,2, drift, cv_start, "F-test.txt", N)
     def ADK_auto_evaluation(self,tracefilename,leakystate_filename,header_filename,drift,cv_start,outfile):
         trs = TRS_Reader.TRS_Reader(
             tracefilename)
@@ -2805,12 +2809,12 @@ class ModelVerifier(object):
             Expvar.append(Expvar_sample)
         self.autoRegression_general(trs, X,Expvar, bitn, drift, cv_start, outfile,N,16)
 if __name__ == '__main__':
-        N = 1000
+        N = 50000
         threshold = 5
         randbit=2
         cycle_no=9
         drift=40
-        cv_start=700
+        cv_start=20000
         #ModelVerifier().GiftSbox_manual_evaluation()
         mv=ModelVerifier()
         #mv.ExportInputs_MidoriP("MidoriP_Ftest_2500Samples_Rand2_Board1.trs","/home/IWAS/gaosi/Documents/Elmo_verif/ELMO_verif/elmo_verif/Examples/Midori_P/randdata_Midori_Board1.txt")
@@ -2832,8 +2836,11 @@ if __name__ == '__main__':
         #                            "/home/IWAS/gaosi/Documents/Elmo_verif/ELMO_verif/elmo_verif/Examples/Midori_P/MidoriP_LeakyStates_board1.bin",
         #                            "MidoriP_header.txt", drift, cv_start,"MidoriP_Ftest_Auto_Board1.txt")
         mv.ISWd2_auto_evaluation("ISWd2Mult_Ftest_7500Samples.trs",
-                                   "C:\\Users\\gs\\Documents\\GitHub\\uELMO\\Windows\\uELMO\\Examples\\ISWd2\\ISWd2_LeakyState.bin",
+                                   "C:\\Users\\si-ga\\Documents\\GitHub\\uELMO\\Windows\\uELMO\\Examples\\ISWd2\\ModelEvaluation\\ISWMult_LeakyState.bin",
                                    "ISWd2_header.txt", drift, cv_start,"ISWd2_Ftest_Auto.txt")
+        #mv.ISWd2_auto_evaluation("ISWd2Mult_Ftest_7500Samples.trs",
+        #                           "C:\\Users\\si-ga\\Documents\\Klagenfurt_Oct_26\\Documents\\Elmo_verif\\ELMO_verif\\elmo_verif\\Examples\\ISWd2\\Model_Evaluation\\ISWd2_LeakyStates_board0.bin",
+        #                           "ISWd2_header.txt", drift, cv_start,"ISWd2_Ftest_Auto_Part2.txt")
         #mv.ExportInputs_MaskedAES_Sbox("MaskedAES_MixColumn_Ttest.trs",
         #                        "/home/IWAS/gaosi/Documents/Elmo_verif/ELMO_verif/elmo_verif/Examples/MaskedAES_R1/MixColumn/Model_Evaluation/randdata_MixColumn.txt")
         #mv.Sbox_auto_evaluation("/home/IWAS/gaosi/Documents/Python/MaskedAES_Sbox_Ttest.trs",

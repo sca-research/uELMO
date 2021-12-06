@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LocalDebuggerCommandArguments>../Examples/Enhanced_MaskedAES_Full/MaskedAES_R1.bin -o ../Examples/Enhanced_MaskedAES_Full/MaskedAES_R1_Execution.dat -r ../Examples/ISWd2/randdata_ISWd2_Board0.txt -N 1000 -fvr</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>../Examples/ISWd2/ModelEvaluation/ISWMult.bin -o ../Examples/ISWd2/ModelEvaluation/ISWMult.dat -r ../Examples/ISWd2/randdata_ISWd2_Board0.txt -N 50000</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>

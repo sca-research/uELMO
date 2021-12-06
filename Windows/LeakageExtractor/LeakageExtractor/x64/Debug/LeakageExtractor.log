@@ -1,10 +1,4 @@
-﻿  FrameReader.c
-  LeakageExtractor.c
-C:\Users\si-ga\Documents\GitHub\uELMO\Windows\LeakageExtractor\LeakageExtractor\LeakageExtractor.c(20,31): warning C4013: “Generate_Leakage_Instr”未定义；假设外部返回 int
-C:\Users\si-ga\Documents\GitHub\uELMO\Windows\LeakageExtractor\LeakageExtractor\LeakageExtractor.c(22,32): warning C4013: “Generate_Leakage_Select”未定义；假设外部返回 int
-C:\Users\si-ga\Documents\GitHub\uELMO\Windows\LeakageExtractor\LeakageExtractor\LeakageExtractor.c(23,36): warning C4013: “Generate_Leakage_Transition”未定义；假设外部返回 int
-C:\Users\si-ga\Documents\GitHub\uELMO\Windows\LeakageExtractor\LeakageExtractor\LeakageExtractor.c(24,37): warning C4013: “Generate_Leakage_Interaction”未定义；假设外部返回 int
-  LeakageModel.c
+﻿  LeakageModel.c
   Write_LeakageState.c
 C:\Users\si-ga\Documents\GitHub\uELMO\Windows\LeakageExtractor\LeakageExtractor\Write_LeakageState.c(31,22): warning C4267: “初始化”: 从“size_t”转换到“uint8_t”，可能丢失数据
 C:\Users\si-ga\Documents\GitHub\uELMO\Windows\LeakageExtractor\LeakageExtractor\Write_LeakageState.c(45,14): warning C4267: “=”: 从“size_t”转换到“uint8_t”，可能丢失数据
