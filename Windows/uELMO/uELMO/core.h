@@ -8,6 +8,8 @@
 #define CPSR_C (1<<29)
 #define CPSR_V (1<<28)
 #define CPSR_Q (1<<27)
+//SMURF_ADAPTING, this is the core definition
+//Do not change anything here(unless you would like to rewrite Thumbulator)!
 typedef struct {
 	//Registers:
 		//architectural registers: R0 to R15
