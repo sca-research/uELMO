@@ -941,7 +941,7 @@ bool Execute_OneCylce(bool wait_mem)
 	    //Update ALU output
 	    core_current.Execute_ALU_result = rc;
 	    core_current.Execute_destination_regindex = 0xff;
-	    return;
+	    return false;
 	}
     //CPS change processor state
     if ((inst & 0xFFE8) == 0xB660)
@@ -1849,7 +1849,7 @@ bool Execute_OneCylce(bool wait_mem)
 
 	    if (find)		//already find one low reg to pop
 		{
-		    if ((((inst & 0xff) >> (rb_ind - 1)) > 0) || (inst & 0x100 > 0))	//more to pop)
+		    if ((((inst & 0xff) >> (rb_ind - 1)) > 0) || ((inst & 0x100) > 0))	//more to pop)
 			return true;
 		    else	//Finish pop
 			{
