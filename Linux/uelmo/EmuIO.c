@@ -38,7 +38,7 @@ void Open_OutputFile(char *filename)	//SMURF_ADAPTING, change this
 void Open_DataFile(char *filename)	//SMURF_ADAPTING, change this
 {
     datafp = fopen(filename, "r");
-    if (outfp == NULL)
+    if (NULL == datafp)
 	{
 	    printf("Error opening file [%s]\n", filename);
 	    return;
