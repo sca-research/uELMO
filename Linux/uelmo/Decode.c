@@ -388,7 +388,7 @@ void Decode_OneCycle(bool prev)
 		printf("Decode: asrs r%u,r%u,#0x%X\n", ra_ind, rb_ind, imm);
 	    sprintf(core_current.Decode_instr_disp,
 		    "Decode: asrs r%u,r%u,#0x%X", ra_ind, rb_ind, imm);
-        return;
+	    return;
 	}
     //ASR(2) two register
     //Instr 29
