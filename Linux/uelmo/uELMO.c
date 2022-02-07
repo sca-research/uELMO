@@ -32,7 +32,6 @@ void Read_Binary(char *filename)
 // -r xxxx.txt --- use randomness from xxxx.txt
 int main(int argc, char *argv[])
 {
-
     time_t timet;
     int ra = 0;
     int oindex = argc;
@@ -76,6 +75,7 @@ int main(int argc, char *argv[])
     //Open data file
     if (rindex < argc)
 	Open_DataFile(argv[rindex]);
+    //SioOpen();
 
     printf
 	("########################################\n\nGENERATING TRACES...\n\n");
@@ -85,6 +85,7 @@ int main(int argc, char *argv[])
 		printf("########## TRACE %d\n", N_ind);
 	    run();		//run one trace
 	}
+    //SioClose();
     //Close output file
     if (oindex < argc)
 	Close_Output();

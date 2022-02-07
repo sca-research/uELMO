@@ -9,6 +9,7 @@
 FILE *outfp = NULL;
 //global input file pointer
 FILE *datafp = NULL;
+
 //Close output stream, executiong trace file
 void Close_Output()		//SMURF_ADAPTING, change this
 {
@@ -47,6 +48,7 @@ void Open_DataFile(char *filename)	//SMURF_ADAPTING, change this
 
 //Get input from IO , emulated input
 //SMURF_ADAPTING, change this
+#ifdef USE_SMURF
 unsigned int Read_Byte()
 {
     char *str;
@@ -55,12 +57,22 @@ unsigned int Read_Byte()
     str = (char *)malloc(len);
     //getline(&str, &len, datafile);//TEMP: get it back after moving back to Linux
     if (NULL == fgets(str, len, datafp))
-	data = (int)strtol(str, NULL, 16);
+        data = (int)strtol(str, NULL, 16);
 
     //printf("%x\n", data);
     free(str);
     return data;
 }
+#else
+//Replace with SMURF_IO
+unsigned int Read_Byte()
+{}
+
+unsigned int Write_Byte(uint8_t input)
+{}
+#endif
+
+
 
 //Get randomised input from IO (SMURF should not have this!!!)
 //SMURF_ADAPTING, delete this!
@@ -76,6 +88,10 @@ void Write_Frame()
 {
     if (OnTrace == true)
 	fwrite(&core_current, sizeof(CORE_STATUS), 1, outfp);
+#ifdef USE_SMURF
+    //SmurfUpdateFrame();
+    //SmurfAddFrame();
+#endif
 }
 
 //Write out a flag that terminate the current trace

@@ -100,6 +100,7 @@ void write32(unsigned int addr, unsigned int data)
 		case 0xE0000000:	//printbyte
 		    {
 			//printf("Print byte=0x%2x\n",data&0xff);
+            Write_Byte(data & 0xFF);
 			break;
 		    }
 		case 0xE0000004:
