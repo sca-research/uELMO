@@ -15,6 +15,7 @@ void Close_Output();
 void Close_DataFile();
 //Get input from IO 
 unsigned int Read_Byte();
+void Write_Byte(uint8_t);
 
 //Get randomised input from IO (SMURF should not have this!!!)
 #ifndef SMURF

@@ -12,4 +12,5 @@
 bool fvr;
 int N;
 int N_ind;
+bool ioSupported;
 #endif
