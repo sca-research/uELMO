@@ -1,0 +1,208 @@
+Cycle 18: Instr=Execute C1:strb r3,[r0,r4]
+Decode: stall
+Memory: idle
+, Term=Reg 3 HD, Tvalue=-15.556798822524936
+Cycle 19: Instr=Execute C2:strb r3,[r0,r4]
+Decode: subs r4,#0x1
+Memory: idle
+, Term=Memory data HD, Tvalue=-5.962536234190002
+Cycle 20: Instr=Execute:subs r4,#0x01
+Decode:b * Imm = 0x 000000FA
+Memory: store [0x20001FDE]=0xCE
+, Term=Memory write buffer HD, Tvalue=-15.556798822524936
+Cycle 21: Instr=Execute: bge 0x080001E9
+Decode:b * Imm = 0x 000000FA
+Memory: idle
+, Term=Memory write buffer delayed HD, Tvalue=-15.556798822524936
+Cycle 28: Instr=Execute C1:strb r3,[r0,r4]
+Decode: stall
+Memory: idle
+, Term=Reg 3 HD, Tvalue=16.568195219021593
+Cycle 30: Instr=Execute:subs r4,#0x01
+Decode:b * Imm = 0x 000000FA
+Memory: store [0x20001FDD]=0x2E
+, Term=Memory write buffer HD, Tvalue=16.568195219021593
+Cycle 31: Instr=Execute: bge 0x080001E9
+Decode:b * Imm = 0x 000000FA
+Memory: idle
+, Term=Memory write buffer delayed HD, Tvalue=16.568195219021593
+Cycle 36: Instr=Execute: ldrb r3,[r5,r6]
+Decode:strb r3,[r0,r4]
+Memory: idle
+, Term=Reg 6 HD, Tvalue=17.580470276653667
+Cycle 36: Instr=Execute: ldrb r3,[r5,r6]
+Decode:strb r3,[r0,r4]
+Memory: idle
+, Term=Pipeline Reg 2 HD, Tvalue=17.580470276653667
+Cycle 37: Instr=Execute: stall by LDR
+Decode: stall
+Memory: load [0x2000009A]=0x4D
+, Term=Memory data HD, Tvalue=-4.897659335279094
+Cycle 39: Instr=Execute C2:strb r3,[r0,r4]
+Decode: subs r4,#0x1
+Memory: idle
+, Term=Memory data HD, Tvalue=-5.130252678235826
+Cycle 49: Instr=Execute C2:strb r3,[r0,r4]
+Decode: subs r4,#0x1
+Memory: idle
+, Term=Memory data HD, Tvalue=-5.62772971348273
+Cycle 57: Instr=Execute: stall by LDR
+Decode: stall
+Memory: load [0x20000099]=0x53
+, Term=Memory data HD, Tvalue=-5.982385460184237
+Cycle 58: Instr=Execute C1:strb r3,[r0,r4]
+Decode: stall
+Memory: idle
+, Term=Reg 3 HD, Tvalue=-31.60796448290653
+Cycle 60: Instr=Execute:subs r4,#0x01
+Decode:b * Imm = 0x 000000FA
+Memory: store [0x20001FDA]=0x53
+, Term=Memory write buffer HD, Tvalue=-31.60796448290653
+Cycle 61: Instr=Execute: bge 0x080001E9
+Decode:b * Imm = 0x 000000FA
+Memory: idle
+, Term=Memory write buffer delayed HD, Tvalue=-31.60796448290653
+Cycle 66: Instr=Execute: ldrb r3,[r5,r6]
+Decode:strb r3,[r0,r4]
+Memory: idle
+, Term=Reg 6 HD, Tvalue=-16.050991359032977
+Cycle 66: Instr=Execute: ldrb r3,[r5,r6]
+Decode:strb r3,[r0,r4]
+Memory: idle
+, Term=Pipeline Reg 2 HD, Tvalue=-16.050991359032977
+Cycle 68: Instr=Execute C1:strb r3,[r0,r4]
+Decode: stall
+Memory: idle
+, Term=Reg 3 HD, Tvalue=-15.516818656213644
+Cycle 70: Instr=Execute:subs r4,#0x01
+Decode:b * Imm = 0x 000000FA
+Memory: store [0x20001FD9]=0xBF
+, Term=Memory write buffer HD, Tvalue=-15.516818656213644
+Cycle 71: Instr=Execute: bge 0x080001E9
+Decode:b * Imm = 0x 000000FA
+Memory: idle
+, Term=Memory write buffer delayed HD, Tvalue=-15.516818656213644
+Cycle 76: Instr=Execute: ldrb r3,[r5,r6]
+Decode:strb r3,[r0,r4]
+Memory: idle
+, Term=Reg 6 HD, Tvalue=-16.157611588561
+Cycle 76: Instr=Execute: ldrb r3,[r5,r6]
+Decode:strb r3,[r0,r4]
+Memory: idle
+, Term=Pipeline Reg 2 HD, Tvalue=-16.157611588561
+Cycle 78: Instr=Execute C1:strb r3,[r0,r4]
+Decode: stall
+Memory: idle
+, Term=Reg 3 HD, Tvalue=-16.15884890804057
+Cycle 80: Instr=Execute:subs r4,#0x01
+Decode:b * Imm = 0x 000000FA
+Memory: store [0x20001FD8]=0x53
+, Term=Memory write buffer HD, Tvalue=-16.15884890804057
+Cycle 81: Instr=Execute: bge 0x080001E9
+Decode:b * Imm = 0x 000000FA
+Memory: idle
+, Term=Memory write buffer delayed HD, Tvalue=-16.15884890804057
+Cycle 86: Instr=Execute: ldrb r3,[r5,r6]
+Decode:strb r3,[r0,r4]
+Memory: idle
+, Term=Reg 6 HD, Tvalue=-15.28531196808557
+Cycle 86: Instr=Execute: ldrb r3,[r5,r6]
+Decode:strb r3,[r0,r4]
+Memory: idle
+, Term=Pipeline Reg 2 HD, Tvalue=-15.28531196808557
+Cycle 88: Instr=Execute C1:strb r3,[r0,r4]
+Decode: stall
+Memory: idle
+, Term=Reg 3 HD, Tvalue=-16.20945246836039
+Cycle 90: Instr=Execute:subs r4,#0x01
+Decode:b * Imm = 0x 000000FA
+Memory: store [0x20001FD7]=0x80
+, Term=Memory write buffer HD, Tvalue=-16.20945246836039
+Cycle 91: Instr=Execute: bge 0x080001E9
+Decode:b * Imm = 0x 000000FA
+Memory: idle
+, Term=Memory write buffer delayed HD, Tvalue=-16.20945246836039
+Cycle 96: Instr=Execute: ldrb r3,[r5,r6]
+Decode:strb r3,[r0,r4]
+Memory: idle
+, Term=Reg 6 HD, Tvalue=14.361144729550178
+Cycle 96: Instr=Execute: ldrb r3,[r5,r6]
+Decode:strb r3,[r0,r4]
+Memory: idle
+, Term=Pipeline Reg 2 HD, Tvalue=14.361144729550178
+Cycle 107: Instr=Execute: stall by LDR
+Decode: stall
+Memory: load [0x20000022]=0xEE
+, Term=Memory data HD, Tvalue=-7.520075144131532
+Cycle 108: Instr=Execute C1:strb r3,[r0,r4]
+Decode: stall
+Memory: idle
+, Term=Reg 3 HD, Tvalue=15.650655594201888
+Cycle 110: Instr=Execute:subs r4,#0x01
+Decode:b * Imm = 0x 000000FA
+Memory: store [0x20001FD5]=0xEE
+, Term=Memory write buffer HD, Tvalue=15.650655594201888
+Cycle 111: Instr=Execute: bge 0x080001E9
+Decode:b * Imm = 0x 000000FA
+Memory: idle
+, Term=Memory write buffer delayed HD, Tvalue=15.650655594201888
+Cycle 116: Instr=Execute: ldrb r3,[r5,r6]
+Decode:strb r3,[r0,r4]
+Memory: idle
+, Term=Reg 6 HD, Tvalue=16.458666541184847
+Cycle 116: Instr=Execute: ldrb r3,[r5,r6]
+Decode:strb r3,[r0,r4]
+Memory: idle
+, Term=Pipeline Reg 2 HD, Tvalue=16.458666541184847
+Cycle 117: Instr=Execute: stall by LDR
+Decode: stall
+Memory: load [0x200000F2]=0xF9
+, Term=Memory data HD, Tvalue=-7.712962040000018
+Cycle 126: Instr=Execute: ldrb r3,[r5,r6]
+Decode:strb r3,[r0,r4]
+Memory: idle
+, Term=Reg 6 HD, Tvalue=-31.99723394289373
+Cycle 126: Instr=Execute: ldrb r3,[r5,r6]
+Decode:strb r3,[r0,r4]
+Memory: idle
+, Term=Pipeline Reg 2 HD, Tvalue=-31.99723394289373
+Cycle 128: Instr=Execute C1:strb r3,[r0,r4]
+Decode: stall
+Memory: idle
+, Term=Reg 3 HD, Tvalue=-13.977295720207383
+Cycle 130: Instr=Execute:subs r4,#0x01
+Decode:b * Imm = 0x 000000FA
+Memory: store [0x20001FD3]=0xB
+, Term=Memory write buffer HD, Tvalue=-13.977295720207383
+Cycle 131: Instr=Execute: bge 0x080001E9
+Decode:b * Imm = 0x 000000FA
+Memory: idle
+, Term=Memory write buffer delayed HD, Tvalue=-13.977295720207383
+Cycle 136: Instr=Execute: ldrb r3,[r5,r6]
+Decode:strb r3,[r0,r4]
+Memory: idle
+, Term=Reg 6 HD, Tvalue=15.716363909640952
+Cycle 136: Instr=Execute: ldrb r3,[r5,r6]
+Decode:strb r3,[r0,r4]
+Memory: idle
+, Term=Pipeline Reg 2 HD, Tvalue=15.716363909640952
+Cycle 146: Instr=Execute: ldrb r3,[r5,r6]
+Decode:strb r3,[r0,r4]
+Memory: idle
+, Term=Reg 6 HD, Tvalue=15.004281018825704
+Cycle 146: Instr=Execute: ldrb r3,[r5,r6]
+Decode:strb r3,[r0,r4]
+Memory: idle
+, Term=Pipeline Reg 2 HD, Tvalue=15.004281018825704
+Cycle 156: Instr=Execute: ldrb r3,[r5,r6]
+Decode:strb r3,[r0,r4]
+Memory: idle
+, Term=Reg 6 HD, Tvalue=34.7776974594243
+Cycle 156: Instr=Execute: ldrb r3,[r5,r6]
+Decode:strb r3,[r0,r4]
+Memory: idle
+, Term=Pipeline Reg 2 HD, Tvalue=34.7776974594243
+Cycle 157: Instr=Execute: stall by LDR
+Decode: stall
+Memory: load [0x200000A7]=0xFB
+, Term=Memory data HD, Tvalue=7.4495076754909375

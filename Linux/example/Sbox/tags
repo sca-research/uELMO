@@ -1,0 +1,21 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+LoadN	/home/saltiny/git/uELMO/Linux/example/Sbox/elmoasmfunctionsdef.h	/^extern void LoadN(void* addr);$/;"	p	signature:(void* addr)
+MASKEDAES_R1_H	/home/saltiny/git/uELMO/Linux/example/Sbox/MaskedAES_R1.h	2;"	d
+endprogram	/home/saltiny/git/uELMO/Linux/example/Sbox/elmoasmfunctionsdef.h	/^extern void endprogram(void);$/;"	p	signature:(void)
+endtrigger	/home/saltiny/git/uELMO/Linux/example/Sbox/elmoasmfunctionsdef.h	/^extern void endtrigger(void);$/;"	p	signature:(void)
+getruncount	/home/saltiny/git/uELMO/Linux/example/Sbox/elmoasmfunctionsdef.h	/^extern void getruncount(unsigned int * pointer);$/;"	p	signature:(unsigned int * pointer)
+getstart	/home/saltiny/git/uELMO/Linux/example/Sbox/elmoasmfunctionsdef.h	/^extern void getstart(unsigned int * pointer);$/;"	p	signature:(unsigned int * pointer)
+initialisemaskflow	/home/saltiny/git/uELMO/Linux/example/Sbox/elmoasmfunctionsdef.h	/^extern void initialisemaskflow(unsigned char * pointer);$/;"	p	signature:(unsigned char * pointer)
+main	/home/saltiny/git/uELMO/Linux/example/Sbox/MaskedAES_R1.c	/^int main(void)$/;"	f	signature:(void)
+printbyte	/home/saltiny/git/uELMO/Linux/example/Sbox/elmoasmfunctionsdef.h	/^extern void printbyte(const unsigned char * pointer);$/;"	p	signature:(const unsigned char * pointer)
+randbyte	/home/saltiny/git/uELMO/Linux/example/Sbox/elmoasmfunctionsdef.h	/^extern void randbyte(unsigned char * pointer);$/;"	p	signature:(unsigned char * pointer)
+readbyte	/home/saltiny/git/uELMO/Linux/example/Sbox/elmoasmfunctionsdef.h	/^extern void readbyte(unsigned char * pointer);$/;"	p	signature:(unsigned char * pointer)
+resetdatafile	/home/saltiny/git/uELMO/Linux/example/Sbox/elmoasmfunctionsdef.h	/^extern void resetdatafile(void);$/;"	p	signature:(void)
+resetmaskflow	/home/saltiny/git/uELMO/Linux/example/Sbox/elmoasmfunctionsdef.h	/^extern void resetmaskflow(void);$/;"	p	signature:(void)
+setmaskflowstart	/home/saltiny/git/uELMO/Linux/example/Sbox/elmoasmfunctionsdef.h	/^extern void setmaskflowstart(unsigned int start);$/;"	p	signature:(unsigned int start)
+starttrigger	/home/saltiny/git/uELMO/Linux/example/Sbox/elmoasmfunctionsdef.h	/^extern void starttrigger(void);$/;"	p	signature:(void)

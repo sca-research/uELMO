@@ -1,0 +1,592 @@
+Cycle 5: Instr=ldrb r3,[r5,r6]
+, Term=Data bus, Tvalue=-123.77261730628189
+Cycle 6: Instr=strb r3,[r0,r4]
+, Term=Data bus, Tvalue=-23.759535783660176
+Cycle 6: Instr=strb r3,[r0,r4]
+, Term=Previous Readbus, Tvalue=-123.77261730628189
+Cycle 7: Instr=STR delay
+, Term=Data bus, Tvalue=-92.80027394804407
+Cycle 8: Instr=subs r4,#0x01
+, Term=Data bus, Tvalue=-92.80027394804407
+Cycle 8: Instr=subs r4,#0x01
+, Term=Write bus, Tvalue=-23.759535783660176
+Cycle 8: Instr=subs r4,#0x01
+, Term=Write buffer HD, Tvalue=-12.8668272372224
+Cycle 8: Instr=subs r4,#0x01
+, Term=Previous Write buffer, Tvalue=-23.759535783660176
+Cycle 9: Instr=bge 0x080001D9
+, Term=Data bus, Tvalue=-92.80027394804407
+Cycle 9: Instr=bge 0x080001D9
+, Term=Write bus, Tvalue=-23.759535783660176
+Cycle 9: Instr=bge 0x080001D9
+, Term=Data bus, Tvalue=-92.80027394804407
+Cycle 10: Instr=bge 0x080001D9
+, Term=Data bus, Tvalue=-92.80027394804407
+Cycle 11: Instr=bge 0x080001D9
+, Term=Data bus, Tvalue=-92.80027394804407
+Cycle 12: Instr=ldrb r6,[r0,r4]
+, Term=Data bus, Tvalue=-92.80027394804407
+Cycle 13: Instr=ldrb r3,[r5,r6]
+, Term=Data bus, Tvalue=-92.80027394804407
+Cycle 13: Instr=ldrb r3,[r5,r6]
+, Term=Previous Readbus, Tvalue=-92.80027394804407
+Cycle 14: Instr=strb r3,[r0,r4]
+, Term=delayed LDR Target register HD, Tvalue=-192.21346403486024
+Cycle 14: Instr=strb r3,[r0,r4]
+, Term=Data bus, Tvalue=-23.485064031802395
+Cycle 14: Instr=strb r3,[r0,r4]
+, Term=Readbus HD, Tvalue=-28.94295887166979
+Cycle 14: Instr=strb r3,[r0,r4]
+, Term=Previous Readbus, Tvalue=-92.80027394804407
+Cycle 15: Instr=STR delay
+, Term=Data bus, Tvalue=-96.47232199640487
+Cycle 15: Instr=STR delay
+, Term=delayed LDR Target register HD, Tvalue=-200.2227500082982
+Cycle 16: Instr=subs r4,#0x01
+, Term=Data bus, Tvalue=-96.47232199640487
+Cycle 16: Instr=subs r4,#0x01
+, Term=Write bus, Tvalue=-23.485064031802395
+Cycle 16: Instr=subs r4,#0x01
+, Term=Write buffer HD, Tvalue=-46.057146846310594
+Cycle 16: Instr=subs r4,#0x01
+, Term=Previous Write buffer, Tvalue=-23.485064031802395
+Cycle 16: Instr=subs r4,#0x01
+, Term=Write bus HD, Tvalue=-200.2227500082982
+Cycle 17: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-96.47232199640487
+Cycle 17: Instr=bge 0x080001DF
+, Term=Write bus, Tvalue=-23.485064031802395
+Cycle 17: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-96.47232199640487
+Cycle 18: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-96.47232199640487
+Cycle 19: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-96.47232199640487
+Cycle 20: Instr=ldrb r6,[r0,r4]
+, Term=Data bus, Tvalue=-96.47232199640487
+Cycle 21: Instr=ldrb r3,[r5,r6]
+, Term=Data bus, Tvalue=-96.47232199640487
+Cycle 21: Instr=ldrb r3,[r5,r6]
+, Term=Previous Readbus, Tvalue=-96.47232199640487
+Cycle 22: Instr=strb r3,[r0,r4]
+, Term=delayed LDR Target register HD, Tvalue=-197.8528067726995
+Cycle 22: Instr=strb r3,[r0,r4]
+, Term=Data bus, Tvalue=-22.394016721454204
+Cycle 22: Instr=strb r3,[r0,r4]
+, Term=Readbus HD, Tvalue=-69.17351144330657
+Cycle 22: Instr=strb r3,[r0,r4]
+, Term=Previous Readbus, Tvalue=-96.47232199640487
+Cycle 23: Instr=STR delay
+, Term=Data bus, Tvalue=-89.72012287707473
+Cycle 23: Instr=STR delay
+, Term=delayed LDR Target register HD, Tvalue=-197.95706782927667
+Cycle 24: Instr=subs r4,#0x01
+, Term=Data bus, Tvalue=-89.72012287707473
+Cycle 24: Instr=subs r4,#0x01
+, Term=Write bus, Tvalue=-22.394016721454204
+Cycle 24: Instr=subs r4,#0x01
+, Term=Write buffer HD, Tvalue=-74.72476693229727
+Cycle 24: Instr=subs r4,#0x01
+, Term=Previous Write buffer, Tvalue=-22.394016721454204
+Cycle 24: Instr=subs r4,#0x01
+, Term=Write bus HD, Tvalue=-197.95706782927667
+Cycle 25: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-89.72012287707473
+Cycle 25: Instr=bge 0x080001DF
+, Term=Write bus, Tvalue=-22.394016721454204
+Cycle 25: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-89.72012287707473
+Cycle 26: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-89.72012287707473
+Cycle 27: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-89.72012287707473
+Cycle 28: Instr=ldrb r6,[r0,r4]
+, Term=Data bus, Tvalue=-89.72012287707473
+Cycle 29: Instr=ldrb r3,[r5,r6]
+, Term=Data bus, Tvalue=-89.72012287707473
+Cycle 29: Instr=ldrb r3,[r5,r6]
+, Term=Previous Readbus, Tvalue=-89.72012287707473
+Cycle 30: Instr=strb r3,[r0,r4]
+, Term=delayed LDR Target register HD, Tvalue=-199.34779487778601
+Cycle 30: Instr=strb r3,[r0,r4]
+, Term=Data bus, Tvalue=-22.367793287032864
+Cycle 30: Instr=strb r3,[r0,r4]
+, Term=Readbus HD, Tvalue=-101.31853099815869
+Cycle 30: Instr=strb r3,[r0,r4]
+, Term=Previous Readbus, Tvalue=-89.72012287707473
+Cycle 31: Instr=STR delay
+, Term=Data bus, Tvalue=-118.44628219601644
+Cycle 31: Instr=STR delay
+, Term=delayed LDR Target register HD, Tvalue=-197.8694633116426
+Cycle 32: Instr=subs r4,#0x01
+, Term=Data bus, Tvalue=-118.44628219601644
+Cycle 32: Instr=subs r4,#0x01
+, Term=Write bus, Tvalue=-22.367793287032864
+Cycle 32: Instr=subs r4,#0x01
+, Term=Write buffer HD, Tvalue=-129.17095551580823
+Cycle 32: Instr=subs r4,#0x01
+, Term=Previous Write buffer, Tvalue=-22.367793287032864
+Cycle 32: Instr=subs r4,#0x01
+, Term=Write bus HD, Tvalue=-197.8694633116426
+Cycle 33: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-118.44628219601644
+Cycle 33: Instr=bge 0x080001DF
+, Term=Write bus, Tvalue=-22.367793287032864
+Cycle 33: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-118.44628219601644
+Cycle 34: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-118.44628219601644
+Cycle 35: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-118.44628219601644
+Cycle 36: Instr=ldrb r6,[r0,r4]
+, Term=Data bus, Tvalue=-118.44628219601644
+Cycle 37: Instr=ldrb r3,[r5,r6]
+, Term=Data bus, Tvalue=-123.86057741875901
+Cycle 37: Instr=ldrb r3,[r5,r6]
+, Term=Previous Readbus, Tvalue=-118.44628219601644
+Cycle 38: Instr=strb r3,[r0,r4]
+, Term=delayed LDR Target register HD, Tvalue=-197.5475476907204
+Cycle 38: Instr=strb r3,[r0,r4]
+, Term=Data bus, Tvalue=-24.18103585351136
+Cycle 38: Instr=strb r3,[r0,r4]
+, Term=Previous Readbus, Tvalue=-123.86057741875901
+Cycle 39: Instr=STR delay
+, Term=Data bus, Tvalue=-91.23795474683605
+Cycle 39: Instr=STR delay
+, Term=delayed LDR Target register HD, Tvalue=-197.47162436904387
+Cycle 40: Instr=subs r4,#0x01
+, Term=Data bus, Tvalue=-91.23795474683605
+Cycle 40: Instr=subs r4,#0x01
+, Term=Write bus, Tvalue=-24.18103585351136
+Cycle 40: Instr=subs r4,#0x01
+, Term=Write buffer HD, Tvalue=-11.408351624779112
+Cycle 40: Instr=subs r4,#0x01
+, Term=Previous Write buffer, Tvalue=-24.18103585351136
+Cycle 40: Instr=subs r4,#0x01
+, Term=Write bus HD, Tvalue=-197.47162436904387
+Cycle 41: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-91.23795474683605
+Cycle 41: Instr=bge 0x080001DF
+, Term=Write bus, Tvalue=-24.18103585351136
+Cycle 41: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-91.23795474683605
+Cycle 42: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-91.23795474683605
+Cycle 43: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-91.23795474683605
+Cycle 44: Instr=ldrb r6,[r0,r4]
+, Term=Data bus, Tvalue=-91.23795474683605
+Cycle 45: Instr=ldrb r3,[r5,r6]
+, Term=Data bus, Tvalue=-91.23795474683605
+Cycle 45: Instr=ldrb r3,[r5,r6]
+, Term=Previous Readbus, Tvalue=-91.23795474683605
+Cycle 46: Instr=strb r3,[r0,r4]
+, Term=delayed LDR Target register HD, Tvalue=-194.05490855345636
+Cycle 46: Instr=strb r3,[r0,r4]
+, Term=Data bus, Tvalue=-22.787052628620717
+Cycle 46: Instr=strb r3,[r0,r4]
+, Term=Readbus HD, Tvalue=-28.249120205299945
+Cycle 46: Instr=strb r3,[r0,r4]
+, Term=Previous Readbus, Tvalue=-91.23795474683605
+Cycle 47: Instr=STR delay
+, Term=Data bus, Tvalue=-95.7121583180986
+Cycle 47: Instr=STR delay
+, Term=delayed LDR Target register HD, Tvalue=-197.19770803121287
+Cycle 48: Instr=subs r4,#0x01
+, Term=Data bus, Tvalue=-95.7121583180986
+Cycle 48: Instr=subs r4,#0x01
+, Term=Write bus, Tvalue=-22.787052628620717
+Cycle 48: Instr=subs r4,#0x01
+, Term=Write buffer HD, Tvalue=-44.832439122035716
+Cycle 48: Instr=subs r4,#0x01
+, Term=Previous Write buffer, Tvalue=-22.787052628620717
+Cycle 48: Instr=subs r4,#0x01
+, Term=Write bus HD, Tvalue=-197.19770803121287
+Cycle 49: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-95.7121583180986
+Cycle 49: Instr=bge 0x080001DF
+, Term=Write bus, Tvalue=-22.787052628620717
+Cycle 49: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-95.7121583180986
+Cycle 50: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-95.7121583180986
+Cycle 51: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-95.7121583180986
+Cycle 52: Instr=ldrb r6,[r0,r4]
+, Term=Data bus, Tvalue=-95.7121583180986
+Cycle 53: Instr=ldrb r3,[r5,r6]
+, Term=Data bus, Tvalue=-95.7121583180986
+Cycle 53: Instr=ldrb r3,[r5,r6]
+, Term=Previous Readbus, Tvalue=-95.7121583180986
+Cycle 54: Instr=strb r3,[r0,r4]
+, Term=delayed LDR Target register HD, Tvalue=-198.71137468524836
+Cycle 54: Instr=strb r3,[r0,r4]
+, Term=Data bus, Tvalue=-22.292472067604873
+Cycle 54: Instr=strb r3,[r0,r4]
+, Term=Readbus HD, Tvalue=-67.49722259463066
+Cycle 54: Instr=strb r3,[r0,r4]
+, Term=Previous Readbus, Tvalue=-95.7121583180986
+Cycle 55: Instr=STR delay
+, Term=Data bus, Tvalue=-88.17838165615605
+Cycle 55: Instr=STR delay
+, Term=delayed LDR Target register HD, Tvalue=-195.19498343688062
+Cycle 56: Instr=subs r4,#0x01
+, Term=Data bus, Tvalue=-88.17838165615605
+Cycle 56: Instr=subs r4,#0x01
+, Term=Write bus, Tvalue=-22.292472067604873
+Cycle 56: Instr=subs r4,#0x01
+, Term=Write buffer HD, Tvalue=-73.75416632992665
+Cycle 56: Instr=subs r4,#0x01
+, Term=Previous Write buffer, Tvalue=-22.292472067604873
+Cycle 56: Instr=subs r4,#0x01
+, Term=Write bus HD, Tvalue=-195.19498343688062
+Cycle 57: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-88.17838165615605
+Cycle 57: Instr=bge 0x080001DF
+, Term=Write bus, Tvalue=-22.292472067604873
+Cycle 57: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-88.17838165615605
+Cycle 58: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-88.17838165615605
+Cycle 59: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-88.17838165615605
+Cycle 60: Instr=ldrb r6,[r0,r4]
+, Term=Data bus, Tvalue=-88.17838165615605
+Cycle 61: Instr=ldrb r3,[r5,r6]
+, Term=Data bus, Tvalue=-88.17838165615605
+Cycle 61: Instr=ldrb r3,[r5,r6]
+, Term=Previous Readbus, Tvalue=-88.17838165615605
+Cycle 62: Instr=strb r3,[r0,r4]
+, Term=delayed LDR Target register HD, Tvalue=-200.51386541107038
+Cycle 62: Instr=strb r3,[r0,r4]
+, Term=Data bus, Tvalue=-24.090812817407645
+Cycle 62: Instr=strb r3,[r0,r4]
+, Term=Readbus HD, Tvalue=-100.03284589474208
+Cycle 62: Instr=strb r3,[r0,r4]
+, Term=Previous Readbus, Tvalue=-88.17838165615605
+Cycle 63: Instr=STR delay
+, Term=Data bus, Tvalue=-119.50174149428555
+Cycle 63: Instr=STR delay
+, Term=delayed LDR Target register HD, Tvalue=-199.88536833733707
+Cycle 64: Instr=subs r4,#0x01
+, Term=Data bus, Tvalue=-119.50174149428555
+Cycle 64: Instr=subs r4,#0x01
+, Term=Write bus, Tvalue=-24.090812817407645
+Cycle 64: Instr=subs r4,#0x01
+, Term=Write buffer HD, Tvalue=-127.98507960807319
+Cycle 64: Instr=subs r4,#0x01
+, Term=Previous Write buffer, Tvalue=-24.090812817407645
+Cycle 64: Instr=subs r4,#0x01
+, Term=Write bus HD, Tvalue=-199.88536833733707
+Cycle 65: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-119.50174149428555
+Cycle 65: Instr=bge 0x080001DF
+, Term=Write bus, Tvalue=-24.090812817407645
+Cycle 65: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-119.50174149428555
+Cycle 66: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-119.50174149428555
+Cycle 67: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-119.50174149428555
+Cycle 68: Instr=ldrb r6,[r0,r4]
+, Term=Data bus, Tvalue=-119.50174149428555
+Cycle 69: Instr=ldrb r3,[r5,r6]
+, Term=Data bus, Tvalue=-123.99688316164298
+Cycle 69: Instr=ldrb r3,[r5,r6]
+, Term=Previous Readbus, Tvalue=-119.50174149428555
+Cycle 70: Instr=strb r3,[r0,r4]
+, Term=delayed LDR Target register HD, Tvalue=-195.30108164556327
+Cycle 70: Instr=strb r3,[r0,r4]
+, Term=Data bus, Tvalue=-20.397626862575933
+Cycle 70: Instr=strb r3,[r0,r4]
+, Term=Previous Readbus, Tvalue=-123.99688316164298
+Cycle 71: Instr=STR delay
+, Term=Data bus, Tvalue=-91.42201755244353
+Cycle 71: Instr=STR delay
+, Term=delayed LDR Target register HD, Tvalue=-199.0977711039428
+Cycle 72: Instr=subs r4,#0x01
+, Term=Data bus, Tvalue=-91.42201755244353
+Cycle 72: Instr=subs r4,#0x01
+, Term=Write bus, Tvalue=-20.397626862575933
+Cycle 72: Instr=subs r4,#0x01
+, Term=Write buffer HD, Tvalue=-10.93324176859753
+Cycle 72: Instr=subs r4,#0x01
+, Term=Previous Write buffer, Tvalue=-20.397626862575933
+Cycle 72: Instr=subs r4,#0x01
+, Term=Write bus HD, Tvalue=-199.0977711039428
+Cycle 73: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-91.42201755244353
+Cycle 73: Instr=bge 0x080001DF
+, Term=Write bus, Tvalue=-20.397626862575933
+Cycle 73: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-91.42201755244353
+Cycle 74: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-91.42201755244353
+Cycle 75: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-91.42201755244353
+Cycle 76: Instr=ldrb r6,[r0,r4]
+, Term=Data bus, Tvalue=-91.42201755244353
+Cycle 77: Instr=ldrb r3,[r5,r6]
+, Term=Data bus, Tvalue=-91.42201755244353
+Cycle 77: Instr=ldrb r3,[r5,r6]
+, Term=Previous Readbus, Tvalue=-91.42201755244353
+Cycle 78: Instr=strb r3,[r0,r4]
+, Term=delayed LDR Target register HD, Tvalue=-192.30913773130865
+Cycle 78: Instr=strb r3,[r0,r4]
+, Term=Data bus, Tvalue=-22.82163713752885
+Cycle 78: Instr=strb r3,[r0,r4]
+, Term=Readbus HD, Tvalue=-28.050207698030025
+Cycle 78: Instr=strb r3,[r0,r4]
+, Term=Previous Readbus, Tvalue=-91.42201755244353
+Cycle 79: Instr=STR delay
+, Term=Data bus, Tvalue=-94.25678309667018
+Cycle 79: Instr=STR delay
+, Term=delayed LDR Target register HD, Tvalue=-194.14964068284252
+Cycle 80: Instr=subs r4,#0x01
+, Term=Data bus, Tvalue=-94.25678309667018
+Cycle 80: Instr=subs r4,#0x01
+, Term=Write bus, Tvalue=-22.82163713752885
+Cycle 80: Instr=subs r4,#0x01
+, Term=Write buffer HD, Tvalue=-44.46242884371345
+Cycle 80: Instr=subs r4,#0x01
+, Term=Previous Write buffer, Tvalue=-22.82163713752885
+Cycle 80: Instr=subs r4,#0x01
+, Term=Write bus HD, Tvalue=-194.14964068284252
+Cycle 81: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-94.25678309667018
+Cycle 81: Instr=bge 0x080001DF
+, Term=Write bus, Tvalue=-22.82163713752885
+Cycle 81: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-94.25678309667018
+Cycle 82: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-94.25678309667018
+Cycle 83: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-94.25678309667018
+Cycle 84: Instr=ldrb r6,[r0,r4]
+, Term=Data bus, Tvalue=-94.25678309667018
+Cycle 85: Instr=ldrb r3,[r5,r6]
+, Term=Data bus, Tvalue=-94.25678309667018
+Cycle 85: Instr=ldrb r3,[r5,r6]
+, Term=Previous Readbus, Tvalue=-94.25678309667018
+Cycle 86: Instr=strb r3,[r0,r4]
+, Term=delayed LDR Target register HD, Tvalue=-197.55900584531955
+Cycle 86: Instr=strb r3,[r0,r4]
+, Term=Data bus, Tvalue=-22.436995037579088
+Cycle 86: Instr=strb r3,[r0,r4]
+, Term=Readbus HD, Tvalue=-68.12744984271338
+Cycle 86: Instr=strb r3,[r0,r4]
+, Term=Previous Readbus, Tvalue=-94.25678309667018
+Cycle 87: Instr=STR delay
+, Term=Data bus, Tvalue=-87.98519300326053
+Cycle 87: Instr=STR delay
+, Term=delayed LDR Target register HD, Tvalue=-200.03854450041933
+Cycle 88: Instr=subs r4,#0x01
+, Term=Data bus, Tvalue=-87.98519300326053
+Cycle 88: Instr=subs r4,#0x01
+, Term=Write bus, Tvalue=-22.436995037579088
+Cycle 88: Instr=subs r4,#0x01
+, Term=Write buffer HD, Tvalue=-74.35460151280385
+Cycle 88: Instr=subs r4,#0x01
+, Term=Previous Write buffer, Tvalue=-22.436995037579088
+Cycle 88: Instr=subs r4,#0x01
+, Term=Write bus HD, Tvalue=-200.03854450041933
+Cycle 89: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-87.98519300326053
+Cycle 89: Instr=bge 0x080001DF
+, Term=Write bus, Tvalue=-22.436995037579088
+Cycle 89: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-87.98519300326053
+Cycle 90: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-87.98519300326053
+Cycle 91: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-87.98519300326053
+Cycle 92: Instr=ldrb r6,[r0,r4]
+, Term=Data bus, Tvalue=-87.98519300326053
+Cycle 93: Instr=ldrb r3,[r5,r6]
+, Term=Data bus, Tvalue=-87.98519300326053
+Cycle 93: Instr=ldrb r3,[r5,r6]
+, Term=Previous Readbus, Tvalue=-87.98519300326053
+Cycle 94: Instr=strb r3,[r0,r4]
+, Term=delayed LDR Target register HD, Tvalue=-196.94624077820092
+Cycle 94: Instr=strb r3,[r0,r4]
+, Term=Data bus, Tvalue=-21.40293793219692
+Cycle 94: Instr=strb r3,[r0,r4]
+, Term=Readbus HD, Tvalue=-100.37579478263798
+Cycle 94: Instr=strb r3,[r0,r4]
+, Term=Previous Readbus, Tvalue=-87.98519300326053
+Cycle 95: Instr=STR delay
+, Term=Data bus, Tvalue=-118.0745759142937
+Cycle 95: Instr=STR delay
+, Term=delayed LDR Target register HD, Tvalue=-199.4208390843818
+Cycle 96: Instr=subs r4,#0x01
+, Term=Data bus, Tvalue=-118.0745759142937
+Cycle 96: Instr=subs r4,#0x01
+, Term=Write bus, Tvalue=-21.40293793219692
+Cycle 96: Instr=subs r4,#0x01
+, Term=Write buffer HD, Tvalue=-127.20734871985317
+Cycle 96: Instr=subs r4,#0x01
+, Term=Previous Write buffer, Tvalue=-21.40293793219692
+Cycle 96: Instr=subs r4,#0x01
+, Term=Write bus HD, Tvalue=-199.4208390843818
+Cycle 97: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-118.0745759142937
+Cycle 97: Instr=bge 0x080001DF
+, Term=Write bus, Tvalue=-21.40293793219692
+Cycle 97: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-118.0745759142937
+Cycle 98: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-118.0745759142937
+Cycle 99: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-118.0745759142937
+Cycle 100: Instr=ldrb r6,[r0,r4]
+, Term=Data bus, Tvalue=-118.0745759142937
+Cycle 101: Instr=ldrb r3,[r5,r6]
+, Term=Data bus, Tvalue=-124.41693046999727
+Cycle 101: Instr=ldrb r3,[r5,r6]
+, Term=Previous Readbus, Tvalue=-118.0745759142937
+Cycle 102: Instr=strb r3,[r0,r4]
+, Term=delayed LDR Target register HD, Tvalue=-198.301367961936
+Cycle 102: Instr=strb r3,[r0,r4]
+, Term=Data bus, Tvalue=-24.983997193444168
+Cycle 102: Instr=strb r3,[r0,r4]
+, Term=Previous Readbus, Tvalue=-124.41693046999727
+Cycle 103: Instr=STR delay
+, Term=Data bus, Tvalue=-92.09892055788758
+Cycle 103: Instr=STR delay
+, Term=delayed LDR Target register HD, Tvalue=-199.8693456106542
+Cycle 104: Instr=subs r4,#0x01
+, Term=Data bus, Tvalue=-92.09892055788758
+Cycle 104: Instr=subs r4,#0x01
+, Term=Write bus, Tvalue=-24.983997193444168
+Cycle 104: Instr=subs r4,#0x01
+, Term=Write buffer HD, Tvalue=-11.142490674208787
+Cycle 104: Instr=subs r4,#0x01
+, Term=Previous Write buffer, Tvalue=-24.983997193444168
+Cycle 104: Instr=subs r4,#0x01
+, Term=Write bus HD, Tvalue=-199.8693456106542
+Cycle 105: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-92.09892055788758
+Cycle 105: Instr=bge 0x080001DF
+, Term=Write bus, Tvalue=-24.983997193444168
+Cycle 105: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-92.09892055788758
+Cycle 106: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-92.09892055788758
+Cycle 107: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-92.09892055788758
+Cycle 108: Instr=ldrb r6,[r0,r4]
+, Term=Data bus, Tvalue=-92.09892055788758
+Cycle 109: Instr=ldrb r3,[r5,r6]
+, Term=Data bus, Tvalue=-92.09892055788758
+Cycle 109: Instr=ldrb r3,[r5,r6]
+, Term=Previous Readbus, Tvalue=-92.09892055788758
+Cycle 110: Instr=strb r3,[r0,r4]
+, Term=delayed LDR Target register HD, Tvalue=-200.52120708546545
+Cycle 110: Instr=strb r3,[r0,r4]
+, Term=Data bus, Tvalue=-23.341855855885626
+Cycle 110: Instr=strb r3,[r0,r4]
+, Term=Readbus HD, Tvalue=-27.285007467535436
+Cycle 110: Instr=strb r3,[r0,r4]
+, Term=Previous Readbus, Tvalue=-92.09892055788758
+Cycle 111: Instr=STR delay
+, Term=Data bus, Tvalue=-96.06100915496481
+Cycle 111: Instr=STR delay
+, Term=delayed LDR Target register HD, Tvalue=-198.87495433832947
+Cycle 112: Instr=subs r4,#0x01
+, Term=Data bus, Tvalue=-96.06100915496481
+Cycle 112: Instr=subs r4,#0x01
+, Term=Write bus, Tvalue=-23.341855855885626
+Cycle 112: Instr=subs r4,#0x01
+, Term=Write buffer HD, Tvalue=-44.57081788186912
+Cycle 112: Instr=subs r4,#0x01
+, Term=Previous Write buffer, Tvalue=-23.341855855885626
+Cycle 112: Instr=subs r4,#0x01
+, Term=Write bus HD, Tvalue=-198.87495433832947
+Cycle 113: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-96.06100915496481
+Cycle 113: Instr=bge 0x080001DF
+, Term=Write bus, Tvalue=-23.341855855885626
+Cycle 113: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-96.06100915496481
+Cycle 114: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-96.06100915496481
+Cycle 115: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-96.06100915496481
+Cycle 116: Instr=ldrb r6,[r0,r4]
+, Term=Data bus, Tvalue=-96.06100915496481
+Cycle 117: Instr=ldrb r3,[r5,r6]
+, Term=Data bus, Tvalue=-96.06100915496481
+Cycle 117: Instr=ldrb r3,[r5,r6]
+, Term=Previous Readbus, Tvalue=-96.06100915496481
+Cycle 118: Instr=strb r3,[r0,r4]
+, Term=delayed LDR Target register HD, Tvalue=-197.56495228660623
+Cycle 118: Instr=strb r3,[r0,r4]
+, Term=Data bus, Tvalue=-23.479780099073924
+Cycle 118: Instr=strb r3,[r0,r4]
+, Term=Readbus HD, Tvalue=-67.81979002850426
+Cycle 118: Instr=strb r3,[r0,r4]
+, Term=Previous Readbus, Tvalue=-96.06100915496481
+Cycle 119: Instr=STR delay
+, Term=Data bus, Tvalue=-90.13816271026367
+Cycle 119: Instr=STR delay
+, Term=delayed LDR Target register HD, Tvalue=-198.4247369868744
+Cycle 120: Instr=subs r4,#0x01
+, Term=Data bus, Tvalue=-90.13816271026367
+Cycle 120: Instr=subs r4,#0x01
+, Term=Write bus, Tvalue=-23.479780099073924
+Cycle 120: Instr=subs r4,#0x01
+, Term=Write buffer HD, Tvalue=-74.15961613125363
+Cycle 120: Instr=subs r4,#0x01
+, Term=Previous Write buffer, Tvalue=-23.479780099073924
+Cycle 120: Instr=subs r4,#0x01
+, Term=Write bus HD, Tvalue=-198.4247369868744
+Cycle 121: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-90.13816271026367
+Cycle 121: Instr=bge 0x080001DF
+, Term=Write bus, Tvalue=-23.479780099073924
+Cycle 121: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-90.13816271026367
+Cycle 122: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-90.13816271026367
+Cycle 123: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-90.13816271026367
+Cycle 124: Instr=ldrb r6,[r0,r4]
+, Term=Data bus, Tvalue=-90.13816271026367
+Cycle 125: Instr=ldrb r3,[r5,r6]
+, Term=Data bus, Tvalue=-90.13816271026367
+Cycle 125: Instr=ldrb r3,[r5,r6]
+, Term=Previous Readbus, Tvalue=-90.13816271026367
+Cycle 126: Instr=strb r3,[r0,r4]
+, Term=delayed LDR Target register HD, Tvalue=-196.0636408001553
+Cycle 126: Instr=strb r3,[r0,r4]
+, Term=Data bus, Tvalue=-23.54812286291277
+Cycle 126: Instr=strb r3,[r0,r4]
+, Term=Readbus HD, Tvalue=-100.73720138552223
+Cycle 126: Instr=strb r3,[r0,r4]
+, Term=Previous Readbus, Tvalue=-90.13816271026367
+Cycle 127: Instr=STR delay
+, Term=Data bus, Tvalue=-120.29213181975588
+Cycle 127: Instr=STR delay
+, Term=delayed LDR Target register HD, Tvalue=-197.4052763111959
+Cycle 128: Instr=subs r4,#0x01
+, Term=Data bus, Tvalue=-120.29213181975588
+Cycle 128: Instr=subs r4,#0x01
+, Term=Write bus, Tvalue=-23.54812286291277
+Cycle 128: Instr=subs r4,#0x01
+, Term=Write buffer HD, Tvalue=-129.5402949656938
+Cycle 128: Instr=subs r4,#0x01
+, Term=Previous Write buffer, Tvalue=-23.54812286291277
+Cycle 128: Instr=subs r4,#0x01
+, Term=Write bus HD, Tvalue=-197.4052763111959
+Cycle 129: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-120.29213181975588
+Cycle 129: Instr=bge 0x080001DF
+, Term=Write bus, Tvalue=-23.54812286291277
+Cycle 129: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-120.29213181975588
+Cycle 130: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-120.29213181975588
+Cycle 131: Instr=bge 0x080001DF
+, Term=Data bus, Tvalue=-120.29213181975588
+Cycle 132: Instr=movs r7,#0x00
+, Term=Data bus, Tvalue=-120.29213181975588

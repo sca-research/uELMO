@@ -1,0 +1,16 @@
+hold on;
+plot(SboxTtestO1RNGON(4750:6750),'k-');
+y=4.5*ones(1,2000);
+y1=-4.5*ones(1,2000);
+plot(y,'Color','red','LineStyle','--');
+plot(y1,'Color','red','LineStyle','--');
+title('1st order fixed v.s. random T-test on plaintext');
+xlabel('Time(*4ns)');
+ylabel('T statistics');
+xlim([1 2000]);
+ylim([-30 80]);
+for i=1:1:8
+   str = sprintf('C%d',i+18);
+   xline(i*250,'b-.',str,'LabelOrientation','horizontal','LabelHorizontalAlignment','left');
+end
+hold off;
