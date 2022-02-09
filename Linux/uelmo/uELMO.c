@@ -87,11 +87,12 @@ int main(int argc, char *argv[])
 	//Open data file
 	if (rindex < argc)
 		Open_DataFile(argv[rindex]);
-
+#ifdef USE_SMURF
 	if (ioSupported) {
 		sio = SioOpen(ELMO_IO_PATH);
 		SioWaitConn(sio);
 	}
+#endif
 
 	printf
 	    ("########################################\n\nGENERATING TRACES...\n\n");
@@ -101,9 +102,11 @@ int main(int argc, char *argv[])
 		run();		//run one trace
 	}
 
+#ifdef USE_SMURF
 	if (ioSupported) {
 		SioClose(sio);
 	}
+#endif
 	//Close output file
 	if (oindex < argc)
 		Close_Output();

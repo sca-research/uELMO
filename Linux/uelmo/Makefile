@@ -1,11 +1,15 @@
 TARGET=uelmo
-LIBFLAGS=-lsmurf -lsmurfemulator
 CFLAGS=-g -Wall -O2
-
-all: ${TARGET}
+SMURFFLAGS=-lsmurf -lsmurfemulator -DUSE_SMURF
+all: ${TARGET} Makefile
 
 ${TARGET}: $(wildcard *.c)
 	${CC} ${CFLAGS} -c $^ 
-	${CC} ${CFLAGS} -DUSE_SMURF *.o -o $@ ${LIBFLAGS}
+	${CC} ${CFLAGS} *.o -o $@
+
+smurf: $(wildcard *.c)
+	${CC} ${CFLAGS} -c $^ 
+	${CC} ${CFLAGS} *.o -o $@ ${SMURFFLAGS}
+
 clean:
 	rm -f *.o *~ *.bak ${TARGET}

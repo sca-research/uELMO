@@ -93,13 +93,6 @@ void write32(unsigned int addr, unsigned int data)
 		switch (addr) {
 		case 0xE0000000:	//printbyte
 			{
-				//printf("Print byte=0x%2x\n",data&0xff);
-				if (!ioSupported) {
-					printf
-					    ("#IO supported not enabled. (Data = %02X (%c))\n",
-					     (data & 0xFF), (data & 0xFF));
-					break;
-				}
 				Write_Byte(data & 0xFF);
 				break;
 			}

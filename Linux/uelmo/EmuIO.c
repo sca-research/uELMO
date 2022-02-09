@@ -46,7 +46,7 @@ void Open_DataFile(char *filename)	//SMURF_ADAPTING, change this
 
 //Get input from IO , emulated input
 //SMURF_ADAPTING, change this
-#ifdef USE_SMURF
+#ifndef USE_SMURF
 unsigned int Read_Byte()
 {
 	char *str;
@@ -61,12 +61,18 @@ unsigned int Read_Byte()
 	free(str);
 	return data;
 }
+
+void Write_Byte(uint8_t input)
+{
+    printf("#uELMO outpus: %02X (%c)\n", input, input);
+    return;
+}
 #else
 //Replace with SMURF_IO
 unsigned int Read_Byte()
 {
 	unsigned int ret = 0;
-	if (SMURF_IO_READY == sio->stat) {
+ 	if (SMURF_IO_READY == sio->stat) {
 		ret = SioGetchar(sio);
 	} else {
 		printf("#Trying to read but SmurfIO not ready.\n");
@@ -75,7 +81,7 @@ unsigned int Read_Byte()
 }
 
 void Write_Byte(uint8_t input)
-{
+{ 
 	if (SMURF_IO_READY == sio->stat) {
 		SioPutchar(sio, input);
 	}
