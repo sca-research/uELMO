@@ -31,7 +31,6 @@ Decode_instr_disp	core.h	/^    char Decode_instr_disp[50];	\/\/Discription for t
 Decode_port_data	core.h	/^    unsigned int Decode_port_data[3];	\/\/Current Decoding Read ports data (i.e. D.5-D.7)$/;"	m	struct:__anon1
 Decode_port_regindex	core.h	/^    uint8_t Decode_port_regindex[3];	\/\/Current Decoding Read ports index (0-15, often 0-7) (i.e. D.2-D.4)$/;"	m	struct:__anon1
 Decode_valid	core.h	/^    bool Decode_valid;		\/\/A flag that stall the pipeline when jump happens$/;"	m	struct:__anon1
-ELMO_IO_PATH	uelmo.h	8;"	d
 EMUIO_H_	EmuIO.h	2;"	d
 EMULATOR_H_	Emulator.h	3;"	d
 EXECUTE_H_	Execute.h	2;"	d
@@ -80,8 +79,6 @@ SignExtend_HB	/home/saltiny/git/uELMO/Linux/uelmo/Memory.c	/^unsigned int SignEx
 SignExtend_byte_valid	core.h	/^    bool SignExtend_byte_valid;	\/\/sign extend$/;"	m	struct:__anon1
 SignExtend_halfbyte_valid	core.h	/^    bool SignExtend_halfbyte_valid;	\/\/sign extend$/;"	m	struct:__anon1
 TARGET	Makefile	/^TARGET=uelmo$/;"	m
-UELMO_ERROR	uelmo.h	3;"	d
-UELMO_H	uelmo.h	2;"	d
 Write_Byte	/home/saltiny/git/uELMO/Linux/uelmo/EmuIO.c	/^void Write_Byte(uint8_t input)$/;"	f	signature:(uint8_t input)
 Write_EndofTrace	/home/saltiny/git/uELMO/Linux/uelmo/EmuIO.c	/^void Write_EndofTrace()$/;"	f
 Write_Frame	/home/saltiny/git/uELMO/Linux/uelmo/EmuIO.c	/^void Write_Frame()$/;"	f
@@ -121,7 +118,6 @@ reg	core.h	/^    unsigned int reg[16];	\/\/architectural$/;"	m	struct:__anon1
 reset	Emulator.c	/^int reset(void)$/;"	f
 rom	Memory.h	/^unsigned short rom[ROMSIZE >> 1];$/;"	v
 run	Emulator.c	/^int run(void)$/;"	f
-sio	uelmo.h	/^SmurfIO * sio;$/;"	v
 true	/home/saltiny/git/uELMO/Linux/uelmo/Configure.h	8;"	d
 write16	/home/saltiny/git/uELMO/Linux/uelmo/Memory.c	/^void write16(unsigned int addr, unsigned int data)$/;"	f	signature:(unsigned int addr, unsigned int data)
 write32	/home/saltiny/git/uELMO/Linux/uelmo/Memory.c	/^void write32(unsigned int addr, unsigned int data)$/;"	f	signature:(unsigned int addr, unsigned int data)
