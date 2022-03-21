@@ -13,34 +13,36 @@ FILE *datafp = NULL;
 //Close output stream, executiong trace file
 void Close_Output()		//SMURF_ADAPTING, change this
 {
-	if (outfp != NULL)
-		fclose(outfp);
+    if (outfp != NULL)
+	fclose(outfp);
 };
 
 //Close input data stream, emulated input
 void Close_DataFile()		//SMURF_ADAPTING, change this
 {
-	if (outfp != NULL)
-		fclose(datafp);
+    if (outfp != NULL)
+	fclose(datafp);
 }
 
 //open output file, executiong trace file
 void Open_OutputFile(char *filename)	//SMURF_ADAPTING, change this
 {
-	outfp = fopen(filename, "wb+");
-	if (outfp == NULL) {
-		printf("Error opening file [%s]\n", filename);
-		return;
+    outfp = fopen(filename, "wb+");
+    if (outfp == NULL)
+	{
+	    printf("Error opening file [%s]\n", filename);
+	    return;
 	}
 }
 
 //open input data file, emulated input
 void Open_DataFile(char *filename)	//SMURF_ADAPTING, change this
 {
-	datafp = fopen(filename, "r");
-	if (NULL == datafp) {
-		printf("Error opening file [%s]\n", filename);
-		return;
+    datafp = fopen(filename, "r");
+    if (NULL == datafp)
+	{
+	    printf("Error opening file [%s]\n", filename);
+	    return;
 	}
 }
 
@@ -49,17 +51,17 @@ void Open_DataFile(char *filename)	//SMURF_ADAPTING, change this
 #ifndef USE_SMURF
 unsigned int Read_Byte()
 {
-	char *str;
-	unsigned int data = UELMO_ERROR;
-	size_t len = 20;
-	str = (char *)malloc(len);
-	//getline(&str, &len, datafile);//TEMP: get it back after moving back to Linux
-	if (NULL == fgets(str, len, datafp))
-		data = (int)strtol(str, NULL, 16);
+    char *str;
+    unsigned int data = UELMO_ERROR;
+    size_t len = 20;
+    str = (char *)malloc(len);
+    //getline(&str, &len, datafile);//TEMP: get it back after moving back to Linux
+    if (NULL == fgets(str, len, datafp))
+	data = (int)strtol(str, NULL, 16);
 
-	//printf("%x\n", data);
-	free(str);
-	return data;
+    //printf("%x\n", data);
+    free(str);
+    return data;
 }
 
 void Write_Byte(uint8_t input)
@@ -71,22 +73,32 @@ void Write_Byte(uint8_t input)
 //Replace with SMURF_IO
 unsigned int Read_Byte()
 {
-	unsigned int ret = 0;
- 	if (SMURF_IO_READY == sio->stat) {
-		ret = SioGetchar(sio);
-	} else {
-		printf("#Trying to read but SmurfIO not ready.\n");
+    unsigned int ret = 0;
+    if (SMURF_IO_READY == sio->stat)
+	{
+	    ret = SioGetchar(sio);
 	}
-	return ret;
+    else
+	{
+	    printf("#Trying to read but SmurfIO not ready.\n");
+	}
+    return ret;
 }
 
 void Write_Byte(uint8_t input)
-{ 
-	if (SMURF_IO_READY == sio->stat) {
-		SioPutchar(sio, input);
+{
+    if (NULL == sio)
+	{
+	    INFO("SIO not initialised.\n");
+	    return;
 	}
-	printf("#Trying to write but SmurfIO not ready: %x\n", input);
-	return;
+
+    if (SMURF_IO_READY == sio->stat)
+	{
+	    SioPutchar(sio, input);
+	}
+    printf("#Trying to write but SmurfIO not ready: %x\n", input);
+    return;
 }
 #endif
 
@@ -94,7 +106,7 @@ void Write_Byte(uint8_t input)
 //SMURF_ADAPTING, delete this!
 unsigned int Rand_Byte()
 {
-	return rand() & 0xff;
+    return rand() & 0xff;
 }
 
 //Write out current cycle to Frame
@@ -102,11 +114,11 @@ unsigned int Rand_Byte()
 //Frame data in CORE_STATUS core_current
 void Write_Frame()
 {
-	if (OnTrace == true)
-		fwrite(&core_current, sizeof(CORE_STATUS), 1, outfp);
+    if (OnTrace == true)
+	fwrite(&core_current, sizeof(CORE_STATUS), 1, outfp);
 #ifdef USE_SMURF
-	//SmurfUpdateFrame();
-	//SmurfAddFrame();
+    //SmurfUpdateFrame();
+    //SmurfAddFrame();
 #endif
 }
 
@@ -114,6 +126,7 @@ void Write_Frame()
 //SMURF_ADAPTING, rewrite this
 void Write_EndofTrace()
 {
-	bool flag = false;
-	fwrite(&flag, sizeof(bool), 1, outfp);
+    bool flag = false;
+    fwrite(&flag, sizeof(bool), 1, outfp);
+    return;
 }
