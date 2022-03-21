@@ -2,6 +2,7 @@
 *~
 *.bak
 uelmo
+uelmorf
 testrun.sh
 tags
 *.swp

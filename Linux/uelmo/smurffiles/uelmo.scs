@@ -1,0 +1,161 @@
+{
+    "version": "1",
+    "components": {
+        "core_valid": {
+            "type": "BOOL",
+            "len": 1
+        },
+        "reg": {
+            "type": "UINT32",
+            "len": 16
+        },
+        "cpsr": {
+            "type": "UINT32",
+            "len": 1
+        },
+        "F2D_instrreg": {
+            "type": "UINT16",
+            "len": 1
+        },
+        "D2E_reg1": {
+            "type": "UINT32",
+            "len": 1
+        },
+        "D2E_reg2": {
+            "type": "UINT32",
+            "len": 1
+        },
+        "D2E_instrreg": {
+            "type": "UINT16",
+            "len": 1
+        },
+        "cpsr_valid": {
+            "type": "BOOL",
+            "len": 1
+        },
+        "cpsr_data": {
+            "type": "UINT32",
+            "len": 1
+        },
+        "D2E_reg1_valid": {
+            "type": "BOOL",
+            "len": 1
+        },
+        "D2E_reg2_valid": {
+            "type": "BOOL",
+            "len": 1
+        },
+        "D2E_reg1_data": {
+            "type": "UINT32",
+            "len": 1
+        },
+        "D2E_reg2_data": {
+            "type": "UINT32",
+            "len": 1
+        },
+        "Fetch_instruction_new": {
+            "type": "UINT16",
+            "len": 1
+        },
+        "Fetch_valid": {
+            "type": "BOOL",
+            "len": 1
+        },
+        "Decode_port_regindex": {
+            "type": "OCTET",
+            "len": 3
+        },
+        "Decode_port_data": {
+            "type": "UINT32",
+            "len": 3
+        },
+        "Decode_destination_regindex": {
+            "type": "OCTET",
+            "len": 1
+        },
+        "Decode_valid": {
+            "type": "BOOL",
+            "len": 1
+        },
+        "glitchy_Decode_port_regindex": {
+            "type": "UINT32",
+            "len": 3
+        },
+        "glitchy_Decode_port_data": {
+            "type": "UINT32",
+            "len": 3
+        },
+        "Execute_Imm": {
+            "type": "UINT32",
+            "len": 1
+        },
+        "Execute_ALU_result": {
+            "type": "UINT32",
+            "len": 1
+        },
+        "Execute_destination_regindex": {
+            "type": "OCTET",
+            "len": 1
+        },
+        "Execute_multicycle_regindex": {
+            "type": "OCTET",
+            "len": 1
+        },
+        "Execute_valid": {
+            "type": "BOOL",
+            "len": 1
+        },
+        "Read_valid": {
+            "type": "BOOL",
+            "len": 1
+        },
+        "Read_type": {
+            "type": "OCTET",
+            "len": 1
+        },
+        "Write_valid": {
+            "type": "BOOL",
+            "len": 1
+        },
+        "Write_type": {
+            "type": "OCTET",
+            "len": 1
+        },
+        "SignExtend_byte_valid": {
+            "type": "BOOL",
+            "len": 1
+        },
+        "SignExtend_halfbyte_valid": {
+            "type": "BOOL",
+            "len": 1
+        },
+        "Memory_read_targetreg": {
+            "type": "OCTET",
+            "len": 1
+        },
+        "Memory_addr": {
+            "type": "UINT32",
+            "len": 1
+        },
+        "Memory_data": {
+            "type": "UINT32",
+            "len": 1
+        },
+        "Write_valid_delayed": {
+            "type": "BOOL",
+            "len": 1
+        },
+        "Memory_instr_disp": {
+            "type": "STRING",
+            "len": 50
+        },
+        "Decode_instr_disp": {
+            "type": "STRING",
+            "len": 50
+        },
+        "Execute_instr_disp": {
+            "type": "STRING",
+            "len": 50
+        }
+    }
+}
