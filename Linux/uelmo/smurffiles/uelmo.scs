@@ -145,6 +145,26 @@
             "type": "BOOL",
             "len": 1
         },
+        "Memory_writebuf_delayed": {
+            "type": "UINT32",
+            "len": 1
+        },
+        "Memory_writebuf": {
+            "type": "UINT32",
+            "len": 1
+        },
+        "Memory_readbuf": {
+            "type": "UINT32",
+            "len": 1
+        },
+        "Read_reg_update": {
+            "type": "BOOL",
+            "len": 1
+        },
+        "Memory_read_targetreg_buf": {
+            "type": "OCTET",
+            "len": 1
+        },
         "Memory_instr_disp": {
             "type": "STRING",
             "len": 50

@@ -84,8 +84,18 @@ core.NewComponent('Memory_read_targetreg', 'OCTET')
 core.NewComponent('Memory_addr', 'UINT32')
 # Shared (Read and write) data bus: must be 32-bit
 core.NewComponent('Memory_data', 'UINT32')
-# bool Write_valid_delayed;	//set it true when the previous Write_valid is true
+# Write_valid_delayed;	//set it true when the previous Write_valid is true
 core.NewComponent('Write_valid_delayed', 'BOOL')
+# Write buffer on the write bus.
+core.NewComponent('Memory_writebuf_delayed', 'UINT32')
+# Write buffer on the write bus.
+core.NewComponent('Memory_writebuf', 'UINT32')
+# Read buffer on the read bus.
+core.NewComponent('Memory_readbuf', 'UINT32')
+# If true, update the register according to Memory_read_targetreg and Memory_readbuf
+core.NewComponent('Read_reg_update','BOOL')
+# For read instruction, the targt regsiter
+core.NewComponent('Memory_read_targetreg_buf', 'OCTET')
 
 # Discriptions
 #  char Memory_instr_disp[50];	//Discription for the memory instruction
