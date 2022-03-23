@@ -1,5 +1,7 @@
 #ifndef EMUIO_H_
 #define EMUIO_H_
+#include <stdint.h>
+
 //open output file
 void Open_OutputFile(char *);
 //open input data file

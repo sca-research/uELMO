@@ -6,16 +6,43 @@
 #include "Emulator.h"
 #include "Memory.h"
 #include <time.h>
+#include <stdbool.h>
+
+bool ioSupported = false;
 
 //Print help message.
 void PrintHelp()
 {
+#ifdef USE_SMURF
+    printf("smuelmo ${TargetBinary} [OPTIONS]");
+#else
     printf("uelmo ${TargetBinary} [OPTIONS]");
+#endif
     printf("OPTIONS:\n");
     printf("\t-h : Print this message.\n");
     printf("\t-N ${n} : Set number of traces to ${n}.\n");
     printf("\t-o ${output} : Output into ${output}.\n");
+#ifdef USE_SMURF
     printf("\t--io : Enable IO support.\n");
+#endif
+    return;
+}
+
+//Print Core info.
+void PrintCoreInfo(SmurfCore * core)
+{
+    int i = 0;
+    SmurfCoreComponent *scc = NULL;
+
+    printf("Core version: %s\n", core->version);
+    for (i = 0; i < core->ncomponents; i++)
+	{
+	    scc = core->components[i];
+	    printf("Component [%02d]: %s\n", i, scc->name);
+	    printf("\t Type: %s\n", SccGetTypeStr(scc->type));
+	    printf("\t Length: %lu\n", scc->len);
+	}
+
     return;
 }
 
@@ -39,6 +66,97 @@ void Read_Binary(char *filename)
     return;
 }
 
+//Initialise Smurf data structures.
+static void InitSmurf()
+{
+    //Read Smurf Core Specification.
+    smfcore = ScLoadCore("./smurffiles/uelmo.scs");
+#if DBG
+    PrintCoreInfo(smfcore);
+#endif
+
+    //Init Smurf Trace output.
+    smftrace = StOpen("/tmp/smuelmo.test", smfcore, SMURF_TRACE_MODE_CREATE);
+
+    //Init Smurf Trace Frame.
+    smfframe = StNewFrame(smfcore);
+
+    //Init Smurf Frame Indexes.
+#define GetIndex(x) StfGetFrameIndex(smfframe, &SmuelmoIdx.x, #x)
+    {
+	GetIndex(core_valid);
+	GetIndex(reg);
+	GetIndex(cpsr);
+	GetIndex(F2D_instrreg);
+	GetIndex(D2E_reg1);
+	GetIndex(D2E_reg2);
+	GetIndex(D2E_instrreg);
+	GetIndex(cpsr_valid);
+	GetIndex(cpsr_data);
+	GetIndex(D2E_reg1_valid);
+	GetIndex(D2E_reg2_valid);
+	GetIndex(Fetch_instruction_new);
+	GetIndex(Fetch_valid);
+	GetIndex(Decode_port_regindex);
+	GetIndex(Decode_port_data);
+	GetIndex(Decode_destination_regindex);
+	GetIndex(Decode_valid);
+	GetIndex(glitchy_Decode_port_regindex);
+	GetIndex(glitchy_Decode_port_data);
+	GetIndex(Execute_Imm);
+	GetIndex(Execute_ALU_result);
+	GetIndex(Execute_destination_regindex);
+	GetIndex(Execute_multicycle_regindex);
+	GetIndex(Execute_valid);
+	GetIndex(Read_valid);
+	GetIndex(Read_type);
+	GetIndex(Write_valid);
+	GetIndex(Write_type);
+	GetIndex(SignExtend_byte_valid);
+	GetIndex(SignExtend_halfbyte_valid);
+	GetIndex(Memory_read_targetreg);
+	GetIndex(Memory_addr);
+	GetIndex(Memory_data);
+	GetIndex(Write_valid_delayed);
+	GetIndex(Memory_writebuf_delayed);
+	GetIndex(Memory_writebuf);
+	GetIndex(Memory_readbuf);
+	GetIndex(Read_reg_update);
+	GetIndex(Memory_read_targetreg_buf);
+	GetIndex(Memory_instr_disp);
+	GetIndex(Decode_instr_disp);
+	GetIndex(Execute_instr_disp);
+    }
+#undef GetIndex
+
+    //Smurf IO init.
+    if (ioSupported)
+	{
+	    sio = SioOpen(ELMO_IO_PATH);
+	    INFO("#Waiting for connection...\n");
+	    SioWaitConn(sio);
+	}
+    else
+	{
+	    sio = NULL;
+	}
+
+    return;
+}
+
+//Clean Smurf data structures.
+static void CleanSmurf()
+{
+    if (ioSupported)
+	{
+	    SioClose(sio);
+	}
+    StDeleteFrame(smfframe);
+    StClose(smftrace);
+    ScDeleteCore(smfcore);
+    return;
+}
+
 //main function: dealing with command line input/output
 //argv[0]=uELMO
 //argv[1]=xxx.bin  -- target binary arm code 
@@ -53,7 +171,6 @@ int main(int argc, char *argv[])
     int rindex = argc;
 
     fvr = false;
-    ioSupported = false;
     N = 1;
     N_ind = 0;
     srand((unsigned)time(&timet));
@@ -94,6 +211,11 @@ int main(int argc, char *argv[])
 		}
 	}
 
+#ifdef USE_SMURF
+    //Initialise Smurf library.
+    InitSmurf();
+#endif
+
     //Load binary files to rom
     Read_Binary(argv[1]);
     //Open output file
@@ -103,15 +225,6 @@ int main(int argc, char *argv[])
     if (rindex < argc)
 	Open_DataFile(argv[rindex]);
 #ifdef USE_SMURF
-    if (ioSupported)
-	{
-	    sio = SioOpen(ELMO_IO_PATH);
-	    SioWaitConn(sio);
-	}
-    else
-	{
-	    sio = NULL;
-	}
 #endif
 
     printf
@@ -122,13 +235,6 @@ int main(int argc, char *argv[])
 		printf("########## TRACE %d\n", N_ind);
 	    run();		//run one trace
 	}
-
-#ifdef USE_SMURF
-    if (ioSupported)
-	{
-	    SioClose(sio);
-	}
-#endif
     //Close output file
     if (oindex < argc)
 	Close_Output();
@@ -137,5 +243,8 @@ int main(int argc, char *argv[])
 	Close_DataFile();
 
     //system("pause");
+#ifdef USE_SMURF
+    CleanSmurf();
+#endif
     return (0);
 }

@@ -70,7 +70,6 @@ void Write_Byte(uint8_t input)
     return;
 }
 #else
-//Replace with SMURF_IO
 unsigned int Read_Byte()
 {
     unsigned int ret = 0;
@@ -80,7 +79,8 @@ unsigned int Read_Byte()
 	}
     else
 	{
-	    printf("#Trying to read but SmurfIO not ready.\n");
+	    INFO("#SmurfIO not ready.\n");
+	    ret = getchar();
 	}
     return ret;
 }
@@ -89,7 +89,8 @@ void Write_Byte(uint8_t input)
 {
     if (NULL == sio)
 	{
-	    INFO("SIO not initialised.\n");
+	    //INFO("SIO not initialised.\n");
+	    putchar(input);
 	    return;
 	}
 
@@ -109,6 +110,20 @@ unsigned int Rand_Byte()
     return rand() & 0xff;
 }
 
+#ifdef USE_SMURF
+void SmurfUpdateFrame()
+{
+    //core_current
+
+    return;
+}
+
+void SmurfAddFrame()
+{
+    return;
+}
+#endif
+
 //Write out current cycle to Frame
 //SMURF_ADAPTING, rewrite this
 //Frame data in CORE_STATUS core_current
@@ -117,8 +132,8 @@ void Write_Frame()
     if (OnTrace == true)
 	fwrite(&core_current, sizeof(CORE_STATUS), 1, outfp);
 #ifdef USE_SMURF
-    //SmurfUpdateFrame();
-    //SmurfAddFrame();
+    SmurfUpdateFrame();
+    SmurfAddFrame();
 #endif
 }
 
