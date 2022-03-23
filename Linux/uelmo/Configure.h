@@ -4,7 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define bool int
+//#define bool int
+#include <stdbool.h>
+
 #define true 1
 #define false 0
 #define DEBUG_MEM 0
@@ -12,5 +14,5 @@
 bool fvr;
 int N;
 int N_ind;
-bool ioSupported;
+extern bool ioSupported;
 #endif

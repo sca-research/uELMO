@@ -1,6 +1,9 @@
 #ifndef MEMORY_H_
 #define MEMORY_H_
 
+#include <stdint.h>
+#include <stdbool.h>
+
 #define ROMADDMASK 0xFFFFF
 #define RAMADDMASK 0xFFFFF
 
