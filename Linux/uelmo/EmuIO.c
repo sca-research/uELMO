@@ -113,6 +113,10 @@ unsigned int Rand_Byte()
 #ifdef USE_SMURF
 void SmurfUpdateFrame()
 {
+    if (NULL == smfframe)
+	{
+	    return;
+	}
     //Assign core_current to the Smurf Frame buffer.
 #define Assign(x) StfAssign(&smftidx.x, &core_current.x)
     {
@@ -166,6 +170,11 @@ void SmurfUpdateFrame()
 
 void SmurfAddFrame()
 {
+    if (NULL == smftrace)
+	{
+	    return;
+	}
+
     StAddFrame(smftrace, smfframe);
     return;
 }

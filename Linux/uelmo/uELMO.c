@@ -9,6 +9,14 @@
 #include <stdbool.h>
 
 bool ioSupported = false;
+bool useSmurfTrace = false;
+
+SmurfIO *sio = NULL;
+SmurfCore *smfcore = NULL;
+SmurfTrace *smftrace = NULL;
+SmurfTraceFrame *smfframe = NULL;
+char *smftracepath = NULL;
+char *siopath = NULL;
 
 //Print help message.
 void PrintHelp()
@@ -23,7 +31,11 @@ void PrintHelp()
     printf("\t-N ${n} : Set number of traces to ${n}.\n");
     printf("\t-o ${output} : Output into ${output}.\n");
 #ifdef USE_SMURF
-    printf("\t--io : Enable IO support.\n");
+    printf("Smurf Extensions:\n");
+    printf
+	("\t--io ${IFPATH}: Enable IO support at the path given by ${IFPATH}.\n");
+    printf
+	("\t--st ${SMURF_TRACE_PATH}: Smurf trace output at ${SMURF_TRACE_PATH}.\n");
 #endif
     return;
 }
@@ -50,70 +62,73 @@ void PrintCoreInfo(SmurfCore * core)
 //Initialise Smurf data structures.
 static void InitSmurf()
 {
-    //Read Smurf Core Specification.
-    smfcore = ScLoadCore("./smurffiles/uelmo.json");
+    if (useSmurfTrace)
+	{
+	    //Read Smurf Core Specification.
+	    smfcore = ScLoadCore("./smurffiles/uelmo.json");
 #if DBG
-    PrintCoreInfo(smfcore);
+	    PrintCoreInfo(smfcore);
 #endif
 
-    //Init Smurf Trace output.
-    smftrace = StOpen("/tmp/smuelmo.test", smfcore, SMURF_TRACE_MODE_CREATE);
+	    //Init Smurf Trace output.
+	    smftrace = StOpen(smftracepath, smfcore, SMURF_TRACE_MODE_CREATE);
 
-    //Init Smurf Trace Frame.
-    smfframe = StNewFrame(smfcore);
+	    //Init Smurf Trace Frame.
+	    smfframe = StNewFrame(smfcore);
 
-    //Init Smurf Frame Indexes.
+	    //Init Smurf Frame Indexes.
 #define GetIndex(x) StfGetFrameIndex(smfframe, &smftidx.x, #x)
-    {
-	GetIndex(core_valid);
-	GetIndex(reg);
-	GetIndex(cpsr);
-	GetIndex(F2D_instrreg);
-	GetIndex(D2E_reg1);
-	GetIndex(D2E_reg2);
-	GetIndex(D2E_instrreg);
-	GetIndex(cpsr_valid);
-	GetIndex(cpsr_data);
-	GetIndex(D2E_reg1_valid);
-	GetIndex(D2E_reg2_valid);
-	GetIndex(Fetch_instruction_new);
-	GetIndex(Fetch_valid);
-	GetIndex(Decode_port_regindex);
-	GetIndex(Decode_port_data);
-	GetIndex(Decode_destination_regindex);
-	GetIndex(Decode_valid);
-	GetIndex(glitchy_Decode_port_regindex);
-	GetIndex(glitchy_Decode_port_data);
-	GetIndex(Execute_Imm);
-	GetIndex(Execute_ALU_result);
-	GetIndex(Execute_destination_regindex);
-	GetIndex(Execute_multicycle_regindex);
-	GetIndex(Execute_valid);
-	GetIndex(Read_valid);
-	GetIndex(Read_type);
-	GetIndex(Write_valid);
-	GetIndex(Write_type);
-	GetIndex(SignExtend_byte_valid);
-	GetIndex(SignExtend_halfbyte_valid);
-	GetIndex(Memory_read_targetreg);
-	GetIndex(Memory_addr);
-	GetIndex(Memory_data);
-	GetIndex(Write_valid_delayed);
-	GetIndex(Memory_writebuf_delayed);
-	GetIndex(Memory_writebuf);
-	GetIndex(Memory_readbuf);
-	GetIndex(Read_reg_update);
-	GetIndex(Memory_read_targetreg_buf);
-	GetIndex(Memory_instr_disp);
-	GetIndex(Decode_instr_disp);
-	GetIndex(Execute_instr_disp);
-    }
+	    {
+		GetIndex(core_valid);
+		GetIndex(reg);
+		GetIndex(cpsr);
+		GetIndex(F2D_instrreg);
+		GetIndex(D2E_reg1);
+		GetIndex(D2E_reg2);
+		GetIndex(D2E_instrreg);
+		GetIndex(cpsr_valid);
+		GetIndex(cpsr_data);
+		GetIndex(D2E_reg1_valid);
+		GetIndex(D2E_reg2_valid);
+		GetIndex(Fetch_instruction_new);
+		GetIndex(Fetch_valid);
+		GetIndex(Decode_port_regindex);
+		GetIndex(Decode_port_data);
+		GetIndex(Decode_destination_regindex);
+		GetIndex(Decode_valid);
+		GetIndex(glitchy_Decode_port_regindex);
+		GetIndex(glitchy_Decode_port_data);
+		GetIndex(Execute_Imm);
+		GetIndex(Execute_ALU_result);
+		GetIndex(Execute_destination_regindex);
+		GetIndex(Execute_multicycle_regindex);
+		GetIndex(Execute_valid);
+		GetIndex(Read_valid);
+		GetIndex(Read_type);
+		GetIndex(Write_valid);
+		GetIndex(Write_type);
+		GetIndex(SignExtend_byte_valid);
+		GetIndex(SignExtend_halfbyte_valid);
+		GetIndex(Memory_read_targetreg);
+		GetIndex(Memory_addr);
+		GetIndex(Memory_data);
+		GetIndex(Write_valid_delayed);
+		GetIndex(Memory_writebuf_delayed);
+		GetIndex(Memory_writebuf);
+		GetIndex(Memory_readbuf);
+		GetIndex(Read_reg_update);
+		GetIndex(Memory_read_targetreg_buf);
+		GetIndex(Memory_instr_disp);
+		GetIndex(Decode_instr_disp);
+		GetIndex(Execute_instr_disp);
+	    }
 #undef GetIndex
+	}
 
     //Smurf IO init.
     if (ioSupported)
 	{
-	    sio = SioOpen(ELMO_IO_PATH);
+	    sio = SioOpen(siopath);
 	    INFO("#Waiting for connection...\n");
 	    SioWaitConn(sio);
 	}
@@ -132,9 +147,12 @@ static void CleanSmurf()
 	{
 	    SioClose(sio);
 	}
-    StDeleteFrame(smfframe);
-    StClose(smftrace);
-    ScDeleteCore(smfcore);
+    if (useSmurfTrace)
+	{
+	    StDeleteFrame(smfframe);
+	    StClose(smftrace);
+	    ScDeleteCore(smfcore);
+	}
     return;
 }
 #endif
@@ -194,6 +212,7 @@ int main(int argc, char *argv[])
 	    else if (strcmp(argv[ra], "-N") == 0)
 		{
 		    sscanf(argv[ra + 1], "%d", &N);
+		    ra++;
 		}
 	    else if (strcmp(argv[ra], "-o") == 0)
 		{
@@ -207,10 +226,20 @@ int main(int argc, char *argv[])
 		{
 		    fvr = true;
 		}
+#ifdef USE_SMURF
 	    else if (strcmp(argv[ra], "--io") == 0)
 		{
 		    ioSupported = true;
+		    siopath = argv[ra + 1];
+		    ra++;
 		}
+	    else if (strcmp(argv[ra], "--st") == 0)
+		{
+		    useSmurfTrace = true;
+		    smftracepath = argv[ra + 1];
+		    ra++;
+		}
+#endif
 	}
 
 #ifdef USE_SMURF

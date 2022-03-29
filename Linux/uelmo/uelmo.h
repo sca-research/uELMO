@@ -6,11 +6,13 @@
 #include "smurf/smurf.h"
 #include "smurf/emulator.h"
 
-#define ELMO_IO_PATH "/tmp/elmoio"
-SmurfIO *sio;
-SmurfCore *smfcore;
-SmurfTrace *smftrace;
-SmurfTraceFrame *smfframe;
+#define ELMO_CORE "../smurffiles/uelmo.json"
+extern SmurfIO *sio;
+extern SmurfCore *smfcore;
+extern SmurfTrace *smftrace;
+extern SmurfTraceFrame *smfframe;
+extern char *smftracepath;
+extern char *siopath;
 
 //Smurf frame components headers.
 struct {
