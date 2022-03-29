@@ -93,7 +93,7 @@ core.NewComponent('Memory_writebuf', 'UINT32')
 # Read buffer on the read bus.
 core.NewComponent('Memory_readbuf', 'UINT32')
 # If true, update the register according to Memory_read_targetreg and Memory_readbuf
-core.NewComponent('Read_reg_update','BOOL')
+core.NewComponent('Read_reg_update', 'BOOL')
 # For read instruction, the targt regsiter
 core.NewComponent('Memory_read_targetreg_buf', 'OCTET')
 
