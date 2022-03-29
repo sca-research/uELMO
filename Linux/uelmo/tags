@@ -4,8 +4,8 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-Assign	/home/salties/git/uELMO/Linux/uelmo/EmuIO.c	121;"	d	file:
-Assign	/home/salties/git/uELMO/Linux/uelmo/EmuIO.c	166;"	d	file:
+Assign	/home/salties/git/uELMO/Linux/uelmo/EmuIO.c	145;"	d	file:
+Assign	/home/salties/git/uELMO/Linux/uelmo/EmuIO.c	190;"	d	file:
 CONFIG_H_	/home/salties/git/uELMO/Linux/uelmo/Configure.h	2;"	d
 CORE_H_	/home/salties/git/uELMO/Linux/uelmo/core.h	3;"	d
 CORE_STATUS	/home/salties/git/uELMO/Linux/uelmo/core.h	/^} CORE_STATUS;$/;"	t	typeref:struct:__anon1
@@ -77,12 +77,12 @@ Fetch_instruction_new	/home/salties/git/uELMO/Linux/uelmo/core.h	/^    uint16_t 
 Fetch_instruction_new	/home/salties/git/uELMO/Linux/uelmo/uelmo.h	/^    SmurfTraceFrameIdx Fetch_instruction_new;	\/\/Fetched new instruction (i.e. F.3)$/;"	m	struct:__anon1	access:public
 Fetch_valid	/home/salties/git/uELMO/Linux/uelmo/core.h	/^    bool Fetch_valid;		\/\/A flag that stall the pipeline when jump happens$/;"	m	struct:__anon1	access:public
 Fetch_valid	/home/salties/git/uELMO/Linux/uelmo/uelmo.h	/^    SmurfTraceFrameIdx Fetch_valid;	\/\/A flag that stall the pipeline when jump happens$/;"	m	struct:__anon1	access:public
-GetIndex	/home/salties/git/uELMO/Linux/uelmo/uELMO.c	124;"	d	file:
-GetIndex	/home/salties/git/uELMO/Linux/uelmo/uELMO.c	79;"	d	file:
+GetIndex	/home/salties/git/uELMO/Linux/uelmo/uELMO.c	126;"	d	file:
+GetIndex	/home/salties/git/uELMO/Linux/uelmo/uELMO.c	81;"	d	file:
 InitSmurf	/home/salties/git/uELMO/Linux/uelmo/uELMO.c	/^static void InitSmurf()$/;"	f	file:
 MEMORY_H_	/home/salties/git/uELMO/Linux/uelmo/Memory.h	2;"	d
+Memory_OneCycle	/home/salties/git/uELMO/Linux/uelmo/Memory.c	/^bool Memory_OneCycle()$/;"	f
 Memory_OneCycle	/home/salties/git/uELMO/Linux/uelmo/Memory.h	/^bool Memory_OneCycle();$/;"	p	signature:()
-Memory_OneCycle	Memory.c	/^bool Memory_OneCycle()$/;"	f
 Memory_addr	/home/salties/git/uELMO/Linux/uelmo/core.h	/^    unsigned int Memory_addr;	\/\/Address bus of the memory: must align to 4$/;"	m	struct:__anon1	access:public
 Memory_addr	/home/salties/git/uELMO/Linux/uelmo/uelmo.h	/^    SmurfTraceFrameIdx Memory_addr;	\/\/Address bus of the memory: must align to 4$/;"	m	struct:__anon1	access:public
 Memory_data	/home/salties/git/uELMO/Linux/uelmo/core.h	/^    unsigned int Memory_data;	\/\/shared (Read and write) data bus: must be 32-bit$/;"	m	struct:__anon1	access:public
@@ -114,6 +114,7 @@ ROMADDMASK	/home/salties/git/uELMO/Linux/uelmo/Memory.h	7;"	d
 ROMSIZE	/home/salties/git/uELMO/Linux/uelmo/Memory.h	10;"	d
 Rand_Byte	/home/salties/git/uELMO/Linux/uelmo/EmuIO.c	/^unsigned int Rand_Byte()$/;"	f
 Rand_Byte	/home/salties/git/uELMO/Linux/uelmo/EmuIO.h	/^unsigned int Rand_Byte();$/;"	p	signature:()
+ReadFromFile	/home/salties/git/uELMO/Linux/uelmo/EmuIO.c	/^unsigned int ReadFromFile()$/;"	f
 Read_Binary	/home/salties/git/uELMO/Linux/uelmo/uELMO.c	/^void Read_Binary(char *filename)$/;"	f	signature:(char *filename)
 Read_Byte	/home/salties/git/uELMO/Linux/uelmo/EmuIO.c	/^unsigned int Read_Byte()$/;"	f
 Read_Byte	/home/salties/git/uELMO/Linux/uelmo/EmuIO.h	/^unsigned int Read_Byte();$/;"	p	signature:()
@@ -123,8 +124,8 @@ Read_type	/home/salties/git/uELMO/Linux/uelmo/core.h	/^    uint8_t Read_type;		\
 Read_type	/home/salties/git/uELMO/Linux/uelmo/uelmo.h	/^    SmurfTraceFrameIdx Read_type;	\/\/0 word, 1 byte, 2 half-word$/;"	m	struct:__anon1	access:public
 Read_valid	/home/salties/git/uELMO/Linux/uelmo/core.h	/^    bool Read_valid;		\/\/set it true when a new read address is sent to address bus$/;"	m	struct:__anon1	access:public
 Read_valid	/home/salties/git/uELMO/Linux/uelmo/uelmo.h	/^    SmurfTraceFrameIdx Read_valid;	\/\/set it true when a new read address is sent to address bus$/;"	m	struct:__anon1	access:public
-SignExtend_B	Memory.c	/^unsigned int SignExtend_B(unsigned int rc, unsigned int rb)$/;"	f
-SignExtend_HB	Memory.c	/^unsigned int SignExtend_HB(unsigned int rc, unsigned int rb)$/;"	f
+SignExtend_B	/home/salties/git/uELMO/Linux/uelmo/Memory.c	/^unsigned int SignExtend_B(unsigned int rc, unsigned int rb)$/;"	f	signature:(unsigned int rc, unsigned int rb)
+SignExtend_HB	/home/salties/git/uELMO/Linux/uelmo/Memory.c	/^unsigned int SignExtend_HB(unsigned int rc, unsigned int rb)$/;"	f	signature:(unsigned int rc, unsigned int rb)
 SignExtend_byte_valid	/home/salties/git/uELMO/Linux/uelmo/core.h	/^    bool SignExtend_byte_valid;	\/\/sign extend$/;"	m	struct:__anon1	access:public
 SignExtend_byte_valid	/home/salties/git/uELMO/Linux/uelmo/uelmo.h	/^    SmurfTraceFrameIdx SignExtend_byte_valid;	\/\/sign extend$/;"	m	struct:__anon1	access:public
 SignExtend_halfbyte_valid	/home/salties/git/uELMO/Linux/uelmo/core.h	/^    bool SignExtend_halfbyte_valid;	\/\/sign extend$/;"	m	struct:__anon1	access:public
@@ -258,10 +259,10 @@ do_vflag_bit	core.c	/^void do_vflag_bit(unsigned int x)$/;"	f
 do_zflag	/home/salties/git/uELMO/Linux/uelmo/core.h	/^void do_zflag(unsigned int);$/;"	p	signature:(unsigned int)
 do_zflag	core.c	/^void do_zflag(unsigned int x)$/;"	f
 false	/home/salties/git/uELMO/Linux/uelmo/Configure.h	11;"	d
+fetch16	/home/salties/git/uELMO/Linux/uelmo/Memory.c	/^unsigned int fetch16(unsigned int addr)$/;"	f	signature:(unsigned int addr)
 fetch16	/home/salties/git/uELMO/Linux/uelmo/Memory.h	/^unsigned int fetch16(unsigned int);$/;"	p	signature:(unsigned int)
-fetch16	Memory.c	/^unsigned int fetch16(unsigned int addr)$/;"	f
+fetch32	/home/salties/git/uELMO/Linux/uelmo/Memory.c	/^unsigned int fetch32(unsigned int addr)$/;"	f	signature:(unsigned int addr)
 fetch32	/home/salties/git/uELMO/Linux/uelmo/Memory.h	/^unsigned int fetch32(unsigned int);$/;"	p	signature:(unsigned int)
-fetch32	Memory.c	/^unsigned int fetch32(unsigned int addr)$/;"	f
 fvr	/home/salties/git/uELMO/Linux/uelmo/Configure.h	/^bool fvr;$/;"	v
 glitchy_Decode_port_data	/home/salties/git/uELMO/Linux/uelmo/core.h	/^    unsigned int glitchy_Decode_port_data[3];	\/\/Decode the current instruction according to the previous instruction decoding style$/;"	m	struct:__anon1	access:public
 glitchy_Decode_port_data	/home/salties/git/uELMO/Linux/uelmo/uelmo.h	/^    SmurfTraceFrameIdx glitchy_Decode_port_data;	\/\/Decode the current instruction according to the previous instruction decoding style$/;"	m	struct:__anon1	access:public
@@ -271,12 +272,12 @@ ioSupported	/home/salties/git/uELMO/Linux/uelmo/uELMO.c	/^bool ioSupported = fal
 main	/home/salties/git/uELMO/Linux/uelmo/uELMO.c	/^int main(int argc, char *argv[])$/;"	f	signature:(int argc, char *argv[])
 outfp	/home/salties/git/uELMO/Linux/uelmo/EmuIO.c	/^FILE *outfp = NULL;$/;"	v
 ram	/home/salties/git/uELMO/Linux/uelmo/Memory.h	/^unsigned short ram[RAMSIZE >> 1];$/;"	v
+read16	/home/salties/git/uELMO/Linux/uelmo/Memory.c	/^unsigned int read16(unsigned int addr)$/;"	f	signature:(unsigned int addr)
 read16	/home/salties/git/uELMO/Linux/uelmo/Memory.h	/^unsigned int read16(unsigned int);$/;"	p	signature:(unsigned int)
-read16	Memory.c	/^unsigned int read16(unsigned int addr)$/;"	f
+read32	/home/salties/git/uELMO/Linux/uelmo/Memory.c	/^unsigned int read32(unsigned int addr)$/;"	f	signature:(unsigned int addr)
 read32	/home/salties/git/uELMO/Linux/uelmo/Memory.h	/^unsigned int read32(unsigned int);$/;"	p	signature:(unsigned int)
-read32	Memory.c	/^unsigned int read32(unsigned int addr)$/;"	f
+read8	/home/salties/git/uELMO/Linux/uelmo/Memory.c	/^uint8_t read8(unsigned int addr)$/;"	f	signature:(unsigned int addr)
 read8	/home/salties/git/uELMO/Linux/uelmo/Memory.h	/^uint8_t read8(unsigned int);$/;"	p	signature:(unsigned int)
-read8	Memory.c	/^uint8_t read8(unsigned int addr)$/;"	f
 read_register	/home/salties/git/uELMO/Linux/uelmo/core.h	/^unsigned int read_register(unsigned int);$/;"	p	signature:(unsigned int)
 read_register	core.c	/^unsigned int read_register(unsigned int reg)$/;"	f
 read_register_forward	/home/salties/git/uELMO/Linux/uelmo/core.h	/^unsigned int read_register_forward(unsigned int);$/;"	p	signature:(unsigned int)
@@ -294,10 +295,11 @@ smftidx	/home/salties/git/uELMO/Linux/uelmo/uelmo.h	/^} smftidx;$/;"	v	typeref:s
 smftrace	/home/salties/git/uELMO/Linux/uelmo/uELMO.c	/^SmurfTrace *smftrace = NULL;$/;"	v
 smftracepath	/home/salties/git/uELMO/Linux/uelmo/uELMO.c	/^char *smftracepath = NULL;$/;"	v
 true	/home/salties/git/uELMO/Linux/uelmo/Configure.h	10;"	d
+useInputFile	/home/salties/git/uELMO/Linux/uelmo/uELMO.c	/^bool useInputFile = false;$/;"	v
 useSmurfTrace	/home/salties/git/uELMO/Linux/uelmo/uELMO.c	/^bool useSmurfTrace = false;$/;"	v
+write16	/home/salties/git/uELMO/Linux/uelmo/Memory.c	/^void write16(unsigned int addr, unsigned int data)$/;"	f	signature:(unsigned int addr, unsigned int data)
 write16	/home/salties/git/uELMO/Linux/uelmo/Memory.h	/^void write16(unsigned int, unsigned int);$/;"	p	signature:(unsigned int, unsigned int)
-write16	Memory.c	/^void write16(unsigned int addr, unsigned int data)$/;"	f
+write32	/home/salties/git/uELMO/Linux/uelmo/Memory.c	/^void write32(unsigned int addr, unsigned int data)$/;"	f	signature:(unsigned int addr, unsigned int data)
 write32	/home/salties/git/uELMO/Linux/uelmo/Memory.h	/^void write32(unsigned int, unsigned int);$/;"	p	signature:(unsigned int, unsigned int)
-write32	Memory.c	/^void write32(unsigned int addr, unsigned int data)$/;"	f
 write_register	/home/salties/git/uELMO/Linux/uelmo/core.h	/^void write_register(unsigned int, unsigned int);$/;"	p	signature:(unsigned int, unsigned int)
 write_register	core.c	/^void write_register(unsigned int reg, unsigned int data)$/;"	f

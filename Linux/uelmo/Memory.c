@@ -183,32 +183,21 @@ unsigned int read32(unsigned int addr)
 			switch (addr) {
 			case 0xE1000000:	//readbyte()
 				{
-					if (!ioSupported) {
-						printf
-						    ("#IO supported not enabled.\n");
-						return 0;
-					}
-					if (fvr == false)
-						return Read_Byte();
-					else {	//fvr=true
-						if (N_ind < N / 2)
-							return 0;
-						else
-							return Rand_Byte();
-					}
-					return Read_Byte();
-					//data = Rand_Byte();
-					//printf("rand=%2x\n",data&0xFF);
-					//return data;
+                    data = Read_Byte();
+                    if (DEBUG_MEM)
+                    {
+                        printf("read=%02x\n", data & 0xFF);
+                    }
+                    return (data);
 				}
 			case 0xE1000004:	//randbyte()
 				{
 					data = Rand_Byte();
 					if (DEBUG_MEM)
-						printf("rand=%2x\n",
+						printf("rand=%02x\n",
 						       data & 0xFF);
 					return (data);
-				}
+				} 
 			}
 		}
 

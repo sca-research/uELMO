@@ -15,4 +15,5 @@ bool fvr;
 int N;
 int N_ind;
 extern bool ioSupported;
+extern bool useInputFile;
 #endif

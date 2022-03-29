@@ -70,16 +70,40 @@ void Write_Byte(uint8_t input)
     return;
 }
 #else
+unsigned int ReadFromFile()
+{
+    char *str;
+    unsigned int data = UELMO_ERROR;
+    size_t len = 20;
+    str = (char *)malloc(len);
+    //getline(&str, &len, datafile);//TEMP: get it back after moving back to Linux
+    if (NULL == fgets(str, len, datafp))
+	data = (int)strtol(str, NULL, 16);
+
+    //printf("%x\n", data);
+    free(str);
+    return data;
+}
+
 unsigned int Read_Byte()
 {
     unsigned int ret = 0;
-    if (SMURF_IO_READY == sio->stat)
+
+    if (useInputFile)		//Use input file.
 	{
+	    ret = ReadFromFile();
+	}
+    else if (ioSupported)	//Use Smurf IO.
+	{
+	    if (NULL == sio || SMURF_IO_READY != sio->stat)
+		{
+		    INFO("#SmurfIO not ready.\n");
+		    return 0;
+		}
 	    ret = SioGetchar(sio);
 	}
-    else
+    else			//Use stdin by default.
 	{
-	    INFO("#SmurfIO not ready.\n");
 	    ret = getchar();
 	}
     return ret;

@@ -10,6 +10,7 @@
 
 bool ioSupported = false;
 bool useSmurfTrace = false;
+bool useInputFile = false;
 
 SmurfIO *sio = NULL;
 SmurfCore *smfcore = NULL;
@@ -221,6 +222,7 @@ int main(int argc, char *argv[])
 	    else if (strcmp(argv[ra], "-r") == 0)
 		{
 		    rindex = ra + 1;
+		    useInputFile = true;
 		}
 	    else if (strcmp(argv[ra], "-fvr") == 0)
 		{
