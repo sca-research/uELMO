@@ -28,6 +28,7 @@ void PrintHelp()
     return;
 }
 
+#ifdef USE_SMURF
 //Print Core info.
 void PrintCoreInfo(SmurfCore * core)
 {
@@ -46,31 +47,11 @@ void PrintCoreInfo(SmurfCore * core)
     return;
 }
 
-//Read the arm binary file to ROM
-void Read_Binary(char *filename)
-{
-    FILE *fp = fopen(filename, "rb");
-    if (fp == NULL)
-	{
-	    printf("Error opening file [%s]\n", filename);
-	    return;
-	}
-    memset(rom, 0xFF, sizeof(rom));
-    memset(ram, 0x00, sizeof(ram));
-    if (0 != fread(rom, 1, sizeof(rom), fp))
-	{
-	    perror(NULL);
-	}
-    fclose(fp);
-
-    return;
-}
-
 //Initialise Smurf data structures.
 static void InitSmurf()
 {
     //Read Smurf Core Specification.
-    smfcore = ScLoadCore("./smurffiles/uelmo.scs");
+    smfcore = ScLoadCore("./smurffiles/uelmo.json");
 #if DBG
     PrintCoreInfo(smfcore);
 #endif
@@ -82,7 +63,7 @@ static void InitSmurf()
     smfframe = StNewFrame(smfcore);
 
     //Init Smurf Frame Indexes.
-#define GetIndex(x) StfGetFrameIndex(smfframe, &SmuelmoIdx.x, #x)
+#define GetIndex(x) StfGetFrameIndex(smfframe, &smftidx.x, #x)
     {
 	GetIndex(core_valid);
 	GetIndex(reg);
@@ -156,6 +137,27 @@ static void CleanSmurf()
     ScDeleteCore(smfcore);
     return;
 }
+#endif
+
+//Read the arm binary file to ROM
+void Read_Binary(char *filename)
+{
+    FILE *fp = fopen(filename, "rb");
+    if (fp == NULL)
+	{
+	    printf("Error opening file [%s]\n", filename);
+	    return;
+	}
+    memset(rom, 0xFF, sizeof(rom));
+    memset(ram, 0x00, sizeof(ram));
+    if (0 != fread(rom, 1, sizeof(rom), fp))
+	{
+	    perror(NULL);
+	}
+    fclose(fp);
+
+    return;
+}
 
 //main function: dealing with command line input/output
 //argv[0]=uELMO
@@ -224,8 +226,6 @@ int main(int argc, char *argv[])
     //Open data file
     if (rindex < argc)
 	Open_DataFile(argv[rindex]);
-#ifdef USE_SMURF
-#endif
 
     printf
 	("########################################\n\nGENERATING TRACES...\n\n");

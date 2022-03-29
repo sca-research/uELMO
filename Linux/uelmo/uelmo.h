@@ -71,7 +71,7 @@ struct {
     SmurfTraceFrameIdx Memory_instr_disp;	//Discription for the memory instruction
     SmurfTraceFrameIdx Decode_instr_disp;	//Discription for the decode instruction
     SmurfTraceFrameIdx Execute_instr_disp;	//Discription for the execute instruction
-} SmuelmoIdx;
+} smftidx;
 
 #endif
 

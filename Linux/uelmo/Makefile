@@ -15,4 +15,4 @@ smuelmo: $(wildcard *.c *.h)
 	${CC} ${CFLAGS} ${SMURFLPATHFLAGS} *.o -o $@ ${SMURFFLAGS} -DUSE_SMURF #-DDBG
 
 clean:
-	rm -f *.o *~ *.bak ${TARGET} smuelmo
+	rm -f *.o *~ *.bak ${TARGET} smuelmo *.gch
