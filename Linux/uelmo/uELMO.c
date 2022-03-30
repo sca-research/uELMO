@@ -31,6 +31,7 @@ void PrintHelp()
     printf("\t-h : Print this message.\n");
     printf("\t-N ${n} : Set number of traces to ${n}.\n");
     printf("\t-o ${output} : Output into ${output}.\n");
+    printf("\t-r ${input} : Use input file ${input}.\n");
 #ifdef USE_SMURF
     printf("Smurf Extensions:\n");
     printf
