@@ -55,14 +55,14 @@ $ ./smuelmo ${YOUR_BIN_IMAGE} -N ${NUMBER_OF_TRACES} -o ${UELMO_OUTPUT_FILE}  [-
 This will create a virtual interface specified by the path ${PATH_TO_SMURF_IO_INTERFACE} and the simulation will be blocked until the SMURF IO Interface is connected, which can be done in a python script such as below:
 
 ----------------
-# Example: foo.py
+\# Example: foo.py
 import smurf
 
 path = SMURF_IO_IF_PATH     # The path as specified by ${PATH_TO_SMURF_IO_INTERFACE}.
 sio = smurf.IO(path)        # This connects the SMURF IO Interface.
 sio.Putchar(bytes([0]))     # Send a byte (0) to the simulated serial port.
 recv = sio.Getchar()        # Receives a byte from the simulated serial port.
-# End of foo.py.
+\# End of foo.py.
 ----------------
 
 ** 5. Reading a SMURF trace **
