@@ -5,7 +5,7 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 Assign	/home/salties/git/uELMO/Linux/uelmo/EmuIO.c	145;"	d	file:
-Assign	/home/salties/git/uELMO/Linux/uelmo/EmuIO.c	190;"	d	file:
+Assign	/home/salties/git/uELMO/Linux/uelmo/EmuIO.c	191;"	d	file:
 CONFIG_H_	/home/salties/git/uELMO/Linux/uelmo/Configure.h	2;"	d
 CORE_H_	/home/salties/git/uELMO/Linux/uelmo/core.h	3;"	d
 CORE_STATUS	/home/salties/git/uELMO/Linux/uelmo/core.h	/^} CORE_STATUS;$/;"	t	typeref:struct:__anon1
@@ -77,8 +77,8 @@ Fetch_instruction_new	/home/salties/git/uELMO/Linux/uelmo/core.h	/^    uint16_t 
 Fetch_instruction_new	/home/salties/git/uELMO/Linux/uelmo/uelmo.h	/^    SmurfTraceFrameIdx Fetch_instruction_new;	\/\/Fetched new instruction (i.e. F.3)$/;"	m	struct:__anon1	access:public
 Fetch_valid	/home/salties/git/uELMO/Linux/uelmo/core.h	/^    bool Fetch_valid;		\/\/A flag that stall the pipeline when jump happens$/;"	m	struct:__anon1	access:public
 Fetch_valid	/home/salties/git/uELMO/Linux/uelmo/uelmo.h	/^    SmurfTraceFrameIdx Fetch_valid;	\/\/A flag that stall the pipeline when jump happens$/;"	m	struct:__anon1	access:public
-GetIndex	/home/salties/git/uELMO/Linux/uelmo/uELMO.c	126;"	d	file:
-GetIndex	/home/salties/git/uELMO/Linux/uelmo/uELMO.c	81;"	d	file:
+GetIndex	/home/salties/git/uELMO/Linux/uelmo/uELMO.c	127;"	d	file:
+GetIndex	/home/salties/git/uELMO/Linux/uelmo/uELMO.c	82;"	d	file:
 InitSmurf	/home/salties/git/uELMO/Linux/uelmo/uELMO.c	/^static void InitSmurf()$/;"	f	file:
 MEMORY_H_	/home/salties/git/uELMO/Linux/uelmo/Memory.h	2;"	d
 Memory_OneCycle	/home/salties/git/uELMO/Linux/uelmo/Memory.c	/^bool Memory_OneCycle()$/;"	f
@@ -234,6 +234,7 @@ __anon1::glitchy_Decode_port_regindex	/home/salties/git/uELMO/Linux/uelmo/core.h
 __anon1::glitchy_Decode_port_regindex	/home/salties/git/uELMO/Linux/uelmo/uelmo.h	/^    SmurfTraceFrameIdx glitchy_Decode_port_regindex;	\/\/Decode the current instruction according to the previous instruction decoding style$/;"	m	struct:__anon1	access:public
 __anon1::reg	/home/salties/git/uELMO/Linux/uelmo/core.h	/^    unsigned int reg[16];	\/\/architectural$/;"	m	struct:__anon1	access:public
 __anon1::reg	/home/salties/git/uELMO/Linux/uelmo/uelmo.h	/^    SmurfTraceFrameIdx reg;	\/\/architectural$/;"	m	struct:__anon1	access:public
+__anon1::traceno	/home/salties/git/uELMO/Linux/uelmo/uelmo.h	/^    SmurfTraceFrameIdx traceno;$/;"	m	struct:__anon1	access:public
 check_delay	/home/salties/git/uELMO/Linux/uelmo/core.h	/^bool check_delay(unsigned int);$/;"	p	signature:(unsigned int)
 check_delay	core.c	/^bool check_delay(unsigned int reg)$/;"	f
 core_current	core.c	/^CORE_STATUS core_current;$/;"	v
@@ -294,6 +295,7 @@ smfframe	/home/salties/git/uELMO/Linux/uelmo/uELMO.c	/^SmurfTraceFrame *smfframe
 smftidx	/home/salties/git/uELMO/Linux/uelmo/uelmo.h	/^} smftidx;$/;"	v	typeref:struct:__anon1
 smftrace	/home/salties/git/uELMO/Linux/uelmo/uELMO.c	/^SmurfTrace *smftrace = NULL;$/;"	v
 smftracepath	/home/salties/git/uELMO/Linux/uelmo/uELMO.c	/^char *smftracepath = NULL;$/;"	v
+traceno	/home/salties/git/uELMO/Linux/uelmo/uelmo.h	/^    SmurfTraceFrameIdx traceno;$/;"	m	struct:__anon1	access:public
 true	/home/salties/git/uELMO/Linux/uelmo/Configure.h	10;"	d
 useInputFile	/home/salties/git/uELMO/Linux/uelmo/uELMO.c	/^bool useInputFile = false;$/;"	v
 useSmurfTrace	/home/salties/git/uELMO/Linux/uelmo/uELMO.c	/^bool useSmurfTrace = false;$/;"	v

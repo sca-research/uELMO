@@ -4,6 +4,9 @@ import smurf
 
 core = smurf.Core()
 
+# Added for Smurf.
+core.NewComponent('TraceNo', 'UINT32')
+
 # Registers:
 # Architectural registers: R0 to R15
 # A flag for reaching the end of this execution.
@@ -105,4 +108,4 @@ core.NewComponent('Decode_instr_disp', 'STRING', 50)
 #  char Execute_instr_disp[50];	//Discription for the execute instruction
 core.NewComponent('Execute_instr_disp', 'STRING', 50)
 
-core.Save("uelmo.scs")
+core.Save("uelmo.json")

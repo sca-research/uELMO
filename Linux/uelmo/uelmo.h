@@ -16,6 +16,9 @@ extern char *siopath;
 
 //Smurf frame components headers.
 struct {
+    //Only for smuelmo.
+    SmurfTraceFrameIdx traceno;
+
     //Registers:
     //architectural registers: R0 to R15
     SmurfTraceFrameIdx core_valid;	//a flag for reaching the end of this execution

@@ -144,6 +144,7 @@ void SmurfUpdateFrame()
     //Assign core_current to the Smurf Frame buffer.
 #define Assign(x) StfAssign(&smftidx.x, &core_current.x)
     {
+	StfAssign(&smftidx.traceno, &N_ind);
 	Assign(core_valid);
 	Assign(reg);
 	Assign(cpsr);

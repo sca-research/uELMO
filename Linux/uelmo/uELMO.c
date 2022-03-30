@@ -78,6 +78,7 @@ static void InitSmurf()
 	    smfframe = StNewFrame(smfcore);
 
 	    //Init Smurf Frame Indexes.
+	    StfGetFrameIndex(smfframe, &smftidx.traceno, "TraceNo");
 #define GetIndex(x) StfGetFrameIndex(smfframe, &smftidx.x, #x)
 	    {
 		GetIndex(core_valid);
