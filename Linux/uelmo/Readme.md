@@ -6,17 +6,11 @@
 
 
 Do:
-
+```sh
 $ git clone https://github.com/sca-research/Smurf
-
-## 2. Configure the SMURF library
-
-
-Do:
-
 $ cd Smurf
-
 $ source setup.sh
+```
 
 Note that the above commands would allow you to use SMURF *ONLY* in the current terminal.
 
@@ -24,18 +18,14 @@ Note that the above commands would allow you to use SMURF *ONLY* in the current 
 
 Now we can build smuelmo:
 
+```sh
 $ cd
-
 $ git clone https://github.com/sca-research/uELMO
-
 $ cd uELMO
-
 $ git checkout Smurf
-
 $ cd Linux/uelmo
-
 $ make smuelmo
-
+```
 Now you should have the executable binary smuelmo.
 
 ## 4. Using smuelmo
@@ -83,7 +73,7 @@ recv = sio.Getchar()        # Receives a byte from the simulated serial port.
 
 ## 5. Reading a SMURF trace 
 You can use the readtracefile.py at uELMO/Linux/uelmo/smurffiles to display a SMURF trace:
-
+```sh
 $ python3 readtracefile.py ${SMURF_FORMAT_OUTPUT}
-
+```
 The same script also serves as an example of how to use the SMURF python module to interpret a SMURF trace.
