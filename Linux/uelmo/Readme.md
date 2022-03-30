@@ -33,7 +33,7 @@ Serial port simulation, i.e. byte IO, is supported by smuelmo.
 
 For the target image, serial port IO is implemented by readbyte() and printbyte() defined in elmoasmfunctionsdef.h.
 
-----------------
+\----------------
 //Example: foo.c
 #include "elmoasmfunctionsdef.h"
 
@@ -45,7 +45,7 @@ int main()
     return;
 }
 //End of foo.c.
-----------------
+\----------------
 
 By default, the simulated serial port IO are directed to STDIN and STDOUT by smuelmo. Additionally smuelmo also allows you to channel the serial port input to a file by using the option -r ${FILE_TO_BE_CHANNELD}.
 
