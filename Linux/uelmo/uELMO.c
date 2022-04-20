@@ -62,7 +62,7 @@ void PrintCoreInfo(SmurfCore * core)
 }
 
 //Initialise Smurf data structures.
-static void InitSmurf()
+static void Init_Smurf()
 {
     if (useSmurfTrace)
 	{
@@ -248,7 +248,7 @@ int main(int argc, char *argv[])
 
 #ifdef USE_SMURF
     //Initialise Smurf library.
-    InitSmurf();
+    Init_Smurf();
 #endif
 
     //Load binary files to rom
