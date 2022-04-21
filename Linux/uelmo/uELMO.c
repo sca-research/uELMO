@@ -12,12 +12,14 @@ bool ioSupported = false;
 bool useSmurfTrace = false;
 bool useInputFile = false;
 
+#ifdef USE_SMURF
 SmurfIO *sio = NULL;
 SmurfCore *smfcore = NULL;
 SmurfTrace *smftrace = NULL;
 SmurfTraceFrame *smfframe = NULL;
 char *smftracepath = NULL;
 char *siopath = NULL;
+#endif
 
 //Print help message.
 void PrintHelp()
