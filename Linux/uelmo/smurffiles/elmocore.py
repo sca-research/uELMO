@@ -6,6 +6,7 @@ core = smurf.Core()
 
 # Added for Smurf.
 core.NewComponent('TraceNo', 'UINT32')
+core.NewComponent('FrameNo', 'UINT32')
 
 # Registers:
 # Architectural registers: R0 to R15

@@ -134,79 +134,6 @@ unsigned int Rand_Byte()
     return rand() & 0xff;
 }
 
-#ifdef USE_SMURF
-void SmurfUpdateFrame()
-{
-    if (NULL == smfframe)
-	{
-	    return;
-	}
-    //Assign core_current to the Smurf Frame buffer.
-#define Assign(x) StfAssign(&smftidx.x, &core_current.x)
-    {
-	StfAssign(&smftidx.traceno, &N_ind);
-	Assign(core_valid);
-	Assign(reg);
-	Assign(cpsr);
-	Assign(F2D_instrreg);
-	Assign(D2E_reg1);
-	Assign(D2E_reg2);
-	Assign(D2E_instrreg);
-	Assign(cpsr_valid);
-	Assign(cpsr_data);
-	Assign(D2E_reg1_valid);
-	Assign(D2E_reg2_valid);
-	Assign(D2E_reg1_data);
-	Assign(D2E_reg2_data);
-	Assign(Fetch_instruction_new);
-	Assign(Fetch_valid);
-	Assign(Decode_port_regindex);
-	Assign(Decode_port_data);
-	Assign(Decode_destination_regindex);
-	Assign(Decode_valid);
-	Assign(glitchy_Decode_port_regindex);
-	Assign(glitchy_Decode_port_data);
-	Assign(Execute_Imm);
-	Assign(Execute_ALU_result);
-	Assign(Execute_destination_regindex);
-	Assign(Execute_multicycle_regindex);
-	Assign(Execute_valid);
-	Assign(Read_valid);
-	Assign(Read_type);
-	Assign(Write_valid);
-	Assign(Write_type);
-	Assign(SignExtend_byte_valid);
-	Assign(SignExtend_halfbyte_valid);
-	Assign(Memory_read_targetreg);
-	Assign(Memory_addr);
-	Assign(Memory_data);
-	Assign(Write_valid_delayed);
-	Assign(Memory_writebuf_delayed);
-	Assign(Memory_writebuf);
-	Assign(Memory_readbuf);
-	Assign(Read_reg_update);
-	Assign(Memory_read_targetreg_buf);
-	StfAssign(&smftidx.Memory_instr_disp, core_current.Memory_instr_disp);
-	StfAssign(&smftidx.Decode_instr_disp, core_current.Decode_instr_disp);
-	StfAssign(&smftidx.Execute_instr_disp, core_current.Execute_instr_disp);
-    }
-#undef Assign
-
-    return;
-}
-
-void SmurfAddFrame()
-{
-    if (NULL == smftrace)
-	{
-	    return;
-	}
-
-    StAddFrame(smftrace, smfframe);
-    return;
-}
-#endif
-
 //Write out current cycle to Frame
 //SMURF_ADAPTING, rewrite this
 //Frame data in CORE_STATUS core_current
@@ -215,9 +142,15 @@ void Write_Frame()
     if (OnTrace == true)
 	fwrite(&core_current, sizeof(CORE_STATUS), 1, outfp);
 #ifdef USE_SMURF
-    SmurfUpdateFrame();
-    SmurfAddFrame();
+    if (useSmurfTrace)
+	{
+	    SmurfSync(smurf);
+	    SmurfWrite(smurf);
+	}
+
 #endif
+    frameno++;
+    return;
 }
 
 //Write out a flag that terminate the current trace

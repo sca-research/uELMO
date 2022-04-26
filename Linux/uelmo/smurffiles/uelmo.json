@@ -5,6 +5,10 @@
             "type": "UINT32",
             "len": 1
         },
+        "FrameNo": {
+            "type": "UINT32",
+            "len": 1
+        },
         "core_valid": {
             "type": "BOOL",
             "len": 1

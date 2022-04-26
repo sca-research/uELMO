@@ -14,12 +14,12 @@ bool useInputFile = false;
 
 #ifdef USE_SMURF
 SmurfIO *sio = NULL;
-SmurfCore *smfcore = NULL;
-SmurfTrace *smftrace = NULL;
-SmurfTraceFrame *smfframe = NULL;
 char *smftracepath = NULL;
 char *siopath = NULL;
+Smurf *smurf = NULL;
 #endif
+
+uint32_t frameno = 0;
 
 //Print help message.
 void PrintHelp()
@@ -68,69 +68,57 @@ static void Init_Smurf()
 {
     if (useSmurfTrace)
 	{
-	    //Read Smurf Core Specification.
-	    smfcore = ScLoadCore("./smurffiles/uelmo.json");
-#if DBG
-	    PrintCoreInfo(smfcore);
-#endif
+	    smurf = InitSmurf(ELMO_CORE, smftracepath, SMURF_TRACE_MODE_CREATE);
+	    SmurfBind(smurf, "TraceNo", &N_ind);
+	    SmurfBind(smurf, "FrameNo", &frameno);
 
-	    //Init Smurf Trace output.
-	    smftrace = StOpen(smftracepath, smfcore, SMURF_TRACE_MODE_CREATE);
-
-	    //Init Smurf Trace Frame.
-	    smfframe = StNewFrame(smfcore);
-
-	    //Init Smurf Frame Indexes.
-	    StfGetFrameIndex(smfframe, &smftidx.traceno, "TraceNo");
-#define GetIndex(x) StfGetFrameIndex(smfframe, &smftidx.x, #x)
-	    {
-		GetIndex(core_valid);
-		GetIndex(reg);
-		GetIndex(cpsr);
-		GetIndex(F2D_instrreg);
-		GetIndex(D2E_reg1);
-		GetIndex(D2E_reg2);
-		GetIndex(D2E_instrreg);
-
-		GetIndex(cpsr_valid);
-		GetIndex(cpsr_data);
-		GetIndex(D2E_reg1_valid);
-		GetIndex(D2E_reg2_valid);
-		GetIndex(D2E_reg1_data);
-		GetIndex(D2E_reg2_data);
-		GetIndex(Fetch_instruction_new);
-		GetIndex(Fetch_valid);
-		GetIndex(Decode_port_regindex);
-		GetIndex(Decode_port_data);
-		GetIndex(Decode_destination_regindex);
-		GetIndex(Decode_valid);
-		GetIndex(glitchy_Decode_port_regindex);
-		GetIndex(glitchy_Decode_port_data);
-		GetIndex(Execute_Imm);
-		GetIndex(Execute_ALU_result);
-		GetIndex(Execute_destination_regindex);
-		GetIndex(Execute_multicycle_regindex);
-		GetIndex(Execute_valid);
-		GetIndex(Read_valid);
-		GetIndex(Read_type);
-		GetIndex(Write_valid);
-		GetIndex(Write_type);
-		GetIndex(SignExtend_byte_valid);
-		GetIndex(SignExtend_halfbyte_valid);
-		GetIndex(Memory_read_targetreg);
-		GetIndex(Memory_addr);
-		GetIndex(Memory_data);
-		GetIndex(Write_valid_delayed);
-		GetIndex(Memory_writebuf_delayed);
-		GetIndex(Memory_writebuf);
-		GetIndex(Memory_readbuf);
-		GetIndex(Read_reg_update);
-		GetIndex(Memory_read_targetreg_buf);
-		GetIndex(Memory_instr_disp);
-		GetIndex(Decode_instr_disp);
-		GetIndex(Execute_instr_disp);
-	    }
-#undef GetIndex
+	    //Bind core components.
+#define Bind(x) SmurfBind(smurf, #x, &core_current.x)
+	    Bind(core_valid);
+	    Bind(reg);
+	    Bind(cpsr);
+	    Bind(F2D_instrreg);
+	    Bind(D2E_reg1);
+	    Bind(D2E_reg2);
+	    Bind(D2E_instrreg);
+	    Bind(cpsr_valid);
+	    Bind(cpsr_data);
+	    Bind(D2E_reg1_valid);
+	    Bind(D2E_reg2_valid);
+	    Bind(D2E_reg1_data);
+	    Bind(D2E_reg2_data);
+	    Bind(Fetch_instruction_new);
+	    Bind(Fetch_valid);
+	    Bind(Decode_port_regindex);
+	    Bind(Decode_port_data);
+	    Bind(Decode_destination_regindex);
+	    Bind(Decode_valid);
+	    Bind(glitchy_Decode_port_regindex);
+	    Bind(glitchy_Decode_port_data);
+	    Bind(Execute_Imm);
+	    Bind(Execute_ALU_result);
+	    Bind(Execute_destination_regindex);
+	    Bind(Execute_multicycle_regindex);
+	    Bind(Execute_valid);
+	    Bind(Read_valid);
+	    Bind(Read_type);
+	    Bind(Write_valid);
+	    Bind(Write_type);
+	    Bind(SignExtend_byte_valid);
+	    Bind(SignExtend_halfbyte_valid);
+	    Bind(Memory_read_targetreg);
+	    Bind(Memory_addr);
+	    Bind(Memory_data);
+	    Bind(Write_valid_delayed);
+	    Bind(Memory_writebuf_delayed);
+	    Bind(Memory_writebuf);
+	    Bind(Memory_readbuf);
+	    Bind(Read_reg_update);
+	    Bind(Memory_read_targetreg_buf);
+	    Bind(Memory_instr_disp);
+	    Bind(Decode_instr_disp);
+	    Bind(Execute_instr_disp);
+#undef Bind
 	}
 
     //Smurf IO init.
@@ -157,9 +145,7 @@ static void CleanSmurf()
 	}
     if (useSmurfTrace)
 	{
-	    StDeleteFrame(smfframe);
-	    StClose(smftrace);
-	    ScDeleteCore(smfcore);
+	    FreeSmurf(smurf);
 	}
     return;
 }
@@ -269,6 +255,7 @@ int main(int argc, char *argv[])
 	("########################################\n\nGENERATING TRACES...\n\n");
     for (N_ind = 0; N_ind < N; N_ind++)
 	{
+	    frameno = 0;	//Reset Frame counter.
 	    if (N_ind % 100 == 0)
 		printf("########## TRACE %d\n", N_ind);
 	    run();		//run one trace

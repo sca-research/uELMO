@@ -16,4 +16,5 @@ int N;
 int N_ind;
 extern bool ioSupported;
 extern bool useInputFile;
+extern bool useSmurfTrace;
 #endif
