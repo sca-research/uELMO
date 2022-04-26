@@ -91,10 +91,13 @@ static void Init_Smurf()
 		GetIndex(D2E_reg1);
 		GetIndex(D2E_reg2);
 		GetIndex(D2E_instrreg);
+
 		GetIndex(cpsr_valid);
 		GetIndex(cpsr_data);
 		GetIndex(D2E_reg1_valid);
 		GetIndex(D2E_reg2_valid);
+		GetIndex(D2E_reg1_data);
+		GetIndex(D2E_reg2_data);
 		GetIndex(Fetch_instruction_new);
 		GetIndex(Fetch_valid);
 		GetIndex(Decode_port_regindex);

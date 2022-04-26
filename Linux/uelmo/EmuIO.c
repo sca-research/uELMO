@@ -156,6 +156,8 @@ void SmurfUpdateFrame()
 	Assign(cpsr_data);
 	Assign(D2E_reg1_valid);
 	Assign(D2E_reg2_valid);
+	Assign(D2E_reg1_data);
+	Assign(D2E_reg2_data);
 	Assign(Fetch_instruction_new);
 	Assign(Fetch_valid);
 	Assign(Decode_port_regindex);
