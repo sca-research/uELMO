@@ -28,7 +28,7 @@ def PrintComponent(comp):
                 pass
             pass
         elif comp.type == 'STRING':
-            print("{:s}".format(comp.val), end='')
+            print("{:s}".format(comp.val.strip("\0")), end='')
             pass
         elif comp.type in {'INT16', 'UINT16', 'INT32', 'UINT32'}:
             for i in range(comp.len):
