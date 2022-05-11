@@ -26,8 +26,8 @@ bool Execute_OneCylce(bool wait_mem)
 	    core_current.Execute_destination_regindex = 0xff;
 	    //Re-do decode for LDR
 	    Decode_OneCycle(true);
-	    core_current.D2E_reg1 = core_current.D2E_reg1_data;
-	    core_current.D2E_reg2 = core_current.D2E_reg2_data;
+        update_component(&(core_current.D2E_reg1), &(core_current.D2E_reg1_data));
+        update_component(&(core_current.D2E_reg2), &(core_current.D2E_reg2_data));
 	    return true;
 	}
     //ADC two registers
@@ -1012,8 +1012,8 @@ bool Execute_OneCylce(bool wait_mem)
 		    core_current.Execute_destination_regindex = 0xff;
 		    //Re-do decode for LDR
 		    Decode_OneCycle(true);
-		    core_current.D2E_reg1 = core_current.D2E_reg1_data;
-		    core_current.D2E_reg2 = core_current.D2E_reg2_data;
+            update_component(&(core_current.D2E_reg1), &(core_current.D2E_reg1_data));
+            update_component(&(core_current.D2E_reg2), &(core_current.D2E_reg2_data));
 		    return true;
 		}
 	    //According to paper
@@ -1079,8 +1079,8 @@ bool Execute_OneCylce(bool wait_mem)
 		    core_current.Execute_destination_regindex = 0xff;
 		    //Re-do decode for LDR
 		    Decode_OneCycle(true);
-		    core_current.D2E_reg1 = core_current.D2E_reg1_data;
-		    core_current.D2E_reg2 = core_current.D2E_reg2_data;
+            update_component(&(core_current.D2E_reg), &(core_current.D2E_reg1_data));
+            update_component(&(core_current.D2E_reg2), &(core_current.D2E_reg2_data));
 		    return true;
 		}
 	    if (DEBUG_CORE)
@@ -1118,8 +1118,8 @@ bool Execute_OneCylce(bool wait_mem)
 		    core_current.Execute_destination_regindex = 0xff;
 		    //Re-do decode for LDR
 		    Decode_OneCycle(true);
-		    core_current.D2E_reg1 = core_current.D2E_reg1_data;
-		    core_current.D2E_reg2 = core_current.D2E_reg2_data;
+            update_component(&(core_current.D2E_reg1), &(core_current.D2E_reg1_data));;
+            update_component(&(core_current.D2E_reg2), &(core_current.D2E_reg2_data));;
 		    return true;
 		}
 	    if (DEBUG_CORE)
@@ -1183,8 +1183,8 @@ bool Execute_OneCylce(bool wait_mem)
 		    core_current.Execute_destination_regindex = 0xff;
 		    //Re-do decode for LDR
 		    Decode_OneCycle(true);
-		    core_current.D2E_reg1 = core_current.D2E_reg1_data;
-		    core_current.D2E_reg2 = core_current.D2E_reg2_data;
+		    update_component(&(core_current.D2E_reg1), &(core_current.D2E_reg1_data));;
+		    update_component(&(core_current.D2E_reg2), &(core_current.D2E_reg2_data));;
 		    return true;
 		}
 	    rc = ra + rb;
@@ -1222,8 +1222,8 @@ bool Execute_OneCylce(bool wait_mem)
 		    core_current.Execute_destination_regindex = 0xff;
 		    //Re-do decode for LDR
 		    Decode_OneCycle(true);
-		    core_current.D2E_reg1 = core_current.D2E_reg1_data;
-		    core_current.D2E_reg2 = core_current.D2E_reg2_data;
+		    update_component(&(core_current.D2E_reg1), &(core_current.D2E_reg1_data));;
+		    update_component(&(core_current.D2E_reg2), &(core_current.D2E_reg2_data));;
 		    return true;
 		}
 	    //rc=rc&(~1);
@@ -1267,8 +1267,8 @@ bool Execute_OneCylce(bool wait_mem)
 		    core_current.Execute_destination_regindex = 0xff;
 		    //Re-do decode for LDR
 		    Decode_OneCycle(true);
-		    core_current.D2E_reg1 = core_current.D2E_reg1_data;
-		    core_current.D2E_reg2 = core_current.D2E_reg2_data;
+		    update_component(&(core_current.D2E_reg1), &(core_current.D2E_reg1_data));;
+		    update_component(&(core_current.D2E_reg2), &(core_current.D2E_reg2_data));;
 		    return true;
 		}
 	    //rc=rc&(~1);
@@ -1311,8 +1311,8 @@ bool Execute_OneCylce(bool wait_mem)
 		    core_current.Execute_destination_regindex = 0xff;
 		    //Re-do decode for LDR
 		    Decode_OneCycle(true);
-		    core_current.D2E_reg1 = core_current.D2E_reg1_data;
-		    core_current.D2E_reg2 = core_current.D2E_reg2_data;
+		    update_component(&(core_current.D2E_reg1), &(core_current.D2E_reg1_data));;
+		    update_component(&(core_current.D2E_reg2), &(core_current.D2E_reg2_data));;
 		    return true;
 		}
 	    if (DEBUG_CORE)
@@ -1350,8 +1350,8 @@ bool Execute_OneCylce(bool wait_mem)
 		    core_current.Execute_destination_regindex = 0xff;
 		    //Re-do decode for LDR
 		    Decode_OneCycle(true);
-		    core_current.D2E_reg1 = core_current.D2E_reg1_data;
-		    core_current.D2E_reg2 = core_current.D2E_reg2_data;
+		    update_component(&(core_current.D2E_reg1), &(core_current.D2E_reg1_data));;
+		    update_component(&(core_current.D2E_reg2), &(core_current.D2E_reg2_data));;
 		    return true;
 		}
 	    rc = ra + rb;
@@ -1392,8 +1392,8 @@ bool Execute_OneCylce(bool wait_mem)
 		    core_current.Execute_destination_regindex = 0xff;
 		    //Re-do decode for LDR
 		    Decode_OneCycle(true);
-		    core_current.D2E_reg1 = core_current.D2E_reg1_data;
-		    core_current.D2E_reg2 = core_current.D2E_reg2_data;
+		    update_component(&(core_current.D2E_reg1), &(core_current.D2E_reg1_data));;
+		    update_component(&(core_current.D2E_reg2), &(core_current.D2E_reg2_data));;
 		    return true;
 		}
 	    //rc=rc&(~1);
@@ -1434,8 +1434,8 @@ bool Execute_OneCylce(bool wait_mem)
 		    core_current.Execute_destination_regindex = 0xff;
 		    //Re-do decode for LDR
 		    Decode_OneCycle(true);
-		    core_current.D2E_reg1 = core_current.D2E_reg1_data;
-		    core_current.D2E_reg2 = core_current.D2E_reg2_data;
+		    update_component(&(core_current.D2E_reg1), &(core_current.D2E_reg1_data));;
+		    update_component(&(core_current.D2E_reg2), &(core_current.D2E_reg2_data));;
 		    return true;
 		}
 	    if (DEBUG_CORE)

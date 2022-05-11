@@ -10,6 +10,12 @@
 #define CPSR_Q (1<<27)
 //SMURF_ADAPTING, this is the core definition
 //Do not change anything here(unless you would like to rewrite Thumbulator)!
+
+typedef struct {
+    unsigned int num_value; //numerical value
+    char* exp; //expression
+} Component_t;
+
 typedef struct {
     //Registers:
     //architectural registers: R0 to R15
@@ -18,8 +24,10 @@ typedef struct {
     unsigned int cpsr;		//architectural
     //micro-arhictectural registers
     uint16_t F2D_instrreg;	//pipeline register, barrier between Fetch and Decode (i.e. D.1)  
-    unsigned int D2E_reg1;	//pipeline register, barrier between Decode and Execute   (i.e. E.1)
-    unsigned int D2E_reg2;	//pipeline register, barrier between Decode and Execute   (i.e. E.2)
+    Component_t D2E_reg1;   //pipeline register, barrier between Decode and Execute   (i.e. E.1)
+    D2E_reg1.exp = NULL;
+    Component_t D2E_reg2;   //pipeline register, barrier between Decode and Execute   (i.e. E.2)
+    D2E_reg2.exp = NULL;
     uint16_t D2E_instrreg;	//Pesudo register: in theory should be already tranferred to control signal, here we store the instruction instead
 
     //Bus/MUX
@@ -27,8 +35,10 @@ typedef struct {
     unsigned int cpsr_data;	//new data for cpsr
     bool D2E_reg1_valid;	//update pipeline register 1
     bool D2E_reg2_valid;	//update pipeline register 2
-    unsigned int D2E_reg1_data;	//input data for pipeline register 1, barrier between Decode and Execute     (i.e. D.9)
-    unsigned int D2E_reg2_data;	//input data for pipeline register 2, barrier between Decode and Execute     (i.e. D.10)
+    Component_t D2E_reg1_data;	//input data for pipeline register 1, barrier between Decode and Execute     (i.e. D.9)
+    D2E_reg1_data.exp = NULL;
+    Component_t D2E_reg2_data;	//input data for pipeline register 2, barrier between Decode and Execute     (i.e. D.10)
+    D2E_reg2_data.exp = NULL;
     //Fetch
     uint16_t Fetch_instruction_new;	//Fetched new instruction (i.e. F.3)
     bool Fetch_valid;		//A flag that stall the pipeline when jump happens
@@ -85,4 +95,5 @@ void do_cflag(unsigned int, unsigned int, unsigned int);
 void do_vflag(unsigned int, unsigned int, unsigned int);
 void do_cflag_bit(unsigned int);
 void do_vflag_bit(unsigned int);
+void update_component(Component_t* a, Component_t* b);
 #endif

@@ -189,3 +189,15 @@ void Clock(bool pause)
 	}
 
 }
+
+//-------------------------------------------------------------------
+void update_component(Component_t* a, Component_t* b)
+{
+    a->num_value = b.->um_value;
+    if (a->exp != NULL)
+    {
+        free(a->exp);
+    }
+    a->exp = malloc(strlen(b.exp) + 1);
+    strcpy(a->exp, b->exp);
+}
