@@ -16,13 +16,13 @@ bool check_delay(unsigned int reg)
 }
 
 //Read register from current core status
-unsigned int read_register(unsigned int reg)
+void read_register(unsigned int reg, Component_t* comp)
 {
     unsigned int data;
 
     reg &= 0xF;
     //if(DEBUG_CORE) printf("read_register(%u)=",reg);
-    data = core_current.reg[reg];
+    data = core_current.reg[reg].num_value;
     if (reg == 15)
 	{
 	    if (data & 1)
@@ -32,11 +32,12 @@ unsigned int read_register(unsigned int reg)
 	    data &= ~1;
 	}
     //if(DEBUG_CORE) printf("0x%08X\n",data);
-    return (data);
+    update_component(comp, core_current.reg[reg]);
+    comp->num_value = data;
 }
 
 //Read register with result forwarding
-unsigned int read_register_forward(unsigned int reg)
+void read_register_forward(unsigned int reg, Component_t* comp)
 {
     unsigned int data;
     reg &= 0xF;
@@ -48,28 +49,43 @@ unsigned int read_register_forward(unsigned int reg)
 	{
 	    if ((core_current.Execute_destination_regindex != 0xff)
 		&& (reg == core_current.Execute_destination_regindex))
-		data = core_current.Execute_ALU_result;
+        {
+            update_component(comp, &(core_current.Execute_ALU_result));
+        }
 	    else
 		{
-		    data = core_current.reg[reg];
+		    data = core_current.reg[reg].num_value;
 		    if (reg == 15)
 			data &= ~1;
-		}
+            update_component(comp, &(core_current.reg[reg]));
+		    comp->num_value = data;
+        }
 	}
-
     //if(DEBUG_CORE) printf("0x%08X\n",data);
-    return (data);
 }
 
 //Write register to current core status
-void write_register(unsigned int reg, unsigned int data)
+void write_register(unsigned int reg, Component_t* comp)
 {
+    unsigned int data = comp->num_value;
     reg &= 0xF;
     if (reg == 15)
 	data &= ~1;
-    core_current.reg[reg] = data;
+    update_component(&(core_current.reg[reg]), comp);
+    core_current.reg[reg].num_value = data;
     if (DEBUG_CORE)
-	printf("write_register(%u,0x%08X)\n", reg, data);
+	printf("write_register(%u,0x%08X)\n", reg, comp->num_value);
+}
+
+//Write register to current core status
+void write_register_value(unsigned int reg, unsigned int data)
+{
+    reg &= 0xF;
+    if (reg == 15)
+        data &= ~1;
+    core_current.reg[reg].num_value = data;
+    if (DEBUG_CORE)
+        printf("write_register(%u,0x%08X)\n", reg, data);
 }
 
 //Write CPSR-Z
@@ -144,11 +160,11 @@ void Clock(bool pause)
     if (core_current.Read_reg_update == true)
 	{
 	    if (core_current.Memory_read_targetreg_buf == 15)
-		write_register(core_current.Memory_read_targetreg_buf,
-			       core_current.Memory_readbuf + 2);
+		write_register_value(core_current.Memory_read_targetreg_buf,
+			       core_current.Memory_readbuf.num_value + 2);
 	    else
 		write_register(core_current.Memory_read_targetreg_buf,
-			       core_current.Memory_readbuf);
+			       &(core_current.Memory_readbuf));
 	    core_current.Read_reg_update = false;
 	    core_current.Memory_read_targetreg_buf = 0xff;
 	}
@@ -157,18 +173,18 @@ void Clock(bool pause)
     if (core_current.Execute_destination_regindex != 0xff)
 	{
 	    write_register(core_current.Execute_destination_regindex,
-			   core_current.Execute_ALU_result);
+			   &(core_current.Execute_ALU_result));
 	    //core_current.Execute_destination_regindex=0xff;
 	}
     //Update pipeline registers
     if (core_current.D2E_reg1_valid)
 	{
-	    core_current.D2E_reg1 = core_current.D2E_reg1_data;
+        update_component(&(core_current.D2E_reg1), &(core_current.D2E_reg1_data));
 	}
     //Update pipeline registers
     if (core_current.D2E_reg2_valid)
 	{
-	    core_current.D2E_reg2 = core_current.D2E_reg2_data;
+        update_component(&(core_current.D2E_reg2), &(core_current.D2E_reg2_data));
 	}
     //Update cpsr
     if (core_current.cpsr_valid)
@@ -191,13 +207,24 @@ void Clock(bool pause)
 }
 
 //-------------------------------------------------------------------
+// Component a is updated with the field values of component b
 void update_component(Component_t* a, Component_t* b)
 {
-    a->num_value = b.->um_value;
+    a->num_value = b->num_value;
     if (a->exp != NULL)
     {
         free(a->exp);
     }
     a->exp = malloc(strlen(b.exp) + 1);
     strcpy(a->exp, b->exp);
+}
+
+void reset_component(Component_t* a)
+{
+    a->num_value = 0;
+    if (a->exp != NULL)
+    {
+        free(a->exp);
+    }
+    a->exp = NULL;
 }

@@ -23,10 +23,14 @@ void Decode_OneCycle(bool prev)
     for (i = 0; i < 3; i++)
 	{
 	    if (core_current.glitchy_Decode_port_regindex[i] != 0xff)
-		core_current.glitchy_Decode_port_data[i] =
-		    read_register(core_current.glitchy_Decode_port_regindex[i]);
+            read_register(core_current.glitchy_Decode_port_regindex[i], &(core_current.glitchy_Decode_port_data[i]));
 	    else
-		core_current.glitchy_Decode_port_data[i] = 0;
+		core_current.glitchy_Decode_port_data[i].num_value = 0;
+        if (core_current.glitchy_Decode_port_data[i].exp != NULL)
+        {
+            free(core_current.glitchy_Decode_port_data[i].exp);
+            core_current.glitchy_Decode_port_data[i].exp = NULL;
+        }
 	}
     //ADC two registers
     //Instr 8
@@ -39,12 +43,12 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(core_current.Decode_port_data[2]);	//Not used
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(ra_ind);
-	    core_current.D2E_reg2_data = read_register_forward(rb_ind);
+	    read_register_forward(ra_ind, &(core_current.D2E_reg1_data));
+	    read_register_forward(rb_ind, &(core_current.D2E_reg2_data));
 	    core_current.Decode_destination_regindex = ra_ind;
 	    core_current.D2E_reg1_valid = true;
 	    core_current.D2E_reg2_valid = true;
@@ -76,12 +80,12 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+        reset_component(&(core_current.Decode_port_data[2]));	//Not used
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(rb_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg1_data));
 	    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//remain
 	    core_current.Execute_Imm = imm;
 	    core_current.Decode_destination_regindex = ra_ind;
@@ -113,12 +117,12 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = 0xff;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = 0;	//Not used
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    reset_component(&(core_current.Decode_port_data[1]));	//Not used
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(ra_ind);
+	    read_register_forward(ra_ind, &(core_current.D2E_reg1_data));
 	    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//remain
 	    core_current.Execute_Imm = imm;
 	    core_current.Decode_destination_regindex = ra_ind;
@@ -151,13 +155,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rc_ind;
 	    core_current.Decode_port_regindex[2] = rb_ind;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rc_ind);
-	    core_current.Decode_port_data[2] = read_register(rb_ind);
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rc_ind, &(core_current.Decode_port_data[1]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[2]));
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(rb_ind);
-	    core_current.D2E_reg2_data = read_register_forward(rc_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg1_data));
+	    read_register_forward(rc_ind, &(core_current.D2E_reg2_data));
 	    core_current.Execute_Imm = 0;	//Not used
 	    core_current.Decode_destination_regindex = ra_ind;
 	    core_current.D2E_reg1_valid = true;
@@ -191,13 +195,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+        reset_component(core_current.Decode_port_data[2]);
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(ra_ind);
-	    core_current.D2E_reg2_data = read_register_forward(rb_ind);
+	    read_register_forward(ra_ind, &(core_current.D2E_reg1_data));
+	    read_register_forward(rb_ind, &(core_current.D2E_reg2_data));
 	    core_current.Execute_Imm = 0;	//Not used
 	    core_current.Decode_destination_regindex = ra_ind;
 	    core_current.D2E_reg1_valid = true;
@@ -228,11 +232,11 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = 0xff;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = 0;
-	    core_current.Decode_port_data[2] = 0;
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+        reset_component(core_current.Decode_port_data[1]);
+        reset_component(core_current.Decode_port_data[2]);
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(15);
+	    read_register_forward(15, &(core_current.D2E_reg1_data));
 	    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//Not used
 	    core_current.Execute_Imm = imm;
 	    core_current.Decode_destination_regindex = ra_ind;
@@ -263,11 +267,11 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = 0xff;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(rd_ind);
-	    core_current.Decode_port_data[1] = 0;
-	    core_current.Decode_port_data[2] = 0;
+	    read_register(rd_ind, &(core_current.Decode_port_data[0]));
+        reset_component(core_current.Decode_port_data[1]);
+        reset_component(core_current.Decode_port_data[2]);
 	    //registers
-	    core_current.D2E_reg1_data = read_register(13);
+	    read_register(13, &(core_current.D2E_reg1_data));
 	    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//Not used
 	    core_current.Execute_Imm = imm;
 	    core_current.Decode_destination_regindex = rd_ind;
@@ -297,11 +301,11 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = 0xff;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(13);
-	    core_current.Decode_port_data[1] = 0;
-	    core_current.Decode_port_data[2] = 0;
+	    read_register(13, &(core_current.Decode_port_data[0]));
+        reset_component(&(core_current.Decode_port_data[1]));
+        reset_component(&(core_current.Decode_port_data[2]));
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(13);
+	    read_register_forward(13, &(core_current.D2E_reg1_data));
 	    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//Not used
 	    core_current.Execute_Imm = imm;
 	    core_current.Decode_destination_regindex = 13;
@@ -332,12 +336,12 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+        reset_component(&(core_current.Decode_port_data[2]));	//Not used
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(ra_ind);
-	    core_current.D2E_reg2_data = read_register_forward(rb_ind);
+	    read_register_forward(ra_ind, &(core_current.D2E_reg1_data));
+	    read_register_forward(rb_ind, &(core_current.D2E_reg2_data));
 	    core_current.Decode_destination_regindex = ra_ind;
 	    core_current.D2E_reg1_valid = true;
 	    core_current.D2E_reg2_valid = true;
@@ -367,11 +371,11 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(rb_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg1_data));
 	    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
 	    core_current.Execute_Imm = imm;
 	    core_current.Decode_destination_regindex = ra_ind;
@@ -401,13 +405,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(ra_ind);
-	    core_current.D2E_reg2_data = read_register_forward(rb_ind);
+	    read_register_forward(ra_ind, &(core_current.D2E_reg1_data));
+	    read_register_forward(rb_ind, &(core_current.D2E_reg2_data));
 	    core_current.Execute_Imm = 0;
 	    //core_current.Execute_Imm=imm;
 	    core_current.Decode_destination_regindex = ra_ind;
@@ -437,9 +441,9 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = 0xff;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = 0;
-	    core_current.Decode_port_data[1] = 0;
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    reset_component(&(core_current.Decode_port_data[0]));
+	    reset_component(&(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 	    //registers
 	    //core_current.D2E_reg1_data=core_current.Decode_port_data[0];
 	    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
@@ -470,9 +474,9 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = 0xff;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = 0;
-	    core_current.Decode_port_data[1] = 0;
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    reset_component(&(core_current.Decode_port_data[0]));
+	    reset_component(&(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 	    //registers
 	    //core_current.D2E_reg1_data=core_current.Decode_port_data[0];
 	    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
@@ -501,13 +505,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(ra_ind);
-	    core_current.D2E_reg2_data = read_register_forward(rb_ind);
+	    read_register_forward(ra_ind, &(core_current.D2E_reg1_data));
+	    read_register_forward(rb_ind, &(core_current.D2E_reg2_data));
 	    core_current.Decode_destination_regindex = ra_ind;
 	    core_current.Execute_Imm = 0;
 	    core_current.D2E_reg1_valid = true;
@@ -544,9 +548,9 @@ void Decode_OneCycle(bool prev)
 		    core_current.Decode_port_regindex[1] = 0xff;
 		    core_current.Decode_port_regindex[2] = 0xff;
 		    //Port data
-		    core_current.Decode_port_data[0] = 0;
-		    core_current.Decode_port_data[1] = 0;
-		    core_current.Decode_port_data[2] = 0;	//Not used
+		    reset_component(&(core_current.Decode_port_data[0]));
+		    reset_component(&(core_current.Decode_port_data[1]));
+		    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 
 		    //registers
 		    //core_current.D2E_reg1_data=core_current.Decode_port_data[0];
@@ -574,9 +578,9 @@ void Decode_OneCycle(bool prev)
 		    core_current.Decode_port_regindex[1] = 0xff;
 		    core_current.Decode_port_regindex[2] = 0xff;
 		    //Port data
-		    core_current.Decode_port_data[0] = 0;
-		    core_current.Decode_port_data[1] = 0;
-		    core_current.Decode_port_data[2] = 0;	//Not used
+		    reset_component(&(core_current.Decode_port_data[0]));
+		    reset_component(&(core_current.Decode_port_data[1]));
+		    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 		    //registers
 		    //core_current.D2E_reg1_data=core_current.Decode_port_data[0];
 		    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
@@ -600,9 +604,9 @@ void Decode_OneCycle(bool prev)
 		    core_current.Decode_port_regindex[1] = 0xff;
 		    core_current.Decode_port_regindex[2] = 0xff;
 		    //Port data
-		    core_current.Decode_port_data[0] = 0;
-		    core_current.Decode_port_data[1] = 0;
-		    core_current.Decode_port_data[2] = 0;	//Not used
+		    reset_component(&(core_current.Decode_port_data[0]));
+		    reset_component(&(core_current.Decode_port_data[1]));
+		    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 		    //registers
 		    //core_current.D2E_reg1_data=core_current.Decode_port_data[0];
 		    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
@@ -626,11 +630,11 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = 0xff;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = 0;
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    reset_component(&(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(ra_ind);
+	    read_register_forward(ra_ind, &(core_current.D2E_reg1_data));
 	    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
 	    core_current.Decode_destination_regindex = 15;
 	    core_current.D2E_reg1_valid = true;
@@ -655,11 +659,11 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = 0xff;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = 0;
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    reset_component(&(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(ra_ind);
+	    read_register_forward(ra_ind, &(core_current.D2E_reg1_data));
 	    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
 	    core_current.Decode_destination_regindex = 15;
 	    core_current.D2E_reg1_valid = true;
@@ -684,12 +688,12 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(ra_ind);
-	    core_current.D2E_reg2_data = read_register_forward(rb_ind);
+	    read_register_forward(ra_ind, &(core_current.D2E_reg1_data));
+	    read_register_forward(rb_ind, &(core_current.D2E_reg2_data));
 	    core_current.Decode_destination_regindex = ra_ind;
 	    core_current.Execute_Imm = 0;
 	    core_current.D2E_reg1_valid = true;
@@ -719,12 +723,12 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = 0xff;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = 0;	//Not used
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    reset_component(&(core_current.Decode_port_data[1]));	//Not used
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(ra_ind);
+	    read_register_forward(ra_ind, &(core_current.D2E_reg1_data));
 	    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//remain
 	    core_current.Execute_Imm = imm;
 	    core_current.Decode_destination_regindex = ra_ind;
@@ -753,13 +757,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(ra_ind);
-	    core_current.D2E_reg2_data = read_register_forward(rb_ind);
+	    read_register_forward(ra_ind, &(core_current.D2E_reg1_data));
+	    read_register_forward(rb_ind, &(core_current.D2E_reg2_data));
 	    core_current.Decode_destination_regindex = 0xff;
 	    core_current.Execute_Imm = 0;
 	    core_current.D2E_reg1_valid = true;
@@ -789,13 +793,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(ra_ind);
-	    core_current.D2E_reg2_data = read_register_forward(rb_ind);
+	    read_register_forward(ra_ind, &(core_current.D2E_reg1_data));
+	    read_register_forward(rb_ind, &(core_current.D2E_reg2_data));
 	    core_current.Execute_Imm = 0;	//Not used
 	    core_current.Decode_destination_regindex = ra_ind;
 	    core_current.D2E_reg1_valid = true;
@@ -851,13 +855,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(ra_ind);
-	    core_current.D2E_reg2_data = read_register_forward(rb_ind);
+	    read_register_forward(ra_ind, &(core_current.D2E_reg1_data));
+	    read_register_forward(rb_ind, &(core_current.D2E_reg2_data));
 	    core_current.Decode_destination_regindex = ra_ind;
 	    core_current.Execute_Imm = 0;
 	    core_current.D2E_reg1_valid = true;
@@ -886,11 +890,11 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = 0xff;
 	    core_current.Decode_port_regindex[2] = rc_ind;
 	    //Port data
-	    core_current.Decode_port_data[0] = 0;	//Not used
-	    core_current.Decode_port_data[1] = 0;	//Not used
-	    core_current.Decode_port_data[2] = read_register(rc_ind);
+	    reset_component(&(core_current.Decode_port_data[0]));	//Not used
+	    reset_component(&(core_current.Decode_port_data[1]));	//Not used
+	    read_register(rc_ind, &(core_current.Decode_port_data[2]));
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(rc_ind);
+	    read_register_forward(rc_ind, &(core_current.D2E_reg1_data));
 	    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
 	    core_current.Decode_destination_regindex = rc_ind;
 	    core_current.Execute_multicycle_regindex = 9;
@@ -920,12 +924,12 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(rb_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg1_data));
 	    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
 	    core_current.Decode_destination_regindex = ra_ind;	//
 	    core_current.Execute_Imm = imm;
@@ -957,13 +961,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = rc_ind;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = read_register(rc_ind);
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    read_register(rc_ind, &(core_current.Decode_port_data[2]));
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(rb_ind);
-	    core_current.D2E_reg2_data = read_register_forward(rc_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg1_data));
+	    read_register_forward(rc_ind, &(core_current.D2E_reg2_data));
 	    core_current.Decode_destination_regindex = ra_ind;	//
 	    core_current.Execute_Imm = 0;
 	    core_current.D2E_reg1_valid = true;
@@ -993,12 +997,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = 0xff;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = 0;	//Not used
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    reset_component(&(core_current.Decode_port_data[1]));	//Not used
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(15) - 2;
+	    read_register_forward(15, &(core_current.D2E_reg1_data));
+        core_current.D2E_reg1_data.num_value -= 2;
 	    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
 	    core_current.Decode_destination_regindex = ra_ind;	//
 	    core_current.Execute_Imm = imm;
@@ -1028,11 +1033,11 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = 0xff;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = 0;	//Not used
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    reset_component(&(core_current.Decode_port_data[1]));	//Not used
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(13);
+	    read_register_forward(13, &(core_current.D2E_reg1_data));
 	    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
 	    core_current.Decode_destination_regindex = ra_ind;	//
 	    core_current.Execute_Imm = imm;
@@ -1062,12 +1067,12 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(rb_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg1_data));
 	    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
 	    core_current.Decode_destination_regindex = ra_ind;	//
 	    core_current.Execute_Imm = imm;
@@ -1099,13 +1104,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = rc_ind;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = read_register(rc_ind);
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    read_register(rc_ind, &(core_current.Decode_port_data[2]));
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(rb_ind);
-	    core_current.D2E_reg2_data = read_register_forward(rc_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg1_data));
+	    read_register_forward(rc_ind, &(core_current.D2E_reg2_data));
 	    core_current.Decode_destination_regindex = ra_ind;	//
 	    core_current.Execute_Imm = 0;
 	    core_current.D2E_reg1_valid = true;
@@ -1138,12 +1143,12 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(rb_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg1_data));
 	    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
 	    core_current.Decode_destination_regindex = ra_ind;	//
 	    core_current.Execute_Imm = imm;
@@ -1174,13 +1179,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = rc_ind;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = read_register(rc_ind);	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    read_register(rc_ind, &(core_current.Decode_port_data[2]));	//Not used
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(rb_ind);
-	    core_current.D2E_reg2_data = read_register_forward(rc_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg1_data));
+	    read_register_forward(rc_ind, &(core_current.D2E_reg2_data));
 	    core_current.Decode_destination_regindex = ra_ind;	//
 	    core_current.Execute_Imm = 0;
 	    core_current.D2E_reg1_valid = true;
@@ -1213,13 +1218,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = rc_ind;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = read_register(rc_ind);
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    read_register(rc_ind, &(core_current.Decode_port_data[2]));
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(rb_ind);
-	    core_current.D2E_reg2_data = read_register_forward(rc_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg1_data));
+	    read_register_forward(rc_ind, &(core_current.D2E_reg2_data));
 	    core_current.Decode_destination_regindex = ra_ind;	//
 	    core_current.Execute_Imm = 0;
 	    core_current.D2E_reg1_valid = true;
@@ -1251,13 +1256,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = rc_ind;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = read_register(rc_ind);	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    read_register(rc_ind, &(core_current.Decode_port_data[2]));	//Not used
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(rb_ind);
-	    core_current.D2E_reg2_data = read_register_forward(rc_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg1_data));
+	    read_register_forward(rc_ind, &(core_current.D2E_reg2_data));
 	    core_current.Decode_destination_regindex = ra_ind;	//
 	    core_current.Execute_Imm = 0;
 	    core_current.D2E_reg1_valid = true;
@@ -1289,11 +1294,11 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(rb_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg1_data));
 	    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
 	    core_current.Execute_Imm = imm;
 	    core_current.Decode_destination_regindex = ra_ind;
@@ -1325,13 +1330,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(ra_ind);
-	    core_current.D2E_reg2_data = read_register_forward(rb_ind);
+	    read_register_forward(ra_ind, &(core_current.D2E_reg1_data));
+	    read_register_forward(rb_ind, &(core_current.D2E_reg2_data));
 	    core_current.Execute_Imm = 0;
 	    //core_current.Execute_Imm=imm;
 	    core_current.Decode_destination_regindex = ra_ind;
@@ -1363,12 +1368,12 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(rb_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg1_data));
 	    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
 	    core_current.Execute_Imm = imm;
 	    core_current.Decode_destination_regindex = ra_ind;
@@ -1398,12 +1403,12 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(ra_ind);
-	    core_current.D2E_reg2_data = read_register_forward(rb_ind);
+	    read_register_forward(ra_ind, &(core_current.D2E_reg1_data));
+	    read_register_forward(rb_ind, &(core_current.D2E_reg2_data));
 	    core_current.Execute_Imm = 0;
 	    core_current.D2E_reg1_valid = true;
 	    core_current.D2E_reg2_valid = true;
@@ -1435,11 +1440,11 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = 0xff;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = 0;
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    reset_component(&(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(ra_ind);
+	    read_register_forward(ra_ind, &(core_current.D2E_reg1_data));
 	    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
 	    core_current.Execute_Imm = imm;
 	    core_current.Decode_destination_regindex = ra_ind;
@@ -1468,11 +1473,11 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(rb_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg1_data));
 	    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
 	    core_current.Execute_Imm = 0;
 	    //core_current.Execute_Imm=imm;
@@ -1505,13 +1510,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));
 
 	    //registers
 	    //core_current.D2E_reg1_data=core_current.Decode_port_data[0];
-	    core_current.D2E_reg2_data = read_register_forward(rb_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg2_data));
 	    core_current.Execute_Imm = 0;	//Not used
 	    core_current.Decode_destination_regindex = ra_ind;
 	    core_current.D2E_reg1_valid = false;
@@ -1540,12 +1545,12 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(ra_ind);
-	    core_current.D2E_reg2_data = read_register_forward(rb_ind);
+	    read_register_forward(ra_ind, &(core_current.D2E_reg1_data));
+	    read_register_forward(rb_ind, &(core_current.D2E_reg2_data));
 	    core_current.Execute_Imm = 0;
 	    core_current.Decode_destination_regindex = ra_ind;
 	    core_current.D2E_reg1_valid = true;
@@ -1575,12 +1580,12 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));
 	    //registers
 	    //core_current.D2E_reg1_data=core_current.Decode_port_data[1];
-	    core_current.D2E_reg2_data = read_register_forward(rb_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg2_data));
 	    core_current.Execute_Imm = 0;	//Not used
 	    core_current.Decode_destination_regindex = ra_ind;
 	    core_current.D2E_reg1_valid = false;
@@ -1610,13 +1615,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));
 
 	    //registers
 	    //core_current.D2E_reg1_data=core_current.Decode_port_data[1];
-	    core_current.D2E_reg2_data = read_register_forward(rb_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg2_data));
 	    core_current.Execute_Imm = 0;	//Not used
 	    core_current.Decode_destination_regindex = ra_ind;
 	    core_current.D2E_reg1_valid = false;
@@ -1647,13 +1652,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(ra_ind);
-	    core_current.D2E_reg2_data = read_register_forward(rb_ind);
+	    read_register_forward(ra_ind, &(core_current.D2E_reg1_data));
+	    read_register_forward(rb_ind, &(core_current.D2E_reg2_data));
 	    core_current.Execute_Imm = 0;	//Not used
 	    core_current.Decode_destination_regindex = ra_ind;
 	    core_current.D2E_reg1_valid = true;
@@ -1680,9 +1685,9 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = 0xff;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = 0;	//Not used
-	    core_current.Decode_port_data[1] = 0;	//Not used
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    reset_component(&(core_current.Decode_port_data[0]));	//Not used
+	    reset_component(&(core_current.Decode_port_data[1]));	//Not used
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 
 	    //registers
 	    //core_current.D2E_reg1_data=core_current.Decode_port_data[2];
@@ -1711,9 +1716,9 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = 0xff;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = 0;	//Not used
-	    core_current.Decode_port_data[1] = 0;	//Not used
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    reset_component(&(core_current.Decode_port_data[0]));	//Not used
+	    reset_component(&(core_current.Decode_port_data[1]));	//Not used
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 
 	    //registers
 	    //core_current.D2E_reg1_data=core_current.Decode_port_data[2];
@@ -1745,13 +1750,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));
 
 	    //registers
 	    //core_current.D2E_reg1_data=core_current.Decode_port_data[1];
-	    core_current.D2E_reg2_data = read_register_forward(rb_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg2_data));
 	    core_current.Execute_Imm = 0;	//Not used
 	    core_current.Decode_destination_regindex = ra_ind;
 	    core_current.D2E_reg1_valid = false;
@@ -1782,13 +1787,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));
 
 	    //registers
 	    //core_current.D2E_reg1_data=core_current.Decode_port_data[1];
-	    core_current.D2E_reg2_data = read_register_forward(rb_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg2_data));
 	    core_current.Execute_Imm = 0;	//Not used
 	    core_current.Decode_destination_regindex = ra_ind;
 	    core_current.D2E_reg1_valid = false;
@@ -1818,13 +1823,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));
 
 	    //registers
 	    //core_current.D2E_reg1_data=core_current.Decode_port_data[1];
-	    core_current.D2E_reg2_data = read_register_forward(rb_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg2_data));
 	    core_current.Execute_Imm = 0;	//Not used
 	    core_current.Decode_destination_regindex = ra_ind;
 	    core_current.D2E_reg1_valid = false;
@@ -1854,13 +1859,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(ra_ind);
-	    core_current.D2E_reg2_data = read_register_forward(rb_ind);
+	    read_register_forward(ra_ind, &(core_current.D2E_reg1_data));
+	    read_register_forward(rb_ind, &(core_current.D2E_reg2_data));
 	    core_current.Execute_Imm = 0;
 	    //core_current.Execute_Imm=imm;
 	    core_current.Decode_destination_regindex = ra_ind;
@@ -1890,12 +1895,12 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 	    //registers
-	    core_current.D2E_reg1_data = read_register(ra_ind);
-	    core_current.D2E_reg2_data = read_register(rb_ind);
+	    read_register(ra_ind, &(core_current.D2E_reg1_data));
+	    read_register(rb_ind, &(core_current.D2E_reg2_data));
 	    core_current.Decode_destination_regindex = ra_ind;
 	    core_current.D2E_reg1_valid = true;
 	    core_current.D2E_reg2_valid = true;
@@ -1928,11 +1933,11 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = 0xff;
 	    core_current.Decode_port_regindex[2] = rc_ind;
 	    //Port data
-	    core_current.Decode_port_data[0] = 0;	//Not used
-	    core_current.Decode_port_data[1] = 0;	//Not used
-	    core_current.Decode_port_data[2] = read_register(rc_ind);
+	    reset_component(&(core_current.Decode_port_data[0]));	//Not used
+	    reset_component(&(core_current.Decode_port_data[1]));	//Not used
+	    read_register(rc_ind, &(core_current.Decode_port_data[2]));
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(rc_ind);
+	    read_register_forward(rc_ind, &(core_current.D2E_reg1_data));
 	    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
 	    core_current.Decode_destination_regindex = rc_ind;
 	    core_current.Execute_multicycle_regindex = 9;
@@ -1962,13 +1967,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;	//Not used
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(rb_ind);
-	    core_current.D2E_reg2_data = read_register_forward(ra_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg1_data));
+	    read_register_forward(ra_ind, &(core_current.D2E_reg2_data));
 	    core_current.Decode_destination_regindex = 0xff;	//Not used
 	    core_current.Execute_Imm = imm;
 	    core_current.D2E_reg1_valid = true;
@@ -1998,13 +2003,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = rc_ind;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = read_register(rc_ind);
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    read_register(rc_ind, &(core_current.Decode_port_data[2]));
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(rb_ind);
-	    core_current.D2E_reg2_data = read_register_forward(rc_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg1_data));
+	    read_register_forward(rc_ind, &(core_current.D2E_reg2_data));
 	    core_current.Decode_destination_regindex = 0xff;	//Not used
 	    core_current.Execute_multicycle_regindex = 9;
 	    core_current.Execute_Imm = 0;	//not used
@@ -2036,12 +2041,12 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = 0xff;
 	    core_current.Decode_port_regindex[2] = rc_ind;
 	    //Port data
-	    core_current.Decode_port_data[0] = 0;
-	    core_current.Decode_port_data[1] = 0;	//Not used
-	    core_current.Decode_port_data[2] = read_register(rc_ind);
+	    reset_component(&(core_current.Decode_port_data[0]));
+	    reset_component(&(core_current.Decode_port_data[1]));	//Not used
+	    read_register(rc_ind, &(core_current.Decode_port_data[2]));
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(13);
-	    core_current.D2E_reg2_data = read_register_forward(rc_ind);
+	    read_register_forward(13, &(core_current.D2E_reg1_data));
+	    read_register_forward(rc_ind, &(core_current.D2E_reg2_data));
 	    core_current.Decode_destination_regindex = 0xff;	//Not used
 	    core_current.Execute_Imm = imm;
 	    core_current.D2E_reg1_valid = true;
@@ -2070,13 +2075,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;	//Not used
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);	//Not used
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));	//Not used
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(rb_ind);
-	    core_current.D2E_reg2_data = read_register_forward(ra_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg1_data));
+	    read_register_forward(ra_ind, &(core_current.D2E_reg2_data));
 	    core_current.Decode_destination_regindex = 0xff;	//Not used
 	    core_current.Execute_Imm = imm;
 	    core_current.D2E_reg1_valid = true;
@@ -2107,13 +2112,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = rc_ind;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = read_register(rc_ind);
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    read_register(rc_ind, &(core_current.Decode_port_data[2]));
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(rb_ind);
-	    core_current.D2E_reg2_data = read_register_forward(rc_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg1_data));
+	    read_register_forward(rc_ind, &(core_current.D2E_reg2_data));
 	    core_current.Decode_destination_regindex = 0xff;	//Not used
 	    core_current.Execute_multicycle_regindex = 9;
 	    core_current.Execute_Imm = 0;	//not used
@@ -2145,13 +2150,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;	//Not used
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(rb_ind);
-	    core_current.D2E_reg2_data = read_register_forward(ra_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg1_data));
+	    read_register_forward(ra_ind, &(core_current.D2E_reg2_data));
 	    core_current.Decode_destination_regindex = 0xff;	//Not used
 	    core_current.Execute_Imm = imm;
 	    core_current.D2E_reg1_valid = true;
@@ -2182,13 +2187,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = rc_ind;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = read_register(rc_ind);
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    read_register(rc_ind, &(core_current.Decode_port_data[2]));
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(rb_ind);
-	    core_current.D2E_reg2_data = read_register_forward(rc_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg1_data));
+	    read_register_forward(rc_ind, &(core_current.D2E_reg2_data));
 	    core_current.Decode_destination_regindex = 0xff;	//Not used
 	    core_current.Execute_multicycle_regindex = 9;
 	    core_current.Execute_Imm = 0;	//not used
@@ -2221,12 +2226,12 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(rb_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg1_data));
 	    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//remain
 	    core_current.Execute_Imm = imm;
 	    core_current.Decode_destination_regindex = ra_ind;
@@ -2258,12 +2263,12 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = 0xff;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = 0;	//Not used
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    reset_component(&(core_current.Decode_port_data[1]));	//Not used
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(ra_ind);
+	    read_register_forward(ra_ind, &(core_current.D2E_reg1_data));
 	    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//remain
 	    core_current.Execute_Imm = imm;
 	    core_current.Decode_destination_regindex = ra_ind;
@@ -2295,13 +2300,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rc_ind;
 	    core_current.Decode_port_regindex[2] = rb_ind;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rc_ind);
-	    core_current.Decode_port_data[2] = read_register(rb_ind);
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rc_ind, &(core_current.Decode_port_data[1]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[2]));
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(rb_ind);
-	    core_current.D2E_reg2_data = read_register_forward(rc_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg1_data));
+	    read_register_forward(rc_ind, &(core_current.D2E_reg2_data));
 	    core_current.Execute_Imm = 0;	//Not used
 	    core_current.Decode_destination_regindex = ra_ind;
 	    core_current.D2E_reg1_valid = true;
@@ -2332,12 +2337,12 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = 0xff;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(13);
-	    core_current.Decode_port_data[1] = 0;
-	    core_current.Decode_port_data[2] = 0;
+	    read_register(13, &(core_current.Decode_port_data[0]));
+	    reset_component(&(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(13);
+	    read_register_forward(13, &(core_current.D2E_reg1_data));
 	    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//Not used
 	    core_current.Execute_Imm = imm;
 	    core_current.Decode_destination_regindex = 13;
@@ -2381,13 +2386,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));
 
 	    //registers
 	    //core_current.D2E_reg1_data=core_current.Decode_port_data[1];
-	    core_current.D2E_reg2_data = read_register_forward(rb_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg2_data));
 	    core_current.Execute_Imm = 0;	//Not used
 	    core_current.Decode_destination_regindex = ra_ind;
 	    core_current.D2E_reg1_valid = false;
@@ -2417,13 +2422,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));
 
 	    //registers
 	    //core_current.D2E_reg1_data=core_current.Decode_port_data[1];
-	    core_current.D2E_reg2_data = read_register_forward(rb_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg2_data));
 	    core_current.Execute_Imm = 0;	//Not used
 	    core_current.Decode_destination_regindex = ra_ind;
 	    core_current.D2E_reg1_valid = false;
@@ -2454,13 +2459,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;	//Not used
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 
 	    //registers
-	    core_current.D2E_reg1_data = read_register_forward(ra_ind);
-	    core_current.D2E_reg2_data = read_register_forward(rb_ind);
+	    read_register_forward(ra_ind, &(core_current.D2E_reg1_data));
+	    read_register_forward(rb_ind, &(core_current.D2E_reg2_data));
 	    core_current.Execute_Imm = 0;
 	    core_current.Decode_destination_regindex = 0xff;	//Not used
 	    core_current.D2E_reg1_valid = true;
@@ -2491,13 +2496,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));
 
 	    //registers
 	    //core_current.D2E_reg1_data=core_current.Decode_port_data[1];
-	    core_current.D2E_reg2_data = read_register_forward(rb_ind);
+	    read_register_forward(rb_ind, &(core_current.D2E_reg2_data));
 	    core_current.Execute_Imm = 0;	//Not used
 	    core_current.Decode_destination_regindex = ra_ind;
 	    core_current.D2E_reg1_valid = false;
@@ -2527,13 +2532,13 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[1] = rb_ind;
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
-	    core_current.Decode_port_data[0] = read_register(ra_ind);
-	    core_current.Decode_port_data[1] = read_register(rb_ind);
-	    core_current.Decode_port_data[2] = 0;
+	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
+	    reset_component(&(core_current.Decode_port_data[2]));
 
 	    //registers
 	    //core_current.D2E_reg1_data=core_current.Decode_port_data[1];
-	    core_current.D2E_reg2_data = read_register(rb_ind);
+	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
 	    core_current.Execute_Imm = 0;	//Not used
 	    core_current.Decode_destination_regindex = ra_ind;
 	    core_current.D2E_reg1_valid = false;
