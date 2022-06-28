@@ -2,6 +2,8 @@
 #include "core.h"
 
 CORE_STATUS core_current;
+
+
 //global flag that shows whether the current cycle is on the trace
 bool OnTrace = false;
 //Check if the current executed LDR instruction requires an extra delay cycle, i.e. LDR r0,xxx; LDR xxx,[r0]
@@ -32,18 +34,39 @@ void read_register(unsigned int reg, Component_t* comp)
 	    data &= ~1;
 	}
     //if(DEBUG_CORE) printf("0x%08X\n",data);
-    update_component(comp, core_current.reg[reg]);
+    update_component(comp, &(core_current.reg[reg]));
     comp->num_value = data;
 }
 
+//Read register from current core status
+unsigned int read_register2(unsigned int reg)
+{
+    unsigned int data;
+
+    reg &= 0xF;
+    //if(DEBUG_CORE) printf("read_register(%u)=",reg);
+    data = core_current.reg[reg].num_value;
+    if (reg == 15)
+    {
+        if (data & 1)
+        {
+            printf("pc has lsbit set 0x%08X\n", data);
+        }
+        data &= ~1;
+    }
+    //if(DEBUG_CORE) printf("0x%08X\n",data);
+    return data;
+}
+
 //Read register with result forwarding
+
 void read_register_forward(unsigned int reg, Component_t* comp)
 {
     unsigned int data;
     reg &= 0xF;
     if ((core_current.Memory_read_targetreg_buf != 0xff)
 	&& (reg == core_current.Memory_read_targetreg_buf))
-	data = core_current.Memory_readbuf;
+	update_component(comp, &(core_current.Memory_readbuf));
 
     else
 	{
@@ -58,7 +81,7 @@ void read_register_forward(unsigned int reg, Component_t* comp)
 		    if (reg == 15)
 			data &= ~1;
             update_component(comp, &(core_current.reg[reg]));
-		    comp->num_value = data;
+		    comp->num_value = data; //TODO: review this
         }
 	}
     //if(DEBUG_CORE) printf("0x%08X\n",data);
@@ -215,8 +238,11 @@ void update_component(Component_t* a, Component_t* b)
     {
         free(a->exp);
     }
-    a->exp = malloc(strlen(b.exp) + 1);
-    strcpy(a->exp, b->exp);
+    if (b->exp != NULL)
+    {
+        a->exp = malloc(strlen(b->exp) + 1);
+        strcpy(a->exp, b->exp);
+    }
 }
 
 void reset_component(Component_t* a)
@@ -227,4 +253,15 @@ void reset_component(Component_t* a)
         free(a->exp);
     }
     a->exp = NULL;
+}
+
+void add(Component_t* a, Component_t* b, Component_t* c)
+{
+    a->num_value = b->num_value + c->num_value;
+    if (a->exp != NULL)
+    {
+        free(a->exp);
+    }
+    a->exp = malloc(strlen(b->exp) + 1);
+    strcpy(a->exp, b->exp);
 }

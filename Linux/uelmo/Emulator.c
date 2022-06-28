@@ -66,17 +66,17 @@ int reset(void)
     core_current.cpsr = 0;
     core_current.cpsr_data = 0;
     core_current.core_valid = true;
-    core_current.reg[13] = fetch32(0x00000000);	//cortex-m
-    core_current.reg[14] = 0xFFFFFFFF;
-    core_current.reg[15] = fetch32(0x00000004);	//cortex-m
-    if ((core_current.reg[15] & 1) == 0)
+    core_current.reg[13].num_value = fetch32(0x00000000);	//cortex-m
+    core_current.reg[14].num_value = 0xFFFFFFFF;
+    core_current.reg[15].num_value = fetch32(0x00000004);	//cortex-m
+    if ((core_current.reg[15].num_value & 1) == 0)
 	{
 	    printf("reset vector with an ARM address 0x%08X\n",
-		   core_current.reg[15]);
+		   core_current.reg[15].num_value);
 	    exit(1);
 	}
-    core_current.reg[15] &= ~1;
-    core_current.reg[15] += 2;
+    core_current.reg[15].num_value &= ~1;
+    core_current.reg[15].num_value += 2;
     core_current.Read_valid = false;
     core_current.Write_valid = false;
     core_current.Fetch_valid = true;
@@ -95,6 +95,26 @@ int reset(void)
     strcpy(core_current.Memory_instr_disp, "Memory init");
     strcpy(core_current.Decode_instr_disp, "Decode init");
     strcpy(core_current.Execute_instr_disp, "Execute init");
+
+    core_current.D2E_reg1.exp = NULL;
+    core_current.D2E_reg2.exp = NULL;
+    core_current.D2E_reg1_data.exp = NULL;
+    core_current.D2E_reg2_data.exp = NULL;
+    core_current.Decode_port_data[0].exp = NULL;
+    core_current.Decode_port_data[1].exp = NULL;
+    core_current.Decode_port_data[2].exp = NULL;
+    core_current.glitchy_Decode_port_data[0].exp = NULL;
+    core_current.glitchy_Decode_port_data[1].exp = NULL;
+    core_current.glitchy_Decode_port_data[2].exp = NULL;
+    core_current.Execute_ALU_result.exp = NULL;
+    core_current.Memory_addr.exp = NULL;
+    core_current.Memory_data.exp = NULL;
+    core_current.Memory_writebuf_delayed.exp = NULL;
+    core_current.Memory_writebuf.exp = NULL;
+    core_current.Memory_readbuf.exp = NULL;
+    for(int i=0; i<16; i++){
+        core_current.reg[i].exp = NULL;
+    }
     //Fetch
     Fetch_OneCycle();
 

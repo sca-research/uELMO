@@ -7,6 +7,7 @@
 #include "Memory.h"
 #include <time.h>
 #include <stdbool.h>
+#include <stdint.h>
 
 bool ioSupported = false;
 bool useSmurfTrace = false;

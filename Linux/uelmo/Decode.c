@@ -26,11 +26,11 @@ void Decode_OneCycle(bool prev)
             read_register(core_current.glitchy_Decode_port_regindex[i], &(core_current.glitchy_Decode_port_data[i]));
 	    else
 		core_current.glitchy_Decode_port_data[i].num_value = 0;
-        if (core_current.glitchy_Decode_port_data[i].exp != NULL)
+        /*if (core_current.glitchy_Decode_port_data[i].exp != NULL)
         {
             free(core_current.glitchy_Decode_port_data[i].exp);
             core_current.glitchy_Decode_port_data[i].exp = NULL;
-        }
+        }*/ //TODO: UNDO
 	}
     //ADC two registers
     //Instr 8
@@ -45,7 +45,7 @@ void Decode_OneCycle(bool prev)
 	    //Port data
 	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
 	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
-	    reset_component(core_current.Decode_port_data[2]);	//Not used
+	    reset_component(&(core_current.Decode_port_data[2]));	//Not used
 	    //registers
 	    read_register_forward(ra_ind, &(core_current.D2E_reg1_data));
 	    read_register_forward(rb_ind, &(core_current.D2E_reg2_data));
@@ -197,7 +197,7 @@ void Decode_OneCycle(bool prev)
 	    //Port data
 	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
 	    read_register(rb_ind, &(core_current.Decode_port_data[1]));
-        reset_component(core_current.Decode_port_data[2]);
+        reset_component(&(core_current.Decode_port_data[2]));
 
 	    //registers
 	    read_register_forward(ra_ind, &(core_current.D2E_reg1_data));
@@ -233,8 +233,8 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
 	    read_register(ra_ind, &(core_current.Decode_port_data[0]));
-        reset_component(core_current.Decode_port_data[1]);
-        reset_component(core_current.Decode_port_data[2]);
+        reset_component(&(core_current.Decode_port_data[1]));
+        reset_component(&(core_current.Decode_port_data[2]));
 	    //registers
 	    read_register_forward(15, &(core_current.D2E_reg1_data));
 	    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//Not used
@@ -268,8 +268,8 @@ void Decode_OneCycle(bool prev)
 	    core_current.Decode_port_regindex[2] = 0xff;
 	    //Port data
 	    read_register(rd_ind, &(core_current.Decode_port_data[0]));
-        reset_component(core_current.Decode_port_data[1]);
-        reset_component(core_current.Decode_port_data[2]);
+        reset_component(&(core_current.Decode_port_data[1]));
+        reset_component(&(core_current.Decode_port_data[2]));
 	    //registers
 	    read_register(13, &(core_current.D2E_reg1_data));
 	    //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//Not used

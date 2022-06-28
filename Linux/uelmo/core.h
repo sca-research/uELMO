@@ -26,9 +26,8 @@ typedef struct {
     //micro-architectural registers
     uint16_t F2D_instrreg;	//pipeline register, barrier between Fetch and Decode (i.e. D.1)  
     Component_t D2E_reg1;   //pipeline register, barrier between Decode and Execute   (i.e. E.1)
-    D2E_reg1.exp = NULL;
     Component_t D2E_reg2;   //pipeline register, barrier between Decode and Execute   (i.e. E.2)
-    D2E_reg2.exp = NULL;
+
     uint16_t D2E_instrreg;	//Pesudo register: in theory should be already tranferred to control signal, here we store the instruction instead
 
     //Bus/MUX
@@ -37,9 +36,8 @@ typedef struct {
     bool D2E_reg1_valid;	//update pipeline register 1
     bool D2E_reg2_valid;	//update pipeline register 2
     Component_t D2E_reg1_data;	//input data for pipeline register 1, barrier between Decode and Execute     (i.e. D.9)
-    D2E_reg1_data.exp = NULL;
     Component_t D2E_reg2_data;	//input data for pipeline register 2, barrier between Decode and Execute     (i.e. D.10)
-    D2E_reg2_data.exp = NULL;
+
     //Fetch
     uint16_t Fetch_instruction_new;	//Fetched new instruction (i.e. F.3)
     bool Fetch_valid;		//A flag that stall the pipeline when jump happens
@@ -95,16 +93,18 @@ extern CORE_STATUS core_current;
 extern bool OnTrace;
 //Check if the current executed LDR instruction requires an extra delay cycle, i.e. LDR r0,xxx; LDR xxx,[r0]
 bool check_delay(unsigned int);
-unsigned int read_register(unsigned int);
-unsigned int read_register_forward(unsigned int);
+void read_register(unsigned int, Component_t*);
+unsigned int read_register2(unsigned int);
+void read_register_forward(unsigned int, Component_t*);
 void Clock(bool);
-void write_register(unsigned int, unsigned int);
+void write_register(unsigned int, Component_t*);
+void write_register_value(unsigned int, unsigned int);
 void do_zflag(unsigned int);
 void do_nflag(unsigned int);
 void do_cflag(unsigned int, unsigned int, unsigned int);
 void do_vflag(unsigned int, unsigned int, unsigned int);
 void do_cflag_bit(unsigned int);
 void do_vflag_bit(unsigned int);
-void update_component(Component_t* a, Component_t* b);
-void reset_component(Component_t* a);
+void update_component(Component_t*, Component_t*);
+void reset_component(Component_t*);
 #endif

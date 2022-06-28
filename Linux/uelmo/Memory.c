@@ -41,7 +41,7 @@ unsigned int fetch32(unsigned int addr)
 				return (data);
 			if (DEBUG_MEM)
 				printf("fetch32(0x%08X), abort pc = 0x%04X\n",
-				       addr, core_current.reg[15]);
+				       addr, core_current.reg[15].num_value);
 			exit(1);
 		}
 	case 0x10000000:	//ROM
@@ -55,7 +55,7 @@ unsigned int fetch32(unsigned int addr)
 				return (data);
 			if (DEBUG_MEM)
 				printf("fetch32(0x%08X), abort pc = 0x%04X\n",
-				       addr, core_current.reg[15]);
+				       addr, core_current.reg[15].num_value);
 			exit(1);
 		}
 	default:		//RAM
@@ -224,31 +224,35 @@ bool Memory_OneCycle()
 		core_current.Read_valid = false;	//unset
 		core_current.Memory_read_targetreg_buf =
 		    core_current.Memory_read_targetreg;
-		addr = core_current.Memory_addr & 0xfffffffc;	//align with 4
-		core_current.Memory_data = read32(addr);	//read a 32-bit word
-		value = core_current.Memory_data;
+
+		addr = core_current.Memory_addr.num_value & 0xfffffffc;	//align with 4
+		core_current.Memory_data.num_value = read32(addr);	//read a 32-bit word
+		value = core_current.Memory_data.num_value;
+        //TODO: update exp
+
 		switch (core_current.Read_type) {
 		case 0:	//word
 			//write_register(core_current.Memory_read_targetreg,value);//store result in destination register
 			break;
 		case 1:	//byte
 			value =
-			    (value >> (8 * (core_current.Memory_addr & 0x3))) &
+			    (value >> (8 * (core_current.Memory_addr.num_value & 0x3))) &
 			    0xff;
 			//write_register(core_current.Memory_read_targetreg,value&0xff);//store result in destination register
 			break;
 		case 2:	//half word
 			value =
-			    (value >> (8 * (core_current.Memory_addr & 0x2))) &
+			    (value >> (8 * (core_current.Memory_addr.num_value & 0x2))) &
 			    0xffff;
 			//write_register(core_current.Memory_read_targetreg,value&0xffff);//store result in destination register
 			break;
 		default:
 			printf("Read Error!\n");
 		}
-		core_current.Memory_readbuf = value;
+		core_current.Memory_readbuf.num_value = value;
+        //TODO: update exp
 		sprintf(core_current.Memory_instr_disp,
-			"Memory: load [0x%X]=0x%X", core_current.Memory_addr,
+			"Memory: load [0x%X]=0x%X", core_current.Memory_addr.num_value,
 			value);
 		core_current.Read_reg_update = true;
 		if (core_current.Memory_read_targetreg == 15) {
@@ -275,50 +279,50 @@ bool Memory_OneCycle()
 		core_current.Memory_writebuf = core_current.Memory_data;
 		switch (core_current.Write_type) {
 		case 0:	//word
-			addr = core_current.Memory_addr & 0xfffffffc;	//align with 4
-			write32(addr, core_current.Memory_data);
+			addr = core_current.Memory_addr.num_value & 0xfffffffc;	//align with 4
+			write32(addr, core_current.Memory_data.num_value);
 			break;
 		case 1:	//byte
 			{
-				switch (core_current.Memory_addr & 0x1) {
+				switch (core_current.Memory_addr.num_value & 0x1) {
 				case 0:
 					value =
-					    read16(core_current.Memory_addr &
+					    read16(core_current.Memory_addr.num_value &
 						   0xfffffffe);
 					value = value & 0xff00;
 					value =
 					    value | (core_current.
-						     Memory_data & 0xff);
+						     Memory_data.num_value & 0xff);
 					write16(core_current.
-						Memory_addr & 0xfffffffe,
+						Memory_addr.num_value & 0xfffffffe,
 						value);
 					break;
 				case 1:
 					value =
-					    read16(core_current.Memory_addr &
+					    read16(core_current.Memory_addr.num_value &
 						   0xfffffffe);
 					value = value & 0xff;
 					value =
 					    value |
-					    ((core_current.Memory_data & 0xff)
+					    ((core_current.Memory_data.num_value & 0xff)
 					     << 8);
 					write16(core_current.
-						Memory_addr & 0xfffffffe,
+						Memory_addr.num_value & 0xfffffffe,
 						value);
 					break;
 				}
 			}
 			break;
 		case 2:	//half word
-			addr = core_current.Memory_addr & 0xfffffffe;	//align with 2
-			write16(addr, core_current.Memory_data & 0xffff);
+			addr = core_current.Memory_addr.num_value & 0xfffffffe;	//align with 2
+			write16(addr, core_current.Memory_data.num_value & 0xffff);
 			break;
 		default:
 			printf("Write Error!\n");
 		}
 		sprintf(core_current.Memory_instr_disp,
-			"Memory: store [0x%X]=0x%X", core_current.Memory_addr,
-			core_current.Memory_data);
+			"Memory: store [0x%X]=0x%X", core_current.Memory_addr.num_value,
+			core_current.Memory_data.num_value);
 
 		return false;
 	}
