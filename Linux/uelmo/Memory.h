@@ -10,8 +10,8 @@
 #define ROMSIZE (ROMADDMASK+1)
 #define RAMSIZE (RAMADDMASK+1)
 
-unsigned short rom[ROMSIZE >> 1];
-unsigned short ram[RAMSIZE >> 1];
+extern unsigned short rom[ROMSIZE >> 1];
+extern unsigned short ram[RAMSIZE >> 1];
 
 //Read 16 bits, RAM or ROM
 unsigned int fetch16(unsigned int);
