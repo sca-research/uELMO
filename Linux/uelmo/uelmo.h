@@ -9,14 +9,12 @@
 #include "smurf/smurf.h"
 #include "smurf/emulator.h"
 
-
 #define ELMO_CORE "./smurffiles/uelmo.json"
 extern SmurfIO *sio;
 extern char *smftracepath;
 extern char *siopath;
 extern Smurf *smurf;
 #endif
-#include <stdint.h>
-extern uint32_t frameno;
 
+extern uint32_t frameno;
 #endif
