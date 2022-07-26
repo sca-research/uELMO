@@ -8,6 +8,9 @@
 #include <time.h>
 #include <stdbool.h>
 
+bool fvr = false;
+int N = 0;
+int N_ind = 0;
 bool ioSupported = false;
 bool useSmurfTrace = false;
 bool useInputFile = false;
