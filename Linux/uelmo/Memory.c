@@ -244,7 +244,6 @@ bool Memory_OneCycle()
 	    core_current.Memory_data.num_value = read32(addr);	//read a 32-bit word
 	    value = core_current.Memory_data.num_value;
 	    //TODO: update exp
-
 	    switch (core_current.Read_type)
 		{
 		case 0:	//word
@@ -313,10 +312,11 @@ bool Memory_OneCycle()
 					   0xfffffffe);
 				value = value & 0xff00;
 				value =
-				    value | (core_current.Memory_data.
-					     num_value & 0xff);
-				write16(core_current.Memory_addr.
-					num_value & 0xfffffffe, value);
+				    value | (core_current.
+					     Memory_data.num_value & 0xff);
+				write16(core_current.
+					Memory_addr.num_value & 0xfffffffe,
+					value);
 				break;
 			    case 1:
 				value =
@@ -327,8 +327,9 @@ bool Memory_OneCycle()
 				    value |
 				    ((core_current.Memory_data.num_value & 0xff)
 				     << 8);
-				write16(core_current.Memory_addr.
-					num_value & 0xfffffffe, value);
+				write16(core_current.
+					Memory_addr.num_value & 0xfffffffe,
+					value);
 				break;
 			    }
 		    }
