@@ -12,48 +12,48 @@
 //Execute one instruction: if return 1, it reaches an error or the end of the trace
 int Execute_OneInstr(int *cycle)
 {
-    bool wait_exe = false;	//Execute cycle requires extra cycle
-    bool wait_mem = false;	//Memory cycle requires extra cycle
+    bool wait_exe = false;      //Execute cycle requires extra cycle
+    bool wait_mem = false;      //Memory cycle requires extra cycle
     do
-	{
-	    if (DEBUG_CORE)
-		printf("Cycle=%d\n", *cycle);
-	    //Clock+1; update the registers with new values: i.e. pipeline registers, reg[16] and cpsr
-	    Clock(wait_exe);
-	    //Memory run one cycle: 
-	    //read address and output data to bus
-	    wait_mem = Memory_OneCycle();
-	    if (core_current.core_valid == false)
-		return 1;
-	    if (wait_mem == true)
-		{
-		    wait_exe = true;
-		    sprintf(core_current.Decode_instr_disp, "Decode: stall");
-		    sprintf(core_current.Execute_instr_disp, "Execute: stall");
-		    //Write out current cycle to Frame
-		    Write_Frame();
-		    (*cycle)++;
-		    continue;
-		}
+        {
+            if (DEBUG_CORE)
+                printf("Cycle=%d\n", *cycle);
+            //Clock+1; update the registers with new values: i.e. pipeline registers, reg[16] and cpsr
+            Clock(wait_exe);
+            //Memory run one cycle: 
+            //read address and output data to bus
+            wait_mem = Memory_OneCycle();
+            if (core_current.core_valid == false)
+                return 1;
+            if (wait_mem == true)
+                {
+                    wait_exe = true;
+                    sprintf(core_current.Decode_instr_disp, "Decode: stall");
+                    sprintf(core_current.Execute_instr_disp, "Execute: stall");
+                    //Write out current cycle to Frame
+                    Write_Frame();
+                    (*cycle)++;
+                    continue;
+                }
 
-	    //Execute
-	    wait_exe = Execute_OneCylce(wait_mem);
-	    if (wait_exe == false)	//Execute did not stall the pipeline
-		{
+            //Execute
+            wait_exe = Execute_OneCylce(wait_mem);
+            if (wait_exe == false)      //Execute did not stall the pipeline
+                {
 
-		    //Fetch
-		    Fetch_OneCycle();
-		    //Decode
-		    Decode_OneCycle(false);
+                    //Fetch
+                    Fetch_OneCycle();
+                    //Decode
+                    Decode_OneCycle(false);
 
-		}
-	    else
-		sprintf(core_current.Decode_instr_disp, "Decode: stall");
+                }
+            else
+                sprintf(core_current.Decode_instr_disp, "Decode: stall");
 
-	    //Write out current cycle to Frame
-	    Write_Frame();
-	    (*cycle)++;
-	}
+            //Write out current cycle to Frame
+            Write_Frame();
+            (*cycle)++;
+        }
     while (wait_exe);
     return 0;
 }
@@ -66,15 +66,15 @@ int reset(void)
     core_current.cpsr = 0;
     core_current.cpsr_data = 0;
     core_current.core_valid = true;
-    core_current.reg[13].num_value = fetch32(0x00000000);	//cortex-m
+    core_current.reg[13].num_value = fetch32(0x00000000);       //cortex-m
     core_current.reg[14].num_value = 0xFFFFFFFF;
-    core_current.reg[15].num_value = fetch32(0x00000004);	//cortex-m
+    core_current.reg[15].num_value = fetch32(0x00000004);       //cortex-m
     if ((core_current.reg[15].num_value & 1) == 0)
-	{
-	    printf("reset vector with an ARM address 0x%08X\n",
-		   core_current.reg[15].num_value);
-	    exit(1);
-	}
+        {
+            printf("reset vector with an ARM address 0x%08X\n",
+                   core_current.reg[15].num_value);
+            exit(1);
+        }
     core_current.reg[15].num_value &= ~1;
     core_current.reg[15].num_value += 2;
     core_current.Read_valid = false;
@@ -112,9 +112,10 @@ int reset(void)
     core_current.Memory_writebuf_delayed.exp = NULL;
     core_current.Memory_writebuf.exp = NULL;
     core_current.Memory_readbuf.exp = NULL;
-    for(int i=0; i<16; i++){
-        core_current.reg[i].exp = NULL;
-    }
+    for (int i = 0; i < 16; i++)
+        {
+            core_current.reg[i].exp = NULL;
+        }
     //Fetch
     Fetch_OneCycle();
 
@@ -130,10 +131,10 @@ int run(void)
     reset();
     //Run each cycle
     while (1)
-	{
+        {
 
-	    if (Execute_OneInstr(&cycle))
-		break;		//one instruction till ELMO endprogram() is called
-	}
+            if (Execute_OneInstr(&cycle))
+                break;          //one instruction till ELMO endprogram() is called
+        }
     return (0);
 }
