@@ -2380,6 +2380,7 @@ bool Execute_OneCylce(bool wait_mem)
 		core_current.Execute_ALU_result=rb;
 		core_current.Execute_destination_regindex=0xff; //do not update this
 		core_current.cpsr_valid=false;
+        return false;
     }
 	#pragma endregion
     //STRH(2)

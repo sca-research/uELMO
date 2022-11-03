@@ -2578,6 +2578,7 @@ bool Execute_OneCylce(bool wait_mem)
             update_component(&(core_current.Execute_ALU_result), &rb);
             core_current.Execute_destination_regindex = 0xff;   //do not update this
             core_current.cpsr_valid = false;
+            return false;
         }
     //STRH(2)
     //Instr 44 STRH
