@@ -56,8 +56,8 @@ unsigned int Read_Byte()
     size_t len = 20;
     str = (char *)malloc(len);
     //getline(&str, &len, datafile);//TEMP: get it back after moving back to Linux
-    if (NULL == fgets(str, len, datafp))
-        data = (int)strtol(str, NULL, 16);
+    if (NULL != fgets(str, len, datafp))
+        data = (long)strtol(str, NULL, 16);
 
     //printf("%x\n", data);
     free(str);
