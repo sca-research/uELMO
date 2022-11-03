@@ -140,17 +140,17 @@ unsigned int Rand_Byte()
 void Write_Frame()
 {
     if (OnTrace == true)
-    {
-        fwrite(&core_current, sizeof(CORE_STATUS), 1, outfp);
-#ifdef USE_SMURF
-        if (useSmurfTrace)
         {
-            SmurfSync(smurf);
-            SmurfWrite(smurf);
-        }
+            fwrite(&core_current, sizeof(CORE_STATUS), 1, outfp);
+#ifdef USE_SMURF
+            if (useSmurfTrace)
+                {
+                    SmurfSync(smurf);
+                    SmurfWrite(smurf);
+                }
 #endif
-        frameno++;
-    }
+            frameno++;
+        }
     return;
 }
 
