@@ -1582,7 +1582,7 @@ bool Execute_OneCylce(bool wait_mem)
             update_component(&ra, &(core_current.D2E_reg1));
             rb.num_value = core_current.Execute_Imm;
             //TODO: update rb.exp
-            ra_ind = core_current.Decode_port_regindex[0];;
+            ra_ind = core_current.Decode_port_regindex[1];
             rd_ind = core_current.Execute_destination_regindex;
             if (DEBUG_CORE)
                 printf("lsls r%u,r%u,#0x%X\n", rd_ind, ra_ind, rb.num_value);
