@@ -139,12 +139,19 @@ unsigned int Rand_Byte()
 //Frame data in CORE_STATUS core_current
 void Write_Frame()
 {
+
     if (OnTrace == true)
         {
             fwrite(&core_current, sizeof(CORE_STATUS), 1, outfp);
 #ifdef USE_SMURF
             if (useSmurfTrace)
                 {
+                    //Temporary patch for bug induced from Exp branch.
+                    for (int i = 0; i < 3; i++)
+                        {
+                            core_current.Decode_port_data_temp[i] =
+                                core_current.Decode_port_data[i].num_value;
+                        }
                     SmurfSync(smurf);
                     SmurfWrite(smurf);
                 }

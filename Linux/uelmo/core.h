@@ -45,6 +45,7 @@ typedef struct {
     uint8_t Decode_port_regindex[3];    //Current Decoding Read ports index (0-15, often 0-7) (i.e. D.2-D.4)
 
     Component_t Decode_port_data[3];    //Current Decoding Read ports data (i.e. D.5-D.7)
+    uint32_t Decode_port_data_temp[3];  //Temporary patch for fixing bug induced from Exp branch.
 
     uint8_t Decode_destination_regindex;        //Destination register index
     bool Decode_valid;          //A flag that stall the pipeline when jump happens
