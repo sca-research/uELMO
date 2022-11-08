@@ -96,7 +96,8 @@ static void Init_Smurf()
             Bind(Decode_port_regindex);
             //Temoporary patch for bug induced from Exp branch.
             //Bind(Decode_port_data);
-            Bind(Decode_port_data_temp);
+            SmurfBind(smurf, "Decode_port_data",
+                      &core_current.Decode_port_data_temp);
             Bind(Decode_destination_regindex);
             Bind(Decode_valid);
             Bind(glitchy_Decode_port_regindex);
