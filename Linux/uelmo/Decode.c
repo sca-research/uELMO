@@ -458,8 +458,8 @@ void Decode_OneCycle(bool prev)
             core_current.glitchy_Decode_port_regindex[2] = 0xff;        //Not used
 
             if (DEBUG_CORE)
-                printf("Decode:b* Imm=0x%08X\n", imm);
-            sprintf(core_current.Decode_instr_disp, "Decode:b * Imm = 0x %08X",
+                printf("Decode: b* Imm=0x%08X\n", imm);
+            sprintf(core_current.Decode_instr_disp, "Decode: b * Imm = 0x %08X",
                     imm);
             return;
 
@@ -491,8 +491,8 @@ void Decode_OneCycle(bool prev)
             core_current.glitchy_Decode_port_regindex[2] = 0xff;        //Not used
 
             if (DEBUG_CORE)
-                printf("Decode:b Imm=0x%08X\n", imm);
-            sprintf(core_current.Decode_instr_disp, "Decode:b Imm=0x%08X", imm);
+                printf("Decode: b Imm=0x%08X\n", imm);
+            sprintf(core_current.Decode_instr_disp, "Decode: b Imm=0x%08X", imm);
             return;
         }
     //BIC two registers
@@ -742,8 +742,8 @@ void Decode_OneCycle(bool prev)
             core_current.glitchy_Decode_port_regindex[2] = 0xff;        //Not used
 
             if (DEBUG_CORE)
-                printf("Decode:cmp r%u,#0x%02X\n", ra_ind, imm);
-            sprintf(core_current.Decode_instr_disp, "Decode:cmp r%u,#0x%02X",
+                printf("Decode: cmp r%u,#0x%02X\n", ra_ind, imm);
+            sprintf(core_current.Decode_instr_disp, "Decode: cmp r%u,#0x%02X",
                     ra_ind, imm);
             return;
         }
@@ -875,8 +875,8 @@ void Decode_OneCycle(bool prev)
             core_current.glitchy_Decode_port_regindex[2] = 0xff;        //Not used
 
             if (DEBUG_CORE)
-                printf("Decode:eors r%u,r%u\n", ra_ind, rb_ind);
-            sprintf(core_current.Decode_instr_disp, "Decode:eors r%u,r%u",
+                printf("Decode: eors r%u,r%u\n", ra_ind, rb_ind);
+            sprintf(core_current.Decode_instr_disp, "Decode: eors r%u,r%u",
                     ra_ind, rb_ind);
             return;
         }
@@ -908,8 +908,8 @@ void Decode_OneCycle(bool prev)
             core_current.glitchy_Decode_port_regindex[2] = (next_inst >> 8) & 0x7;      //Not used
 
             if (DEBUG_CORE)
-                printf("Decode:ldmia r%u\n", rc_ind);
-            sprintf(core_current.Decode_instr_disp, "Decode:ldmia r%u", rc_ind);
+                printf("Decode: ldmia r%u\n", rc_ind);
+            sprintf(core_current.Decode_instr_disp, "Decode: ldmia r%u", rc_ind);
             return;
 
         }
@@ -944,9 +944,9 @@ void Decode_OneCycle(bool prev)
             core_current.glitchy_Decode_port_regindex[2] = 0xff;        //Not used
 
             if (DEBUG_CORE)
-                printf("Decode:ldr r%u,[r%u,#0x%X]\n", ra_ind, rb_ind, imm);
+                printf("Decode: ldr r%u,[r%u,#0x%X]\n", ra_ind, rb_ind, imm);
             sprintf(core_current.Decode_instr_disp,
-                    "Decode:ldr r%u,[r%u,#0x%X]", ra_ind, rb_ind, imm);
+                    "Decode: ldr r%u,[r%u,#0x%X]", ra_ind, rb_ind, imm);
             return;
         }
     //LDR(2) three register
@@ -982,8 +982,8 @@ void Decode_OneCycle(bool prev)
                 (next_inst >> 6) & 0x07;
 
             if (DEBUG_CORE)
-                printf("Decode:ldr r%u,[r%u,r%u]\n", ra_ind, rb_ind, rc_ind);
-            sprintf(core_current.Decode_instr_disp, "Decode:ldr r%u,[r%u,r%u]",
+                printf("Decode: ldr r%u,[r%u,r%u]\n", ra_ind, rb_ind, rc_ind);
+            sprintf(core_current.Decode_instr_disp, "Decode: ldr r%u,[r%u,r%u]",
                     ra_ind, rb_ind, rc_ind);
             return;
         }
@@ -1017,8 +1017,8 @@ void Decode_OneCycle(bool prev)
             core_current.glitchy_Decode_port_regindex[2] = 0xff;        //Not used
 
             if (DEBUG_CORE)
-                printf("Decode:ldr r%u,[PC+#0x%X]\n", ra_ind, imm);
-            sprintf(core_current.Decode_instr_disp, "Decode:ldr r%u,[PC+#0x%X]",
+                printf("Decode: ldr r%u,[PC+#0x%X]\n", ra_ind, imm);
+            sprintf(core_current.Decode_instr_disp, "Decode: ldr r%u,[PC+#0x%X]",
                     ra_ind, imm);
             return;
         }
@@ -1051,8 +1051,8 @@ void Decode_OneCycle(bool prev)
             core_current.glitchy_Decode_port_regindex[2] = 0xff;        //Not used
 
             if (DEBUG_CORE)
-                printf("Decode:ldr r%u,[SP+#0x%X]\n", ra_ind, imm);
-            sprintf(core_current.Decode_instr_disp, "Decode:ldr r%u,[SP+#0x%X]",
+                printf("Decode: ldr r%u,[SP+#0x%X]\n", ra_ind, imm);
+            sprintf(core_current.Decode_instr_disp, "Decode: ldr r%u,[SP+#0x%X]",
                     ra_ind, imm);
             return;
         }
@@ -1087,9 +1087,9 @@ void Decode_OneCycle(bool prev)
             core_current.glitchy_Decode_port_regindex[2] = 0xff;        //Not used
 
             if (DEBUG_CORE)
-                printf("Decode:ldrb r%u,[r%u,#0x%X]\n", ra_ind, rb_ind, imm);
+                printf("Decode: ldrb r%u,[r%u,#0x%X]\n", ra_ind, rb_ind, imm);
             sprintf(core_current.Decode_instr_disp,
-                    "Decode:ldrb r%u,[r%u,#0x%X]", ra_ind, rb_ind, imm);
+                    "Decode: ldrb r%u,[r%u,#0x%X]", ra_ind, rb_ind, imm);
             return;
         }
 
@@ -1125,9 +1125,9 @@ void Decode_OneCycle(bool prev)
                 (next_inst >> 6) & 0x07;
 
             if (DEBUG_CORE)
-                printf("Decode:ldrb r%u,[r%u,r%u]\n", ra_ind, rb_ind, rc_ind);
+                printf("Decode: ldrb r%u,[r%u,r%u]\n", ra_ind, rb_ind, rc_ind);
             //if(ra_ind==6 && rb_ind==0 && rc_ind==4)
-            sprintf(core_current.Decode_instr_disp, "Decode:ldrb r%u,[r%u,r%u]",
+            sprintf(core_current.Decode_instr_disp, "Decode: ldrb r%u,[r%u,r%u]",
                     ra_ind, rb_ind, rc_ind);
 
             return;
@@ -1163,9 +1163,9 @@ void Decode_OneCycle(bool prev)
             core_current.glitchy_Decode_port_regindex[2] = 0xff;        //Not used
 
             if (DEBUG_CORE)
-                printf("Decode:ldrh r%u,[r%u,#0x%X]\n", ra_ind, rb_ind, imm);
+                printf("Decode: ldrh r%u,[r%u,#0x%X]\n", ra_ind, rb_ind, imm);
             sprintf(core_current.Decode_instr_disp,
-                    "Decode:ldrh r%u,[r%u,#0x%X]", ra_ind, rb_ind, imm);
+                    "Decode: ldrh r%u,[r%u,#0x%X]", ra_ind, rb_ind, imm);
             return;
         }
     //LDRH(2)
@@ -1200,8 +1200,8 @@ void Decode_OneCycle(bool prev)
                 (next_inst >> 6) & 0x07;
 
             if (DEBUG_CORE)
-                printf("Decode:ldrh r%u,[r%u,r%u]\n", ra_ind, rb_ind, rc_ind);
-            sprintf(core_current.Decode_instr_disp, "Decode:ldrh r%u,[r%u,r%u]",
+                printf("Decode: ldrh r%u,[r%u,r%u]\n", ra_ind, rb_ind, rc_ind);
+            sprintf(core_current.Decode_instr_disp, "Decode: ldrh r%u,[r%u,r%u]",
                     ra_ind, rb_ind, rc_ind);
             return;
 
@@ -1239,8 +1239,8 @@ void Decode_OneCycle(bool prev)
                 (next_inst >> 6) & 0x07;
 
             if (DEBUG_CORE)
-                printf("Decode:ldrsb r%u,[r%u,r%u]\n", ra_ind, rb_ind, rc_ind);
-            sprintf(core_current.Decode_instr_disp, "Decode:ldrh r%u,[r%u,r%u]",
+                printf("Decode: ldrsb r%u,[r%u,r%u]\n", ra_ind, rb_ind, rc_ind);
+            sprintf(core_current.Decode_instr_disp, "Decode: ldrh r%u,[r%u,r%u]",
                     ra_ind, rb_ind, rc_ind);
             return;
 
@@ -1277,9 +1277,9 @@ void Decode_OneCycle(bool prev)
                 (next_inst >> 6) & 0x07;
 
             if (DEBUG_CORE)
-                printf("Decode:ldrsh r%u,[r%u,r%u]\n", ra_ind, rb_ind, rc_ind);
+                printf("Decode: ldrsh r%u,[r%u,r%u]\n", ra_ind, rb_ind, rc_ind);
             sprintf(core_current.Decode_instr_disp,
-                    "Decode:ldrsh r%u,[r%u,r%u]", ra_ind, rb_ind, rc_ind);
+                    "Decode: ldrsh r%u,[r%u,r%u]", ra_ind, rb_ind, rc_ind);
 
             return;
         }
@@ -1704,8 +1704,8 @@ void Decode_OneCycle(bool prev)
             core_current.glitchy_Decode_port_regindex[2] = 0xff;        //Not used
 
             if (DEBUG_CORE)
-                printf("Decode: pop\n");
-            sprintf(core_current.Decode_instr_disp, "Decode: pop");
+                printf("Decode: pop \n");
+            sprintf(core_current.Decode_instr_disp, "Decode: pop ");
             return;
         }
     //PUSH
@@ -1735,8 +1735,8 @@ void Decode_OneCycle(bool prev)
             core_current.glitchy_Decode_port_regindex[2] = 0xff;        //Not used
 
             if (DEBUG_CORE)
-                printf("Decode: push\n");
-            sprintf(core_current.Decode_instr_disp, "Decode: push");
+                printf("Decode: push \n");
+            sprintf(core_current.Decode_instr_disp, "Decode: push ");
             return;
         }
     //REV
@@ -1951,8 +1951,8 @@ void Decode_OneCycle(bool prev)
             core_current.glitchy_Decode_port_regindex[2] = (next_inst >> 8) & 0x7;      //Not used
 
             if (DEBUG_CORE)
-                printf("Decode: stmia(%X)\n", rc_ind);
-            sprintf(core_current.Decode_instr_disp, "Decode: stmia(%X)",
+                printf("Decode: stmia(%X) \n", rc_ind);
+            sprintf(core_current.Decode_instr_disp, "Decode: stmia(%X) ",
                     rc_ind);
             return;
         }
@@ -1987,9 +1987,9 @@ void Decode_OneCycle(bool prev)
             core_current.glitchy_Decode_port_regindex[2] = 0xff;        //Not used
 
             if (DEBUG_CORE)
-                printf("Decode:str r%u,[r%u,#0x%X]\n", ra_ind, rb_ind, imm);
+                printf("Decode: str r%u,[r%u,#0x%X]\n", ra_ind, rb_ind, imm);
             sprintf(core_current.Decode_instr_disp,
-                    "Decode:str r%u,[r%u,#0x%X]", ra_ind, rb_ind, imm);
+                    "Decode: str r%u,[r%u,#0x%X]", ra_ind, rb_ind, imm);
             return;
         }
     //STR(2)
@@ -2025,9 +2025,9 @@ void Decode_OneCycle(bool prev)
                 (next_inst >> 6) & 0x7;
 
             if (DEBUG_CORE)
-                printf("Decode:str r%u,[r%u,r%u]\n", ra_ind, rb_ind, rc_ind);
+                printf("Decode: str r%u,[r%u,r%u]\n", ra_ind, rb_ind, rc_ind);
             sprintf(core_current.Decode_instr_disp,
-                    "Decode:str r%u,[r%u,r%u]\n", ra_ind, rb_ind, rc_ind);
+                    "Decode: str r%u,[r%u,r%u]\n", ra_ind, rb_ind, rc_ind);
 
             return;
         }
@@ -2058,9 +2058,9 @@ void Decode_OneCycle(bool prev)
             core_current.glitchy_Decode_port_regindex[2] = (next_inst >> 8) & 0x7;      //
 
             if (DEBUG_CORE)
-                printf("Decode:str r%u,[SP,#0x%X]\n", rc_ind, imm);
+                printf("Decode: str r%u,[SP,#0x%X]\n", rc_ind, imm);
             sprintf(core_current.Decode_instr_disp,
-                    "Decode:str r%u,[SP,#0x%X]\n", rc_ind, imm);
+                    "Decode: str r%u,[SP,#0x%X]\n", rc_ind, imm);
 
             return;
         }
@@ -2095,9 +2095,9 @@ void Decode_OneCycle(bool prev)
             core_current.glitchy_Decode_port_regindex[2] = 0xff;        //Not used
 
             if (DEBUG_CORE)
-                printf("Decode:strb r%u,[r%u,#0x%X]\n", ra_ind, rb_ind, imm);
+                printf("Decode: strb r%u,[r%u,#0x%X]\n", ra_ind, rb_ind, imm);
             sprintf(core_current.Decode_instr_disp,
-                    "Decode:strb r%u,[r%u,#0x%X]", ra_ind, rb_ind, imm);
+                    "Decode: strb r%u,[r%u,#0x%X]", ra_ind, rb_ind, imm);
 
             return;
         }
@@ -2134,8 +2134,8 @@ void Decode_OneCycle(bool prev)
                 (next_inst >> 6) & 0x7;
 
             if (DEBUG_CORE)
-                printf("Decode:strb r%u,[r%u,r%u]\n", ra_ind, rb_ind, rc_ind);
-            sprintf(core_current.Decode_instr_disp, "Decode:strb r%u,[r%u,r%u]",
+                printf("Decode: strb r%u,[r%u,r%u]\n", ra_ind, rb_ind, rc_ind);
+            sprintf(core_current.Decode_instr_disp, "Decode: strb r%u,[r%u,r%u]",
                     ra_ind, rb_ind, rc_ind);
             return;
         }
@@ -2170,9 +2170,9 @@ void Decode_OneCycle(bool prev)
             core_current.glitchy_Decode_port_regindex[2] = 0xff;        //Not used
 
             if (DEBUG_CORE)
-                printf("Decode:strh r%u,[r%u,#0x%X]\n", ra_ind, rb_ind, imm);
+                printf("Decode: strh r%u,[r%u,#0x%X]\n", ra_ind, rb_ind, imm);
             sprintf(core_current.Decode_instr_disp,
-                    "Decode:strh r%u,[r%u,#0x%X]", ra_ind, rb_ind, imm);
+                    "Decode: strh r%u,[r%u,#0x%X]", ra_ind, rb_ind, imm);
 
             return;
         }
@@ -2209,9 +2209,9 @@ void Decode_OneCycle(bool prev)
                 (next_inst >> 6) & 0x7;
 
             if (DEBUG_CORE)
-                printf("Decode:strh r%u,[r%u,r%u]\n", ra_ind, rb_ind, rc_ind);
+                printf("Decode: strh r%u,[r%u,r%u]\n", ra_ind, rb_ind, rc_ind);
             sprintf(core_current.Decode_instr_disp,
-                    "Decode:strh r%u,[r%u,r%u]\n", ra_ind, rb_ind, rc_ind);
+                    "Decode: strh r%u,[r%u,r%u]\n", ra_ind, rb_ind, rc_ind);
             return;
         }
     //SUB(1)
