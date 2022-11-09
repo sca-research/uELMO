@@ -17,7 +17,7 @@ bool Execute_OneCylce(bool wait_mem)
         || ((inst & 0xF800) == 0x7800) || ((inst & 0xFE00) == 0x5C00)
         || ((inst & 0xF800) == 0x8800) || ((inst & 0xFE00) == 0x5A00)
         || ((inst & 0xFE00) == 0x5600) || ((inst & 0xFE00) == 0x5E00)
-        || ((inst & 0xFE00) == 0xBC00);
+        || ((inst & 0xFE00) == 0xBC00) || ((inst & 0xF800) == 0xC800);
     if (!core_current.Execute_valid)    //Jump happens, no need to execute this instruction
         return false;
     if ((!IsLDR) && core_current.Read_reg_update)       //LDR is still runing, while the new one is not LDR
@@ -1112,7 +1112,7 @@ bool Execute_OneCylce(bool wait_mem)
                             core_current.Read_type = 0;
                             core_current.Execute_multicycle_regindex = rb_ind + 1;      //next register
                             sprintf(core_current.Execute_instr_disp,
-                                    "Execute: STMIA r%u=0x%X", rb_ind,
+                                    "Execute: LDMIA r%u=0x%X", rb_ind,
                                     ra.num_value);
                             ra.num_value = ra.num_value + 4;
                             //TODO: update ra.exp
@@ -2266,6 +2266,7 @@ bool Execute_OneCylce(bool wait_mem)
             core_current.cpsr_valid = false;
             //Update ALU output
             update_component(&(core_current.Execute_ALU_result), &rc);
+            return false;
 
         }
     //SETEND
