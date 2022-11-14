@@ -1,0 +1,8 @@
+Linux:
+1. Revert the symbolic modification from branch Exp and update it with Smurf Symbolic.
+2. RNG update:
+    (1) Update uELMO to provide internal RNG simulation.
+    (2) A command line argument to control RNG log output.
+    (3) RNG interaction with trace. Options are:
+        (a) Add RNG flag into Core to signal dedicated Leakgage model? Drawback: RNG will cause disruption within the pipeline.
+        (b) uELMO signals a warning or abort simulation when RNG is invoked while trigger is set.
