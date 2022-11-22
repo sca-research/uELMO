@@ -73,7 +73,7 @@ int main()
 
     KeyExpansion(fixedkey);
     //Plaintext
-    for (j = 0; j < 6; j++)
+    for (j = 0; j < 16; j++)
 	readbyte(input + j);
     //Random masks
     for (j = 0; j < 6; j++)
