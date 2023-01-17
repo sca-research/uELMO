@@ -1,5 +1,8 @@
 #ifndef UELMO_H
 #define UELMO_H
+
+#include <stdint.h>
+
 #define UELMO_ERROR (-1)
 
 #ifdef USE_SMURF
@@ -14,5 +17,4 @@ extern Smurf *smurf;
 #endif
 
 extern uint32_t frameno;
-
 #endif
