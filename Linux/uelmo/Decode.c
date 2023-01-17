@@ -487,7 +487,8 @@ void Decode_OneCycle(bool prev)
 
             if (DEBUG_CORE)
                 printf("Decode: b Imm=0x%08X\n", imm);
-            sprintf(core_current.Decode_instr_disp, "Decode: b Imm=0x%08X", imm);
+            sprintf(core_current.Decode_instr_disp, "Decode: b Imm=0x%08X",
+                    imm);
             return;
         }
     //BIC two registers
@@ -904,7 +905,8 @@ void Decode_OneCycle(bool prev)
 
             if (DEBUG_CORE)
                 printf("Decode: ldmia r%u\n", rc_ind);
-            sprintf(core_current.Decode_instr_disp, "Decode: ldmia r%u", rc_ind);
+            sprintf(core_current.Decode_instr_disp, "Decode: ldmia r%u",
+                    rc_ind);
             return;
 
         }
@@ -1012,8 +1014,8 @@ void Decode_OneCycle(bool prev)
 
             if (DEBUG_CORE)
                 printf("Decode: ldr r%u,[PC+#0x%X]\n", ra_ind, imm);
-            sprintf(core_current.Decode_instr_disp, "Decode: ldr r%u,[PC+#0x%X]",
-                    ra_ind, imm);
+            sprintf(core_current.Decode_instr_disp,
+                    "Decode: ldr r%u,[PC+#0x%X]", ra_ind, imm);
             return;
         }
 
@@ -1046,8 +1048,8 @@ void Decode_OneCycle(bool prev)
 
             if (DEBUG_CORE)
                 printf("Decode: ldr r%u,[SP+#0x%X]\n", ra_ind, imm);
-            sprintf(core_current.Decode_instr_disp, "Decode: ldr r%u,[SP+#0x%X]",
-                    ra_ind, imm);
+            sprintf(core_current.Decode_instr_disp,
+                    "Decode: ldr r%u,[SP+#0x%X]", ra_ind, imm);
             return;
         }
     //LDRB(1)
@@ -1121,8 +1123,8 @@ void Decode_OneCycle(bool prev)
             if (DEBUG_CORE)
                 printf("Decode: ldrb r%u,[r%u,r%u]\n", ra_ind, rb_ind, rc_ind);
             //if(ra_ind==6 && rb_ind==0 && rc_ind==4)
-            sprintf(core_current.Decode_instr_disp, "Decode: ldrb r%u,[r%u,r%u]",
-                    ra_ind, rb_ind, rc_ind);
+            sprintf(core_current.Decode_instr_disp,
+                    "Decode: ldrb r%u,[r%u,r%u]", ra_ind, rb_ind, rc_ind);
 
             return;
         }
@@ -1195,8 +1197,8 @@ void Decode_OneCycle(bool prev)
 
             if (DEBUG_CORE)
                 printf("Decode: ldrh r%u,[r%u,r%u]\n", ra_ind, rb_ind, rc_ind);
-            sprintf(core_current.Decode_instr_disp, "Decode: ldrh r%u,[r%u,r%u]",
-                    ra_ind, rb_ind, rc_ind);
+            sprintf(core_current.Decode_instr_disp,
+                    "Decode: ldrh r%u,[r%u,r%u]", ra_ind, rb_ind, rc_ind);
             return;
 
         }
@@ -1234,8 +1236,8 @@ void Decode_OneCycle(bool prev)
 
             if (DEBUG_CORE)
                 printf("Decode: ldrsb r%u,[r%u,r%u]\n", ra_ind, rb_ind, rc_ind);
-            sprintf(core_current.Decode_instr_disp, "Decode: ldrh r%u,[r%u,r%u]",
-                    ra_ind, rb_ind, rc_ind);
+            sprintf(core_current.Decode_instr_disp,
+                    "Decode: ldrh r%u,[r%u,r%u]", ra_ind, rb_ind, rc_ind);
             return;
 
         }
@@ -2129,8 +2131,8 @@ void Decode_OneCycle(bool prev)
 
             if (DEBUG_CORE)
                 printf("Decode: strb r%u,[r%u,r%u]\n", ra_ind, rb_ind, rc_ind);
-            sprintf(core_current.Decode_instr_disp, "Decode: strb r%u,[r%u,r%u]",
-                    ra_ind, rb_ind, rc_ind);
+            sprintf(core_current.Decode_instr_disp,
+                    "Decode: strb r%u,[r%u,r%u]", ra_ind, rb_ind, rc_ind);
             return;
         }
     //STRH(1)
