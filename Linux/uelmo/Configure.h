@@ -11,9 +11,9 @@
 #define false 0
 #define DEBUG_MEM 0
 #define DEBUG_CORE 0
-bool fvr;
-int N;
-int N_ind;
+extern bool fvr;
+extern int N;
+extern int N_ind;
 extern bool ioSupported;
 extern bool useInputFile;
 extern bool useSmurfTrace;
