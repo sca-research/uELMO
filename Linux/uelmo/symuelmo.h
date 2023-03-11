@@ -14,6 +14,9 @@ typedef struct {
     SmurfSymId symbol;
 } uSymbol;
 
+//NULL Symbol.
+extern uSymbol SYM_NULL;
+
 //Symbolic structure for uELMO core.
 typedef struct {
     //Registers:

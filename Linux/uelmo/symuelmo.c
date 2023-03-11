@@ -9,6 +9,9 @@
 //Clear sym_core_current.
 CORE_STATUS_SYM sym_core_current = { 0 };
 
+//NULL Symbol.
+uSymbol SYM_NULL = { 0 };
+
 //Bind array typed Symbol.
 static inline void BindSymArray(const char *compname,
                                 SymbolicComponent * symcomp, int size)
