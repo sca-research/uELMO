@@ -9,12 +9,18 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#ifdef USE_SMURF
+#include "smurf/smurf.h"
+#include "symuelmo.h"
+#endif
+
 bool fvr = false;
 int N = 0;
 int N_ind = 0;
 bool ioSupported = false;
 bool useSmurfTrace = false;
 bool useInputFile = false;
+bool uSymbolEnabled = false;
 
 #ifdef USE_SMURF
 SmurfIO *sio = NULL;
@@ -135,6 +141,11 @@ static void Init_Smurf()
     else
         {
             sio = NULL;
+        }
+
+    if (uSymbolEnabled)
+        {
+            InitSymCore();
         }
 
     return;
