@@ -25,7 +25,7 @@ static inline void BindSymArray(const char *compname,
     //Set pointers to the Symbolic fileds in the Frame.
     for (i = 0; i < size; i++)
         {
-            symcomp[i].sid = ci.ci.symid;
+            symcomp[i].sid_p = ci.ci.symid;
         }
 
     return;
@@ -41,7 +41,7 @@ int InitSymCore()
     BindSym(x)\
     {\
         SmurfFetchComp(&ci,smurf->frame,#x);\
-        sym_core_current.x.sid=ci.ci.symid;\
+        sym_core_current.x.sid_p=ci.ci.symid;\
     }
 
     BindSym(core_valid);
@@ -105,12 +105,17 @@ int InitSymCore()
 //Assign a Symbol to a component.
 int SymAssign(SymbolicComponent component, uSymbol symbol)
 {
+    SfSetFrameSymid(component.sid_p, symbol.symid);
     return 0;
 }
 
 //Copy the Symbol of a component to another.
 int SymCopy(SymbolicComponent dstcomp, SymbolicComponent srccomp)
 {
+    SmurfSymId t;
+
+    t = SfGetFrameSymid(srccomp.sid_p);
+    SfSetFrameSymid(dstcomp.sid_p, t);
     return 0;
 }
 #endif

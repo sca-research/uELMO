@@ -7,11 +7,11 @@
 #include "smurf/symbolic.h"
 
 typedef struct {
-    SmurfSymId *sid;
+    SmurfSymId *sid_p;
 } SymbolicComponent;
 
 typedef struct {
-    SmurfSymId symbol;
+    SmurfSymId symid;
 } uSymbol;
 
 //NULL Symbol.
@@ -76,7 +76,6 @@ typedef struct {
     SymbolicComponent Memory_instr_disp;        //Discription for the memory instruction (STRING Component has only a unique Symbol.)
     SymbolicComponent Decode_instr_disp;        //Discription for the decode instruction (STRING Component has only a unique Symbol.)
     SymbolicComponent Execute_instr_disp;       //Discription for the execute instruction (STRING Component has only a unique Symbol.)
-
 } CORE_STATUS_SYM;
 
 extern CORE_STATUS_SYM sym_core_current;
