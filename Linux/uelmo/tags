@@ -1,8 +1,6 @@
-Bind	/home/saltiny/git/uELMO/Linux/uelmo/uELMO.c	/^#define Bind(/;"	d	file:	signature:(x)
 BindSym	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.c	/^    BindSym(/;"	d	file:	signature:(x)
 BindSymArray	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.c	/^static inline void BindSymArray(const char *compname,$/;"	f	typeref:typename:void	file:	signature:(const char * compname,SymbolicComponent * symcomp,int size)
 CORE_STATUS_SYM	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^} CORE_STATUS_SYM;$/;"	t	typeref:struct:__anon2419d6840308
-CleanSmurf	/home/saltiny/git/uELMO/Linux/uelmo/uELMO.c	/^static void CleanSmurf()$/;"	f	typeref:typename:void	file:	signature:()
 D2E_instrreg	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^    SymbolicComponent D2E_instrreg;     \/\/Pesudo register: in theory should be already tranfer/;"	m	struct:__anon2419d6840308	typeref:typename:SymbolicComponent	access:public
 D2E_reg1	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^    SymbolicComponent D2E_reg1; \/\/pipeline register, barrier between Decode and Execute   (i.e/;"	m	struct:__anon2419d6840308	typeref:typename:SymbolicComponent	access:public
 D2E_reg1_data	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^    SymbolicComponent D2E_reg1_data;    \/\/input data for pipeline register 1, barrier between /;"	m	struct:__anon2419d6840308	typeref:typename:SymbolicComponent	access:public
@@ -26,7 +24,6 @@ Fetch_instruction_new	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^    Symbo
 Fetch_valid	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^    SymbolicComponent Fetch_valid;      \/\/A flag that stall the pipeline when jump happens$/;"	m	struct:__anon2419d6840308	typeref:typename:SymbolicComponent	access:public
 InitSymCore	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.c	/^int InitSymCore()$/;"	f	typeref:typename:int	signature:()
 InitSymCore	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^int InitSymCore();$/;"	p	typeref:typename:int	signature:()
-Init_Smurf	/home/saltiny/git/uELMO/Linux/uelmo/uELMO.c	/^static void Init_Smurf()$/;"	f	typeref:typename:void	file:	signature:()
 Memory_addr	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^    SymbolicComponent Memory_addr;      \/\/Address bus of the memory: must align to 4$/;"	m	struct:__anon2419d6840308	typeref:typename:SymbolicComponent	access:public
 Memory_data	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^    SymbolicComponent Memory_data;      \/\/shared (Read and write) data bus: must be 32-bit$/;"	m	struct:__anon2419d6840308	typeref:typename:SymbolicComponent	access:public
 Memory_instr_disp	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^    SymbolicComponent Memory_instr_disp;        \/\/Discription for the memory instruction (STRI/;"	m	struct:__anon2419d6840308	typeref:typename:SymbolicComponent	access:public
@@ -35,22 +32,21 @@ Memory_read_targetreg_buf	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^    S
 Memory_readbuf	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^    SymbolicComponent Memory_readbuf;   \/\/read buffer on the read bus$/;"	m	struct:__anon2419d6840308	typeref:typename:SymbolicComponent	access:public
 Memory_writebuf	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^    SymbolicComponent Memory_writebuf;  \/\/write buffer on the write bus$/;"	m	struct:__anon2419d6840308	typeref:typename:SymbolicComponent	access:public
 Memory_writebuf_delayed	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^    SymbolicComponent Memory_writebuf_delayed;  \/\/write buffer on the write bus$/;"	m	struct:__anon2419d6840308	typeref:typename:SymbolicComponent	access:public
-N	/home/saltiny/git/uELMO/Linux/uelmo/uELMO.c	/^int N = 0;$/;"	v	typeref:typename:int
-N_ind	/home/saltiny/git/uELMO/Linux/uelmo/uELMO.c	/^int N_ind = 0;$/;"	v	typeref:typename:int
-PrintCoreInfo	/home/saltiny/git/uELMO/Linux/uelmo/uELMO.c	/^void PrintCoreInfo(SmurfCore * core)$/;"	f	typeref:typename:void	signature:(SmurfCore * core)
-PrintHelp	/home/saltiny/git/uELMO/Linux/uelmo/uELMO.c	/^void PrintHelp()$/;"	f	typeref:typename:void	signature:()
-Read_Binary	/home/saltiny/git/uELMO/Linux/uelmo/uELMO.c	/^void Read_Binary(char *filename)$/;"	f	typeref:typename:void	signature:(char * filename)
 Read_reg_update	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^    SymbolicComponent Read_reg_update;  \/\/if true, update the register according to Memory_rea/;"	m	struct:__anon2419d6840308	typeref:typename:SymbolicComponent	access:public
 Read_type	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^    SymbolicComponent Read_type;        \/\/0 word, 1 byte, 2 half-word$/;"	m	struct:__anon2419d6840308	typeref:typename:SymbolicComponent	access:public
 Read_valid	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^    SymbolicComponent Read_valid;       \/\/set it true when a new read address is sent to addre/;"	m	struct:__anon2419d6840308	typeref:typename:SymbolicComponent	access:public
 SYMUELMO_H	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^#define SYMUELMO_H$/;"	d
-SYM_NULL	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.c	/^uSymbol SYM_NULL = { 0 };$/;"	v	typeref:typename:uSymbol
+SYM_NULL	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.c	/^const uSymbol SYM_NULL = { 0 };$/;"	v	typeref:typename:const uSymbol
 SignExtend_byte_valid	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^    SymbolicComponent SignExtend_byte_valid;    \/\/sign extend$/;"	m	struct:__anon2419d6840308	typeref:typename:SymbolicComponent	access:public
 SignExtend_halfbyte_valid	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^    SymbolicComponent SignExtend_halfbyte_valid;        \/\/sign extend$/;"	m	struct:__anon2419d6840308	typeref:typename:SymbolicComponent	access:public
 SymAssign	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.c	/^int SymAssign(SymbolicComponent component, uSymbol symbol)$/;"	f	typeref:typename:int	signature:(SymbolicComponent component,uSymbol symbol)
 SymAssign	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^int SymAssign(SymbolicComponent component, uSymbol sym);$/;"	p	typeref:typename:int	signature:(SymbolicComponent component,uSymbol sym)
 SymCopy	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.c	/^int SymCopy(SymbolicComponent dstcomp, SymbolicComponent srccomp)$/;"	f	typeref:typename:int	signature:(SymbolicComponent dstcomp,SymbolicComponent srccomp)
 SymCopy	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^int SymCopy(SymbolicComponent dstcomp, SymbolicComponent srccomp);$/;"	p	typeref:typename:int	signature:(SymbolicComponent dstcomp,SymbolicComponent srccomp)
+SymDecode	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.c	/^const char * SymDecode(const uSymbol sym)$/;"	f	typeref:typename:const char *	signature:(const uSymbol sym)
+SymDecode	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^const char * SymDecode(const uSymbol);$/;"	p	typeref:typename:const char *	signature:(const uSymbol)
+SymEncode	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.c	/^uSymbol SymEncode(const char * symstr)$/;"	f	typeref:typename:uSymbol	signature:(const char * symstr)
+SymEncode	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^uSymbol SymEncode(const char * symstr);$/;"	p	typeref:typename:uSymbol	signature:(const char * symstr)
 SymbolicComponent	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^} SymbolicComponent;$/;"	t	typeref:struct:__anon2419d6840108
 Write_type	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^    SymbolicComponent Write_type;       \/\/0 word, 1 byte, 2 half-word$/;"	m	struct:__anon2419d6840308	typeref:typename:SymbolicComponent	access:public
 Write_valid	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^    SymbolicComponent Write_valid;      \/\/set it true when a new read address is sent to addre/;"	m	struct:__anon2419d6840308	typeref:typename:SymbolicComponent	access:public
@@ -108,21 +104,11 @@ core_valid	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^    SymbolicComponen
 cpsr	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^    SymbolicComponent cpsr;     \/\/architectural$/;"	m	struct:__anon2419d6840308	typeref:typename:SymbolicComponent	access:public
 cpsr_data	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^    SymbolicComponent cpsr_data;        \/\/new data for cpsr$/;"	m	struct:__anon2419d6840308	typeref:typename:SymbolicComponent	access:public
 cpsr_valid	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^    SymbolicComponent cpsr_valid;       \/\/update cpsr$/;"	m	struct:__anon2419d6840308	typeref:typename:SymbolicComponent	access:public
-frameno	/home/saltiny/git/uELMO/Linux/uelmo/uELMO.c	/^uint32_t frameno = 0;$/;"	v	typeref:typename:uint32_t
-fvr	/home/saltiny/git/uELMO/Linux/uelmo/uELMO.c	/^bool fvr = false;$/;"	v	typeref:typename:bool
 glitchy_Decode_port_data	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^    SymbolicComponent glitchy_Decode_port_data[3];      \/\/Decode the current instruction accor/;"	m	struct:__anon2419d6840308	typeref:typename:SymbolicComponent[3]	access:public
 glitchy_Decode_port_regindex	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^    SymbolicComponent glitchy_Decode_port_regindex[3];  \/\/Decode the current instruction accor/;"	m	struct:__anon2419d6840308	typeref:typename:SymbolicComponent[3]	access:public
-ioSupported	/home/saltiny/git/uELMO/Linux/uelmo/uELMO.c	/^bool ioSupported = false;$/;"	v	typeref:typename:bool
-main	/home/saltiny/git/uELMO/Linux/uelmo/uELMO.c	/^int main(int argc, char *argv[])$/;"	f	typeref:typename:int	signature:(int argc,char * argv[])
 reg	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^    SymbolicComponent reg[16];  \/\/architectural$/;"	m	struct:__anon2419d6840308	typeref:typename:SymbolicComponent[16]	access:public
 sid_p	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^    SmurfSymId *sid_p;$/;"	m	struct:__anon2419d6840108	typeref:typename:SmurfSymId *	access:public
-sio	/home/saltiny/git/uELMO/Linux/uelmo/uELMO.c	/^SmurfIO *sio = NULL;$/;"	v	typeref:typename:SmurfIO *
-siopath	/home/saltiny/git/uELMO/Linux/uelmo/uELMO.c	/^char *siopath = NULL;$/;"	v	typeref:typename:char *
-smftracepath	/home/saltiny/git/uELMO/Linux/uelmo/uELMO.c	/^char *smftracepath = NULL;$/;"	v	typeref:typename:char *
-smurf	/home/saltiny/git/uELMO/Linux/uelmo/uELMO.c	/^Smurf *smurf = NULL;$/;"	v	typeref:typename:Smurf *
 sym_core_current	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.c	/^CORE_STATUS_SYM sym_core_current = { 0 };$/;"	v	typeref:typename:CORE_STATUS_SYM
 symid	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^    SmurfSymId symid;$/;"	m	struct:__anon2419d6840208	typeref:typename:SmurfSymId	access:public
+uDict	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.c	/^CodeEntry *uDict = NULL;$/;"	v	typeref:typename:CodeEntry *
 uSymbol	/home/saltiny/git/uELMO/Linux/uelmo/symuelmo.h	/^} uSymbol;$/;"	t	typeref:struct:__anon2419d6840208
-uSymbolEnabled	/home/saltiny/git/uELMO/Linux/uelmo/uELMO.c	/^bool uSymbolEnabled = false;$/;"	v	typeref:typename:bool
-useInputFile	/home/saltiny/git/uELMO/Linux/uelmo/uELMO.c	/^bool useInputFile = false;$/;"	v	typeref:typename:bool
-useSmurfTrace	/home/saltiny/git/uELMO/Linux/uelmo/uELMO.c	/^bool useSmurfTrace = false;$/;"	v	typeref:typename:bool
