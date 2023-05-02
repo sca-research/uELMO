@@ -10,7 +10,10 @@
 CORE_STATUS_SYM sym_core_current = { 0 };
 
 //NULL Symbol.
-uSymbol SYM_NULL = { 0 };
+const uSymbol SYM_NULL = { 0 };
+
+//Dictionary.
+CodeEntry *uDict = NULL;
 
 //Bind array typed Symbol.
 static inline void BindSymArray(const char *compname,
@@ -118,4 +121,69 @@ int SymCopy(SymbolicComponent dstcomp, SymbolicComponent srccomp)
     SfSetFrameSymid(dstcomp.sid_p, t);
     return 0;
 }
+
+//Encode a string into uELMO symbol.
+uSymbol SymEncode(const char *symstr)
+{
+    uSymbol sym = SYM_NULL;
+    CodeEntry *ce = NULL;
+
+    //Dictionay initialisation check.
+    if (NULL == uDict)
+        {
+            return SYM_NULL;
+        }
+
+    //Seacrh for matched Symbol string.
+    for (ce = uDict; NULL != ce; ce++)
+        {
+            if (0 == strncmp(symstr, ce->symbolname, SMURF_SYM_LEN))
+                {
+                    //Matched Symbol string.
+                    sym.symid = ce->symbolid;
+                    break;
+                }
+        }
+
+    if (NULL == ce)
+        {
+            //No Symbol matches.
+            return SYM_NULL;
+        }
+
+    return sym;
+}
+
+//Decode an uELMO symbol into string.
+const char *SymDecode(const uSymbol sym)
+{
+    const char *symstr = NULL;
+    CodeEntry *ce = NULL;
+
+    //Dictionay initialisation check.
+    if (NULL == uDict)
+        {
+            return NULL;
+        }
+
+    //Seacrh for matched Symbol ID.
+    for (ce = uDict; NULL != ce; ce++)
+        {
+            if (ce->symbolid == sym.symid)
+                {
+                    //Matched Symbol ID.
+                    symstr = ce->symbolname;
+                    break;
+                }
+        }
+
+    if (NULL == ce)
+        {
+            //No Symbol matches.
+            return NULL;
+        }
+
+    return symstr;
+}
+
 #endif

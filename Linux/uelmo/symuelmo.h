@@ -15,7 +15,7 @@ typedef struct {
 } uSymbol;
 
 //NULL Symbol.
-extern uSymbol SYM_NULL;
+extern const uSymbol SYM_NULL;
 
 //Symbolic structure for uELMO core.
 typedef struct {
@@ -78,7 +78,11 @@ typedef struct {
     SymbolicComponent Execute_instr_disp;       //Discription for the execute instruction (STRING Component has only a unique Symbol.)
 } CORE_STATUS_SYM;
 
+//Symbolic CORE_STATUS
 extern CORE_STATUS_SYM sym_core_current;
+
+//Dictionary.
+extern CodeEntry *uDict;
 
 //Initialise sym_core_current.
 int InitSymCore();
@@ -88,5 +92,12 @@ int SymAssign(SymbolicComponent component, uSymbol sym);
 
 //Copy the Symbol of a component to another.
 int SymCopy(SymbolicComponent dstcomp, SymbolicComponent srccomp);
+
+//Encode a string into uELMO symbol.
+uSymbol SymEncode(const char *symstr);
+
+//Decode an uELMO symbol into string.
+const char *SymDecode(const uSymbol);
+
 #endif
 #endif
