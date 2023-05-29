@@ -1,7 +1,7 @@
 #ifndef SYMUELMO_H
 #define SYMUELMO_H
 
-#if USE_SMURF
+//#if USE_SMURF
 
 #include "smurf/smurf.h"
 #include "smurf/symbolic.h"
@@ -49,7 +49,7 @@ typedef struct {
     SymbolicComponent glitchy_Decode_port_data[3];      //Decode the current instruction according to the previous instruction decoding style
 
     //Execute
-    SymbolicComponent Execute_Imm;      //Current Execute Immediate data
+    SymbolicComponent Execute_Imm;      //Current Execute Immediate data //TODO: to be removed
     SymbolicComponent Execute_ALU_result;       //Current ALU output
     SymbolicComponent Execute_destination_regindex;     //Execute register index: 0-15 valid, 0xff: no output
     SymbolicComponent Execute_multicycle_regindex;      //Current register index for multi-cycle execution: 0-7 valid
@@ -88,5 +88,6 @@ int SymAssign(SymbolicComponent component, uSymbol sym);
 
 //Copy the Symbol of a component to another.
 int SymCopy(SymbolicComponent dstcomp, SymbolicComponent srccomp);
-#endif
+
+//#endif
 #endif

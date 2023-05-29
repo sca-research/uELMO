@@ -6,6 +6,57 @@
 #include "Decode.h"
 #include "Fetch.h"
 #include "EmuIO.h"
+
+Instruction_t annotatedInst[3];
+int numAnnotatedInst = 0;
+int totalNumberInst = 3;
+
+void initialize_instructions(){
+    // dictionary
+    // 1 , &a
+    // 2 , a0
+    // 3 , &b
+    // 4 , b0
+    // 5 , rnd
+    // 6 , rnd ^ a0
+    //@src r0 , &a
+    //@dst r6 , a0
+    //ldrb r6, [r0, #0]
+    strcpy(annotatedInst[0].instCode, "ldrb r6, [r0, #0]");
+    annotatedInst[0].srcTag0.registerNum = 0;
+    annotatedInst[0].srcTag0.annotation.symid = 1;
+    annotatedInst[0].dstTag.registerNum = 6;
+    annotatedInst[0].dstTag.annotation.symid = 2;
+    printf("inst: %s\n", annotatedInst[0].instCode);
+    printf("srcTag0: %d\n", annotatedInst[0].srcTag0.registerNum);
+    printf("srcTag0 annotation: %d\n", annotatedInst[0].srcTag0.annotation.symid);
+    printf("dstTag0: %d\n", annotatedInst[0].dstTag.registerNum);
+    printf("dstTag0 annotation: %d\n", annotatedInst[0].dstTag.annotation.symid);
+    //@src r1 , &b
+    //@dst r3 , b0
+    //ldrb r3, [r1, #0]
+    strcpy(annotatedInst[1].instCode, "ldrb r3, [r1, #0]");
+    annotatedInst[1].srcTag0.registerNum = 1;
+    annotatedInst[1].srcTag0.annotation.symid = 3;
+    annotatedInst[1].dstTag.registerNum = 3;
+    annotatedInst[1].dstTag.annotation.symid =  4;
+    //@src r2 , rnd
+    //@src r6 , a0
+    //@dst r2 , rnd ^ a0
+    //eor r2, r6
+    strcpy(annotatedInst[2].instCode, "eor r2, r6");
+    annotatedInst[2].srcTag0.registerNum = 2;
+    annotatedInst[2].srcTag0.annotation.symid = 5;
+    annotatedInst[2].srcTag1.registerNum = 6;
+    annotatedInst[2].srcTag1.annotation.symid = 2;
+    annotatedInst[2].dstTag.registerNum = 2;
+    annotatedInst[2].dstTag.annotation.symid = 6;
+
+    fetchInst.isEmpty = 1;
+    decodeInst.isEmpty = 1;
+    executeInst.isEmpty = 1;
+}
+
 //-------------------------------------------------------------------
 //-------------------------------------------------------------------
 //-------------------------------------------------------------------
@@ -38,14 +89,39 @@ int Execute_OneInstr(int *cycle)
 
             //Execute
             wait_exe = Execute_OneCylce(wait_mem);
+            printf("OK 1\n");
+            if(decodeInst.isEmpty == 0) {
+                copyInstToFrom(&executeInst, &decodeInst);
+                executeInst.isEmpty = 0;
+                //print_instruction(decodeInst);
+            } else {
+                executeInst.isEmpty = 1;
+            }
+            printf("OK 2\n");
             if (wait_exe == false)      //Execute did not stall the pipeline
                 {
+                    if(fetchInst.isEmpty == 0) {
+                        copyInstToFrom(&decodeInst, &fetchInst);
+                        decodeInst.isEmpty = 0;
+                        //print_instruction(decodeInst);
+                    } else{
+                        decodeInst.isEmpty = 1;
+                    }
 
                     //Fetch
                     Fetch_OneCycle();
+                    printf("OK 3\n");
+                    if(numAnnotatedInst < totalNumberInst) {
+                        copyInstToFrom(&fetchInst, &(annotatedInst[numAnnotatedInst]));
+                        fetchInst.isEmpty = 0;
+                        //print_instruction(fetchInst);
+                        numAnnotatedInst += 1;
+                    } else {
+                        fetchInst.isEmpty = 1;
+                    }
                     //Decode
                     Decode_OneCycle(false);
-
+                    printf("OK 4\n");
                 }
             else
                 sprintf(core_current.Decode_instr_disp, "Decode: stall");
@@ -97,6 +173,14 @@ int reset(void)
     strcpy(core_current.Execute_instr_disp, "Execute init");
     //Fetch
     Fetch_OneCycle();
+    if(numAnnotatedInst < totalNumberInst) {
+        copyInstToFrom(&fetchInst, &(annotatedInst[numAnnotatedInst]));
+        fetchInst.isEmpty = 0;
+        //print_instruction(fetchInst);
+        numAnnotatedInst += 1;
+    } else {
+        fetchInst.isEmpty = 1;
+    }
 
     return (0);
 }
@@ -108,6 +192,7 @@ int run(void)
     int cycle = 0;
     //Intialise enviroment
     reset();
+    initialize_instructions();
     //Run each cycle
     while (1)
         {

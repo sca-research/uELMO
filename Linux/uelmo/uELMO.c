@@ -9,18 +9,19 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#ifdef USE_SMURF
+//#ifdef USE_SMURF
 #include "smurf/smurf.h"
+//#include "smurf/emulator.h"
 #include "symuelmo.h"
-#endif
+//#endif
 
 bool fvr = false;
 int N = 0;
 int N_ind = 0;
 bool ioSupported = false;
-bool useSmurfTrace = false;
-bool useInputFile = false;
-bool uSymbolEnabled = false;
+bool useSmurfTrace = true;
+bool useInputFile = true;
+bool uSymbolEnabled = true;
 
 #ifdef USE_SMURF
 SmurfIO *sio = NULL;

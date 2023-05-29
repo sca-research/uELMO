@@ -5,9 +5,10 @@
 
 #include "smurf/frame.h"
 #include "smurf/symbolic.h"
+#include <stdio.h>
 
 //Clear sym_core_current.
-CORE_STATUS_SYM sym_core_current = { 0 };
+CORE_STATUS_SYM sym_core_current; // = { 0 };
 
 //NULL Symbol.
 uSymbol SYM_NULL = { 0 };
@@ -105,7 +106,9 @@ int InitSymCore()
 //Assign a Symbol to a component.
 int SymAssign(SymbolicComponent component, uSymbol symbol)
 {
+    printf("IN SymAssign\n");
     SfSetFrameSymid(component.sid_p, symbol.symid);
+    printf("After SymAssign\n");
     return 0;
 }
 

@@ -1,6 +1,10 @@
 #include "Configure.h"
 #include "core.h"
 
+Instruction_t fetchInst;
+Instruction_t decodeInst;
+Instruction_t executeInst;
+
 CORE_STATUS core_current;
 //global flag that shows whether the current cycle is on the trace
 bool OnTrace = false;
@@ -33,6 +37,69 @@ unsigned int read_register(unsigned int reg)
         }
     //if(DEBUG_CORE) printf("0x%08X\n",data);
     return (data);
+}
+
+void copyInstToFrom(Instruction_t* toInst, Instruction_t* fromInst) {
+    strcpy(toInst->instCode, fromInst->instCode);
+    toInst->srcTag0.annotation.symid = fromInst->srcTag0.annotation.symid;
+    /*strcpy(toInst->srcTag1.annotation, fromInst->srcTag1.annotation);
+    strcpy(toInst->srcTag2.annotation, fromInst->srcTag2.annotation);
+    strcpy(toInst->dstTag.annotation, fromInst->dstTag.annotation);
+    toInst->srcTag0.registerNum = fromInst->srcTag0.registerNum;
+    toInst->srcTag1.registerNum = fromInst->srcTag1.registerNum;
+    toInst->srcTag2.registerNum = fromInst->srcTag2.registerNum;
+    toInst->dstTag.registerNum = fromInst->dstTag.registerNum;*/
+    //printf("*** toInst code: %s\n", toInst->instCode);
+    //printf("*** toInst dstTag0 value: %s\n\n", toInst->dstTag.value);
+}
+
+//Read register with result forwarding
+int sym_read_register_forward(SymbolicComponent comp, unsigned int reg)
+{
+    reg &= 0xF;
+    if ((core_current.Memory_read_targetreg_buf != 0xff)
+        && (reg == core_current.Memory_read_targetreg_buf))
+        return SymCopy(comp, sym_core_current.Memory_readbuf);
+
+    else
+    {
+        if ((core_current.Execute_destination_regindex != 0xff)
+            && (reg == core_current.Execute_destination_regindex))
+            return SymCopy(comp,sym_core_current.Execute_ALU_result);
+        else
+        {
+            return SymAssign(comp, SymGetSrcAnnotation(reg)); //sym_core_current.reg[reg];
+            // if (reg == 15)
+            //     data &= ~1;
+        }
+    }
+
+    //if(DEBUG_CORE) printf("0x%08X\n",data);
+    //return (data);
+}
+
+uSymbol SymGetSrcAnnotation(unsigned int reg)
+{
+    if (decodeInst.srcTag0.registerNum == reg)
+        return decodeInst.srcTag0.annotation;
+    if (decodeInst.srcTag1.registerNum == reg)
+        return decodeInst.srcTag1.annotation;
+    if (decodeInst.srcTag2.registerNum == reg)
+        return decodeInst.srcTag2.annotation;
+    else {
+        printf("ERROR: no match in src annotation");
+        return SYM_NULL;
+    }
+}
+
+uSymbol SymGetDstAnnotation()
+{
+    return decodeInst.dstTag.annotation;
+}
+
+uSymbol SymGetMemAddrAnnotation()
+{
+    return decodeInst.memAddrTag.annotation;
 }
 
 //Read register with result forwarding
