@@ -106,9 +106,7 @@ int InitSymCore()
 //Assign a Symbol to a component.
 int SymAssign(SymbolicComponent component, uSymbol symbol)
 {
-    printf("IN SymAssign\n");
     SfSetFrameSymid(component.sid_p, symbol.symid);
-    printf("After SymAssign\n");
     return 0;
 }
 

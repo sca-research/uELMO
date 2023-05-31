@@ -57,6 +57,13 @@ void initialize_instructions(){
     executeInst.isEmpty = 1;
 }
 
+void print_instruction(Instruction_t inst){
+    printf("inst: %s\n", inst.instCode);
+    printf("srcTag0: %d\n", inst.srcTag0.registerNum);
+    printf("dstTag: %d\n", inst.dstTag.registerNum);
+    //printf("srcTag0: %s\n", inst.srcTag0.annotation);
+}
+
 //-------------------------------------------------------------------
 //-------------------------------------------------------------------
 //-------------------------------------------------------------------
@@ -89,39 +96,45 @@ int Execute_OneInstr(int *cycle)
 
             //Execute
             wait_exe = Execute_OneCylce(wait_mem);
-            printf("OK 1\n");
+            //printf("OK 1\n");
             if(decodeInst.isEmpty == 0) {
                 copyInstToFrom(&executeInst, &decodeInst);
                 executeInst.isEmpty = 0;
-                //print_instruction(decodeInst);
+                printf("EXECUTE\n");
+                print_instruction(decodeInst);
+                printf("\n\n");
             } else {
                 executeInst.isEmpty = 1;
             }
-            printf("OK 2\n");
+            //printf("OK 2\n");
             if (wait_exe == false)      //Execute did not stall the pipeline
                 {
                     if(fetchInst.isEmpty == 0) {
                         copyInstToFrom(&decodeInst, &fetchInst);
                         decodeInst.isEmpty = 0;
-                        //print_instruction(decodeInst);
+                        printf("DECODE\n");
+                        print_instruction(decodeInst);
+                        printf("\n\n");
                     } else{
                         decodeInst.isEmpty = 1;
                     }
 
                     //Fetch
                     Fetch_OneCycle();
-                    printf("OK 3\n");
+                    //printf("OK 3\n");
                     if(numAnnotatedInst < totalNumberInst) {
                         copyInstToFrom(&fetchInst, &(annotatedInst[numAnnotatedInst]));
                         fetchInst.isEmpty = 0;
-                        //print_instruction(fetchInst);
+                        printf("FETCH\n");
+                        print_instruction(fetchInst);
+                        printf("\n\n");
                         numAnnotatedInst += 1;
                     } else {
                         fetchInst.isEmpty = 1;
                     }
                     //Decode
                     Decode_OneCycle(false);
-                    printf("OK 4\n");
+                    //printf("OK 4\n");//
                 }
             else
                 sprintf(core_current.Decode_instr_disp, "Decode: stall");

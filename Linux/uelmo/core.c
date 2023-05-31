@@ -42,13 +42,13 @@ unsigned int read_register(unsigned int reg)
 void copyInstToFrom(Instruction_t* toInst, Instruction_t* fromInst) {
     strcpy(toInst->instCode, fromInst->instCode);
     toInst->srcTag0.annotation.symid = fromInst->srcTag0.annotation.symid;
-    /*strcpy(toInst->srcTag1.annotation, fromInst->srcTag1.annotation);
-    strcpy(toInst->srcTag2.annotation, fromInst->srcTag2.annotation);
-    strcpy(toInst->dstTag.annotation, fromInst->dstTag.annotation);
+    toInst->srcTag1.annotation = fromInst->srcTag1.annotation;
+    toInst->srcTag2.annotation = fromInst->srcTag2.annotation;
+    toInst->dstTag.annotation = fromInst->dstTag.annotation;
     toInst->srcTag0.registerNum = fromInst->srcTag0.registerNum;
     toInst->srcTag1.registerNum = fromInst->srcTag1.registerNum;
     toInst->srcTag2.registerNum = fromInst->srcTag2.registerNum;
-    toInst->dstTag.registerNum = fromInst->dstTag.registerNum;*/
+    toInst->dstTag.registerNum = fromInst->dstTag.registerNum;
     //printf("*** toInst code: %s\n", toInst->instCode);
     //printf("*** toInst dstTag0 value: %s\n\n", toInst->dstTag.value);
 }
@@ -87,7 +87,10 @@ uSymbol SymGetSrcAnnotation(unsigned int reg)
     if (decodeInst.srcTag2.registerNum == reg)
         return decodeInst.srcTag2.annotation;
     else {
-        printf("ERROR: no match in src annotation");
+        printf("ERROR: no match in src annotation for reg = %d\n", reg);
+        //printf("srctag0.reg = %d\n", decodeInst.srcTag0.registerNum );
+        //printf("srctag1.reg = %d\n", decodeInst.srcTag0.registerNum );
+        //printf("srctag2.reg = %d\n", decodeInst.srcTag0.registerNum );
         return SYM_NULL;
     }
 }

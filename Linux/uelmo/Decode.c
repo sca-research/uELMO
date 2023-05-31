@@ -23,20 +23,20 @@ void Decode_OneCycle(bool prev)
     //Load glitchy decoding data: old decoding style, new data
     for (i = 0; i < 3; i++)
         {
-            printf("TEST 1\n");
+            //printf("TEST 1\n");
             if (core_current.glitchy_Decode_port_regindex[i] != 0xff) {
                 core_current.glitchy_Decode_port_data[i] =
                         read_register(core_current.glitchy_Decode_port_regindex[i]);
-                printf("TEST 2\n");
+                //printf("TEST 2\n");
                 SymCopy(sym_core_current.glitchy_Decode_port_data[i],
                         sym_core_current.reg[core_current.glitchy_Decode_port_regindex[i]]); //TODO ines: not sure
-                printf("TEST 3\n");
+                //printf("TEST 3\n");
             }
             else {
                 core_current.glitchy_Decode_port_data[i] = 0;
-                printf("TEST 4 : %d\n", sym_core_current.Decode_port_data[i]);
+                //printf("TEST 4 : %d\n", sym_core_current.Decode_port_data[i]);
                 SymAssign(sym_core_current.Decode_port_data[i], SYM_NULL);
-                printf("TEST 5\n");
+                //printf("TEST 5\n");
             }
         }
 
