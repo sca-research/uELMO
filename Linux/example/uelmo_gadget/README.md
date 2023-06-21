@@ -23,12 +23,6 @@ GADGET_NAME:
 ```
 int share_n = 2;
 int rnd_n = 1;
-
-bool sh2_out_sh3 = false;
-//if sh2_out_sh3 = true, please set sh_i and sh_j
-//    0 = share_0, 4 = share_1, 8 = share_2
-int share_i = 1;
-int share_j = 2;
 ```
 
 4) Put your code in uelmo_gadget.S in part:
@@ -46,7 +40,4 @@ int share_j = 2;
 make clean
 make
 ```
-6) From **uELMO-Smurf** directory, run:
-```
-./script.sh myfile 1000  uelmo_general_gadgets uelmo_gadget
-```
+
