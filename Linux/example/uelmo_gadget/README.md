@@ -1,4 +1,4 @@
-Author: Nima Madihon
+Author: Nima Mahdion
 
 An ISW-2 implementatoin.
 

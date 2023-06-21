@@ -1,4 +1,4 @@
-//An ISW-2 implementatoin by Nima Madihon.
+//An ISW-2 implementatoin by Nima Mahdion.
 .syntax unified
 .text
 .thumb
