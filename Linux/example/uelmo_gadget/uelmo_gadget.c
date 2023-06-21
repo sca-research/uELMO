@@ -3,7 +3,7 @@
 #include "stdbool.h"
 
 int share_n = 2;
-int rnd_n = 3;
+int rnd_n = 1;
 
 
 int main(void)
