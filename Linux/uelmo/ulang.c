@@ -1,6 +1,7 @@
 #include <stdio.h>		//DEBUG ONLY
 
 #include "smurf/smurf.h"
+#include "symuelmo.h"
 #include "uelmo.h"
 #include "ulang.h"
 
@@ -224,14 +225,30 @@ SmurfQueue *srcqueue = NULL;
 void RequestSrc(int argc, char **argv)
 {
     int reg = 0;
+    uSymbol sym = { 0 };
 
-    //Scan command arguments for parameters.
-    if (!sscanf(argv[1], "r%d", &reg))
+    //Format check.
+    if (3 != argc)
 	{
-	    printf("#Unknown parameter: %s\n", argv[1]);
+	    printf("#ERROR: Command error (src).\n");
 	    return;
 	}
-    printf("Request src: REG=%d\n", reg);
+
+    //Scan command arguments for parameters.
+    if (!sscanf(argv[1], "r%d", &reg))	//REG
+	{
+	    printf("#ERROR: Unknown parameter: %s\n", argv[1]);
+	    return;
+	}
+
+    //Encode SYMBOL
+    if (IsSymNull(sym = SymEncode(argv[2])))
+	{
+	    printf("#ERROR: Symbol encoding failed for %s\n", argv[2]);
+	    return;
+	}
+
+    printf("Request src: REG=%d, SYMBOL=%s(%d)\n", reg, argv[2], sym.symid);
 
     return;
 }
@@ -241,14 +258,30 @@ SmurfQueue *dstqueue = NULL;
 void RequestDst(int argc, char **argv)
 {
     int reg = 0;
+    uSymbol sym = { 0 };
 
-    //Scan command arguments for parameters.
-    if (!sscanf(argv[1], "r%d", &reg))
+    //Format check.
+    if (3 != argc)
 	{
-	    printf("#Unknown parameter: %s\n", argv[1]);
+	    printf("#ERROR: Command error (dst).\n");
 	    return;
 	}
-    printf("Request dst: REG=%d\n", reg);
+
+    //Scan command arguments for parameters.
+    if (!sscanf(argv[1], "r%d", &reg))	//REG
+	{
+	    printf("#ERROR: Unknown parameter: %s\n", argv[1]);
+	    return;
+	}
+
+    //Encode SYMBOL
+    if (IsSymNull(sym = SymEncode(argv[2])))
+	{
+	    printf("#ERROR: Symbol encoding failed for %s\n", argv[2]);
+	    return;
+	}
+
+    printf("Request dst: REG=%d, SYMBOL=%s(%d)\n", reg, argv[2], sym.symid);
 
     return;
 }
