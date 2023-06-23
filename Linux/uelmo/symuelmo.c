@@ -17,7 +17,7 @@ CodeEntry *uDict = NULL;
 
 //Bind array typed Symbol.
 static inline void BindSymArray(const char *compname,
-                                SymbolicComponent * symcomp, int size)
+				SymbolicComponent * symcomp, int size)
 {
     int i;
     ComponentInstance ci = { 0 };
@@ -27,9 +27,9 @@ static inline void BindSymArray(const char *compname,
 
     //Set pointers to the Symbolic fileds in the Frame.
     for (i = 0; i < size; i++)
-        {
-            symcomp[i].sid_p = ci.ci.symid;
-        }
+	{
+	    symcomp[i].sid_p = ci.ci.symid;
+	}
 
     return;
 }
@@ -65,18 +65,18 @@ int InitSymCore()
     BindSym(Fetch_valid);
     //BindSym(Decode_port_regindex);
     BindSymArray("Decode_destination_regindex",
-                 sym_core_current.Decode_port_regindex, 3);
+		 sym_core_current.Decode_port_regindex, 3);
     //BindSym(Decode_port_data);
     BindSymArray("Decode_port_data", sym_core_current.Decode_port_data, 3);
     BindSym(Decode_destination_regindex);
     BindSym(Decode_valid);
     //BindSym(glitchy_Decode_port_regindex);
     BindSymArray("glitchy_Decode_port_regindex",
-                 sym_core_current.glitchy_Decode_port_regindex, 3);
+		 sym_core_current.glitchy_Decode_port_regindex, 3);
     BindSym(Decode_destination_regindex);
     //BindSym(glitchy_Decode_port_data);
     BindSymArray("glitchy_Decode_port_data",
-                 sym_core_current.glitchy_Decode_port_data, 3);
+		 sym_core_current.glitchy_Decode_port_data, 3);
     BindSym(Execute_Imm);
     BindSym(Execute_ALU_result);
     BindSym(Execute_destination_regindex);
@@ -105,6 +105,13 @@ int InitSymCore()
     return 0;
 }
 
+//Clean resources related to SymCore.
+void CleanSymCore()
+{
+    //Nothing needs to be done.
+    return;
+}
+
 //Assign a Symbol to a component.
 int SymAssign(SymbolicComponent component, uSymbol symbol)
 {
@@ -130,26 +137,26 @@ uSymbol SymEncode(const char *symstr)
 
     //Dictionay initialisation check.
     if (NULL == uDict)
-        {
-            return SYM_NULL;
-        }
+	{
+	    return SYM_NULL;
+	}
 
     //Seacrh for matched Symbol string.
     for (ce = uDict; NULL != ce; ce++)
-        {
-            if (0 == strncmp(symstr, ce->symbolname, SMURF_SYM_LEN))
-                {
-                    //Matched Symbol string.
-                    sym.symid = ce->symbolid;
-                    break;
-                }
-        }
+	{
+	    if (0 == strncmp(symstr, ce->symbolname, SMURF_SYM_LEN))
+		{
+		    //Matched Symbol string.
+		    sym.symid = ce->symbolid;
+		    break;
+		}
+	}
 
     if (NULL == ce)
-        {
-            //No Symbol matches.
-            return SYM_NULL;
-        }
+	{
+	    //No Symbol matches.
+	    return SYM_NULL;
+	}
 
     return sym;
 }
@@ -162,26 +169,26 @@ const char *SymDecode(const uSymbol sym)
 
     //Dictionay initialisation check.
     if (NULL == uDict)
-        {
-            return NULL;
-        }
+	{
+	    return NULL;
+	}
 
     //Seacrh for matched Symbol ID.
     for (ce = uDict; NULL != ce; ce++)
-        {
-            if (ce->symbolid == sym.symid)
-                {
-                    //Matched Symbol ID.
-                    symstr = ce->symbolname;
-                    break;
-                }
-        }
+	{
+	    if (ce->symbolid == sym.symid)
+		{
+		    //Matched Symbol ID.
+		    symstr = ce->symbolname;
+		    break;
+		}
+	}
 
     if (NULL == ce)
-        {
-            //No Symbol matches.
-            return NULL;
-        }
+	{
+	    //No Symbol matches.
+	    return NULL;
+	}
 
     return symstr;
 }
