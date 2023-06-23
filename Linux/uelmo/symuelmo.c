@@ -1,4 +1,6 @@
 #if USE_SMURF
+#include <stdio.h>
+
 #include "symuelmo.h"
 
 #include "uelmo.h"
@@ -12,8 +14,24 @@ CORE_STATUS_SYM sym_core_current = { 0 };
 //NULL Symbol.
 const uSymbol SYM_NULL = { 0 };
 
+//Count of Symbols. 
+static int symidcount = 1;	//SYM_NULL existed by default.
+
 //Dictionary.
-CodeEntry *uDict = NULL;
+EncDict *uDict = NULL;
+
+//Check if ${sym} is SYM_NULL.
+int IsSymNull(uSymbol sym)
+{
+    if (sym.symid == SYM_NULL.symid)
+	{
+	    return true;
+	}
+    else
+	{
+	    return false;
+	}
+}
 
 //Bind array typed Symbol.
 static inline void BindSymArray(const char *compname,
@@ -39,6 +57,7 @@ int InitSymCore()
 {
     ComponentInstance ci = { 0 };
 
+//Bind sym_core_current to the Symbolic fields of the Frame.
 //Macro to ease binding the symbolic fields.
 #define\
     BindSym(x)\
@@ -102,13 +121,16 @@ int InitSymCore()
     BindSym(Execute_instr_disp);
 #undef BindSym
 
+    //Initialise the Encoding Dictionary.
+    uDict = NewEncDict();
+
     return 0;
 }
 
 //Clean resources related to SymCore.
 void CleanSymCore()
 {
-    //Nothing needs to be done.
+    DelEncDict(uDict);
     return;
 }
 
@@ -130,6 +152,7 @@ int SymCopy(SymbolicComponent dstcomp, SymbolicComponent srccomp)
 }
 
 //Encode a string into uELMO symbol.
+//If ${symstr} is encoded for the first time, it will be automatically added into uDict.
 uSymbol SymEncode(const char *symstr)
 {
     uSymbol sym = SYM_NULL;
@@ -141,31 +164,27 @@ uSymbol SymEncode(const char *symstr)
 	    return SYM_NULL;
 	}
 
-    //Seacrh for matched Symbol string.
-    for (ce = uDict; NULL != ce; ce++)
+    //Attempt to find the Symbol.
+    if (SMURF_SYM_NULL_ID == (sym.symid = FindSymIdByName(uDict, symstr)))
 	{
-	    if (0 == strncmp(symstr, ce->symbolname, SMURF_SYM_LEN))
-		{
-		    //Matched Symbol string.
-		    sym.symid = ce->symbolid;
-		    break;
-		}
-	}
-
-    if (NULL == ce)
-	{
-	    //No Symbol matches.
-	    return SYM_NULL;
+	    //Not found.
+	    //Construct a new CodeEntry with Symbol ID being the count of Symbols.
+	    sym.symid = symidcount++;
+	    ce = NewCodeEntry(sym.symid, symstr);
+	    //Add the Symbol into the dictionary.
+	    AddCodeEntry(uDict, ce);
 	}
 
     return sym;
 }
 
 //Decode an uELMO symbol into string.
+//Return value:
+//A string pointed into the uDict if successfull, or NULL if the Symbol ID cannot be decoded.
 const char *SymDecode(const uSymbol sym)
 {
     const char *symstr = NULL;
-    CodeEntry *ce = NULL;
+    char errormsg[SMURF_INFO_MAXLEN] = { 0 };
 
     //Dictionay initialisation check.
     if (NULL == uDict)
@@ -173,20 +192,13 @@ const char *SymDecode(const uSymbol sym)
 	    return NULL;
 	}
 
-    //Seacrh for matched Symbol ID.
-    for (ce = uDict; NULL != ce; ce++)
+    //Attempt to decode the string.
+    if (NULL == (symstr = FindSymNameById(uDict, sym.symid)))
 	{
-	    if (ce->symbolid == sym.symid)
-		{
-		    //Matched Symbol ID.
-		    symstr = ce->symbolname;
-		    break;
-		}
-	}
-
-    if (NULL == ce)
-	{
-	    //No Symbol matches.
+	    //Decode failed.
+	    snprintf(errormsg, sizeof(errormsg),
+		     "#ERROR: Symbol ID %X cannot be decoded.\n", sym.symid);
+	    INFO(errormsg);
 	    return NULL;
 	}
 

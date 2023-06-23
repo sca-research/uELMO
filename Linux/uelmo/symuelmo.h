@@ -17,6 +17,9 @@ typedef struct {
 //NULL Symbol.
 extern const uSymbol SYM_NULL;
 
+//Check if ${sym} is SYM_NULL.
+int IsSymNull(uSymbol sym);
+
 //Symbolic structure for uELMO core.
 typedef struct {
     //Registers:
@@ -82,7 +85,7 @@ typedef struct {
 extern CORE_STATUS_SYM sym_core_current;
 
 //Dictionary.
-extern CodeEntry *uDict;
+extern EncDict *uDict;
 
 //Initialise sym_core_current.
 int InitSymCore();
@@ -97,9 +100,12 @@ int SymAssign(SymbolicComponent component, uSymbol sym);
 int SymCopy(SymbolicComponent dstcomp, SymbolicComponent srccomp);
 
 //Encode a string into uELMO symbol.
+//If ${symstr} is encoded for the first time, it will be automatically added into uDict.
 uSymbol SymEncode(const char *symstr);
 
 //Decode an uELMO symbol into string.
+//Return value:
+//A string pointed into the uDict if successfull, or NULL if the Symbol ID cannot be decoded.
 const char *SymDecode(const uSymbol);
 
 #endif
