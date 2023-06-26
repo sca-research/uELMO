@@ -1,6 +1,6 @@
 TARGET=uelmo
 CFLAGS=-g -Wall -O2
-SMURFFLAGS=-lsmurf -lsmurfemulator -DUSE_SMURF
+SMURFFLAGS=-lsmurf -lsmurfemulator -lsmurfscript -DUSE_SMURF
 SMURFLPATHFLAGS=-L${HOME}/.local/lib/ -I${HOME}/.local/header/
 
 
