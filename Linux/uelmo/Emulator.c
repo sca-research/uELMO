@@ -8,6 +8,7 @@
 #include "EmuIO.h"
 
 #include "ulang.h"
+#include "ulangcmd.h"
 #include "uelmo.h"
 
 //-------------------------------------------------------------------
@@ -30,6 +31,10 @@ int Execute_OneInstr(int *cycle)
             Clock(wait_exe);
             //Memory run one cycle: 
             //read address and output data to bus
+            if (OnTrace)
+            {
+                ResolveSrc();
+            }
             wait_mem = Memory_OneCycle();
             if (core_current.core_valid == false)
                 return 1;
@@ -46,6 +51,10 @@ int Execute_OneInstr(int *cycle)
                 }
 
             //Execute
+            if (OnTrace)
+            {
+                ResolveDst();
+            }
             wait_exe = Execute_OneCylce(wait_mem);
             if (wait_exe == false)      //Execute did not stall the pipeline
                 {
