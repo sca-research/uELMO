@@ -226,6 +226,7 @@ void RequestSrc(int argc, char **argv)
 {
     int reg = 0;
     uSymbol sym = { 0 };
+    struct srcarg *arg = NULL;
 
     //Format check.
     if (3 != argc)
@@ -248,7 +249,14 @@ void RequestSrc(int argc, char **argv)
 	    return;
 	}
 
+    //DBG
     printf("Request src: REG=%d, SYMBOL=%s(%d)\n", reg, argv[2], sym.symid);
+
+    //Push the src arguments into src quque.
+    arg = (struct srcarg *)Malloc(sizeof(struct srcarg));
+    arg->reg = reg;
+    arg->sym = sym;
+    SqPush(srcqueue, arg);
 
     return;
 }
@@ -259,6 +267,7 @@ void RequestDst(int argc, char **argv)
 {
     int reg = 0;
     uSymbol sym = { 0 };
+    struct dstarg *arg = NULL;
 
     //Format check.
     if (3 != argc)
@@ -281,7 +290,14 @@ void RequestDst(int argc, char **argv)
 	    return;
 	}
 
+    //DBG
     printf("Request dst: REG=%d, SYMBOL=%s(%d)\n", reg, argv[2], sym.symid);
+
+    //Push the dst arguments into dst quque.
+    arg = (struct dstarg *)Malloc(sizeof(struct dstarg));
+    arg->reg = reg;
+    arg->sym = sym;
+    SqPush(dstqueue, arg);
 
     return;
 }

@@ -4,6 +4,7 @@
 #ifdef USE_SMURF
 
 #include "smurf/smurfscript.h"
+#include "symuelmo.h"
 
 #define ULANG_NOTIFIER (("@@$ "))
 #define ULANG_MAX_ARGC ((16))
@@ -45,7 +46,7 @@ void CleanUlangCmd();
 extern SmurfQueue *srcqueue;
 struct srcarg {
     int reg;
-    int sym;
+    uSymbol sym;
 };
 void RequestSrc(int argc, char **argv);
 
@@ -53,7 +54,7 @@ void RequestSrc(int argc, char **argv);
 extern SmurfQueue *dstqueue;
 struct dstarg {
     int reg;
-    int sym;
+    uSymbol sym;
 };
 void RequestDst(int argc, char **argv);
 #endif

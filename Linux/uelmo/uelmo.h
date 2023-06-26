@@ -14,6 +14,8 @@ extern SmurfIO *sio;
 extern char *smftracepath;
 extern char *siopath;
 extern Smurf *smurf;
+extern int cyclecount;
+extern const char *scriptpath;
 #endif
 
 extern uint32_t frameno;

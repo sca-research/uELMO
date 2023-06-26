@@ -6,6 +6,10 @@
 #include "Decode.h"
 #include "Fetch.h"
 #include "EmuIO.h"
+
+#include "ulang.h"
+#include "uelmo.h"
+
 //-------------------------------------------------------------------
 //-------------------------------------------------------------------
 //-------------------------------------------------------------------
@@ -16,6 +20,10 @@ int Execute_OneInstr(int *cycle)
     bool wait_mem = false;      //Memory cycle requires extra cycle
     do
         {
+            if( OnTrace)
+            {
+                ReadNextCmdBlock();
+            }
             if (DEBUG_CORE)
                 printf("Cycle=%d\n", *cycle);
             //Clock+1; update the registers with new values: i.e. pipeline registers, reg[16] and cpsr
@@ -33,6 +41,7 @@ int Execute_OneInstr(int *cycle)
                     //Write out current cycle to Frame
                     Write_Frame();
                     (*cycle)++;
+                    cyclecount++;
                     continue;
                 }
 
@@ -53,6 +62,7 @@ int Execute_OneInstr(int *cycle)
             //Write out current cycle to Frame
             Write_Frame();
             (*cycle)++;
+            cyclecount++;
         }
     while (wait_exe);
     return 0;

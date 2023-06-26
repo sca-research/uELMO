@@ -12,6 +12,7 @@
 #ifdef USE_SMURF
 #include "smurf/smurf.h"
 #include "symuelmo.h"
+#include "ulang.h"
 #endif
 
 bool fvr = false;
@@ -20,16 +21,20 @@ int N_ind = 0;
 bool ioSupported = false;
 bool useSmurfTrace = false;
 bool useInputFile = false;
-bool uSymbolEnabled = false;
+//bool uSymbolEnabled = false;
+bool uSymbolEnabled = true; //DBG
 
 #ifdef USE_SMURF
 SmurfIO *sio = NULL;
 char *smftracepath = NULL;
 char *siopath = NULL;
 Smurf *smurf = NULL;
+//const char * scriptpath = NULL;
+const char * scriptpath = "/tmp/isw2.set"; //DBG
 #endif
 
 uint32_t frameno = 0;
+int cyclecount = 0;
 
 //Print help message.
 void PrintHelp()
@@ -146,6 +151,7 @@ static void Init_Smurf()
     if (uSymbolEnabled)
         {
             InitSymCore();
+            InitScript(scriptpath);
         }
 
     return;
@@ -154,6 +160,12 @@ static void Init_Smurf()
 //Clean Smurf data structures.
 static void CleanSmurf()
 {
+    if (uSymbolEnabled)
+    {
+        CleanScript();
+        CleanSymCore();
+    }
+
     if (ioSupported)
         {
             SioClose(sio);
@@ -162,6 +174,7 @@ static void CleanSmurf()
         {
             FreeSmurf(smurf);
         }
+
     return;
 }
 #endif
@@ -271,6 +284,8 @@ int main(int argc, char *argv[])
     for (N_ind = 0; N_ind < N; N_ind++)
         {
             frameno = 0;        //Reset Frame counter.
+            cyclecount = 0;
+
             if (N_ind % 100 == 0)
                 printf("########## TRACE %d\n", N_ind);
             run();              //run one trace
