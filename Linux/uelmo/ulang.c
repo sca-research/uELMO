@@ -133,8 +133,8 @@ void UlangSed(int linenumber, const char *line, void *arg)
 	{
 	    //Process the command.
 	    //DBG
-	    printf("%d(%d) - %d\t: %s\n", cyclecount, frameno, linenumber,
-		   line);
+	    printf("[%d(%d)] Command(L%d)\t: %s\n", cyclecount, frameno,
+		   linenumber, line);
 
 	    //Skip the first ULANG notifier.
 	    nextarg = (char *)GetNextArg(line, &arglen);
@@ -205,7 +205,8 @@ void UlangCbManager(const char *op, int argc, char **argv)
     return;
 }
 
-//ULANG commands.
+//ULANG commands implementation.
+//Initialisation and descrution of all commands.
 int InitUlangCmd()
 {
     srcqueue = NewSmurfQueue();
@@ -221,12 +222,14 @@ void CleanUlangCmd()
 }
 
 //Handler: src REG SYMBOL
-SmurfQueue *srcqueue = NULL;
+SmurfQueue *srcqueue = NULL;	//Initialised in InitUlangCmd().
+
+//Send src requests to src queue.
 void RequestSrc(int argc, char **argv)
 {
     int reg = 0;
     uSymbol sym = { 0 };
-    struct srcarg *arg = NULL;
+    struct srcArg *arg = NULL;
 
     //Format check.
     if (3 != argc)
@@ -250,10 +253,11 @@ void RequestSrc(int argc, char **argv)
 	}
 
     //DBG
-    printf("Request src: REG=%d, SYMBOL=%s(%d)\n", reg, argv[2], sym.symid);
+    printf("[%d(%d)] Request src: REG=%d, SYMBOL=%s(%d)\n", cyclecount, frameno,
+	   reg, argv[2], sym.symid);
 
     //Push the src arguments into src quque.
-    arg = (struct srcarg *)Malloc(sizeof(struct srcarg));
+    arg = (struct srcArg *)Malloc(sizeof(struct srcArg));
     arg->reg = reg;
     arg->sym = sym;
     SqPush(srcqueue, arg);
@@ -261,13 +265,35 @@ void RequestSrc(int argc, char **argv)
     return;
 }
 
-//Handler: src REG SYMBOL
-SmurfQueue *dstqueue = NULL;
+//Resolve all src requests.
+int ResolveSrc()
+{
+    struct srcArg *sarg = NULL;
+
+    //Pull all existing requests.
+    while (NULL != (sarg = SqPop(srcqueue)))
+	{
+	    //Tag a component.
+	    //DBG
+	    printf("[%d(%d)] src tagged: REG=%d, SYMBOL=%d\n",
+		   cyclecount, frameno, sarg->reg, sarg->sym.symid);
+
+	    //Free the arguments.
+	    Free(sarg);
+	}
+
+    return 0;
+}
+
+//Handler: dst REG SYMBOL
+SmurfQueue *dstqueue = NULL;	//Initialise in InitUlangCmd().
+
+//Send dst requests to dst queue.
 void RequestDst(int argc, char **argv)
 {
     int reg = 0;
     uSymbol sym = { 0 };
-    struct dstarg *arg = NULL;
+    struct dstArg *arg = NULL;
 
     //Format check.
     if (3 != argc)
@@ -291,13 +317,34 @@ void RequestDst(int argc, char **argv)
 	}
 
     //DBG
-    printf("Request dst: REG=%d, SYMBOL=%s(%d)\n", reg, argv[2], sym.symid);
+    printf("[%d(%d)] Request dst: REG=%d, SYMBOL=%s(%d)\n", cyclecount, frameno,
+	   reg, argv[2], sym.symid);
 
     //Push the dst arguments into dst quque.
-    arg = (struct dstarg *)Malloc(sizeof(struct dstarg));
+    arg = (struct dstArg *)Malloc(sizeof(struct dstArg));
     arg->reg = reg;
     arg->sym = sym;
     SqPush(dstqueue, arg);
 
     return;
+}
+
+//Resolve all dst requests.
+int ResolveDst()
+{
+    struct dstArg *darg = NULL;
+
+    //Pull all existing requests.
+    while (NULL != (darg = SqPop(dstqueue)))
+	{
+	    //Tag a component.
+	    //DBG
+	    printf("[%d(%d)] dst tagged: REG=%d, SYMBOL=%d\n",
+		   cyclecount, frameno, darg->reg, darg->sym.symid);
+
+	    //Free the arguments.
+	    Free(darg);
+	}
+
+    return 0;
 }
