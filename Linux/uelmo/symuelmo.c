@@ -46,7 +46,7 @@ static inline void BindSymArray(const char *compname,
     //Set pointers to the Symbolic fileds in the Frame.
     for (i = 0; i < size; i++)
 	{
-	    symcomp[i].sid_p = ci.ci.symid;
+	    symcomp[i].sid_p = ci.ci.symid + i;
 	}
 
     return;
