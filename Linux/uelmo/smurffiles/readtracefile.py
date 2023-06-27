@@ -3,7 +3,7 @@ import sys
 import smurf
 
 TESTCORE = "uelmo.json"
-TESTTRACE = "/tmp/smuelmo.test"
+TESTTRACE = "/tmp/isw2.et"
 
 if len(sys.argv) >= 1:
     TESTTRACE = sys.argv[1]
@@ -12,7 +12,8 @@ if len(sys.argv) >= 1:
 def PrintComponent(comp):
     print("|{:<12s}|{:<8s}|{:02d}| =".format(
         comp.name, comp.type, comp.len, comp.val), end='')
-    for i in range(comp.Size()):
+
+    for i in range(len(comp.raw)):
         print(" {:02X}".format(comp.raw[i]), end='')
 
     if comp.type != 'OCTET':
@@ -28,7 +29,7 @@ def PrintComponent(comp):
                 pass
             pass
         elif comp.type == 'STRING':
-            print("{:s}".format(comp.val.strip("\0")), end='')
+            print("{:s}".format(comp.val), end='')
             pass
         elif comp.type in {'INT16', 'UINT16', 'INT32', 'UINT32'}:
             for i in range(comp.len):
@@ -38,6 +39,8 @@ def PrintComponent(comp):
         else:
             raise("Unknown Component type")
         print(')', end='')
+
+    print(" [Symbol =", comp.symid, end=']')
 
     print('')
     return
@@ -49,7 +52,7 @@ st.Open(TESTTRACE)
 count = 0
 while True:
     frame = st.NextFrame()
-    if not frame:
+    if frame is None:
         break
     print("======= FRAME {:02} =======".format(count))
     for i in frame.components:
