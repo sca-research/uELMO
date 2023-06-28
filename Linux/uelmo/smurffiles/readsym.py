@@ -2,22 +2,53 @@
 import sys
 import smurf
 
-TESTCORE = "uelmo.json"
-TESTTRACE = "/tmp/isw2.et"
+UELMOCORE = "uelmo.json"
+TESTTRACE = None
+usedict = False
 
-if len(sys.argv) >= 1:
-    TESTTRACE = sys.argv[1]
+if len(sys.argv) < 2:
+    print("Usage: python3 readsym.py TRACE_FILE [DICTIONARY]")
+    exit()
+    pass
+
+# Check if a dictionary file is provided.
+if len(sys.argv) >= 3:
+    usedict = True
+    pass
+
+# Target trace.
+TESTTRACE = sys.argv[1]
+
+# Read dictionary
+if usedict:
+    sdict = smurf.EncodeDict()
+    sdict.Import("../dict.sdc")
+    pass
+
+# Format control for Component printing.
 
 
 def PrintComponent(comp):
+    global sdict, usedict
     # Component info.
     print("{:^8s}: [".format(comp.name), end='')
 
     # Symbolic info.
     for i in range(len(comp.symid)):
-        print("{:02d} ".format(comp.symid[i]), end='')
-        #print("{:>2d}:{:02d} ".format(i, comp.symid[i]), end='')
-        pass
+        if usedict:
+            # Options only available with a EncDict.
+            # Print decoded Symbol.
+            #print("{:s} ".format(sdict[comp.symid[i]]), end='')
+
+            # Print Symbols with their IDs.
+            print("{:d}:{:s}({:02d}) ".format(
+                i, sdict[comp.symid[i]], comp.symid[i]), end='')
+            pass
+
+        else:
+            # Print the encoded Symbol ID.
+            print("{:02d} ".format(comp.symid[i]), end='')
+            pass
 
     # Remove last space, then newline.
     print("\b]")
@@ -25,7 +56,7 @@ def PrintComponent(comp):
     return
 
 
-core = smurf.Core.Load(TESTCORE)
+core = smurf.Core.Load(UELMOCORE)
 st = smurf.Trace(core)
 st.Open(TESTTRACE)
 count = 0
