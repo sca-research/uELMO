@@ -30,7 +30,7 @@ char *smftracepath = NULL;
 char *siopath = NULL;
 Smurf *smurf = NULL;
 //const char * scriptpath = NULL;
-const char * scriptpath = "/tmp/isw2.set"; //DBG
+const char * scriptpath = "../example/uelmo_gadget/isw2.set"; //DBG
 #endif
 
 uint32_t frameno = 0;
