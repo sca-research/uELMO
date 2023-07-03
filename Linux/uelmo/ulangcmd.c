@@ -20,7 +20,14 @@ void CleanUlangCmd()
     return;
 }
 
-//Handler: src REG SYMBOL
+//Command: 
+//  src
+//Format: 
+//  src REG SYMBOL
+//Description:
+//  Tag ${REG} with ${SYMBOL} when an instruction is in Decode.
+//Example:
+//  src r0 Key0
 SmurfQueue *srcqueue = NULL;	//Initialised in InitUlangCmd().
 
 //Send src requests to src queue.
@@ -77,6 +84,9 @@ int ResolveSrc()
 	    printf("[%d(%d)] src tagged: REG=%d, SYMBOL=%d\n",
 		   cyclecount, frameno, sarg->reg, sarg->sym.symid);
 
+	    //Assign sym to reg.
+	    SymAssign(sym_core_current.reg[sarg->reg], sarg->sym);
+
 	    //Free the arguments.
 	    Free(sarg);
 	}
@@ -84,7 +94,14 @@ int ResolveSrc()
     return 0;
 }
 
-//Handler: dst REG SYMBOL
+//Command: 
+//  dst
+//Format: 
+//  dst REG SYMBOL
+//Description:
+//  Tag ${REG} with ${SYMBOL} when an instruction is in Execute.
+//Example:
+//  dst r0 Key0
 SmurfQueue *dstqueue = NULL;	//Initialise in InitUlangCmd().
 
 //Send dst requests to dst queue.
@@ -140,6 +157,9 @@ int ResolveDst()
 	    //DBG
 	    printf("[%d(%d)] dst tagged: REG=%d, SYMBOL=%d\n",
 		   cyclecount, frameno, darg->reg, darg->sym.symid);
+
+	    //Assign sym to reg.
+	    SymAssign(sym_core_current.reg[darg->reg], darg->sym);
 
 	    //Free the arguments.
 	    Free(darg);
