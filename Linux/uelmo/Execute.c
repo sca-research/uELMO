@@ -1769,7 +1769,7 @@ bool Execute_OneCylce(bool wait_mem)
             rd_ind = core_current.Execute_destination_regindex;
             if (DEBUG_CORE)
                 printf("negs r%u,r%u\n", rd_ind, rb_ind);
-            sprintf(core_current.Execute_instr_disp, "Execute: negs r%u,r%u\n",
+            sprintf(core_current.Execute_instr_disp, "Execute: negs r%u,r%u",
                     rd_ind, rb_ind);
             //Functional
             rc = 0 - rb;
