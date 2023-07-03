@@ -130,6 +130,10 @@ int InitSymCore()
 //Clean resources related to SymCore.
 void CleanSymCore()
 {
+    //Export Dictionary.
+    ExportEncDict(uDict, "./dict.sdc");
+
+    //Free resources.
     DelEncDict(uDict);
     return;
 }
