@@ -18,13 +18,14 @@ int InitScript(const char *scriptpath)
     //NULL check.
     if (NULL == scriptpath)
 	{
-	    INFO("");
+	    INFO("#No script file specified.\n");
 	    return -1;
 	}
 
     //Load in a script.
     if (NULL == (script = LoadScript(scriptpath)))
 	{
+	    perror("#Cannot open script file:");
 	    return -1;
 	}
 
