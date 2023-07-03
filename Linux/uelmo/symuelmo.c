@@ -7,6 +7,7 @@
 
 #include "smurf/frame.h"
 #include "smurf/symbolic.h"
+#include "smurf/version.h"
 
 //Clear sym_core_current.
 CORE_STATUS_SYM sym_core_current = { 0 };
@@ -56,6 +57,14 @@ static inline void BindSymArray(const char *compname,
 int InitSymCore()
 {
     ComponentInstance ci = { 0 };
+
+    //Check Core Version.
+    if (V2 > smurf->core->versionid)
+	{
+	    printf("Symbolic feature requires Core Version >= 2.\n");
+	    exit(-1);
+	    return -1;
+	}
 
 //Bind sym_core_current to the Symbolic fields of the Frame.
 //Macro to ease binding the symbolic fields.
