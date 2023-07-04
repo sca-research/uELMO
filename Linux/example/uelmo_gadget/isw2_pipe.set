@@ -4,50 +4,53 @@ E:mov r8,r8
 
 F:idle
 D:ldrb r6,[r0,#0x0]
+@@$ src r0 &a
 E:mov r8,r8
 
 F:idle
 D:ldrb r5,[r1,#0x0]
+@@$ src r1 &b
 E:ldrb r6,[r0,#0x0]
-@@$ src r0 &a
 @@$ dst r6 a0 
 
 F:load [0x20001FC8]=0xC0
 D:ldrb r3,[r0,#0x4]
+@@$ src r0 &a
 E:ldrb r5,[r1,#0x0]
-@@$ src r1 &b
 @@$ dst r5 b0 
 
 F:load [0x20001FC0]=0xD0
 D:ldrb r7,[r1,#0x4]
+@@$ src r1 &b
 E:ldrb r3,[r0,#0x4]
-@@$ src r0 &a
 @@$ dst r3 a1 
 
 F:load [0x20001FCC]=0x32
 D:ldrb r2,[r2,#0x0]
+@@$ src r2 rnd
 E:ldrb r7,[r1,#0x4]
-@@$ src r1 &b
 @@$ dst r7 b1 
 
 F:load [0x20001FC4]=0xF3
 D:ldrb r1,[r4,r5]
+@@$ src r4 &table
+@@$ src r5 b0
+
 E:ldrb r2,[r2,#0x0]
-@@$ src r2 rnd
 @@$ dst r2 rnd0
 
 F:load [0x20001FB0]=0xFB
 D:ldrb r0,[r4,r6]
-E:ldrb r1,[r4,r5]
 @@$ src r4 &table
-@@$ src r5 b0
+@@$ src r6 a0
+E:ldrb r1,[r4,r5]
 @@$ dst r1 logb0
 
 F:load [0xE00000D4]=0x37
 D:adds r0,r0,r1
+@@$ src r0 loga0
+@@$ src r1 logb0
 E:ldrb r0,[r4,r6]
-@@$ src r4 &table
-@@$ src r6 a0
 @@$ dst r0 loga0
 
 F:load [0xE00000C4]=0xAA
@@ -56,29 +59,27 @@ E:stall by LDR
 
 F:idle
 D:mov r1,r11
+@@$ src r11 const
 E:adds r0,r0,r1
-@@$ src r0 loga0
-@@$ src r1 logb0
 @@$ dst r0 s
 
 F:idle
 D:adds r0,r0,r1
+@@$ src r0 s
+@@$ src r1 const
 E:mov r1,r11
-@@$ src r11 const
 @@$ dst r1 const
 
 F:idle
 D:ldrb r1,[r4,r0]
+@@$ src r4 &table
+@@$ src r0 s+const
 E:adds r0,r0,r1
-@@$ src r0 s
-@@$ src r1 const
 @@$ dst r0 s+const
 
 F:idle
 D:negs r0,r6
 E:ldrb r1,[r4,r0]
-@@$ src r4 &table
-@@$ src r0 s+const
 @@$ dst r0 a0b0
 
 F:load [0xED]=0x42

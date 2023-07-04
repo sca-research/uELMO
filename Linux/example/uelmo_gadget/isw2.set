@@ -1,56 +1,56 @@
 mov r8,r8
 
 mov r8,r8
+@@$ src r0 &a
 
 ldrb r6,[r0,#0x0]
-@@$ src r0 &a
 @@$ dst r6 a0 
+@@$ src r1 &b
 
 ldrb r5,[r1,#0x0]
-@@$ src r1 &b
 @@$ dst r5 b0 
+@@$ src r0 &a
 
 ldrb r3,[r0,#0x4]
-@@$ src r0 &a
 @@$ dst r3 a1 
+@@$ src r1 &b
 
 ldrb r7,[r1,#0x4]
-@@$ src r1 &b
 @@$ dst r7 b1 
+@@$ src r2 rnd
 
 ldrb r2,[r2,#0x0]
-@@$ src r2 rnd
 @@$ dst r2 rnd0
-
-ldrb r1,[r4,r5]
 @@$ src r4 &table
 @@$ src r5 b0
-@@$ dst r1 logb0
 
-ldrb r0,[r4,r6]
+ldrb r1,[r4,r5]
+@@$ dst r1 logb0
 @@$ src r4 &table
 @@$ src r6 a0
+
+ldrb r0,[r4,r6]
 @@$ dst r0 loga0
 
 stall by LDR
-
-adds r0,r0,r1
 @@$ src r0 loga0
 @@$ src r1 logb0
-@@$ dst r0 s
-
-mov r1,r11
-@@$ src r11 const
-@@$ dst r1 const
 
 adds r0,r0,r1
+@@$ dst r0 s
+@@$ src r11 const
+
+mov r1,r11
+@@$ dst r1 const
 @@$ src r0 s
 @@$ src r1 const
-@@$ dst r0 s+const
 
-ldrb r1,[r4,r0]
+adds r0,r0,r1
+@@$ dst r0 s+const
 @@$ src r4 &table
 @@$ src r0 s+const
+
+ldrb r1,[r4,r0]
 @@$ dst r0 a0b0
 
 stall by LDR
