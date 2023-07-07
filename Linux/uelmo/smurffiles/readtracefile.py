@@ -4,17 +4,27 @@ import smurf
 
 TESTCORE = "uelmo.json"
 TESTTRACE = "/tmp/isw2.et"
+VERBOSE = False
 
 if len(sys.argv) >= 1:
     TESTTRACE = sys.argv[1]
+    pass
+
+# Verbose flag
+if '-v' in sys.argv:
+    VERBOSE = True
+    pass
 
 
 def PrintComponent(comp):
-    print("|{:<12s}|{:<8s}|{:02d}| =".format(
+    print("|{:<30s}|{:<8s}|{:3d}| =".format(
         comp.name, comp.type, comp.len, comp.val), end='')
 
-    for i in range(len(comp.raw)):
-        print(" {:02X}".format(comp.raw[i]), end='')
+    # Skip raw bytes output for non OCTET components.
+    if VERBOSE or comp.type == 'OCTET':
+        for i in range(len(comp.raw)):
+            print(" {:02X}".format(comp.raw[i]), end='')
+        pass
 
     if comp.type != 'OCTET':
         print(' (', end='')
@@ -40,7 +50,7 @@ def PrintComponent(comp):
             raise("Unknown Component type")
         print(')', end='')
 
-    print(" [Symbol =", comp.symid, end=']')
+    print("\t|| ", comp.symid, end='')
 
     print('')
     return
