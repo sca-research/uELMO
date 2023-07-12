@@ -10,7 +10,7 @@
 #include "smurf/version.h"
 
 //Clear sym_core_current.
-CORE_STATUS_SYM sym_core_current; // = { 0 };
+CORE_STATUS_SYM sym_core_current;	// = { 0 };
 
 //NULL Symbol.
 const uSymbol SYM_NULL = { 0 };
