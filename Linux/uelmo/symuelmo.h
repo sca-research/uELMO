@@ -100,7 +100,7 @@ int SymAssign(SymbolicComponent component, uSymbol sym);
 int SymCopy(SymbolicComponent dstcomp, SymbolicComponent srccomp);
 
 //Clear the Symbol (= reset it to NULL) of ${comp}.
-itn SymClear(SymbolicComponent component);
+int SymClear(SymbolicComponent component);
 
 //Encode a string into uELMO symbol.
 //If ${symstr} is encoded for the first time, it will be automatically added into uDict.
