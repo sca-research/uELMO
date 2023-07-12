@@ -22,7 +22,7 @@ bool ioSupported = false;
 bool useSmurfTrace = false;
 bool useInputFile = false;
 //bool uSymbolEnabled = false;
-bool uSymbolEnabled = true; //DBG
+bool uSymbolEnabled = true;	//DBG
 
 #ifdef USE_SMURF
 SmurfIO *sio = NULL;
@@ -30,7 +30,7 @@ char *smftracepath = NULL;
 char *siopath = NULL;
 Smurf *smurf = NULL;
 //const char * scriptpath = NULL;
-const char * scriptpath = "../example/uelmo_gadget/isw2.set"; //DBG
+const char *scriptpath = "../example/uelmo_gadget/isw2.set";	//DBG
 #endif
 
 uint32_t frameno = 0;
@@ -52,9 +52,9 @@ void PrintHelp()
 #ifdef USE_SMURF
     printf("Smurf Extensions:\n");
     printf
-        ("\t--io ${IFPATH}: Enable IO support at the path given by ${IFPATH}.\n");
+	("\t--io ${IFPATH}: Enable IO support at the path given by ${IFPATH}.\n");
     printf
-        ("\t--st ${SMURF_TRACE_PATH}: Smurf trace output at ${SMURF_TRACE_PATH}.\n");
+	("\t--st ${SMURF_TRACE_PATH}: Smurf trace output at ${SMURF_TRACE_PATH}.\n");
 #endif
     return;
 }
@@ -68,12 +68,12 @@ void PrintCoreInfo(SmurfCore * core)
 
     printf("Core version: %s\n", core->version);
     for (i = 0; i < core->ncomponents; i++)
-        {
-            scc = core->components[i];
-            printf("Component [%02d]: %s\n", i, scc->name);
-            printf("\t Type: %s\n", SccGetTypeStr(scc->type));
-            printf("\t Length: %lu\n", scc->len);
-        }
+	{
+	    scc = core->components[i];
+	    printf("Component [%02d]: %s\n", i, scc->name);
+	    printf("\t Type: %s\n", SccGetTypeStr(scc->type));
+	    printf("\t Length: %lu\n", scc->len);
+	}
 
     return;
 }
@@ -82,77 +82,77 @@ void PrintCoreInfo(SmurfCore * core)
 static void Init_Smurf()
 {
     if (useSmurfTrace)
-        {
-            smurf = InitSmurf(ELMO_CORE, smftracepath, SMURF_TRACE_MODE_CREATE);
-            SmurfBind(smurf, "TraceNo", &N_ind);
-            SmurfBind(smurf, "FrameNo", &frameno);
+	{
+	    smurf = InitSmurf(ELMO_CORE, smftracepath, SMURF_TRACE_MODE_CREATE);
+	    SmurfBind(smurf, "TraceNo", &N_ind);
+	    SmurfBind(smurf, "FrameNo", &frameno);
 
-            //Bind core components.
+	    //Bind core components.
 #define Bind(x) SmurfBind(smurf, #x, &core_current.x)
-            Bind(core_valid);
-            Bind(reg);
-            Bind(cpsr);
-            Bind(F2D_instrreg);
-            Bind(D2E_reg1);
-            Bind(D2E_reg2);
-            Bind(D2E_instrreg);
-            Bind(cpsr_valid);
-            Bind(cpsr_data);
-            Bind(D2E_reg1_valid);
-            Bind(D2E_reg2_valid);
-            Bind(D2E_reg1_data);
-            Bind(D2E_reg2_data);
-            Bind(Fetch_instruction_new);
-            Bind(Fetch_valid);
-            Bind(Decode_port_regindex);
-            Bind(Decode_port_data);
-            Bind(Decode_destination_regindex);
-            Bind(Decode_valid);
-            Bind(glitchy_Decode_port_regindex);
-            Bind(glitchy_Decode_port_data);
-            Bind(Execute_Imm);
-            Bind(Execute_ALU_result);
-            Bind(Execute_destination_regindex);
-            Bind(Execute_multicycle_regindex);
-            Bind(Execute_valid);
-            Bind(Read_valid);
-            Bind(Read_type);
-            Bind(Write_valid);
-            Bind(Write_type);
-            Bind(SignExtend_byte_valid);
-            Bind(SignExtend_halfbyte_valid);
-            Bind(Memory_read_targetreg);
-            Bind(Memory_addr);
-            Bind(Memory_data);
-            Bind(Write_valid_delayed);
-            Bind(Memory_writebuf_delayed);
-            Bind(Memory_writebuf);
-            Bind(Memory_readbuf);
-            Bind(Read_reg_update);
-            Bind(Memory_read_targetreg_buf);
-            Bind(Memory_instr_disp);
-            Bind(Decode_instr_disp);
-            Bind(Execute_instr_disp);
+	    Bind(core_valid);
+	    Bind(reg);
+	    Bind(cpsr);
+	    Bind(F2D_instrreg);
+	    Bind(D2E_reg1);
+	    Bind(D2E_reg2);
+	    Bind(D2E_instrreg);
+	    Bind(cpsr_valid);
+	    Bind(cpsr_data);
+	    Bind(D2E_reg1_valid);
+	    Bind(D2E_reg2_valid);
+	    Bind(D2E_reg1_data);
+	    Bind(D2E_reg2_data);
+	    Bind(Fetch_instruction_new);
+	    Bind(Fetch_valid);
+	    Bind(Decode_port_regindex);
+	    Bind(Decode_port_data);
+	    Bind(Decode_destination_regindex);
+	    Bind(Decode_valid);
+	    Bind(glitchy_Decode_port_regindex);
+	    Bind(glitchy_Decode_port_data);
+	    Bind(Execute_Imm);
+	    Bind(Execute_ALU_result);
+	    Bind(Execute_destination_regindex);
+	    Bind(Execute_multicycle_regindex);
+	    Bind(Execute_valid);
+	    Bind(Read_valid);
+	    Bind(Read_type);
+	    Bind(Write_valid);
+	    Bind(Write_type);
+	    Bind(SignExtend_byte_valid);
+	    Bind(SignExtend_halfbyte_valid);
+	    Bind(Memory_read_targetreg);
+	    Bind(Memory_addr);
+	    Bind(Memory_data);
+	    Bind(Write_valid_delayed);
+	    Bind(Memory_writebuf_delayed);
+	    Bind(Memory_writebuf);
+	    Bind(Memory_readbuf);
+	    Bind(Read_reg_update);
+	    Bind(Memory_read_targetreg_buf);
+	    Bind(Memory_instr_disp);
+	    Bind(Decode_instr_disp);
+	    Bind(Execute_instr_disp);
 #undef Bind
-        }
+	}
 
     //Smurf IO init.
     if (ioSupported)
-        {
-            sio = SioOpen(siopath);
-            INFO("#Waiting for connection...\n");
-            SioWaitConn(sio);
-        }
+	{
+	    sio = SioOpen(siopath);
+	    INFO("#Waiting for connection...\n");
+	    SioWaitConn(sio);
+	}
     else
-        {
-            sio = NULL;
-        }
+	{
+	    sio = NULL;
+	}
 
     if (uSymbolEnabled)
-        {
-            InitSymCore();
-            InitScript(scriptpath);
-        }
+	{
+	    InitSymCore();
+	    InitScript(scriptpath);
+	}
 
     return;
 }
@@ -161,19 +161,19 @@ static void Init_Smurf()
 static void CleanSmurf()
 {
     if (uSymbolEnabled)
-    {
-        CleanScript();
-        CleanSymCore();
-    }
+	{
+	    CleanScript();
+	    CleanSymCore();
+	}
 
     if (ioSupported)
-        {
-            SioClose(sio);
-        }
+	{
+	    SioClose(sio);
+	}
     if (useSmurfTrace)
-        {
-            FreeSmurf(smurf);
-        }
+	{
+	    FreeSmurf(smurf);
+	}
 
     return;
 }
@@ -184,16 +184,16 @@ void Read_Binary(char *filename)
 {
     FILE *fp = fopen(filename, "rb");
     if (fp == NULL)
-        {
-            printf("Error opening file [%s]\n", filename);
-            return;
-        }
+	{
+	    printf("Error opening file [%s]\n", filename);
+	    return;
+	}
     memset(rom, 0xFF, sizeof(rom));
     memset(ram, 0x00, sizeof(ram));
     if (0 != fread(rom, 1, sizeof(rom), fp))
-        {
-            perror(NULL);
-        }
+	{
+	    perror(NULL);
+	}
     fclose(fp);
 
     return;
@@ -218,52 +218,52 @@ int main(int argc, char *argv[])
     srand((unsigned)time(&timet));
 
     if (argc < 2)
-        {
-            printf("bin file not specified\n");
-            PrintHelp();
-            return (1);
-        }
+	{
+	    printf("bin file not specified\n");
+	    PrintHelp();
+	    return (1);
+	}
 
     for (ra = 0; ra < argc; ra++)
-        {
-            if (strcmp(argv[ra], "-h") == 0)
-                {
-                    PrintHelp();
-                    exit(0);
-                }
-            else if (strcmp(argv[ra], "-N") == 0)
-                {
-                    sscanf(argv[ra + 1], "%d", &N);
-                    ra++;
-                }
-            else if (strcmp(argv[ra], "-o") == 0)
-                {
-                    oindex = ra + 1;
-                }
-            else if (strcmp(argv[ra], "-r") == 0)
-                {
-                    rindex = ra + 1;
-                    useInputFile = true;
-                }
-            else if (strcmp(argv[ra], "-fvr") == 0)
-                {
-                    fvr = true;
-                }
+	{
+	    if (strcmp(argv[ra], "-h") == 0)
+		{
+		    PrintHelp();
+		    exit(0);
+		}
+	    else if (strcmp(argv[ra], "-N") == 0)
+		{
+		    sscanf(argv[ra + 1], "%d", &N);
+		    ra++;
+		}
+	    else if (strcmp(argv[ra], "-o") == 0)
+		{
+		    oindex = ra + 1;
+		}
+	    else if (strcmp(argv[ra], "-r") == 0)
+		{
+		    rindex = ra + 1;
+		    useInputFile = true;
+		}
+	    else if (strcmp(argv[ra], "-fvr") == 0)
+		{
+		    fvr = true;
+		}
 #ifdef USE_SMURF
-            else if (strcmp(argv[ra], "--io") == 0)
-                {
-                    ioSupported = true;
-                    siopath = argv[ra + 1];
-                    ra++;
-                }
-            else if (strcmp(argv[ra], "--st") == 0)
-                {
-                    useSmurfTrace = true;
-                    smftracepath = argv[ra + 1];
-                    ra++;
-                }
+	    else if (strcmp(argv[ra], "--io") == 0)
+		{
+		    ioSupported = true;
+		    siopath = argv[ra + 1];
+		    ra++;
+		}
+	    else if (strcmp(argv[ra], "--st") == 0)
+		{
+		    useSmurfTrace = true;
+		    smftracepath = argv[ra + 1];
+		    ra++;
+		}
 #endif
-        }
+	}
 
 #ifdef USE_SMURF
     //Initialise Smurf library.
@@ -274,28 +274,28 @@ int main(int argc, char *argv[])
     Read_Binary(argv[1]);
     //Open output file
     if (oindex < argc)
-        Open_OutputFile(argv[oindex]);
+	Open_OutputFile(argv[oindex]);
     //Open data file
     if (rindex < argc)
-        Open_DataFile(argv[rindex]);
+	Open_DataFile(argv[rindex]);
 
     printf
-        ("########################################\n\nGENERATING TRACES...\n\n");
+	("########################################\n\nGENERATING TRACES...\n\n");
     for (N_ind = 0; N_ind < N; N_ind++)
-        {
-            frameno = 0;        //Reset Frame counter.
-            cyclecount = 0;
+	{
+	    frameno = 0;	//Reset Frame counter.
+	    cyclecount = 0;
 
-            if (N_ind % 100 == 0)
-                printf("########## TRACE %d\n", N_ind);
-            run();              //run one trace
-        }
+	    if (N_ind % 100 == 0)
+		printf("########## TRACE %d\n", N_ind);
+	    run();		//run one trace
+	}
     //Close output file
     if (oindex < argc)
-        Close_Output();
+	Close_Output();
     //Open data file
     if (rindex < argc)
-        Close_DataFile();
+	Close_DataFile();
 
     //system("pause");
 #ifdef USE_SMURF
