@@ -170,6 +170,16 @@ int SymClear(SymbolicComponent component)
     return SymAssign(component, SYM_NULL);
 }
 
+//Return the Symbol of ${component}
+uSymbol GetSym(SymbolicComponent component)
+{
+    uSymbol sym = SYM_NULL;
+
+    sym.symid = *component.sid_p;
+
+    return sym;
+}
+
 //Encode a string into uELMO symbol.
 //If ${symstr} is encoded for the first time, it will be automatically added into uDict.
 uSymbol SymEncode(const char *symstr)
