@@ -1,7 +1,7 @@
 #ifndef SYMUELMO_H
 #define SYMUELMO_H
 
-//#if USE_SMURF
+#if USE_SMURF
 
 #include "smurf/smurf.h"
 #include "smurf/symbolic.h"
@@ -113,4 +113,5 @@ uSymbol SymEncode(const char *symstr);
 //A string pointed into the uDict if successfull, or NULL if the Symbol ID cannot be decoded.
 const char *SymDecode(const uSymbol);
 
+#endif
 #endif
