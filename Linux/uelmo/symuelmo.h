@@ -52,19 +52,13 @@ typedef struct {
     SymbolicComponent glitchy_Decode_port_data[3];	//Decode the current instruction according to the previous instruction decoding style
 
     //Execute
-    <<<<<<<HEAD SymbolicComponent Execute_Imm;	//Current Execute Immediate data //TODO: to be removed
+    SymbolicComponent Execute_Imm;	//Current Execute Immediate data //TODO: to be removed
     SymbolicComponent Execute_ALU_result;	//Current ALU output
     SymbolicComponent Execute_destination_regindex;	//Execute register index: 0-15 valid, 0xff: no output
     SymbolicComponent Execute_multicycle_regindex;	//Current register index for multi-cycle execution: 0-7 valid
     SymbolicComponent Execute_valid;	//A flag that stall the pipeline when jump happens
-    == == == = SymbolicComponent Execute_Imm;	//Current Execute Immediate data
-    SymbolicComponent Execute_ALU_result;	//Current ALU output
-    SymbolicComponent Execute_destination_regindex;	//Execute register index: 0-15 valid, 0xff: no output
-    SymbolicComponent Execute_multicycle_regindex;	//Current register index for multi-cycle execution: 0-7 valid
-    SymbolicComponent Execute_valid;	//A flag that stall the pipeline when jump happens
-    >>>>>>>Smurf_Working
-	//Meomory subsystem
-     SymbolicComponent Read_valid;	//set it true when a new read address is sent to address bus
+    //Meomory subsystem
+    SymbolicComponent Read_valid;	//set it true when a new read address is sent to address bus
     SymbolicComponent Read_type;	//0 word, 1 byte, 2 half-word
     SymbolicComponent Write_valid;	//set it true when a new read address is sent to address bus
     SymbolicComponent Write_type;	//0 word, 1 byte, 2 half-word
@@ -105,7 +99,7 @@ int SymAssign(SymbolicComponent component, uSymbol sym);
 int SymCopy(SymbolicComponent dstcomp, SymbolicComponent srccomp);
 
 //Clear the Symbol (= reset it to NULL) of ${comp}.
-itn SymClear(SymbolicComponent component);
+int SymClear(SymbolicComponent component);
 
 //Encode a string into uELMO symbol.
 //If ${symstr} is encoded for the first time, it will be automatically added into uDict.

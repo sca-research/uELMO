@@ -27,8 +27,8 @@ void Decode_OneCycle(bool prev)
 	    if (core_current.glitchy_Decode_port_regindex[i] != 0xff)
 		{
 		    core_current.glitchy_Decode_port_data[i] =
-			read_register(core_current.
-				      glitchy_Decode_port_regindex[i]);
+			read_register(core_current.glitchy_Decode_port_regindex
+				      [i]);
 		    //printf("TEST 2\n");
 		    SymCopy(sym_core_current.glitchy_Decode_port_data[i], sym_core_current.reg[core_current.glitchy_Decode_port_regindex[i]]);	//TODO ines: not sure
 		    //printf("TEST 3\n");
