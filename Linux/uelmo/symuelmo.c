@@ -16,7 +16,7 @@ CORE_STATUS_SYM sym_core_current = { 0 };
 const uSymbol SYM_NULL = { 0 };
 
 //Count of Symbols. 
-static int symidcount = 1;	//SYM_NULL existed by default.
+static int symidcount = 1;      //SYM_NULL existed by default.
 
 //Dictionary.
 EncDict *uDict = NULL;
@@ -24,19 +24,19 @@ EncDict *uDict = NULL;
 //Check if ${sym} is SYM_NULL.
 int IsSymNull(uSymbol sym)
 {
-    if (sym.symid == SYM_NULL.symid)
-	{
-	    return true;
-	}
+    if(sym.symid == SYM_NULL.symid)
+    {
+        return true;
+    }
     else
-	{
-	    return false;
-	}
+    {
+        return false;
+    }
 }
 
 //Bind array typed Symbol.
 static inline void BindSymArray(const char *compname,
-				SymbolicComponent * symcomp, int size)
+                                SymbolicComponent * symcomp, int size)
 {
     int i;
     ComponentInstance ci = { 0 };
@@ -46,9 +46,9 @@ static inline void BindSymArray(const char *compname,
 
     //Set pointers to the Symbolic fileds in the Frame.
     for (i = 0; i < size; i++)
-	{
-	    symcomp[i].sid_p = ci.ci.symid + i;
-	}
+    {
+        symcomp[i].sid_p = ci.ci.symid + i;
+    }
 
     return;
 }
@@ -59,12 +59,12 @@ int InitSymCore()
     ComponentInstance ci = { 0 };
 
     //Check Core Version.
-    if (V2 > smurf->core->versionid)
-	{
-	    printf("Symbolic feature requires Core Version >= 2.\n");
-	    exit(-1);
-	    return -1;
-	}
+    if(V2 > smurf->core->versionid)
+    {
+        printf("Symbolic feature requires Core Version >= 2.\n");
+        exit(-1);
+        return -1;
+    }
 
 //Bind sym_core_current to the Symbolic fields of the Frame.
 //Macro to ease binding the symbolic fields.
@@ -93,18 +93,18 @@ int InitSymCore()
     BindSym(Fetch_valid);
     //BindSym(Decode_port_regindex);
     BindSymArray("Decode_destination_regindex",
-		 sym_core_current.Decode_port_regindex, 3);
+                 sym_core_current.Decode_port_regindex, 3);
     //BindSym(Decode_port_data);
     BindSymArray("Decode_port_data", sym_core_current.Decode_port_data, 3);
     BindSym(Decode_destination_regindex);
     BindSym(Decode_valid);
     //BindSym(glitchy_Decode_port_regindex);
     BindSymArray("glitchy_Decode_port_regindex",
-		 sym_core_current.glitchy_Decode_port_regindex, 3);
+                 sym_core_current.glitchy_Decode_port_regindex, 3);
     BindSym(Decode_destination_regindex);
     //BindSym(glitchy_Decode_port_data);
     BindSymArray("glitchy_Decode_port_data",
-		 sym_core_current.glitchy_Decode_port_data, 3);
+                 sym_core_current.glitchy_Decode_port_data, 3);
     BindSym(Execute_Imm);
     BindSym(Execute_ALU_result);
     BindSym(Execute_destination_regindex);
@@ -188,21 +188,21 @@ uSymbol SymEncode(const char *symstr)
     CodeEntry *ce = NULL;
 
     //Dictionay initialisation check.
-    if (NULL == uDict)
-	{
-	    return SYM_NULL;
-	}
+    if(NULL == uDict)
+    {
+        return SYM_NULL;
+    }
 
     //Attempt to find the Symbol.
-    if (SMURF_SYM_NULL_ID == (sym.symid = FindSymIdByName(uDict, symstr)))
-	{
-	    //Not found.
-	    //Construct a new CodeEntry with Symbol ID being the count of Symbols.
-	    sym.symid = symidcount++;
-	    ce = NewCodeEntry(sym.symid, symstr);
-	    //Add the Symbol into the dictionary.
-	    AddCodeEntry(uDict, ce);
-	}
+    if(SMURF_SYM_NULL_ID == (sym.symid = FindSymIdByName(uDict, symstr)))
+    {
+        //Not found.
+        //Construct a new CodeEntry with Symbol ID being the count of Symbols.
+        sym.symid = symidcount++;
+        ce = NewCodeEntry(sym.symid, symstr);
+        //Add the Symbol into the dictionary.
+        AddCodeEntry(uDict, ce);
+    }
 
     return sym;
 }
@@ -216,20 +216,20 @@ const char *SymDecode(const uSymbol sym)
     char errormsg[SMURF_INFO_MAXLEN] = { 0 };
 
     //Dictionay initialisation check.
-    if (NULL == uDict)
-	{
-	    return NULL;
-	}
+    if(NULL == uDict)
+    {
+        return NULL;
+    }
 
     //Attempt to decode the string.
-    if (NULL == (symstr = FindSymNameById(uDict, sym.symid)))
-	{
-	    //Decode failed.
-	    snprintf(errormsg, sizeof(errormsg),
-		     "#ERROR: Symbol ID %X cannot be decoded.\n", sym.symid);
-	    INFO(errormsg);
-	    return NULL;
-	}
+    if(NULL == (symstr = FindSymNameById(uDict, sym.symid)))
+    {
+        //Decode failed.
+        snprintf(errormsg, sizeof(errormsg),
+                 "#ERROR: Symbol ID %X cannot be decoded.\n", sym.symid);
+        INFO(errormsg);
+        return NULL;
+    }
 
     return symstr;
 }

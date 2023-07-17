@@ -11,7 +11,7 @@ int InitUlangCmd();
 void CleanUlangCmd();
 
 //Handler of src
-extern SmurfQueue *srcqueue;	//Queue for src command.
+extern SmurfQueue *srcqueue;    //Queue for src command.
 
 //Arguments of src command.
 struct srcArg {
@@ -26,7 +26,7 @@ void RequestSrc(int argc, char **argv);
 int ResolveSrc();
 
 //Handler of dst
-extern SmurfQueue *dstqueue;	//Queue for dst command.
+extern SmurfQueue *dstqueue;    //Queue for dst command.
 
 //Arguments of dst command.
 struct dstArg {

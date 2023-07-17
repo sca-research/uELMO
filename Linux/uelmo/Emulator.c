@@ -34,10 +34,10 @@ void initialize_instructions()
     printf("inst: %s\n", annotatedInst[0].instCode);
     printf("srcTag0: %d\n", annotatedInst[0].srcTag0.registerNum);
     printf("srcTag0 annotation: %d\n",
-	   annotatedInst[0].srcTag0.annotation.symid);
+           annotatedInst[0].srcTag0.annotation.symid);
     printf("dstTag0: %d\n", annotatedInst[0].dstTag.registerNum);
     printf("dstTag0 annotation: %d\n",
-	   annotatedInst[0].dstTag.annotation.symid);
+           annotatedInst[0].dstTag.annotation.symid);
     //@src r1 , &b
     //@dst r3 , b0
     //ldrb r3, [r1, #0]
@@ -77,91 +77,90 @@ void print_instruction(Instruction_t inst)
 //Execute one instruction: if return 1, it reaches an error or the end of the trace
 int Execute_OneInstr(int *cycle)
 {
-    bool wait_exe = false;	//Execute cycle requires extra cycle
-    bool wait_mem = false;	//Memory cycle requires extra cycle
+    bool wait_exe = false;      //Execute cycle requires extra cycle
+    bool wait_mem = false;      //Memory cycle requires extra cycle
     do
-	{
-	    if (DEBUG_CORE)
-		printf("Cycle=%d\n", *cycle);
-	    //Clock+1; update the registers with new values: i.e. pipeline registers, reg[16] and cpsr
-	    Clock(wait_exe);
-	    //Memory run one cycle: 
-	    //read address and output data to bus
-	    wait_mem = Memory_OneCycle();
-	    if (core_current.core_valid == false)
-		return 1;
-	    if (wait_mem == true)
-		{
-		    wait_exe = true;
-		    sprintf(core_current.Decode_instr_disp, "Decode: stall");
-		    sprintf(core_current.Execute_instr_disp, "Execute: stall");
-		    //Write out current cycle to Frame
-		    Write_Frame();
-		    (*cycle)++;
-		    cyclecount++;
-		    continue;
-		}
+    {
+        if(DEBUG_CORE)
+            printf("Cycle=%d\n", *cycle);
+        //Clock+1; update the registers with new values: i.e. pipeline registers, reg[16] and cpsr
+        Clock(wait_exe);
+        //Memory run one cycle: 
+        //read address and output data to bus
+        wait_mem = Memory_OneCycle();
+        if(core_current.core_valid == false)
+            return 1;
+        if(wait_mem == true)
+        {
+            wait_exe = true;
+            sprintf(core_current.Decode_instr_disp, "Decode: stall");
+            sprintf(core_current.Execute_instr_disp, "Execute: stall");
+            //Write out current cycle to Frame
+            Write_Frame();
+            (*cycle)++;
+            cyclecount++;
+            continue;
+        }
 
-	    //Execute
-	    wait_exe = Execute_OneCylce(wait_mem);
-	    //printf("OK 1\n");
-	    if (decodeInst.isEmpty == 0)
-		{
-		    copyInstToFrom(&executeInst, &decodeInst);
-		    executeInst.isEmpty = 0;
-		    printf("EXECUTE\n");
-		    print_instruction(decodeInst);
-		    printf("\n\n");
-		}
-	    else
-		{
-		    executeInst.isEmpty = 1;
-		}
-	    //printf("OK 2\n");
-	    if (wait_exe == false)	//Execute did not stall the pipeline
-		{
-		    if (fetchInst.isEmpty == 0)
-			{
-			    copyInstToFrom(&decodeInst, &fetchInst);
-			    decodeInst.isEmpty = 0;
-			    printf("DECODE\n");
-			    print_instruction(decodeInst);
-			    printf("\n\n");
-			}
-		    else
-			{
-			    decodeInst.isEmpty = 1;
-			}
+        //Execute
+        wait_exe = Execute_OneCylce(wait_mem);
+        //printf("OK 1\n");
+        if(decodeInst.isEmpty == 0)
+        {
+            copyInstToFrom(&executeInst, &decodeInst);
+            executeInst.isEmpty = 0;
+            printf("EXECUTE\n");
+            print_instruction(decodeInst);
+            printf("\n\n");
+        }
+        else
+        {
+            executeInst.isEmpty = 1;
+        }
+        //printf("OK 2\n");
+        if(wait_exe == false)   //Execute did not stall the pipeline
+        {
+            if(fetchInst.isEmpty == 0)
+            {
+                copyInstToFrom(&decodeInst, &fetchInst);
+                decodeInst.isEmpty = 0;
+                printf("DECODE\n");
+                print_instruction(decodeInst);
+                printf("\n\n");
+            }
+            else
+            {
+                decodeInst.isEmpty = 1;
+            }
 
-		    //Fetch
-		    Fetch_OneCycle();
-		    //printf("OK 3\n");
-		    if (numAnnotatedInst < totalNumberInst)
-			{
-			    copyInstToFrom(&fetchInst,
-					   &(annotatedInst[numAnnotatedInst]));
-			    fetchInst.isEmpty = 0;
-			    printf("FETCH\n");
-			    print_instruction(fetchInst);
-			    printf("\n\n");
-			    numAnnotatedInst += 1;
-			}
-		    else
-			{
-			    fetchInst.isEmpty = 1;
-			}
-		    //Decode
-		    Decode_OneCycle(false);
-		    //printf("OK 4\n");//
-		}
-	    else
-		sprintf(core_current.Decode_instr_disp, "Decode: stall");
+            //Fetch
+            Fetch_OneCycle();
+            //printf("OK 3\n");
+            if(numAnnotatedInst < totalNumberInst)
+            {
+                copyInstToFrom(&fetchInst, &(annotatedInst[numAnnotatedInst]));
+                fetchInst.isEmpty = 0;
+                printf("FETCH\n");
+                print_instruction(fetchInst);
+                printf("\n\n");
+                numAnnotatedInst += 1;
+            }
+            else
+            {
+                fetchInst.isEmpty = 1;
+            }
+            //Decode
+            Decode_OneCycle(false);
+            //printf("OK 4\n");//
+        }
+        else
+            sprintf(core_current.Decode_instr_disp, "Decode: stall");
 
-	    //Write out current cycle to Frame
-	    Write_Frame();
-	    (*cycle)++;
-	    cyclecount++;
-	}
+        //Write out current cycle to Frame
+        Write_Frame();
+        (*cycle)++;
+        cyclecount++;
+    }
     while (wait_exe);
     return 0;
 }
@@ -174,15 +173,15 @@ int reset(void)
     core_current.cpsr = 0;
     core_current.cpsr_data = 0;
     core_current.core_valid = true;
-    core_current.reg[13] = fetch32(0x00000000);	//cortex-m
+    core_current.reg[13] = fetch32(0x00000000); //cortex-m
     core_current.reg[14] = 0xFFFFFFFF;
-    core_current.reg[15] = fetch32(0x00000004);	//cortex-m
-    if ((core_current.reg[15] & 1) == 0)
-	{
-	    printf("reset vector with an ARM address 0x%08X\n",
-		   core_current.reg[15]);
-	    exit(1);
-	}
+    core_current.reg[15] = fetch32(0x00000004); //cortex-m
+    if((core_current.reg[15] & 1) == 0)
+    {
+        printf("reset vector with an ARM address 0x%08X\n",
+               core_current.reg[15]);
+        exit(1);
+    }
     core_current.reg[15] &= ~1;
     core_current.reg[15] += 2;
     core_current.Read_valid = false;
@@ -205,17 +204,17 @@ int reset(void)
     strcpy(core_current.Execute_instr_disp, "Execute init");
     //Fetch
     Fetch_OneCycle();
-    if (numAnnotatedInst < totalNumberInst)
-	{
-	    copyInstToFrom(&fetchInst, &(annotatedInst[numAnnotatedInst]));
-	    fetchInst.isEmpty = 0;
-	    //print_instruction(fetchInst);
-	    numAnnotatedInst += 1;
-	}
+    if(numAnnotatedInst < totalNumberInst)
+    {
+        copyInstToFrom(&fetchInst, &(annotatedInst[numAnnotatedInst]));
+        fetchInst.isEmpty = 0;
+        //print_instruction(fetchInst);
+        numAnnotatedInst += 1;
+    }
     else
-	{
-	    fetchInst.isEmpty = 1;
-	}
+    {
+        fetchInst.isEmpty = 1;
+    }
 
     return (0);
 }
@@ -230,10 +229,10 @@ int run(void)
     initialize_instructions();
     //Run each cycle
     while (1)
-	{
+    {
 
-	    if (Execute_OneInstr(&cycle))
-		break;		//one instruction till ELMO endprogram() is called
-	}
+        if(Execute_OneInstr(&cycle))
+            break;              //one instruction till ELMO endprogram() is called
+    }
     return (0);
 }
