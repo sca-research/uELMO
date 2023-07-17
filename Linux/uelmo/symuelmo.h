@@ -52,11 +52,12 @@ typedef struct {
     SymbolicComponent glitchy_Decode_port_data[3];	//Decode the current instruction according to the previous instruction decoding style
 
     //Execute
-    SymbolicComponent Execute_Imm;	//Current Execute Immediate data //TODO: to be removed
+    SymbolicComponent Execute_Imm;	//Current Execute Immediate data
     SymbolicComponent Execute_ALU_result;	//Current ALU output
     SymbolicComponent Execute_destination_regindex;	//Execute register index: 0-15 valid, 0xff: no output
     SymbolicComponent Execute_multicycle_regindex;	//Current register index for multi-cycle execution: 0-7 valid
     SymbolicComponent Execute_valid;	//A flag that stall the pipeline when jump happens
+
     //Meomory subsystem
     SymbolicComponent Read_valid;	//set it true when a new read address is sent to address bus
     SymbolicComponent Read_type;	//0 word, 1 byte, 2 half-word

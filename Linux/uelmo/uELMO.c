@@ -11,7 +11,6 @@
 
 #ifdef USE_SMURF
 #include "smurf/smurf.h"
-#include "smurf/emulator.h"
 #include "symuelmo.h"
 #include "ulang.h"
 #endif
