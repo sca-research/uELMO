@@ -1,4 +1,4 @@
-#include <stdio.h>		//DEBUG ONLY
+#include <stdio.h>              //DEBUG ONLY
 
 #include "smurf/smurf.h"
 #include "symuelmo.h"
@@ -16,18 +16,18 @@ SmurfScript *script = NULL;
 int InitScript(const char *scriptpath)
 {
     //NULL check.
-    if (NULL == scriptpath)
-	{
-	    INFO("#No script file specified.\n");
-	    return -1;
-	}
+    if(NULL == scriptpath)
+    {
+        INFO("#No script file specified.\n");
+        return -1;
+    }
 
     //Load in a script.
-    if (NULL == (script = LoadScript(scriptpath)))
-	{
-	    perror("#Cannot open script file:");
-	    return -1;
-	}
+    if(NULL == (script = LoadScript(scriptpath)))
+    {
+        perror("#Cannot open script file:");
+        return -1;
+    }
 
     //Enable skip indent.
     script->skipindent = true;
@@ -51,17 +51,17 @@ void CleanScript()
 static int IsBlank(const char c)
 {
     switch (c)
-	{
-	case ' ':
-	case '\t':
-	case '\n':
-	    return 1;
-	    break;
+    {
+    case ' ':
+    case '\t':
+    case '\n':
+        return 1;
+        break;
 
-	default:
-	    return 0;
-	    break;
-	}
+    default:
+        return 0;
+        break;
+    }
 
     return 0;
 }
@@ -82,20 +82,20 @@ static const char *GetNextArg(const char *cmdline, int *arglen)
     for (c = cmdline; IsBlank(*c); c++) ;
 
     //Check EOL.
-    if ('\0' == *c)
-	{
-	    return NULL;
-	}
+    if('\0' == *c)
+    {
+        return NULL;
+    }
 
     //Record starting position of next arg.
     argpos = c;
 
     //Count the length of arg.
     while (!IsBlank(*c) && *c != '\0')
-	{
-	    c++;
-	    (*arglen)++;
-	}
+    {
+        c++;
+        (*arglen)++;
+    }
 
     return argpos;
 }
@@ -107,14 +107,14 @@ static int IsUlangCmd(const char *line)
     int arglen;
 
     //Check if the first arg is ULang notifier.
-    if (NULL == (arg = GetNextArg(line, &arglen)))	//A NULL line.
-	{
-	    return 0;
-	}
-    if (0 == strncmp(arg, ULANG_NOTIFIER, arglen))
-	{
-	    return 1;
-	}
+    if(NULL == (arg = GetNextArg(line, &arglen)))       //A NULL line.
+    {
+        return 0;
+    }
+    if(0 == strncmp(arg, ULANG_NOTIFIER, arglen))
+    {
+        return 1;
+    }
     return 0;
 }
 
@@ -131,48 +131,48 @@ void UlangSed(int linenumber, const char *line, void *arg)
 
     //Check if the line is a Ulang command.
     //Ignore all non command lines.
-    if (IsUlangCmd(line))
-	{
-	    //Process the command.
-	    //DBG
-	    printf("[%d(%d)] Command(L%d)\t: %s\n", cyclecount, frameno,
-		   linenumber, line);
+    if(IsUlangCmd(line))
+    {
+        //Process the command.
+        //DBG
+        printf("[%d(%d)] Command(L%d)\t: %s\n", cyclecount, frameno,
+               linenumber, line);
 
-	    //Skip the first ULANG notifier.
-	    nextarg = (char *)GetNextArg(line, &arglen);
-	    nextarg += arglen;
+        //Skip the first ULANG notifier.
+        nextarg = (char *)GetNextArg(line, &arglen);
+        nextarg += arglen;
 
-	    //Create editable copy excluding the notifier.
-	    argline = CloneString(nextarg);
-	    nextarg = argline;
+        //Create editable copy excluding the notifier.
+        argline = CloneString(nextarg);
+        nextarg = argline;
 
-	    //Construct argc and argv.
-	    while (ULANG_MAX_ARGC > uargc)
-		{
-		    if (NULL == (nextarg = (char *)GetNextArg(nextarg, &arglen)))	//All args processed.
-			{
-			    break;
-			}
+        //Construct argc and argv.
+        while (ULANG_MAX_ARGC > uargc)
+        {
+            if(NULL == (nextarg = (char *)GetNextArg(nextarg, &arglen)))        //All args processed.
+            {
+                break;
+            }
 
-		    //Parse into argv.
-		    uargv[uargc] = nextarg;
-		    uargc++;
+            //Parse into argv.
+            uargv[uargc] = nextarg;
+            uargc++;
 
-		    //Advance to the nextarg.
-		    nextarg += arglen;
+            //Advance to the nextarg.
+            nextarg += arglen;
 
-		    //Swap ' ' bt '\0'
-		    if (IsBlank(*nextarg))
-			{
-			    *nextarg = '\0';
-			    nextarg++;
-			}
-		}
+            //Swap ' ' bt '\0'
+            if(IsBlank(*nextarg))
+            {
+                *nextarg = '\0';
+                nextarg++;
+            }
+        }
 
-	    //Execute the command.
-	    UlangCbManager(uargv[0], uargc, uargv);
-	    Free(argline);
-	}
+        //Execute the command.
+        UlangCbManager(uargv[0], uargc, uargv);
+        Free(argline);
+    }
 
     return;
 }
@@ -188,21 +188,21 @@ int ReadNextCmdBlock()
 void UlangCbManager(const char *op, int argc, char **argv)
 {
     //Match instructions.
-    if (!strncmp(op, ULANG_SRC, sizeof(ULANG_SRC)))	//src
-	{
-	    RequestSrc(argc, argv);
-	}
-    else if (!strncmp(op, ULANG_DST, sizeof(ULANG_DST)))	//dst
-	{
-	    RequestDst(argc, argv);
-	}
-    else			//Unknown instruction.
-	{
-	    printf("ERROR: unknown command: %s\n", op);
-	    INFO("Not supported ULANG command:");
-	    INFO(op);
-	    INFO("\n");
-	}
+    if(!strncmp(op, ULANG_SRC, sizeof(ULANG_SRC)))      //src
+    {
+        RequestSrc(argc, argv);
+    }
+    else if(!strncmp(op, ULANG_DST, sizeof(ULANG_DST))) //dst
+    {
+        RequestDst(argc, argv);
+    }
+    else                        //Unknown instruction.
+    {
+        printf("ERROR: unknown command: %s\n", op);
+        INFO("Not supported ULANG command:");
+        INFO(op);
+        INFO("\n");
+    }
 
     return;
 }
