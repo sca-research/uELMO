@@ -59,8 +59,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, ra_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(ra_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Decode_destination_regindex = ra_ind;
         core_current.D2E_reg1_valid = true;
@@ -103,7 +105,8 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//remain
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Execute_Imm = imm;
         core_current.Decode_destination_regindex = ra_ind;
@@ -144,7 +147,8 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//remain
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, ra_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(ra_ind));
 
         core_current.Execute_Imm = imm;
         core_current.Decode_destination_regindex = ra_ind;
@@ -189,8 +193,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         core_current.D2E_reg2_data = read_register_forward(rc_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rc_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(rb_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rc_ind));
 
         core_current.Execute_Imm = 0;   //Not used
         core_current.Decode_destination_regindex = ra_ind;
@@ -234,8 +240,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, ra_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(ra_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Execute_Imm = 0;   //Not used
         core_current.Decode_destination_regindex = ra_ind;
@@ -277,7 +285,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(15);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//Not used
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, 15);  //TODO ines: check 15
+        SymAssign(sym_core_current.D2E_reg1_data, sym_read_register_forward(15));       //TODO ines: check 15
 
         core_current.Execute_Imm = imm;
         core_current.Decode_destination_regindex = ra_ind;
@@ -318,7 +326,8 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register(13);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//Not used
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, 13);
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(13));
 
         core_current.Execute_Imm = imm;
         core_current.Decode_destination_regindex = rd_ind;
@@ -357,7 +366,8 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(13);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//Not used
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, 13);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(13));
 
         core_current.Execute_Imm = imm;
         core_current.Decode_destination_regindex = 13;
@@ -398,8 +408,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, ra_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(ra_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Decode_destination_regindex = ra_ind;
         core_current.D2E_reg1_valid = true;
@@ -440,7 +452,8 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Execute_Imm = imm;
         core_current.Decode_destination_regindex = ra_ind;
@@ -480,8 +493,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, ra_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(ra_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Execute_Imm = 0;
         //core_current.Execute_Imm=imm;
@@ -594,8 +609,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, ra_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(ra_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Decode_destination_regindex = ra_ind;
         core_current.Execute_Imm = 0;
@@ -733,7 +750,8 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, ra_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(ra_ind));
 
         core_current.Decode_destination_regindex = 15;
         core_current.D2E_reg1_valid = true;
@@ -768,7 +786,8 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, ra_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(ra_ind));
 
         core_current.Decode_destination_regindex = 15;
         core_current.D2E_reg1_valid = true;
@@ -804,8 +823,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, ra_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(ra_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Decode_destination_regindex = ra_ind;
         core_current.Execute_Imm = 0;
@@ -845,7 +866,8 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//remain
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, ra_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(ra_ind));
 
         core_current.Execute_Imm = imm;
         core_current.Decode_destination_regindex = ra_ind;
@@ -885,8 +907,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, ra_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(ra_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Decode_destination_regindex = 0xff;
         core_current.Execute_Imm = 0;
@@ -927,8 +951,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, ra_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(ra_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Execute_Imm = 0;   //Not used
         core_current.Decode_destination_regindex = ra_ind;
@@ -996,8 +1022,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, ra_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(ra_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Decode_destination_regindex = ra_ind;
         core_current.Execute_Imm = 0;
@@ -1036,7 +1064,8 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rc_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, rc_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(rc_ind));
 
         core_current.Decode_destination_regindex = rc_ind;
         core_current.Execute_multicycle_regindex = 9;
@@ -1078,7 +1107,8 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Decode_destination_regindex = ra_ind;      //
         core_current.Execute_Imm = imm;
@@ -1121,8 +1151,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         core_current.D2E_reg2_data = read_register_forward(rc_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rc_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(rb_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rc_ind));
 
         core_current.Decode_destination_regindex = ra_ind;      //
         core_current.Execute_Imm = 0;
@@ -1161,7 +1193,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(15) - 2;
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, 15);  //TODO ines: check 15
+        SymAssign(sym_core_current.D2E_reg1_data, sym_read_register_forward(15));       //TODO ines: check 15
 
         core_current.Decode_destination_regindex = ra_ind;      //
         core_current.Execute_Imm = imm;
@@ -1201,7 +1233,8 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(13);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, 13);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(13));
 
         core_current.Decode_destination_regindex = ra_ind;      //
         core_current.Execute_Imm = imm;
@@ -1242,7 +1275,8 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Decode_destination_regindex = ra_ind;      //
         core_current.Execute_Imm = imm;
@@ -1285,8 +1319,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         core_current.D2E_reg2_data = read_register_forward(rc_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rc_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(rb_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rc_ind));
 
         core_current.Decode_destination_regindex = ra_ind;      //
         core_current.Execute_Imm = 0;
@@ -1329,7 +1365,8 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Decode_destination_regindex = ra_ind;      //
         core_current.Execute_Imm = imm;
@@ -1371,8 +1408,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         core_current.D2E_reg2_data = read_register_forward(rc_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rc_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(rb_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rc_ind));
 
         core_current.Decode_destination_regindex = ra_ind;      //
         core_current.Execute_Imm = 0;
@@ -1416,8 +1455,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         core_current.D2E_reg2_data = read_register_forward(rc_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rc_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(rb_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rc_ind));
 
         core_current.Decode_destination_regindex = ra_ind;      //
         core_current.Execute_Imm = 0;
@@ -1460,8 +1501,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         core_current.D2E_reg2_data = read_register_forward(rc_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rc_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(rb_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rc_ind));
 
         core_current.Decode_destination_regindex = ra_ind;      //
         core_current.Execute_Imm = 0;
@@ -1503,7 +1546,8 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Execute_Imm = imm;
         core_current.Decode_destination_regindex = ra_ind;
@@ -1545,8 +1589,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, ra_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(ra_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Execute_Imm = 0;
         //core_current.Execute_Imm=imm;
@@ -1589,7 +1635,8 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Execute_Imm = imm;
         core_current.Decode_destination_regindex = ra_ind;
@@ -1629,8 +1676,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, ra_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(ra_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Execute_Imm = 0;
         core_current.D2E_reg1_valid = true;
@@ -1672,7 +1721,8 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, ra_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(ra_ind));
 
         core_current.Execute_Imm = imm;
         core_current.Decode_destination_regindex = ra_ind;
@@ -1712,7 +1762,8 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Execute_Imm = 0;
         //core_current.Execute_Imm=imm;
@@ -1755,7 +1806,8 @@ void Decode_OneCycle(bool prev)
         //registers
         //core_current.D2E_reg1_data=core_current.Decode_port_data[0];
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Execute_Imm = 0;   //Not used
         core_current.Decode_destination_regindex = ra_ind;
@@ -1796,8 +1848,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, ra_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(ra_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Execute_Imm = 0;
         core_current.Decode_destination_regindex = ra_ind;
@@ -1838,7 +1892,8 @@ void Decode_OneCycle(bool prev)
         //registers
         //core_current.D2E_reg1_data=core_current.Decode_port_data[1];
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Execute_Imm = 0;   //Not used
         core_current.Decode_destination_regindex = ra_ind;
@@ -1879,7 +1934,8 @@ void Decode_OneCycle(bool prev)
         //registers
         //core_current.D2E_reg1_data=core_current.Decode_port_data[1];
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Execute_Imm = 0;   //Not used
         core_current.Decode_destination_regindex = ra_ind;
@@ -1921,8 +1977,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, ra_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(ra_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Execute_Imm = 0;   //Not used
         core_current.Decode_destination_regindex = ra_ind;
@@ -2031,7 +2089,8 @@ void Decode_OneCycle(bool prev)
         //registers
         //core_current.D2E_reg1_data=core_current.Decode_port_data[1];
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Execute_Imm = 0;   //Not used
         core_current.Decode_destination_regindex = ra_ind;
@@ -2073,7 +2132,8 @@ void Decode_OneCycle(bool prev)
         //registers
         //core_current.D2E_reg1_data=core_current.Decode_port_data[1];
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Execute_Imm = 0;   //Not used
         core_current.Decode_destination_regindex = ra_ind;
@@ -2114,7 +2174,8 @@ void Decode_OneCycle(bool prev)
         //registers
         //core_current.D2E_reg1_data=core_current.Decode_port_data[1];
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Execute_Imm = 0;   //Not used
         core_current.Decode_destination_regindex = ra_ind;
@@ -2155,8 +2216,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, ra_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(ra_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Execute_Imm = 0;
         //core_current.Execute_Imm=imm;
@@ -2197,8 +2260,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register(ra_ind);
         core_current.D2E_reg2_data = read_register(rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, ra_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(ra_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Decode_destination_regindex = ra_ind;
         core_current.D2E_reg1_valid = true;
@@ -2241,7 +2306,8 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rc_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, rc_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(rc_ind));
 
         core_current.Decode_destination_regindex = rc_ind;
         core_current.Execute_multicycle_regindex = 9;
@@ -2282,8 +2348,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         core_current.D2E_reg2_data = read_register_forward(ra_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, ra_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(rb_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(ra_ind));
 
         core_current.Decode_destination_regindex = 0xff;        //Not used
         core_current.Execute_Imm = imm;
@@ -2325,8 +2393,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         core_current.D2E_reg2_data = read_register_forward(rc_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rc_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(rb_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rc_ind));
 
         core_current.Decode_destination_regindex = 0xff;        //Not used
         core_current.Execute_multicycle_regindex = 9;
@@ -2367,8 +2437,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(13);
         core_current.D2E_reg2_data = read_register_forward(rc_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, 13);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rc_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(13));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rc_ind));
 
         core_current.Decode_destination_regindex = 0xff;        //Not used
         core_current.Execute_Imm = imm;
@@ -2410,8 +2482,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         core_current.D2E_reg2_data = read_register_forward(ra_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, ra_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(rb_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(ra_ind));
 
         core_current.Decode_destination_regindex = 0xff;        //Not used
         core_current.Execute_Imm = imm;
@@ -2454,8 +2528,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         core_current.D2E_reg2_data = read_register_forward(rc_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rc_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(rb_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rc_ind));
 
         core_current.Decode_destination_regindex = 0xff;        //Not used
         core_current.Execute_multicycle_regindex = 9;
@@ -2497,8 +2573,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         core_current.D2E_reg2_data = read_register_forward(ra_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, ra_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(rb_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(ra_ind));
 
         core_current.Decode_destination_regindex = 0xff;        //Not used
         core_current.Execute_Imm = imm;
@@ -2541,8 +2619,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         core_current.D2E_reg2_data = read_register_forward(rc_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rc_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(rb_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rc_ind));
 
         core_current.Decode_destination_regindex = 0xff;        //Not used
         core_current.Execute_multicycle_regindex = 9;
@@ -2585,7 +2665,8 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//remain
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Execute_Imm = imm;
         core_current.Decode_destination_regindex = ra_ind;
@@ -2626,7 +2707,8 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//remain
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, ra_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(ra_ind));
 
         core_current.Execute_Imm = imm;
         core_current.Decode_destination_regindex = ra_ind;
@@ -2670,8 +2752,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         core_current.D2E_reg2_data = read_register_forward(rc_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rc_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(rb_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rc_ind));
 
         core_current.Execute_Imm = 0;   //Not used
         core_current.Decode_destination_regindex = ra_ind;
@@ -2710,7 +2794,8 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(13);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//Not used
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, 13);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(13));
 
         core_current.Execute_Imm = imm;
         core_current.Decode_destination_regindex = 13;
@@ -2765,7 +2850,8 @@ void Decode_OneCycle(bool prev)
         //registers
         //core_current.D2E_reg1_data=core_current.Decode_port_data[1];
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Execute_Imm = 0;   //Not used
         core_current.Decode_destination_regindex = ra_ind;
@@ -2806,7 +2892,8 @@ void Decode_OneCycle(bool prev)
         //registers
         //core_current.D2E_reg1_data=core_current.Decode_port_data[1];
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Execute_Imm = 0;   //Not used
         core_current.Decode_destination_regindex = ra_ind;
@@ -2848,8 +2935,10 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg1_data, ra_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg1_data,
+                  sym_read_register_forward(ra_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Execute_Imm = 0;
         core_current.Decode_destination_regindex = 0xff;        //Not used
@@ -2891,7 +2980,8 @@ void Decode_OneCycle(bool prev)
         //registers
         //core_current.D2E_reg1_data=core_current.Decode_port_data[1];
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Execute_Imm = 0;   //Not used
         core_current.Decode_destination_regindex = ra_ind;
@@ -2932,7 +3022,8 @@ void Decode_OneCycle(bool prev)
         //registers
         //core_current.D2E_reg1_data=core_current.Decode_port_data[1];
         core_current.D2E_reg2_data = read_register(rb_ind);
-        sym_read_register_forward(sym_core_current.D2E_reg2_data, rb_ind);
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rb_ind));
 
         core_current.Execute_Imm = 0;   //Not used
         core_current.Decode_destination_regindex = ra_ind;

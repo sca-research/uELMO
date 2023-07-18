@@ -54,31 +54,6 @@ void copyInstToFrom(Instruction_t * toInst, Instruction_t * fromInst)
     //printf("*** toInst dstTag0 value: %s\n\n", toInst->dstTag.value);
 }
 
-//Read register with result forwarding
-int sym_read_register_forward(SymbolicComponent comp, unsigned int reg)
-{
-    reg &= 0xF;
-    if((core_current.Memory_read_targetreg_buf != 0xff)
-       && (reg == core_current.Memory_read_targetreg_buf))
-        return SymCopy(comp, sym_core_current.Memory_readbuf);
-
-    else
-    {
-        if((core_current.Execute_destination_regindex != 0xff)
-           && (reg == core_current.Execute_destination_regindex))
-            return SymCopy(comp, sym_core_current.Execute_ALU_result);
-        else
-        {
-            return SymAssign(comp, SymGetSrcAnnotation(reg));   //sym_core_current.reg[reg];
-            // if (reg == 15)
-            //     data &= ~1;
-        }
-    }
-
-    //if(DEBUG_CORE) printf("0x%08X\n",data);
-    //return (data);
-}
-
 uSymbol SymGetSrcAnnotation(unsigned int reg)
 {
     if(decodeInst.srcTag0.registerNum == reg)
@@ -260,4 +235,42 @@ void Clock(bool pause)
         core_current.Fetch_valid = true;
     }
 
+}
+
+//Read register Symbol from current sym core status
+uSymbol sym_read_register(unsigned int reg)
+{
+    uSymbol datasym = { 0 };
+
+    reg &= 0xF;
+    datasym = GetSym(sym_core_current.reg[reg]);
+    return datasym;
+}
+
+//Read register Symbol with result forwarding
+uSymbol sym_read_register_forward(unsigned int reg)
+{
+    uSymbol regsym = { 0 };
+
+    reg &= 0xF;
+    if((core_current.Memory_read_targetreg_buf != 0xff)
+       && (reg == core_current.Memory_read_targetreg_buf))
+    {
+        regsym = GetSym(sym_core_current.Memory_readbuf);
+    }
+    else
+    {
+        if((core_current.Execute_destination_regindex != 0xff)
+           && (reg == core_current.Execute_destination_regindex))
+        {
+
+            regsym = GetSym(sym_core_current.Execute_ALU_result);
+        }
+        else
+        {
+            regsym = GetSym(sym_core_current.reg[reg]);
+        }
+    }
+
+    return regsym;
 }
