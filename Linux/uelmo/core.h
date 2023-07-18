@@ -107,7 +107,6 @@ extern Instruction_t decodeInst;
 extern Instruction_t executeInst;
 
 void copyInstToFrom(Instruction_t * toInst, Instruction_t * fromInst);
-uSymbol SymGetSrcAnnotation(unsigned int reg);
 uSymbol SymGetDstAnnotation();
 uSymbol SymGetMemAddrAnnotation();
 

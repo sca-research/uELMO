@@ -51,9 +51,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -97,9 +97,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -140,7 +140,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = 0;   //Not used
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymClear(sym_core_current.Decode_port_data[1]);
         SymClear(sym_core_current.Decode_port_data[2]);
 
@@ -184,11 +184,11 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rc_ind);
         core_current.Decode_port_data[2] = read_register(rb_ind);
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rc_ind));
+                  sym_read_register(rc_ind));
         SymAssign(sym_core_current.Decode_port_data[2],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
 
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
@@ -232,9 +232,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -278,7 +278,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = 0;
         core_current.Decode_port_data[2] = 0;
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymClear(sym_core_current.Decode_port_data[1]);
         SymClear(sym_core_current.Decode_port_data[2]);
 
@@ -319,7 +319,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = 0;
         core_current.Decode_port_data[2] = 0;
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(rd_ind));
+                  sym_read_register(rd_ind));
         SymClear(sym_core_current.Decode_port_data[1]);
         SymClear(sym_core_current.Decode_port_data[2]);
 
@@ -400,9 +400,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -444,9 +444,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -485,9 +485,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -601,9 +601,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -743,7 +743,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = 0;
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymClear(sym_core_current.Decode_port_data[1]);
         SymClear(sym_core_current.Decode_port_data[2]);
 
@@ -779,7 +779,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = 0;
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymClear(sym_core_current.Decode_port_data[1]);
         SymClear(sym_core_current.Decode_port_data[2]);
 
@@ -815,9 +815,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -859,7 +859,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = 0;   //Not used
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymClear(sym_core_current.Decode_port_data[1]);
         SymClear(sym_core_current.Decode_port_data[2]);
 
@@ -899,9 +899,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -943,9 +943,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -1014,9 +1014,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -1059,7 +1059,7 @@ void Decode_OneCycle(bool prev)
         SymClear(sym_core_current.Decode_port_data[0]);
         SymClear(sym_core_current.Decode_port_data[1]);
         SymAssign(sym_core_current.Decode_port_data[2],
-                  SymGetSrcAnnotation(rc_ind));
+                  sym_read_register(rc_ind));
 
         //registers
         core_current.D2E_reg1_data = read_register_forward(rc_ind);
@@ -1099,9 +1099,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -1142,11 +1142,11 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = read_register(rc_ind);
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymAssign(sym_core_current.Decode_port_data[2],
-                  SymGetSrcAnnotation(rc_ind));
+                  sym_read_register(rc_ind));
 
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
@@ -1186,7 +1186,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = 0;   //Not used
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymClear(sym_core_current.Decode_port_data[1]);
         SymClear(sym_core_current.Decode_port_data[2]);
 
@@ -1226,7 +1226,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = 0;   //Not used
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymClear(sym_core_current.Decode_port_data[1]);
         SymClear(sym_core_current.Decode_port_data[2]);
 
@@ -1267,9 +1267,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -1310,11 +1310,11 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = read_register(rc_ind);
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymAssign(sym_core_current.Decode_port_data[2],
-                  SymGetSrcAnnotation(rc_ind));
+                  sym_read_register(rc_ind));
 
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
@@ -1357,9 +1357,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -1399,11 +1399,11 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = read_register(rc_ind);       //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymAssign(sym_core_current.Decode_port_data[2],
-                  SymGetSrcAnnotation(rc_ind));
+                  sym_read_register(rc_ind));
 
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
@@ -1446,11 +1446,11 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = read_register(rc_ind);
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymAssign(sym_core_current.Decode_port_data[2],
-                  SymGetSrcAnnotation(rc_ind));
+                  sym_read_register(rc_ind));
 
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
@@ -1492,11 +1492,11 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = read_register(rc_ind);       //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymAssign(sym_core_current.Decode_port_data[2],
-                  SymGetSrcAnnotation(rc_ind));
+                  sym_read_register(rc_ind));
 
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
@@ -1538,9 +1538,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -1581,9 +1581,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -1627,9 +1627,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -1668,9 +1668,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -1714,7 +1714,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = 0;
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymClear(sym_core_current.Decode_port_data[1]);
         SymClear(sym_core_current.Decode_port_data[2]);
 
@@ -1754,9 +1754,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -1798,9 +1798,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -1840,9 +1840,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -1884,9 +1884,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -1926,9 +1926,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -1969,9 +1969,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -2081,9 +2081,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -2124,9 +2124,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -2166,9 +2166,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -2208,9 +2208,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -2252,9 +2252,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -2301,7 +2301,7 @@ void Decode_OneCycle(bool prev)
         SymClear(sym_core_current.Decode_port_data[0]);
         SymClear(sym_core_current.Decode_port_data[1]);
         SymAssign(sym_core_current.Decode_port_data[2],
-                  SymGetSrcAnnotation(rc_ind));
+                  sym_read_register(rc_ind));
 
         //registers
         core_current.D2E_reg1_data = read_register_forward(rc_ind);
@@ -2340,9 +2340,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -2384,11 +2384,11 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = read_register(rc_ind);
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymAssign(sym_core_current.Decode_port_data[2],
-                  SymGetSrcAnnotation(rc_ind));
+                  sym_read_register(rc_ind));
 
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
@@ -2432,7 +2432,7 @@ void Decode_OneCycle(bool prev)
         SymClear(sym_core_current.Decode_port_data[0]);
         SymClear(sym_core_current.Decode_port_data[1]);
         SymAssign(sym_core_current.Decode_port_data[2],
-                  SymGetSrcAnnotation(rc_ind));
+                  sym_read_register(rc_ind));
 
         //registers
         core_current.D2E_reg1_data = read_register_forward(13);
@@ -2474,9 +2474,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);       //Not used
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -2519,11 +2519,11 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = read_register(rc_ind);
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymAssign(sym_core_current.Decode_port_data[2],
-                  SymGetSrcAnnotation(rc_ind));
+                  sym_read_register(rc_ind));
 
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
@@ -2565,9 +2565,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -2610,11 +2610,11 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = read_register(rc_ind);
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymAssign(sym_core_current.Decode_port_data[2],
-                  SymGetSrcAnnotation(rc_ind));
+                  sym_read_register(rc_ind));
 
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
@@ -2657,9 +2657,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -2700,7 +2700,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = 0;   //Not used
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymClear(sym_core_current.Decode_port_data[1]);
         SymClear(sym_core_current.Decode_port_data[2]);
 
@@ -2743,11 +2743,11 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rc_ind);
         core_current.Decode_port_data[2] = read_register(rb_ind);
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rc_ind));
+                  sym_read_register(rc_ind));
         SymAssign(sym_core_current.Decode_port_data[2],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
 
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
@@ -2842,9 +2842,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -2884,9 +2884,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -2927,9 +2927,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -2972,9 +2972,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
@@ -3014,9 +3014,9 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;
         SymAssign(sym_core_current.Decode_port_data[0],
-                  SymGetSrcAnnotation(ra_ind));
+                  sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
-                  SymGetSrcAnnotation(rb_ind));
+                  sym_read_register(rb_ind));
         SymClear(sym_core_current.Decode_port_data[2]);
 
         //registers
