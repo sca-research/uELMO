@@ -5,6 +5,7 @@ import smurf
 UELMOCORE = "uelmo.json"
 TESTTRACE = None
 usedict = False
+DICTFILE = None
 
 if len(sys.argv) < 2:
     print("Usage: python3 readsym.py TRACE_FILE [DICTIONARY]")
@@ -14,6 +15,7 @@ if len(sys.argv) < 2:
 # Check if a dictionary file is provided.
 if len(sys.argv) >= 3:
     usedict = True
+    DICTFILE = sys.argv[2]
     pass
 
 # Target trace.
@@ -22,7 +24,7 @@ TESTTRACE = sys.argv[1]
 # Read dictionary
 if usedict:
     sdict = smurf.EncodeDict()
-    sdict.Import("../dict.sdc")
+    sdict.Import(DICTFILE)
     pass
 
 # Format control for Component printing.
