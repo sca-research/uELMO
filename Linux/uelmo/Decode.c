@@ -1,6 +1,8 @@
 #include "Configure.h"
 #include "core.h"
 #include "Decode.h"
+#include "ulang.h"
+#include "ulangcmd.h"
 
 //One cycle of decode
 void Decode_OneCycle(bool prev)
@@ -13,6 +15,10 @@ void Decode_OneCycle(bool prev)
     unsigned int next_inst = core_current.Fetch_instruction_new;
     if(!core_current.Decode_valid)      //Jump happens, no need to decode 
         return;
+
+    //Resolve all src annotations.
+    ResolveSrc();
+
     if(prev)                    //re-do decodde for LDR delay
     {
         inst = core_current.D2E_instrreg;
