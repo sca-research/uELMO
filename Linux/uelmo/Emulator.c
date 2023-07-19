@@ -83,6 +83,10 @@ int Execute_OneInstr(int *cycle)
     {
         if(DEBUG_CORE)
             printf("Cycle=%d\n", *cycle);
+
+        //Read in a command block every cycle.
+        ReadNextCmdBlock();
+
         //Clock+1; update the registers with new values: i.e. pipeline registers, reg[16] and cpsr
         Clock(wait_exe);
         //Memory run one cycle: 

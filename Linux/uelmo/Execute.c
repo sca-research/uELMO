@@ -3,6 +3,9 @@
 #include "Execute.h"
 #include "Decode.h"
 #include "symuelmo.h"
+#include "ulang.h"
+#include "ulangcmd.h"
+
 //One cycle of execute; if return true, the decode/fetch will be stalled
 bool Execute_OneCylce(bool wait_mem)
 {
@@ -18,6 +21,10 @@ bool Execute_OneCylce(bool wait_mem)
         || ((inst & 0xFE00) == 0xBC00) || ((inst & 0xF800) == 0xC800);
     if(!core_current.Execute_valid)     //Jump happens, no need to execute this instruction
         return false;
+
+    //Resolve all dst annotations.
+    ResolveDst();
+
     if((!IsLDR) && core_current.Read_reg_update)        //LDR is still runing, while the new one is not LDR
     {
         if(DEBUG_CORE)
