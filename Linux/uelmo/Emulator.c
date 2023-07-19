@@ -25,7 +25,10 @@ int Execute_OneInstr(int *cycle)
             printf("Cycle=%d\n", *cycle);
 
         //Read in a command block every cycle.
-        ReadNextCmdBlock();
+        if(OnTrace)
+        {
+            ReadNextCmdBlock();
+        }
 
         //Clock+1; update the registers with new values: i.e. pipeline registers, reg[16] and cpsr
         Clock(wait_exe);

@@ -17,7 +17,10 @@ void Decode_OneCycle(bool prev)
         return;
 
     //Resolve all src annotations.
-    ResolveSrc();
+    if(OnTrace)
+    {
+        ResolveSrc();
+    }
 
     if(prev)                    //re-do decodde for LDR delay
     {

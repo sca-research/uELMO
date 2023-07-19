@@ -22,7 +22,10 @@ bool Execute_OneCylce(bool wait_mem)
         return false;
 
     //Resolve all dst annotations.
-    ResolveDst();
+    if(OnTrace)
+    {
+        ResolveDst();
+    }
 
     if((!IsLDR) && core_current.Read_reg_update)        //LDR is still runing, while the new one is not LDR
     {
