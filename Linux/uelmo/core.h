@@ -17,6 +17,7 @@ typedef struct {
     bool core_valid;            //a flag for reaching the end of this execution
     unsigned int reg[16];       //architectural
     unsigned int cpsr;          //architectural
+
     //micro-arhictectural registers
     uint16_t F2D_instrreg;      //pipeline register, barrier between Fetch and Decode (i.e. D.1)  
     unsigned int D2E_reg1;      //pipeline register, barrier between Decode and Execute   (i.e. E.1)
@@ -30,9 +31,11 @@ typedef struct {
     bool D2E_reg2_valid;        //update pipeline register 2
     unsigned int D2E_reg1_data; //input data for pipeline register 1, barrier between Decode and Execute     (i.e. D.9)
     unsigned int D2E_reg2_data; //input data for pipeline register 2, barrier between Decode and Execute     (i.e. D.10)
+
     //Fetch
     uint16_t Fetch_instruction_new;     //Fetched new instruction (i.e. F.3)
     bool Fetch_valid;           //A flag that stall the pipeline when jump happens
+
     //Decode
     uint8_t Decode_port_regindex[3];    //Current Decoding Read ports index (0-15, often 0-7) (i.e. D.2-D.4)
     unsigned int Decode_port_data[3];   //Current Decoding Read ports data (i.e. D.5-D.7)
