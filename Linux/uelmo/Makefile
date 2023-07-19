@@ -16,3 +16,6 @@ smuelmo: $(wildcard *.c *.h)
 
 clean:
 	rm -f *.o *~ *.bak ${TARGET} smuelmo *.gch
+
+indent:
+	indent *.c *.h
