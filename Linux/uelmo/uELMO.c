@@ -162,6 +162,7 @@ static void CleanSmurf()
 {
     if(uSymbolEnabled)
     {
+        ExportEncDict(uDict, "/tmp/testtrace.sdc");     //DBG
         CleanScript();
         CleanSymCore();
     }
