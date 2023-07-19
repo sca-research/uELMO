@@ -86,9 +86,10 @@ void Decode_OneCycle(bool prev)
 
         return;
     }
+
     //ADD(1) small immediate two registers
     //Instr 4
-    if((inst & 0xFE00) == 0x1C00)
+    else if((inst & 0xFE00) == 0x1C00)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x7;
@@ -132,7 +133,7 @@ void Decode_OneCycle(bool prev)
 
     }
     //ADD(2) big immediate one register
-    if((inst & 0xF800) == 0x3000)
+    else if((inst & 0xF800) == 0x3000)
     {
         //Port indices
         ra_ind = (inst >> 8) & 0x7;
@@ -173,9 +174,8 @@ void Decode_OneCycle(bool prev)
         return;
 
     }
-
     //ADD(3) three registers
-    if((inst & 0xFE00) == 0x1800)
+    else if((inst & 0xFE00) == 0x1800)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x7;
@@ -223,7 +223,7 @@ void Decode_OneCycle(bool prev)
 
     //ADD(4) two registers one or both high no flags
     //Instr 6
-    if((inst & 0xFF00) == 0x4400)
+    else if((inst & 0xFF00) == 0x4400)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x7;
@@ -269,7 +269,7 @@ void Decode_OneCycle(bool prev)
         return;
     }
     //ADD(5) rd = pc plus immediate
-    if((inst & 0xF800) == 0xA000)
+    else if((inst & 0xF800) == 0xA000)
     {
         //Port indices
         imm = (inst >> 0) & 0xFF;
@@ -310,7 +310,7 @@ void Decode_OneCycle(bool prev)
 
     }
     //ADD(6) SP = sp plus immediate
-    if((inst & 0xF800) == 0xA800)
+    else if((inst & 0xF800) == 0xA800)
     {
         //Port indices
         imm = (inst >> 0) & 0xFF;
@@ -352,7 +352,7 @@ void Decode_OneCycle(bool prev)
         return;
     }
     //ADD(7) rd=sp plus immediate
-    if((inst & 0xFF80) == 0xB000)
+    else if((inst & 0xFF80) == 0xB000)
     {
         //Port indices
         imm = (inst >> 0) & 0x7F;
@@ -393,7 +393,7 @@ void Decode_OneCycle(bool prev)
 
     //AND
     //Instr 18
-    if((inst & 0xFFC0) == 0x4000)
+    else if((inst & 0xFFC0) == 0x4000)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x07;
@@ -436,7 +436,7 @@ void Decode_OneCycle(bool prev)
     }
     //ASR(1) two register immediate
     //Instr 28
-    if((inst & 0xF800) == 0x1000)
+    else if((inst & 0xF800) == 0x1000)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x07;
@@ -478,7 +478,7 @@ void Decode_OneCycle(bool prev)
     }
     //ASR(2) two register
     //Instr 29
-    if((inst & 0xFFC0) == 0x4100)
+    else if((inst & 0xFFC0) == 0x4100)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x07;
@@ -523,7 +523,7 @@ void Decode_OneCycle(bool prev)
     }
     //B(1) conditional branch
     //Instr 49
-    if((inst & 0xF000) == 0xD000)
+    else if((inst & 0xF000) == 0xD000)
     {
         //Port indices
         imm = (inst >> 0) & 0xFF;
@@ -560,7 +560,7 @@ void Decode_OneCycle(bool prev)
 
     //B(2) unconditional branch
     //Instr 49
-    if((inst & 0xF800) == 0xE000)
+    else if((inst & 0xF800) == 0xE000)
     {
         //Port indices
         imm = (inst >> 0) & 0x7FF;
@@ -594,7 +594,7 @@ void Decode_OneCycle(bool prev)
     }
     //BIC two registers
     //Instr 21
-    if((inst & 0xFFC0) == 0x4380)
+    else if((inst & 0xFFC0) == 0x4380)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x07;
@@ -636,7 +636,7 @@ void Decode_OneCycle(bool prev)
         return;
     }
     //BKPT: enter the debug mode; ignored
-    if((inst & 0xFF00) == 0xBE00)
+    else if((inst & 0xFF00) == 0xBE00)
     {
         //rb=(inst>>0)&0xFF;
         //fprintf(stderr,"bkpt 0x%02X\n",rb);
@@ -645,7 +645,7 @@ void Decode_OneCycle(bool prev)
     }
     //BL/BLX(1)
     //Instr 50
-    if((inst & 0xE000) == 0xE000)       //BL,BLX
+    else if((inst & 0xE000) == 0xE000)  //BL,BLX
     {
         if((inst & 0x1800) == 0x1000)   //H=b10
         {
@@ -738,7 +738,7 @@ void Decode_OneCycle(bool prev)
     }
     //BLX(2)
     //Instr 50
-    if((inst & 0xFF87) == 0x4780)
+    else if((inst & 0xFF87) == 0x4780)
     {
         ra_ind = (inst >> 3) & 0xF;
         core_current.Decode_port_regindex[0] = ra_ind;
@@ -774,7 +774,7 @@ void Decode_OneCycle(bool prev)
     }
     //BX
     //Instr 50
-    if((inst & 0xFF87) == 0x4700)
+    else if((inst & 0xFF87) == 0x4700)
     {
         ra_ind = (inst >> 3) & 0xF;
         core_current.Decode_port_regindex[0] = ra_ind;
@@ -808,7 +808,7 @@ void Decode_OneCycle(bool prev)
         return;
     }
     //CMN
-    if((inst & 0xFFC0) == 0x42C0)
+    else if((inst & 0xFFC0) == 0x42C0)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x07;
@@ -851,7 +851,7 @@ void Decode_OneCycle(bool prev)
     }
     //CMP(1) compare immediate
     //Instr 17
-    if((inst & 0xF800) == 0x2800)
+    else if((inst & 0xF800) == 0x2800)
     {
         //Port indices
         ra_ind = (inst >> 8) & 0x7;
@@ -892,7 +892,7 @@ void Decode_OneCycle(bool prev)
     }
     //CMP(2) compare register
     //Instr 15
-    if((inst & 0xFFC0) == 0x4280)
+    else if((inst & 0xFFC0) == 0x4280)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x07;
@@ -934,7 +934,7 @@ void Decode_OneCycle(bool prev)
         return;
     }
     //CMP(3) compare high register
-    if((inst & 0xFF00) == 0x4500)
+    else if((inst & 0xFF00) == 0x4500)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x7;
@@ -979,7 +979,7 @@ void Decode_OneCycle(bool prev)
         return;
     }
     //CPS change processor state
-    if((inst & 0xFFE8) == 0xB660)
+    else if((inst & 0xFFE8) == 0xB660)
     {
         printf("Error! CPS not supported\n");
         return;
@@ -1007,7 +1007,7 @@ void Decode_OneCycle(bool prev)
 
     //EOR
     //Instr 19
-    if((inst & 0xFFC0) == 0x4040)
+    else if((inst & 0xFFC0) == 0x4040)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x07;
@@ -1051,7 +1051,7 @@ void Decode_OneCycle(bool prev)
 
     //LDMIA
     //Instr 39
-    if((inst & 0xF800) == 0xC800)
+    else if((inst & 0xF800) == 0xC800)
     {
         //Port indices
         rc_ind = (inst >> 8) & 0x7;
@@ -1091,7 +1091,7 @@ void Decode_OneCycle(bool prev)
     }
     //LDR(1) two register immediate
     //Instr 31
-    if((inst & 0xF800) == 0x6800)
+    else if((inst & 0xF800) == 0x6800)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x07;
@@ -1133,7 +1133,7 @@ void Decode_OneCycle(bool prev)
     }
     //LDR(2) three register
     //Instr 34
-    if((inst & 0xFE00) == 0x5800)
+    else if((inst & 0xFE00) == 0x5800)
     {
         //According to paper
         //Port indices
@@ -1179,7 +1179,7 @@ void Decode_OneCycle(bool prev)
     }
     //LDR(3)
     //rd=[PC+offset]: treat like LDRI 31
-    if((inst & 0xF800) == 0x4800)
+    else if((inst & 0xF800) == 0x4800)
     {
         //Port indices
         ra_ind = (inst >> 8) & 0x07;
@@ -1219,7 +1219,7 @@ void Decode_OneCycle(bool prev)
 
     //LDR(4)
     //Load rd [Sp+imm], treat as LDRI Instr 31
-    if((inst & 0xF800) == 0x9800)
+    else if((inst & 0xF800) == 0x9800)
     {
         //Port indices
         ra_ind = (inst >> 8) & 0x07;
@@ -1259,7 +1259,7 @@ void Decode_OneCycle(bool prev)
     }
     //LDRB(1)
     //Instr 33 LDRBI
-    if((inst & 0xF800) == 0x7800)
+    else if((inst & 0xF800) == 0x7800)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x07;
@@ -1302,7 +1302,7 @@ void Decode_OneCycle(bool prev)
 
     //LDRB(2)
     //Instr 37  LDRB 2reg
-    if((inst & 0xFE00) == 0x5C00)
+    else if((inst & 0xFE00) == 0x5C00)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x07;
@@ -1349,7 +1349,7 @@ void Decode_OneCycle(bool prev)
     }
     //LDRH(1)
     //Instr 32  LDRHI
-    if((inst & 0xF800) == 0x8800)
+    else if((inst & 0xF800) == 0x8800)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x07;
@@ -1391,7 +1391,7 @@ void Decode_OneCycle(bool prev)
     }
     //LDRH(2)
     //Instr 35 LDRH 2reg
-    if((inst & 0xFE00) == 0x5A00)
+    else if((inst & 0xFE00) == 0x5A00)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x07;
@@ -1438,7 +1438,7 @@ void Decode_OneCycle(bool prev)
 
     //LDRSB
     //Instr 38 2reg
-    if((inst & 0xFE00) == 0x5600)
+    else if((inst & 0xFE00) == 0x5600)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x07;
@@ -1484,7 +1484,7 @@ void Decode_OneCycle(bool prev)
     }
     //LDRSH
     //Instr 35 2reg
-    if((inst & 0xFE00) == 0x5E00)
+    else if((inst & 0xFE00) == 0x5E00)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x07;
@@ -1530,7 +1530,7 @@ void Decode_OneCycle(bool prev)
     }
     //LSL(1)
     //Instr 24 LSLI
-    if((inst & 0xF800) == 0x0000)
+    else if((inst & 0xF800) == 0x0000)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x07;
@@ -1574,7 +1574,7 @@ void Decode_OneCycle(bool prev)
 
     //LSL(2) two register
     //Instr 25 LSL 2 reg
-    if((inst & 0xFFC0) == 0x4080)
+    else if((inst & 0xFFC0) == 0x4080)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x07;
@@ -1619,7 +1619,7 @@ void Decode_OneCycle(bool prev)
     }
     //LSR(1) two register immediate
     //Instr 26: LSRI
-    if((inst & 0xF800) == 0x0800)
+    else if((inst & 0xF800) == 0x0800)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x07;
@@ -1661,7 +1661,7 @@ void Decode_OneCycle(bool prev)
     }
     //LSR(2) two register
     //Instr 27 LSR two registers
-    if((inst & 0xFFC0) == 0x40C0)
+    else if((inst & 0xFFC0) == 0x40C0)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x07;
@@ -1706,7 +1706,7 @@ void Decode_OneCycle(bool prev)
 
     //MOV(1) immediate
     //Instr 1: movs imm
-    if((inst & 0xF800) == 0x2000)
+    else if((inst & 0xF800) == 0x2000)
     {
 
         //Port indices
@@ -1747,7 +1747,7 @@ void Decode_OneCycle(bool prev)
     }
     //MOV(2) two low registers
     //Instr 2: movs low reg
-    if((inst & 0xFFC0) == 0x1C00)
+    else if((inst & 0xFFC0) == 0x1C00)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x07;
@@ -1789,7 +1789,7 @@ void Decode_OneCycle(bool prev)
     }
     //MOV(3)
     // Instr 3: mov high reg
-    if((inst & 0xFF00) == 0x4600)
+    else if((inst & 0xFF00) == 0x4600)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x7;
@@ -1833,7 +1833,7 @@ void Decode_OneCycle(bool prev)
     }
     //MUL
     //Instr 14
-    if((inst & 0xFFC0) == 0x4340)
+    else if((inst & 0xFFC0) == 0x4340)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x07;
@@ -1876,7 +1876,7 @@ void Decode_OneCycle(bool prev)
     }
     //MVN
     //Instr 22
-    if((inst & 0xFFC0) == 0x43C0)
+    else if((inst & 0xFFC0) == 0x43C0)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x7;
@@ -1918,7 +1918,7 @@ void Decode_OneCycle(bool prev)
     }
     //NEG/RSB
     //Instr 13
-    if((inst & 0xFFC0) == 0x4240)
+    else if((inst & 0xFFC0) == 0x4240)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x7;
@@ -1961,7 +1961,7 @@ void Decode_OneCycle(bool prev)
     }
     //ORR
     //Instr 20
-    if((inst & 0xFFC0) == 0x4300)
+    else if((inst & 0xFFC0) == 0x4300)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x7;
@@ -2005,7 +2005,7 @@ void Decode_OneCycle(bool prev)
     }
     //POP
     //Instr 48=LDM
-    if((inst & 0xFE00) == 0xBC00)
+    else if((inst & 0xFE00) == 0xBC00)
     {
         //Port indices
         core_current.Decode_port_regindex[0] = 0xff;
@@ -2039,7 +2039,7 @@ void Decode_OneCycle(bool prev)
     }
     //PUSH
     //Instr 49, =STM
-    if((inst & 0xFE00) == 0xB400)
+    else if((inst & 0xFE00) == 0xB400)
     {
         //Port indices
         core_current.Decode_port_regindex[0] = 0xff;
@@ -2073,7 +2073,7 @@ void Decode_OneCycle(bool prev)
     }
     //REV
     //Instr 55 two regs
-    if((inst & 0xFFC0) == 0xBA00)
+    else if((inst & 0xFFC0) == 0xBA00)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x7;
@@ -2116,7 +2116,7 @@ void Decode_OneCycle(bool prev)
     }
     //REV16
     //Instr 56
-    if((inst & 0xFFC0) == 0xBA40)
+    else if((inst & 0xFFC0) == 0xBA40)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x7;
@@ -2158,7 +2158,7 @@ void Decode_OneCycle(bool prev)
     }
     //REVSH
     //Instr 57
-    if((inst & 0xFFC0) == 0xBAC0)
+    else if((inst & 0xFFC0) == 0xBAC0)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x7;
@@ -2201,7 +2201,7 @@ void Decode_OneCycle(bool prev)
     }
     //ROR
     //Instr 30
-    if((inst & 0xFFC0) == 0x41C0)
+    else if((inst & 0xFFC0) == 0x41C0)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x07;
@@ -2245,7 +2245,7 @@ void Decode_OneCycle(bool prev)
     }
     //SBC
     //Instr 12
-    if((inst & 0xFFC0) == 0x4180)
+    else if((inst & 0xFFC0) == 0x4180)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x07;
@@ -2286,14 +2286,15 @@ void Decode_OneCycle(bool prev)
         return;
     }
     //SETEND
-    if((inst & 0xFFF7) == 0xB650)
+    else if((inst & 0xFFF7) == 0xB650)
     {
         printf("setend not implemented\n");
         return;
     }
+
     //STMIA
     //Instr 46
-    if((inst & 0xF800) == 0xC000)
+    else if((inst & 0xF800) == 0xC000)
     {
         rc_ind = (inst >> 8) & 0x7;
         //Port indices
@@ -2332,7 +2333,7 @@ void Decode_OneCycle(bool prev)
     }
     //STR(1)
     //Instr 40 STRI
-    if((inst & 0xF800) == 0x6000)
+    else if((inst & 0xF800) == 0x6000)
     {
         ra_ind = (inst >> 0) & 0x07;
         rb_ind = (inst >> 3) & 0x07;
@@ -2376,7 +2377,7 @@ void Decode_OneCycle(bool prev)
     }
     //STR(2)
     //Instr 43
-    if((inst & 0xFE00) == 0x5000)
+    else if((inst & 0xFE00) == 0x5000)
     {
         ra_ind = (inst >> 0) & 0x07;
         rb_ind = (inst >> 3) & 0x07;
@@ -2423,7 +2424,7 @@ void Decode_OneCycle(bool prev)
     }
     //STR(3)
     //Store SP with offset, as STRI
-    if((inst & 0xF800) == 0x9000)
+    else if((inst & 0xF800) == 0x9000)
     {
         rc_ind = (inst >> 8) & 0x07;
         imm = (inst >> 0) & 0xFF;
@@ -2466,7 +2467,7 @@ void Decode_OneCycle(bool prev)
     }
     //STRB(1)
     //Instr 42 STRBI
-    if((inst & 0xF800) == 0x7000)
+    else if((inst & 0xF800) == 0x7000)
     {
         ra_ind = (inst >> 0) & 0x07;
         rb_ind = (inst >> 3) & 0x07;
@@ -2511,7 +2512,7 @@ void Decode_OneCycle(bool prev)
     }
     //STRB(2)
     //Instr 45 STRB
-    if((inst & 0xFE00) == 0x5400)
+    else if((inst & 0xFE00) == 0x5400)
     {
         ra_ind = (inst >> 0) & 0x07;
         rb_ind = (inst >> 3) & 0x07;
@@ -2557,7 +2558,7 @@ void Decode_OneCycle(bool prev)
     }
     //STRH(1)
     //Instr 41 STRHI
-    if((inst & 0xF800) == 0x8000)
+    else if((inst & 0xF800) == 0x8000)
     {
         ra_ind = (inst >> 0) & 0x07;
         rb_ind = (inst >> 3) & 0x07;
@@ -2602,7 +2603,7 @@ void Decode_OneCycle(bool prev)
     }
     //STRH(2)
     //Instr 44 STRH
-    if((inst & 0xFE00) == 0x5200)
+    else if((inst & 0xFE00) == 0x5200)
     {
         ra_ind = (inst >> 0) & 0x07;
         rb_ind = (inst >> 3) & 0x07;
@@ -2692,7 +2693,7 @@ void Decode_OneCycle(bool prev)
     }
     //SUB(2)
     //Instr 11: Sub 1reg+Imm
-    if((inst & 0xF800) == 0x3800)
+    else if((inst & 0xF800) == 0x3800)
     {
         //Port indices
         ra_ind = (inst >> 8) & 0x7;
@@ -2734,7 +2735,7 @@ void Decode_OneCycle(bool prev)
     }
     //SUB(3)
     //Instr 9: sub 3regs
-    if((inst & 0xFE00) == 0x1A00)
+    else if((inst & 0xFE00) == 0x1A00)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x7;
@@ -2780,7 +2781,7 @@ void Decode_OneCycle(bool prev)
     }
     //SUB(4)
     //Sub SP=Sp-imm
-    if((inst & 0xFF80) == 0xB080)
+    else if((inst & 0xFF80) == 0xB080)
     {
         //Port indices
         imm = (inst >> 0) & 0x7F;
@@ -2818,7 +2819,7 @@ void Decode_OneCycle(bool prev)
         return;
     }
     //SWI/SVC
-    if((inst & 0xFF00) == 0xDF00)
+    else if((inst & 0xFF00) == 0xDF00)
     {
         rb = inst & 0xFF;
         if((inst & 0xFF) == 0xCC)
@@ -2834,7 +2835,7 @@ void Decode_OneCycle(bool prev)
     }
     //SXTB
     //Instr 52
-    if((inst & 0xFFC0) == 0xB240)
+    else if((inst & 0xFFC0) == 0xB240)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x7;
@@ -2876,7 +2877,7 @@ void Decode_OneCycle(bool prev)
     }
     //SXTH
     //Instr 51
-    if((inst & 0xFFC0) == 0xB200)
+    else if((inst & 0xFFC0) == 0xB200)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x7;
@@ -2920,7 +2921,7 @@ void Decode_OneCycle(bool prev)
 
     //TST
     //Instr 23
-    if((inst & 0xFFC0) == 0x4200)
+    else if((inst & 0xFFC0) == 0x4200)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x07;
@@ -2964,7 +2965,7 @@ void Decode_OneCycle(bool prev)
     }
     //UXTB
     //Instr 54
-    if((inst & 0xFFC0) == 0xB2C0)
+    else if((inst & 0xFFC0) == 0xB2C0)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x7;
@@ -3006,7 +3007,7 @@ void Decode_OneCycle(bool prev)
     }
     //UXTH
     //Instr 53
-    if((inst & 0xFFC0) == 0xB280)
+    else if((inst & 0xFFC0) == 0xB280)
     {
         //Port indices
         ra_ind = (inst >> 0) & 0x7;
