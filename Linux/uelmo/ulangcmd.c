@@ -146,8 +146,10 @@ void RequestDst(int argc, char **argv)
 }
 
 //Resolve all dst requests.
-int ResolveDst()
+//Returns the last SYMBOL in the dst quque.
+uSymbol ResolveDst()
 {
+    uSymbol retsym = SYM_NULL;
     struct dstArg *darg = NULL;
 
     //Pull all existing requests.
@@ -158,12 +160,12 @@ int ResolveDst()
         printf("[%d(%d)] dst tagged: REG=%d, SYMBOL=%d\n",
                cyclecount, frameno, darg->reg, darg->sym.symid);
 
-        //Assign sym to reg.
-        SymAssign(sym_core_current.reg[darg->reg], darg->sym);
+        //Update the return value with the last Symbol in the queue.
+        retsym = darg->sym;
 
         //Free the arguments.
         Free(darg);
     }
 
-    return 0;
+    return retsym;
 }
