@@ -30,7 +30,7 @@ extern SmurfQueue *dstqueue;    //Queue for dst command.
 
 //Arguments of dst command.
 struct dstArg {
-    int reg;
+    int reg;                    //Redundant for annotation.
     uSymbol sym;
 };
 
@@ -38,5 +38,6 @@ struct dstArg {
 void RequestDst(int argc, char **argv);
 
 //Resolve all dst requests.
-int ResolveDst();
+uSymbol ResolveDst();
+
 #endif
