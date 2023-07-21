@@ -1,3 +1,5 @@
 *.map
 *.bin
 *.elf
+*.d
+*.list
