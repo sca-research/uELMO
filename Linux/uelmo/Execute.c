@@ -19,13 +19,16 @@ bool Execute_OneCylce(bool wait_mem)
         || ((inst & 0xF800) == 0x8800) || ((inst & 0xFE00) == 0x5A00)
         || ((inst & 0xFE00) == 0x5600) || ((inst & 0xFE00) == 0x5E00)
         || ((inst & 0xFE00) == 0xBC00) || ((inst & 0xF800) == 0xC800);
+
+    uSymbol sym_exe_result = SYM_NULL;
+
     if(!core_current.Execute_valid)     //Jump happens, no need to execute this instruction
         return false;
 
     //Resolve all dst annotations.
     if(OnTrace)
     {
-        ResolveDst();
+        sym_exe_result = ResolveDst();
     }
 
     if((!IsLDR) && core_current.Read_reg_update)        //LDR is still runing, while the new one is not LDR
@@ -79,7 +82,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 
         return false;
     }
@@ -107,7 +110,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 
         return false;
 
@@ -136,7 +139,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 
         return false;
     }
@@ -165,7 +168,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 
         return false;
     }
@@ -196,7 +199,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 
         return false;
     }
@@ -222,7 +225,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 
         return false;
 
@@ -250,7 +253,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 
         return false;
     }
@@ -276,7 +279,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 
         return false;
     }
@@ -307,7 +310,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 
         return false;
     }
@@ -357,7 +360,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 
         return false;
     }
@@ -412,7 +415,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 
         return false;
     }
@@ -632,7 +635,7 @@ bool Execute_OneCylce(bool wait_mem)
         //{
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 
         core_current.Execute_destination_regindex = 15;
         write_register(core_current.Execute_destination_regindex, core_current.Execute_ALU_result);     //TODO ines
@@ -670,7 +673,7 @@ bool Execute_OneCylce(bool wait_mem)
         sprintf(core_current.Execute_instr_disp, "Execute: B 0x%08X", rb - 3);
         //Update ALU output
         core_current.Execute_ALU_result = rb;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 
         core_current.Execute_destination_regindex = 15;
         write_register(core_current.Execute_destination_regindex, core_current.Execute_ALU_result);     //TODO ines
@@ -707,7 +710,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 
         return false;
     }
@@ -737,8 +740,7 @@ bool Execute_OneCylce(bool wait_mem)
             sprintf(core_current.Execute_instr_disp, "Execute: b1 pre-fix");
             //Update ALU output
             core_current.Execute_ALU_result = rb;
-            SymAssign(sym_core_current.Execute_ALU_result,
-                      SymGetDstAnnotation());
+            SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
             core_current.Execute_destination_regindex = 14;     //TODO ines: need in sym?
             return false;
         }
@@ -756,8 +758,7 @@ bool Execute_OneCylce(bool wait_mem)
                     "Execute: bl 0x%08X", rb - 3);
             //Update ALU output
             core_current.Execute_ALU_result = rb;
-            SymAssign(sym_core_current.Execute_ALU_result,
-                      SymGetDstAnnotation());
+            SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 
             core_current.Execute_destination_regindex = 15;
             write_register(core_current.Execute_destination_regindex, core_current.Execute_ALU_result); //TODO ines
@@ -786,8 +787,7 @@ bool Execute_OneCylce(bool wait_mem)
 
             //Update ALU output
             core_current.Execute_ALU_result = rb;
-            SymAssign(sym_core_current.Execute_ALU_result,
-                      SymGetDstAnnotation());
+            SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
             core_current.Execute_destination_regindex = 15;
             write_register(core_current.Execute_destination_regindex, core_current.Execute_ALU_result); //TODO ines
             core_current.Execute_destination_regindex = 0xff;
@@ -818,8 +818,7 @@ bool Execute_OneCylce(bool wait_mem)
             sprintf(core_current.Execute_instr_disp, "Execute:blx r%u", ra_ind);
             //Update ALU output
             core_current.Execute_ALU_result = rc;
-            SymAssign(sym_core_current.Execute_ALU_result,
-                      SymGetDstAnnotation());
+            SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 
             core_current.Execute_destination_regindex = 15;
             write_register(core_current.Execute_destination_regindex, core_current.Execute_ALU_result); //TODO ines
@@ -853,7 +852,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 
         core_current.Execute_destination_regindex = 15;
         write_register(core_current.Execute_destination_regindex, core_current.Execute_ALU_result);     //TODO ines
@@ -890,7 +889,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 
         return false;
     }
@@ -920,7 +919,7 @@ bool Execute_OneCylce(bool wait_mem)
         //Update ALU output
         core_current.Execute_ALU_result = rc;
         core_current.Execute_destination_regindex = 0xff;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
         //sym_core_current.Execute_destination_regindex = 0xff;
         return false;
     }
@@ -950,7 +949,7 @@ bool Execute_OneCylce(bool wait_mem)
         //Update ALU output
         core_current.Execute_ALU_result = rc;
         core_current.Execute_destination_regindex = 0xff;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
         //sym_core_current.Execute_destination_regindex = 0xff;
         return false;
     }
@@ -980,7 +979,7 @@ bool Execute_OneCylce(bool wait_mem)
         //Update ALU output
         core_current.Execute_ALU_result = rc;
         core_current.Execute_destination_regindex = 0xff;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
         //sym_core_current.Execute_destination_regindex = 0xff;
         return false;
     }
@@ -1036,7 +1035,7 @@ bool Execute_OneCylce(bool wait_mem)
         //Update ALU output
         core_current.Execute_ALU_result = rc;
         core_current.Execute_destination_regindex = ra_ind;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
         //sym_core_current.Execute_destination_regindex = ra_ind;
         return false;
     }
@@ -2102,7 +2101,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
         return false;
     }
     //REV16
@@ -2132,7 +2131,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
         return false;
     }
     //REVSH
@@ -2160,7 +2159,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
         return false;
     }
     //ROR
@@ -2207,7 +2206,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
         return false;
     }
     //SBC
@@ -2246,7 +2245,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
         return false;
     }
     //SETEND
@@ -2335,7 +2334,7 @@ bool Execute_OneCylce(bool wait_mem)
         //Update ALU output
         core_current.Execute_ALU_result = rb;
         core_current.Execute_destination_regindex = 0xff;       //do not update this
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
         return false;
     }
     //STR(2)
@@ -2619,7 +2618,7 @@ bool Execute_OneCylce(bool wait_mem)
         //Update destination register
         write_register(rd_ind, core_current.Execute_ALU_result);
         core_current.Execute_destination_regindex = 0xff;       //do not update this
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
         return false;
     }
     //SUB(2)
@@ -2646,7 +2645,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 
         return false;
 
@@ -2676,7 +2675,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
         return false;
     }
     //SUB(4)
@@ -2702,7 +2701,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
         return false;
     }
     //SWI/SVC
@@ -2750,7 +2749,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
         return false;
     }
     //SXTH
@@ -2783,7 +2782,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
         return false;
     }
 
@@ -2813,7 +2812,7 @@ bool Execute_OneCylce(bool wait_mem)
         //Update ALU output
         core_current.Execute_ALU_result = rc;
         core_current.Execute_destination_regindex = 0xff;       //do not update this
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
         return false;
     }
     //UXTB
@@ -2840,7 +2839,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
         return false;
     }
     //UXTH
@@ -2867,7 +2866,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        SymAssign(sym_core_current.Execute_ALU_result, SymGetDstAnnotation());
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
         return false;
     }
     printf("invalid instruction 0x%04X\n", inst);
