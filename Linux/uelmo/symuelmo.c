@@ -172,7 +172,7 @@ uSymbol GetSym(SymbolicComponent component)
 {
     uSymbol sym = SYM_NULL;
 
-    sym.symid = *component.sid_p;
+    sym.symid = SfGetFrameSymid(component.sid_p);
 
     return sym;
 }
