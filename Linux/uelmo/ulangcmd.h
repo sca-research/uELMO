@@ -38,6 +38,7 @@ struct dstArg {
 void RequestDst(int argc, char **argv);
 
 //Resolve all dst requests.
+//Returns the last Symbol in dst queue.
 uSymbol ResolveDst();
 
 #endif
