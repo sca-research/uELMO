@@ -146,7 +146,7 @@ void RequestDst(int argc, char **argv)
 }
 
 //Resolve all dst requests.
-//Returns the last SYMBOL in the dst quque.
+//Returns the last Symbol in dst queue.
 uSymbol ResolveDst()
 {
     uSymbol retsym = SYM_NULL;
