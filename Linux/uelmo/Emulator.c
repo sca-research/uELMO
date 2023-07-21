@@ -111,6 +111,7 @@ int Execute_OneInstr(int *cycle)
 
         //Execute
         wait_exe = Execute_OneCylce(wait_mem);
+#if 0
         //printf("OK 1\n");
         if(decodeInst.isEmpty == 0)
         {
@@ -125,8 +126,10 @@ int Execute_OneInstr(int *cycle)
             executeInst.isEmpty = 1;
         }
         //printf("OK 2\n");
+#endif
         if(wait_exe == false)   //Execute did not stall the pipeline
         {
+#if 0
             if(fetchInst.isEmpty == 0)
             {
                 copyInstToFrom(&decodeInst, &fetchInst);
@@ -139,9 +142,10 @@ int Execute_OneInstr(int *cycle)
             {
                 decodeInst.isEmpty = 1;
             }
-
+#endif
             //Fetch
             Fetch_OneCycle();
+#if 0
             //printf("OK 3\n");
             if(numAnnotatedInst < totalNumberInst)
             {
@@ -156,6 +160,7 @@ int Execute_OneInstr(int *cycle)
             {
                 fetchInst.isEmpty = 1;
             }
+#endif
             //Decode
             Decode_OneCycle(false);
             //printf("OK 4\n");//
@@ -211,6 +216,7 @@ int reset(void)
     strcpy(core_current.Execute_instr_disp, "Execute init");
     //Fetch
     Fetch_OneCycle();
+#if 0
     if(numAnnotatedInst < totalNumberInst)
     {
         copyInstToFrom(&fetchInst, &(annotatedInst[numAnnotatedInst]));
@@ -222,7 +228,7 @@ int reset(void)
     {
         fetchInst.isEmpty = 1;
     }
-
+#endif
     return (0);
 }
 

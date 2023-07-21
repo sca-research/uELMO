@@ -109,8 +109,10 @@ extern Instruction_t fetchInst;
 extern Instruction_t decodeInst;
 extern Instruction_t executeInst;
 
+#if 0
 void copyInstToFrom(Instruction_t * toInst, Instruction_t * fromInst);
 uSymbol SymGetDstAnnotation();
+#endif
 uSymbol SymGetMemAddrAnnotation();
 
 uSymbol sym_read_register(unsigned int);

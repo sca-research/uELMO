@@ -39,6 +39,7 @@ unsigned int read_register(unsigned int reg)
     return (data);
 }
 
+#if 0
 void copyInstToFrom(Instruction_t * toInst, Instruction_t * fromInst)
 {
     strcpy(toInst->instCode, fromInst->instCode);
@@ -58,6 +59,7 @@ uSymbol SymGetDstAnnotation()
 {
     return decodeInst.dstTag.annotation;
 }
+#endif
 
 uSymbol SymGetMemAddrAnnotation()
 {
