@@ -90,31 +90,6 @@ void do_vflag(unsigned int, unsigned int, unsigned int);
 void do_cflag_bit(unsigned int);
 void do_vflag_bit(unsigned int);
 
-typedef struct {
-    int registerNum;
-    uSymbol annotation;
-} Annotation_t;
-
-typedef struct {
-    Annotation_t srcTag0;
-    Annotation_t srcTag1;
-    Annotation_t srcTag2;
-    Annotation_t dstTag;
-    Annotation_t memAddrTag;
-    char instCode[25];
-    int isEmpty;                // 0 means it is empty, otherwise it is not
-} Instruction_t;
-
-extern Instruction_t fetchInst;
-extern Instruction_t decodeInst;
-extern Instruction_t executeInst;
-
-#if 0
-void copyInstToFrom(Instruction_t * toInst, Instruction_t * fromInst);
-uSymbol SymGetDstAnnotation();
-#endif
-uSymbol SymGetMemAddrAnnotation();
-
 uSymbol sym_read_register(unsigned int);
 uSymbol sym_read_register_forward(unsigned int reg);
 #endif

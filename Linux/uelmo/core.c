@@ -1,13 +1,11 @@
 #include "Configure.h"
 #include "core.h"
 
-Instruction_t fetchInst;
-Instruction_t decodeInst;
-Instruction_t executeInst;
-
 CORE_STATUS core_current;
+
 //global flag that shows whether the current cycle is on the trace
 bool OnTrace = false;
+
 //Check if the current executed LDR instruction requires an extra delay cycle, i.e. LDR r0,xxx; LDR xxx,[r0]
 bool check_delay(unsigned int reg)
 {
@@ -37,33 +35,6 @@ unsigned int read_register(unsigned int reg)
     }
     //if(DEBUG_CORE) printf("0x%08X\n",data);
     return (data);
-}
-
-#if 0
-void copyInstToFrom(Instruction_t * toInst, Instruction_t * fromInst)
-{
-    strcpy(toInst->instCode, fromInst->instCode);
-    toInst->srcTag0.annotation.symid = fromInst->srcTag0.annotation.symid;
-    toInst->srcTag1.annotation = fromInst->srcTag1.annotation;
-    toInst->srcTag2.annotation = fromInst->srcTag2.annotation;
-    toInst->dstTag.annotation = fromInst->dstTag.annotation;
-    toInst->srcTag0.registerNum = fromInst->srcTag0.registerNum;
-    toInst->srcTag1.registerNum = fromInst->srcTag1.registerNum;
-    toInst->srcTag2.registerNum = fromInst->srcTag2.registerNum;
-    toInst->dstTag.registerNum = fromInst->dstTag.registerNum;
-    //printf("*** toInst code: %s\n", toInst->instCode);
-    //printf("*** toInst dstTag0 value: %s\n\n", toInst->dstTag.value);
-}
-
-uSymbol SymGetDstAnnotation()
-{
-    return decodeInst.dstTag.annotation;
-}
-#endif
-
-uSymbol SymGetMemAddrAnnotation()
-{
-    return decodeInst.memAddrTag.annotation;
 }
 
 //Read register with result forwarding
