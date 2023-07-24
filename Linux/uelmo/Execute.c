@@ -20,14 +20,14 @@ bool Execute_OneCylce(bool wait_mem)
         || ((inst & 0xFE00) == 0x5600) || ((inst & 0xFE00) == 0x5E00)
         || ((inst & 0xFE00) == 0xBC00) || ((inst & 0xF800) == 0xC800);
 
-#if USE_SMURF
+#ifdef USE_SMURF
     uSymbol sym_exe_result = SYM_NULL;
 #endif
 
     if(!core_current.Execute_valid)     //Jump happens, no need to execute this instruction
         return false;
 
-#if USE_SMURF
+#ifdef USE_SMURF
     //Resolve all dst annotations.
     if(OnTrace && useScript)
     {

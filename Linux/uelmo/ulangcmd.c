@@ -1,3 +1,4 @@
+#ifdef USE_SMURF
 //ULANG commands implementation.
 #include "stdio.h"
 #include "uelmo.h"
@@ -160,3 +161,4 @@ uSymbol ResolveDst()
 
     return retsym;
 }
+#endif

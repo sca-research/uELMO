@@ -1,4 +1,4 @@
-#if USE_SMURF
+#ifdef USE_SMURF
 #include <stdio.h>
 
 #include "symuelmo.h"

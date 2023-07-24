@@ -1,6 +1,7 @@
 #ifndef ULANGCMD_H
 #define ULANGCMD_H
 
+#ifdef USE_SMURF
 #include "smurf/smurfscript.h"
 #include "symuelmo.h"
 
@@ -40,5 +41,5 @@ void RequestDst(int argc, char **argv);
 //Resolve all dst requests.
 //Returns the last Symbol in dst queue.
 uSymbol ResolveDst();
-
+#endif
 #endif

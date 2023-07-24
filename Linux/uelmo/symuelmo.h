@@ -1,7 +1,7 @@
 #ifndef SYMUELMO_H
 #define SYMUELMO_H
 
-#if USE_SMURF
+#ifdef USE_SMURF
 
 #include "smurf/smurf.h"
 #include "smurf/symbolic.h"

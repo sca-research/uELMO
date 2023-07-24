@@ -192,6 +192,7 @@ void Clock(bool pause)
 
 }
 
+#ifdef USE_SMURF
 //Read register Symbol from current sym core status
 uSymbol sym_read_register(unsigned int reg)
 {
@@ -238,3 +239,4 @@ void sym_write_register(unsigned int reg, uSymbol sym)
 
     return;
 }
+#endif

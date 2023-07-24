@@ -2,7 +2,10 @@
 #ifndef CORE_H_
 #define CORE_H_
 #include "Configure.h"
+
+#ifdef USE_SMURF
 #include "symuelmo.h"
+#endif
 
 #define CPSR_N (1<<31)
 #define CPSR_Z (1<<30)
@@ -90,7 +93,10 @@ void do_vflag(unsigned int, unsigned int, unsigned int);
 void do_cflag_bit(unsigned int);
 void do_vflag_bit(unsigned int);
 
+#ifdef USE_SMURF
 uSymbol sym_read_register(unsigned int);
 uSymbol sym_read_register_forward(unsigned int reg);
 void sym_write_register(unsigned int reg, uSymbol sym);
+#endif
+
 #endif
