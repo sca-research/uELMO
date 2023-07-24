@@ -21,16 +21,15 @@ int N_ind = 0;
 bool ioSupported = false;
 bool useSmurfTrace = false;
 bool useInputFile = false;
-//bool uSymbolEnabled = false;
-bool uSymbolEnabled = true;     //DBG
+bool useScript = false;
 
 #ifdef USE_SMURF
 SmurfIO *sio = NULL;
 char *smftracepath = NULL;
 char *siopath = NULL;
 Smurf *smurf = NULL;
-//const char * scriptpath = NULL;
-const char *scriptpath = "../example/uelmo_gadget/isw2.set";    //DBG
+const char *scriptpath = NULL;  //DBG
+char dictpath[MAX_PATH_LAN] = { 0 };
 #endif
 
 uint32_t frameno = 0;
@@ -55,6 +54,7 @@ void PrintHelp()
         ("\t--io ${IFPATH}: Enable IO support at the path given by ${IFPATH}.\n");
     printf
         ("\t--st ${SMURF_TRACE_PATH}: Smurf trace output at ${SMURF_TRACE_PATH}.\n");
+    printf("\t--sc ${SCRIPT_PATH}: Use ULANG script at ${SCRIPT_PATH}.\n");
 #endif
     return;
 }
@@ -148,7 +148,7 @@ static void Init_Smurf()
         sio = NULL;
     }
 
-    if(uSymbolEnabled)
+    if(useScript)
     {
         InitSymCore();
         InitScript(scriptpath);
@@ -160,9 +160,9 @@ static void Init_Smurf()
 //Clean Smurf data structures.
 static void CleanSmurf()
 {
-    if(uSymbolEnabled)
+    if(useScript)
     {
-        ExportEncDict(uDict, "/tmp/testtrace.sdc");     //DBG
+        ExportEncDict(uDict, dictpath); //DBG
         CleanScript();
         CleanSymCore();
     }
@@ -171,6 +171,7 @@ static void CleanSmurf()
     {
         SioClose(sio);
     }
+
     if(useSmurfTrace)
     {
         FreeSmurf(smurf);
@@ -261,6 +262,13 @@ int main(int argc, char *argv[])
         {
             useSmurfTrace = true;
             smftracepath = argv[ra + 1];
+            ra++;
+        }
+        else if(strcmp(argv[ra], "--sc") == 0)  //Use ULANG script.
+        {
+            useScript = true;
+            scriptpath = argv[ra + 1];  //Script path.
+            snprintf(dictpath, sizeof(dictpath) - 1, "%s.sdc", scriptpath);     //Smurf dictionary path.
             ra++;
         }
 #endif

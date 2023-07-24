@@ -4,6 +4,7 @@
 #include "symuelmo.h"
 
 #include "uelmo.h"
+#include "Configure.h"
 
 #include "smurf/frame.h"
 #include "smurf/symbolic.h"
@@ -147,6 +148,10 @@ void CleanSymCore()
 //Assign a Symbol to a component.
 int SymAssign(SymbolicComponent component, uSymbol symbol)
 {
+    if(!useScript)
+    {
+        return 0;
+    }
     SfSetFrameSymid(component.sid_p, symbol.symid);
     return 0;
 }
@@ -156,6 +161,11 @@ int SymCopy(SymbolicComponent dstcomp, SymbolicComponent srccomp)
 {
     SmurfSymId t;
 
+    if(!useScript)
+    {
+        return 0;
+    }
+
     t = SfGetFrameSymid(srccomp.sid_p);
     SfSetFrameSymid(dstcomp.sid_p, t);
     return 0;
@@ -164,6 +174,11 @@ int SymCopy(SymbolicComponent dstcomp, SymbolicComponent srccomp)
 //Clear the Symbol (= reset it to NULL) of ${comp}.
 int SymClear(SymbolicComponent component)
 {
+    if(!useScript)
+    {
+        return 0;
+    }
+
     return SymAssign(component, SYM_NULL);
 }
 
@@ -171,6 +186,11 @@ int SymClear(SymbolicComponent component)
 uSymbol GetSym(SymbolicComponent component)
 {
     uSymbol sym = SYM_NULL;
+
+    if(!useScript)
+    {
+        return SYM_NULL;
+    }
 
     sym.symid = SfGetFrameSymid(component.sid_p);
 
@@ -183,6 +203,11 @@ uSymbol SymEncode(const char *symstr)
 {
     uSymbol sym = SYM_NULL;
     CodeEntry *ce = NULL;
+
+    if(!useScript)
+    {
+        return SYM_NULL;
+    }
 
     //Dictionay initialisation check.
     if(NULL == uDict)
@@ -211,6 +236,11 @@ const char *SymDecode(const uSymbol sym)
 {
     const char *symstr = NULL;
     char errormsg[SMURF_INFO_MAXLEN] = { 0 };
+
+    if(!useScript)
+    {
+        return 0;
+    }
 
     //Dictionay initialisation check.
     if(NULL == uDict)

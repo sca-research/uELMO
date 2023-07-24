@@ -4,6 +4,7 @@
 #include <stdint.h>
 
 #define UELMO_ERROR (-1)
+#define MAX_PATH_LAN (255)
 
 #ifdef USE_SMURF
 #include "smurf/smurf.h"

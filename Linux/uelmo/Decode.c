@@ -17,11 +17,13 @@ void Decode_OneCycle(bool prev)
     if(!core_current.Decode_valid)      //Jump happens, no need to decode 
         return;
 
+#ifdef USE_SMURF
     //Resolve all src annotations.
-    if(OnTrace)
+    if(OnTrace && useScript)
     {
         ResolveSrc();
     }
+#endif
 
     if(prev)                    //re-do decodde for LDR delay
     {
@@ -36,12 +38,16 @@ void Decode_OneCycle(bool prev)
         {
             core_current.glitchy_Decode_port_data[i] =
                 read_register(core_current.glitchy_Decode_port_regindex[i]);
+#if USE_SMURF
             SymCopy(sym_core_current.glitchy_Decode_port_data[i], sym_core_current.reg[core_current.glitchy_Decode_port_regindex[i]]);  //TODO ines: not sure
+#endif
         }
         else
         {
             core_current.glitchy_Decode_port_data[i] = 0;
+#if USE_SMURF
             SymClear(sym_core_current.Decode_port_data[i]);
+#endif
         }
     }
 
