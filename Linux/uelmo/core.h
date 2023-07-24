@@ -92,4 +92,5 @@ void do_vflag_bit(unsigned int);
 
 uSymbol sym_read_register(unsigned int);
 uSymbol sym_read_register_forward(unsigned int reg);
+void sym_write_register(unsigned int reg, uSymbol sym);
 #endif

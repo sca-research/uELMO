@@ -229,3 +229,12 @@ uSymbol sym_read_register_forward(unsigned int reg)
 
     return regsym;
 }
+
+//Write register to current core status
+void sym_write_register(unsigned int reg, uSymbol sym)
+{
+    reg &= 0xF;
+    SymAssign(sym_core_current.reg[reg], sym);
+
+    return;
+}
