@@ -671,8 +671,9 @@ bool Execute_OneCylce(bool wait_mem)
 #endif
 
         core_current.Execute_destination_regindex = 15;
-        write_register(core_current.Execute_destination_regindex, core_current.Execute_ALU_result);     //TODO ines
+        write_register(core_current.Execute_destination_regindex, core_current.Execute_ALU_result);     //TODO ines. 
 #ifdef USE_SMURF
+        //YY: sym_write_register added
         sym_write_register(core_current.Execute_destination_regindex,
                            GetSym(sym_core_current.Execute_ALU_result));
 #endif
@@ -717,6 +718,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 15;
         write_register(core_current.Execute_destination_regindex, core_current.Execute_ALU_result);     //TODO ines
 #ifdef USE_SMURF
+        //YY: sym_write_register added
         sym_write_register(core_current.Execute_destination_regindex,
                            GetSym(sym_core_current.Execute_ALU_result));
 #endif
@@ -815,6 +817,7 @@ bool Execute_OneCylce(bool wait_mem)
             core_current.Execute_destination_regindex = 15;
             write_register(core_current.Execute_destination_regindex, core_current.Execute_ALU_result); //TODO ines
 #ifdef USE_SMURF
+        //YY: sym_write_register added
             sym_write_register(core_current.Execute_destination_regindex,
                                GetSym(sym_core_current.Execute_ALU_result));
 #endif
@@ -852,6 +855,7 @@ bool Execute_OneCylce(bool wait_mem)
             core_current.Execute_destination_regindex = 15;
             write_register(core_current.Execute_destination_regindex, core_current.Execute_ALU_result); //TODO ines
 #ifdef USE_SMURF
+            //YY: sym_write_register added
             sym_write_register(core_current.Execute_destination_regindex,
                                GetSym(sym_core_current.Execute_ALU_result));
 #endif
@@ -890,6 +894,7 @@ bool Execute_OneCylce(bool wait_mem)
             core_current.Execute_destination_regindex = 15;
             write_register(core_current.Execute_destination_regindex, core_current.Execute_ALU_result); //TODO ines
 #ifdef USE_SMURF
+            //YY: sym_write_register added
             sym_write_register(core_current.Execute_destination_regindex,
                                GetSym(sym_core_current.Execute_ALU_result));
 #endif
@@ -930,6 +935,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 15;
         write_register(core_current.Execute_destination_regindex, core_current.Execute_ALU_result);     //TODO ines
 #ifdef USE_SMURF
+        //YY: sym_write_register added
         sym_write_register(core_current.Execute_destination_regindex,
                            GetSym(sym_core_current.Execute_ALU_result));
 #endif
@@ -1963,10 +1969,10 @@ bool Execute_OneCylce(bool wait_mem)
         //Update destination register
         write_register(rd_ind, core_current.Execute_ALU_result);        //TODO ines
 #ifdef USE_SMURF
-        sym_write_register(rd_ind, GetSym(sym_core_current.Execute_ALU_result));
-
+        //YY: sym_write_register added
         //SymAssign(sym_core_current.Execute_ALU_result, SymGetMemAddrAnnotation());
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
+        sym_write_register(rd_ind, GetSym(sym_core_current.Execute_ALU_result));
 #endif
 
         return false;
@@ -2130,10 +2136,10 @@ bool Execute_OneCylce(bool wait_mem)
         //Update destination register
         write_register(rd_ind, core_current.Execute_ALU_result);
 #ifdef USE_SMURF
-        sym_write_register(rd_ind, GetSym(sym_core_current.Execute_ALU_result));
         //SymAssign(sym_core_current.Execute_ALU_result,
         //          SymGetMemAddrAnnotation());
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
+        sym_write_register(rd_ind, GetSym(sym_core_current.Execute_ALU_result));
 #endif
         return false;
     }
