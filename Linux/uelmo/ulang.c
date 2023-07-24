@@ -1,4 +1,5 @@
-#include <stdio.h>              //DEBUG ONLY
+#ifdef USE_SMURF
+#include <stdio.h>
 
 #include "smurf/smurf.h"
 #include "symuelmo.h"
@@ -204,3 +205,4 @@ void UlangCbManager(const char *op, int argc, char **argv)
 
     return;
 }
+#endif
