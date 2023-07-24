@@ -817,7 +817,7 @@ bool Execute_OneCylce(bool wait_mem)
             core_current.Execute_destination_regindex = 15;
             write_register(core_current.Execute_destination_regindex, core_current.Execute_ALU_result); //TODO ines
 #ifdef USE_SMURF
-        //YY: sym_write_register added
+            //YY: sym_write_register added
             sym_write_register(core_current.Execute_destination_regindex,
                                GetSym(sym_core_current.Execute_ALU_result));
 #endif
