@@ -639,6 +639,8 @@ bool Execute_OneCylce(bool wait_mem)
 
         core_current.Execute_destination_regindex = 15;
         write_register(core_current.Execute_destination_regindex, core_current.Execute_ALU_result);     //TODO ines
+        sym_write_register(core_current.Execute_destination_regindex,
+                           GetSym(sym_core_current.Execute_ALU_result));
         core_current.Execute_destination_regindex = 0xff;
         core_current.Decode_destination_regindex = 0xff;
         //Set the following two instruction to invalid
@@ -677,6 +679,8 @@ bool Execute_OneCylce(bool wait_mem)
 
         core_current.Execute_destination_regindex = 15;
         write_register(core_current.Execute_destination_regindex, core_current.Execute_ALU_result);     //TODO ines
+        sym_write_register(core_current.Execute_destination_regindex,
+                           GetSym(sym_core_current.Execute_ALU_result));
         core_current.Execute_destination_regindex = 0xff;
         core_current.Decode_destination_regindex = 0xff;
         //Set the following two instruction to invalid
@@ -752,6 +756,7 @@ bool Execute_OneCylce(bool wait_mem)
             rb += 2;
             rd_ind = 15;
             write_register(14, (read_register(15) - 4) | 1);
+            sym_write_register(14, SYM_NULL);
             if(DEBUG_CORE)
                 printf("bl 0x%08X\n", rb - 3);
             sprintf(core_current.Execute_instr_disp,
@@ -762,6 +767,8 @@ bool Execute_OneCylce(bool wait_mem)
 
             core_current.Execute_destination_regindex = 15;
             write_register(core_current.Execute_destination_regindex, core_current.Execute_ALU_result); //TODO ines
+            sym_write_register(core_current.Execute_destination_regindex,
+                               GetSym(sym_core_current.Execute_ALU_result));
             core_current.Execute_destination_regindex = 0xff;
             core_current.Decode_destination_regindex = 0xff;
             //Set the following two instruction to invalid
@@ -782,6 +789,7 @@ bool Execute_OneCylce(bool wait_mem)
             rd_ind = 15;
 
             write_register(14, (read_register(15) - 2) | 1);
+            sym_write_register(14, SYM_NULL);
             if(DEBUG_CORE)
                 printf("bl 0x%08X\n", rb - 3);
 
@@ -790,6 +798,8 @@ bool Execute_OneCylce(bool wait_mem)
             SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
             core_current.Execute_destination_regindex = 15;
             write_register(core_current.Execute_destination_regindex, core_current.Execute_ALU_result); //TODO ines
+            sym_write_register(core_current.Execute_destination_regindex,
+                               GetSym(sym_core_current.Execute_ALU_result));
             core_current.Execute_destination_regindex = 0xff;
             core_current.Decode_destination_regindex = 0xff;
             //Set the following two instruction to invalid
@@ -822,6 +832,8 @@ bool Execute_OneCylce(bool wait_mem)
 
             core_current.Execute_destination_regindex = 15;
             write_register(core_current.Execute_destination_regindex, core_current.Execute_ALU_result); //TODO ines
+            sym_write_register(core_current.Execute_destination_regindex,
+                               GetSym(sym_core_current.Execute_ALU_result));
             core_current.Execute_destination_regindex = 0xff;
             core_current.Decode_destination_regindex = 0xff;
             //Set the following two instruction to invalid
@@ -856,6 +868,8 @@ bool Execute_OneCylce(bool wait_mem)
 
         core_current.Execute_destination_regindex = 15;
         write_register(core_current.Execute_destination_regindex, core_current.Execute_ALU_result);     //TODO ines
+        sym_write_register(core_current.Execute_destination_regindex,
+                           GetSym(sym_core_current.Execute_ALU_result));
         core_current.Execute_destination_regindex = 0xff;
         core_current.Decode_destination_regindex = 0xff;
         //Set the following two instruction to invalid
@@ -1100,6 +1114,7 @@ bool Execute_OneCylce(bool wait_mem)
             core_current.Execute_destination_regindex = rd_ind;
             //Update destination register
             write_register(rd_ind, core_current.Execute_ALU_result);    //TODO ines
+            //YY: Symbolic operations disabled for LDMIA.
             //SymAssign(sym_core_current.Execute_ALU_result,
             //          SymGetMemAddrAnnotation());
         }
@@ -1824,6 +1839,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_ALU_result = rc;
         //Update destination register
         write_register(rd_ind, core_current.Execute_ALU_result);        //TODO ines
+        sym_write_register(rd_ind, GetSym(sym_core_current.Execute_ALU_result));
 
         //SymAssign(sym_core_current.Execute_ALU_result, SymGetMemAddrAnnotation());
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
@@ -1892,6 +1908,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_ALU_result = rc;
         //Update destination register
         write_register(rd_ind, core_current.Execute_ALU_result);
+        sym_write_register(rd_ind, GetSym(sym_core_current.Execute_ALU_result));
         return false;
     }
     //MVN
@@ -1979,6 +1996,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_ALU_result = rc;
         //Update destination register
         write_register(rd_ind, core_current.Execute_ALU_result);
+        sym_write_register(rd_ind, GetSym(sym_core_current.Execute_ALU_result));
         //SymAssign(sym_core_current.Execute_ALU_result,
         //          SymGetMemAddrAnnotation());
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
@@ -2652,10 +2670,11 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
         //Update destination register
         write_register(rd_ind, core_current.Execute_ALU_result);
+        sym_write_register(rd_ind, GetSym(sym_core_current.Execute_ALU_result));
         core_current.Execute_destination_regindex = 0xff;       //do not update this
-        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
         return false;
     }
     //SUB(2)
