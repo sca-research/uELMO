@@ -134,9 +134,7 @@ void UlangSed(int linenumber, const char *line, void *arg)
     if(IsUlangCmd(line))
     {
         //Process the command.
-        //DBG
-        printf("[%d(%d)] Command(L%d)\t: %s\n", cyclecount, frameno,
-               linenumber, line);
+        //printf("[%d(%d)] Command(L%d)\t: %s\n", cyclecount, frameno, linenumber, line);
 
         //Skip the first ULANG notifier.
         nextarg = (char *)GetNextArg(line, &arglen);
@@ -198,7 +196,7 @@ void UlangCbManager(const char *op, int argc, char **argv)
     }
     else                        //Unknown instruction.
     {
-        printf("ERROR: unknown command: %s\n", op);
+        fprintf(stderr, "ERROR: unknown command: %s\n", op);
         INFO("Not supported ULANG command:");
         INFO(op);
         INFO("\n");

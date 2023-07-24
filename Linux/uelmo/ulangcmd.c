@@ -1,6 +1,5 @@
 //ULANG commands implementation.
-#include <stdio.h>              //DBG
-
+#include "stdio.h"
 #include "uelmo.h"
 #include "symuelmo.h"
 #include "ulangcmd.h"
@@ -40,7 +39,7 @@ void RequestSrc(int argc, char **argv)
     //Format check.
     if(3 != argc)
     {
-        printf("#ERROR: Command error (src).\n");
+        fprintf(stderr, "#ERROR: Command error (src).\n");
         return;
     }
 
@@ -58,9 +57,7 @@ void RequestSrc(int argc, char **argv)
         return;
     }
 
-    //DBG
-    printf("[%d(%d)] Request src: REG=%d, SYMBOL=%s(%d)\n", cyclecount, frameno,
-           reg, argv[2], sym.symid);
+    //printf("[%d(%d)] Request src: REG=%d, SYMBOL=%s(%d)\n", cyclecount, frameno, reg, argv[2], sym.symid);
 
     //Push the src arguments into src quque.
     arg = (struct srcArg *)Malloc(sizeof(struct srcArg));
@@ -80,9 +77,7 @@ int ResolveSrc()
     while (NULL != (sarg = SqPop(srcqueue)))
     {
         //Tag a component.
-        //DBG
-        printf("[%d(%d)] src tagged: REG=%d, SYMBOL=%d\n",
-               cyclecount, frameno, sarg->reg, sarg->sym.symid);
+        //printf("[%d(%d)] src tagged: REG=%d, SYMBOL=%d\n", cyclecount, frameno, sarg->reg, sarg->sym.symid);
 
         //Assign sym to reg.
         SymAssign(sym_core_current.reg[sarg->reg], sarg->sym);
@@ -132,9 +127,7 @@ void RequestDst(int argc, char **argv)
         return;
     }
 
-    //DBG
-    printf("[%d(%d)] Request dst: REG=%d, SYMBOL=%s(%d)\n", cyclecount, frameno,
-           reg, argv[2], sym.symid);
+    //printf("[%d(%d)] Request dst: REG=%d, SYMBOL=%s(%d)\n", cyclecount, frameno, reg, argv[2], sym.symid);
 
     //Push the dst arguments into dst quque.
     arg = (struct dstArg *)Malloc(sizeof(struct dstArg));
@@ -156,9 +149,7 @@ uSymbol ResolveDst()
     while (NULL != (darg = SqPop(dstqueue)))
     {
         //Tag a component.
-        //DBG
-        printf("[%d(%d)] dst tagged: REG=%d, SYMBOL=%d\n",
-               cyclecount, frameno, darg->reg, darg->sym.symid);
+        //printf("[%d(%d)] dst tagged: REG=%d, SYMBOL=%d\n", cyclecount, frameno, darg->reg, darg->sym.symid);
 
         //Update the return value with the last Symbol in the queue.
         retsym = darg->sym;
