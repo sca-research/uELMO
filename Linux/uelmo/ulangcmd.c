@@ -33,6 +33,7 @@ SmurfQueue *srcqueue = NULL;    //Initialised in InitUlangCmd().
 //Send src requests to src queue.
 void RequestSrc(int argc, char **argv)
 {
+    int i = 0;
     int reg = 0;
     uSymbol sym = { 0 };
     struct srcArg *arg = NULL;
@@ -40,7 +41,12 @@ void RequestSrc(int argc, char **argv)
     //Format check.
     if(3 != argc)
     {
-        fprintf(stderr, "#ERROR: Command error (src).\n");
+        printf("#ERROR: Command error (src) -");
+        for (i = 0; i < argc; i++)
+        {
+            printf(" %s", argv[i]);
+        }
+        printf("\n");
         return;
     }
 
@@ -103,6 +109,7 @@ SmurfQueue *dstqueue = NULL;    //Initialise in InitUlangCmd().
 //Send dst requests to dst queue.
 void RequestDst(int argc, char **argv)
 {
+    int i = 0;
     int reg = 0;
     uSymbol sym = { 0 };
     struct dstArg *arg = NULL;
@@ -110,7 +117,12 @@ void RequestDst(int argc, char **argv)
     //Format check.
     if(3 != argc)
     {
-        printf("#ERROR: Command error (dst).\n");
+        printf("#ERROR: Command error (dst) -");
+        for (i = 0; i < argc; i++)
+        {
+            printf(" %s", argv[i]);
+        }
+        printf("\n");
         return;
     }
 
