@@ -48,6 +48,8 @@ static inline void BindSymArray(const char *compname,
     //Set pointers to the Symbolic fileds in the Frame.
     for (i = 0; i < size; i++)
     {
+        symcomp[i].name = ci.name;
+        symcomp[i].index = i;
         symcomp[i].sid_p = ci.ci.symid + i;
     }
 
@@ -73,6 +75,8 @@ int InitSymCore()
     BindSym(x)\
     {\
         SmurfFetchComp(&ci,smurf->frame,#x);\
+        sym_core_current.x.name=ci.name;\
+        sym_core_current.x.index=NON_ARRAY_SYM_COMP;\
         sym_core_current.x.sid_p=ci.ci.symid;\
     }
 
@@ -152,6 +156,7 @@ int SymAssign(SymbolicComponent component, uSymbol symbol)
     {
         return 0;
     }
+
     SfSetFrameSymid(component.sid_p, symbol.symid);
     return 0;
 }
@@ -246,6 +251,11 @@ const char *SymDecode(const uSymbol sym)
     if(NULL == uDict)
     {
         return NULL;
+    }
+
+    if(IsSymNull(sym))
+    {
+        return "SYM_NULL";
     }
 
     //Attempt to decode the string.

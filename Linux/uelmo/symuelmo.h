@@ -6,7 +6,11 @@
 #include "smurf/smurf.h"
 #include "smurf/symbolic.h"
 
+#define NON_ARRAY_SYM_COMP (-1)
+
 typedef struct {
+    const char *name;
+    int index;                  //Index of this SymbolicComponent if it is an array typed.
     SmurfSymId *sid_p;
 } SymbolicComponent;
 
