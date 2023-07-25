@@ -67,11 +67,11 @@ asrs r0,r4
 @@$ src r5 b0
 
 ands r0,r5
-@@$ dst b0&(-a0>>const)
+@@$ dst r0 b0&(-a0>>const)
 @@$ src r0 b0&(-a0>>const)
 
 negs r0,r0
-@@$ dst 0
+@@$ dst r0 0
 @@$ src r4 32
 
 asrs r0,r4
