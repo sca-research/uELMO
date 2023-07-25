@@ -161,16 +161,26 @@ void Clock(bool pause)
         write_register(core_current.Execute_destination_regindex,
                        core_current.Execute_ALU_result);
         //core_current.Execute_destination_regindex=0xff;
+#ifdef USE_SMURF
+        sym_write_register(core_current.Execute_destination_regindex,
+                           GetSym(sym_core_current.Execute_ALU_result));
+#endif
     }
     //Update pipeline registers
     if(core_current.D2E_reg1_valid)
     {
         core_current.D2E_reg1 = core_current.D2E_reg1_data;
+#ifdef USE_SMURF
+        SymCopy(sym_core_current.D2E_reg1, sym_core_current.D2E_reg1_data);
+#endif
     }
     //Update pipeline registers
     if(core_current.D2E_reg2_valid)
     {
         core_current.D2E_reg2 = core_current.D2E_reg2_data;
+#ifdef USE_SMURF
+        SymCopy(sym_core_current.D2E_reg2, sym_core_current.D2E_reg2_data);
+#endif
     }
     //Update cpsr
     if(core_current.cpsr_valid)
