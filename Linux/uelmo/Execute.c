@@ -1966,13 +1966,10 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        //Update destination register
-        write_register(rd_ind, core_current.Execute_ALU_result);        //TODO ines
 #ifdef USE_SMURF
         //YY: sym_write_register added
         //SymAssign(sym_core_current.Execute_ALU_result, SymGetMemAddrAnnotation());
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
-        sym_write_register(rd_ind, GetSym(sym_core_current.Execute_ALU_result));
 #endif
 
         return false;
@@ -2039,10 +2036,8 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        //Update destination register
-        write_register(rd_ind, core_current.Execute_ALU_result);
 #ifdef USE_SMURF
-        sym_write_register(rd_ind, GetSym(sym_core_current.Execute_ALU_result));
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
         return false;
     }
@@ -2133,13 +2128,10 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-        //Update destination register
-        write_register(rd_ind, core_current.Execute_ALU_result);
 #ifdef USE_SMURF
         //SymAssign(sym_core_current.Execute_ALU_result,
         //          SymGetMemAddrAnnotation());
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
-        sym_write_register(rd_ind, GetSym(sym_core_current.Execute_ALU_result));
 #endif
         return false;
     }
@@ -2823,12 +2815,11 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
-        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
-#endif
-        //Update destination register
+        //Update destination register.
+        //Patched by Si to fix pre-fetching ALU result.
         write_register(rd_ind, core_current.Execute_ALU_result);
 #ifdef USE_SMURF
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
         sym_write_register(rd_ind, GetSym(sym_core_current.Execute_ALU_result));
 #endif
         core_current.Execute_destination_regindex = 0xff;       //do not update this
