@@ -27,13 +27,12 @@ if usedict:
     sdict.Import(DICTFILE)
     pass
 
+
 # Format control for Component printing.
-
-
 def PrintComponent(comp):
     global sdict, usedict
     # Component info.
-    print("{:^8s}: [".format(comp.name), end='')
+    print("{:^8s}: [ ".format(comp.name), end='')
 
     # Symbolic info.
     for i in range(len(comp.symid)):
@@ -53,7 +52,7 @@ def PrintComponent(comp):
             pass
 
     # Remove last space, then newline.
-    print("\b]")
+    print(']')
 
     return
 
@@ -67,6 +66,10 @@ while True:
     if frame is None:
         break
     print("======= FRAME {:02} =======".format(count))
+
+    # Print current Execution cycle.
+    print("Core status ~ {:s}".format(frame['Execute_instr_disp'].strip('\0')))
+
     nosym = True
 
     # Print all Components with Symbols.
