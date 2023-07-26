@@ -6,6 +6,7 @@ TESTCORE = "uelmo.json"
 TESTTRACE = "/tmp/isw2.et"
 VERBOSE = False
 
+
 if len(sys.argv) >= 1:
     TESTTRACE = sys.argv[1]
     pass
@@ -25,11 +26,11 @@ def PrintComponent(comp):
         print('[', end='')
         for i in range(len(comp.raw)):
             print("{:02X} ".format(comp.raw[i]), end='')
-        print('\b]', end='')
+        print(']', end='')
         pass
 
     elif comp.type == 'STRING':
-        print("\"{:s}\" ".format(comp.val).strip('\0'), end='')
+        print("\"{:s}\" ".format(str(comp.val).strip('\0')), end='')
         pass
 
     else:
@@ -51,7 +52,7 @@ def PrintComponent(comp):
                     print(',', end='')
         else:
             raise("Unknown Component type")
-        print("\b] ", end='')
+        print("] ", end='')
         pass
 
     print("~", comp.symid, end='')
