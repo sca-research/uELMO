@@ -32,18 +32,22 @@ if usedict:
 def PrintComponent(comp):
     global sdict, usedict
     # Component info.
-    print("{:^8s}: [ ".format(comp.name), end='')
+    print("{:s} : [".format(comp.name), end='')
 
     # Symbolic info.
     for i in range(len(comp.symid)):
         if usedict:
             # Options only available with a EncDict.
             # Print decoded Symbol.
-            #print("{:s} ".format(sdict[comp.symid[i]]), end='')
+            symstr = sdict[comp.symid[i]]
+
+            # Simplify NULL by '--'
+            if 'NULL' == symstr:
+                symstr = '--'
 
             # Print Symbols with their IDs.
-            print("{:d}:{:s}({:02d}) ".format(
-                i, sdict[comp.symid[i]], comp.symid[i]), end='')
+            print("{:d}:{:s}({:d}) ".format(
+                i, symstr, comp.symid[i]), end='')
             pass
 
         else:
