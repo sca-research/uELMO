@@ -6,6 +6,7 @@ UELMOCORE = "uelmo.json"
 tracefile = None
 usedict = False
 DICTFILE = None
+sdict = None
 
 
 # Format control for Component printing.
@@ -42,7 +43,7 @@ def PrintComponent(comp):
 
 
 def main(argc, argv):
-    global usedict
+    global usedict, sdict
 
     if len(sys.argv) < 2:
         print("Usage: python3 readsym.py TRACE_FILE [DICTIONARY]")
