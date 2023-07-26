@@ -1128,7 +1128,6 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = ra_ind;
 #ifdef USE_SMURF
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
-        //sym_core_current.Execute_destination_regindex = ra_ind;
 #endif
         return false;
     }
@@ -1245,15 +1244,14 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_ALU_result = rc;
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
-
-        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
-        //SymAssign(sym_core_current.Execute_ALU_result,
-        //          SymGetMemAddrAnnotation());
 #ifdef USE_SMURF
+        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
+        //SymAssign(sym_core_current.Execute_ALU_result, SymGetMemAddrAnnotation());
         SymAssign(sym_core_current.Memory_addr, sym_exe_result);
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
         //sym_core_current.Execute_destination_regindex = 0xff;
 #endif
+
         return false;
     }
     //LDR(2) three register
@@ -1297,13 +1295,11 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
 
-        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
-        //SymAssign(sym_core_current.Execute_ALU_result,
-        //          SymGetMemAddrAnnotation());
 #ifdef USE_SMURF
+        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
+        //SymAssign(sym_core_current.Execute_ALU_result, SymGetMemAddrAnnotation());
         SymAssign(sym_core_current.Memory_addr, sym_exe_result);
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
-
         //sym_core_current.Execute_destination_regindex = 0xff;
 #endif
         return false;
@@ -1332,16 +1328,14 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_ALU_result = rc;
         core_current.Execute_destination_regindex = 0xff;       //Let memory do this
         core_current.cpsr_valid = false;
-
-        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
-        //SymAssign(sym_core_current.Execute_ALU_result,
-        //          SymGetMemAddrAnnotation());
 #ifdef USE_SMURF
+        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
+        //SymAssign(sym_core_current.Execute_ALU_result, SymGetMemAddrAnnotation());
         SymAssign(sym_core_current.Memory_addr, sym_exe_result);
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
-
         //sym_core_current.Execute_destination_regindex = 0xff;
 #endif
+
         return false;
     }
 
@@ -1386,13 +1380,11 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
 
-        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
-        //SymAssign(sym_core_current.Execute_ALU_result,
-        //          SymGetMemAddrAnnotation());
 #ifdef USE_SMURF
+        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
+        //SymAssign(sym_core_current.Execute_ALU_result, SymGetMemAddrAnnotation());
         SymAssign(sym_core_current.Memory_addr, sym_exe_result);
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
-
         //sym_core_current.Execute_destination_regindex = 0xff;
 #endif
 
@@ -1442,14 +1434,11 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_ALU_result = rc;
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
-
-        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
-        //SymAssign(sym_core_current.Execute_ALU_result,
-        //          SymGetMemAddrAnnotation());
 #ifdef USE_SMURF
+        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
+        //SymAssign(sym_core_current.Execute_ALU_result, SymGetMemAddrAnnotation());
         SymAssign(sym_core_current.Memory_addr, sym_exe_result);
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
-
         //sym_core_current.Execute_destination_regindex = 0xff;
 #endif
 
@@ -1501,15 +1490,14 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_ALU_result = rc;
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
-
-        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
-        //SymAssign(sym_core_current.Execute_ALU_result,
-        //          SymGetMemAddrAnnotation());
 #ifdef USE_SMURF
+        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
+        //SymAssign(sym_core_current.Execute_ALU_result, SymGetMemAddrAnnotation());
         SymAssign(sym_core_current.Memory_addr, sym_exe_result);
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
         //sym_core_current.Execute_destination_regindex = 0xff;
 #endif
+
         return false;
     }
     //LDRH(1)
@@ -1554,10 +1542,9 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
 
-        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
-        //SymAssign(sym_core_current.Execute_ALU_result,
-        //          SymGetMemAddrAnnotation());
 #ifdef USE_SMURF
+        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
+        //SymAssign(sym_core_current.Execute_ALU_result, SymGetMemAddrAnnotation());
         SymAssign(sym_core_current.Memory_addr, sym_exe_result);
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 
@@ -1606,10 +1593,9 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
 
-        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
-        //SymAssign(sym_core_current.Execute_ALU_result,
-        //          SymGetMemAddrAnnotation());
 #ifdef USE_SMURF
+        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
+        //SymAssign(sym_core_current.Execute_ALU_result, SymGetMemAddrAnnotation());
         SymAssign(sym_core_current.Memory_addr, sym_exe_result);
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
         //sym_core_current.Execute_destination_regindex = 0xff;
@@ -1660,17 +1646,15 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
 
-        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
-        //SymAssign(sym_core_current.Execute_ALU_result,
-        //          SymGetMemAddrAnnotation());
 #ifdef USE_SMURF
+        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
+        //SymAssign(sym_core_current.Execute_ALU_result, SymGetMemAddrAnnotation());
         SymAssign(sym_core_current.Memory_addr, sym_exe_result);
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
-
         //sym_core_current.Execute_destination_regindex = 0xff;
 #endif
-        return false;
 
+        return false;
     }
     //LDRSH
     //Instr 35 2reg
@@ -1714,15 +1698,14 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
 
-        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
-        //SymAssign(sym_core_current.Execute_ALU_result,
-        //          SymGetMemAddrAnnotation());
 #ifdef USE_SMURF
+        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
+        //SymAssign(sym_core_current.Execute_ALU_result, SymGetMemAddrAnnotation());
         SymAssign(sym_core_current.Memory_addr, sym_exe_result);
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
-
         //sym_core_current.Execute_destination_regindex = 0xff;
 #endif
+
         return false;
     }
     //LSL(1)
@@ -2568,6 +2551,7 @@ bool Execute_OneCylce(bool wait_mem)
             core_current.D2E_reg2_valid = false;
             core_current.Execute_destination_regindex = 0xff;
             core_current.cpsr_valid = false;
+            //YY: Annotation ignored.
             return true;
         }
         else                    //Second cycle
@@ -2591,6 +2575,11 @@ bool Execute_OneCylce(bool wait_mem)
             core_current.Execute_ALU_result = ra;
             core_current.Execute_destination_regindex = 0xff;   //do not update this
             core_current.cpsr_valid = false;
+            //YY: Annotation happens as data flowed into ALU output.
+#ifdef USE_SMURF
+            SymAssign(sym_core_current.Memory_data, sym_exe_result);
+            SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
+#endif
             return false;
         }
     }
@@ -2620,6 +2609,12 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_ALU_result = rb;
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
+        //YY: Annotation happens as data flowed into ALU output.
+#ifdef USE_SMURF
+        SymAssign(sym_core_current.Memory_data, sym_exe_result);
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
+#endif
+
         return false;
     }
     //STRB(1)
@@ -2680,6 +2675,7 @@ bool Execute_OneCylce(bool wait_mem)
             core_current.D2E_reg2_valid = false;
             core_current.Execute_destination_regindex = 0xff;
             core_current.cpsr_valid = false;
+            //YY: Annotation ignored.
             return true;
         }
         else                    //Second cycle
@@ -2702,6 +2698,12 @@ bool Execute_OneCylce(bool wait_mem)
             core_current.Execute_ALU_result = ra;
             core_current.Execute_destination_regindex = 0xff;   //do not update this
             core_current.cpsr_valid = false;
+            //YY: Annotation happens as data flowed into ALU output.
+#ifdef USE_SMURF
+            SymAssign(sym_core_current.Memory_data, sym_exe_result);
+            SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
+#endif
+
             return false;
         }
     }
@@ -2732,6 +2734,12 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_ALU_result = rb;
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
+        //YY: Annotation happens as data flowed into ALU output.
+#ifdef USE_SMURF
+        SymAssign(sym_core_current.Memory_data, sym_exe_result);
+        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
+#endif
+
         return false;
     }
     //STRH(2)
@@ -2765,6 +2773,7 @@ bool Execute_OneCylce(bool wait_mem)
             core_current.cpsr_valid = false;
             core_current.D2E_reg2_valid = false;
             core_current.cpsr_valid = false;
+            //YY: Annotation ignored.
             return true;
         }
         else                    //Second cycle
@@ -2787,6 +2796,12 @@ bool Execute_OneCylce(bool wait_mem)
             //Update ALU output
             core_current.Execute_ALU_result = ra;
             core_current.Execute_destination_regindex = 0xff;   //do not update this
+            //YY: Annotation happens as data flowed into ALU output.
+#ifdef USE_SMURF
+            SymAssign(sym_core_current.Memory_data, sym_exe_result);
+            SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
+#endif
+
             return false;
         }
     }
