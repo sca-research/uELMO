@@ -2,19 +2,9 @@
 import sys
 import smurf
 
-TESTCORE = "uelmo.json"
-TESTTRACE = "/tmp/isw2.et"
+uelmocore = "uelmo.json"
+tracefile = None
 VERBOSE = False
-
-
-if len(sys.argv) >= 1:
-    TESTTRACE = sys.argv[1]
-    pass
-
-# Verbose flag
-if '-v' in sys.argv:
-    VERBOSE = True
-    pass
 
 
 def PrintComponent(comp):
@@ -61,17 +51,33 @@ def PrintComponent(comp):
     return
 
 
-core = smurf.Core.Load(TESTCORE)
-st = smurf.Trace(core)
-st.Open(TESTTRACE)
-count = 0
-while True:
-    frame = st.NextFrame()
-    if frame is None:
-        break
-    print("======= FRAME {:02} =======".format(count))
-    for i in frame.components:
-        PrintComponent(frame.components[i])
+def main(argc, argv):
+    if len(argv) >= 1:
+        tracefile = argv[1]
         pass
-    count += 1
-    print("========********========\n")
+
+    # Verbose flag
+    if '-v' in argv:
+        VERBOSE = True
+        pass
+
+    core = smurf.Core.Load(uelmocore)
+    st = smurf.Trace(core)
+    st.Open(tracefile)
+    count = 0
+    while True:
+        frame = st.NextFrame()
+        if frame is None:
+            break
+        print("======= FRAME {:02} =======".format(count))
+        for i in frame.components:
+            PrintComponent(frame.components[i])
+            pass
+        count += 1
+        print("========********========\n")
+
+    return
+
+
+if __name__ == '__main__':
+    exit(main(len(sys.argv), sys.argv))
