@@ -17,17 +17,23 @@ if '-v' in sys.argv:
 
 
 def PrintComponent(comp):
-    print("|{:<30s}|{:<8s}|{:3d}| =".format(
+    print("{:<32s}|{:<8s}|{:3d}| = ".format(
         comp.name, comp.type, comp.len, comp.val), end='')
 
     # Skip raw bytes output for non OCTET components.
     if VERBOSE or comp.type == 'OCTET':
+        print('[', end='')
         for i in range(len(comp.raw)):
-            print(" {:02X}".format(comp.raw[i]), end='')
+            print("{:02X} ".format(comp.raw[i]), end='')
+        print('\b]', end='')
         pass
 
-    if comp.type != 'OCTET':
-        print(' (', end='')
+    elif comp.type == 'STRING':
+        print("\"{:s}\" ".format(comp.val).strip('\0'), end='')
+        pass
+
+    else:
+        print('[', end='')
         if comp.type == 'BOOL':
             for i in range(comp.len):
                 if comp.val[i]:
@@ -38,9 +44,6 @@ def PrintComponent(comp):
                     pass
                 pass
             pass
-        elif comp.type == 'STRING':
-            print("{:s}".format(comp.val), end='')
-            pass
         elif comp.type in {'INT16', 'UINT16', 'INT32', 'UINT32'}:
             for i in range(comp.len):
                 print("{:02X} ".format(comp.val[i]), end='')
@@ -48,9 +51,10 @@ def PrintComponent(comp):
                     print(',', end='')
         else:
             raise("Unknown Component type")
-        print(')', end='')
+        print("\b] ", end='')
+        pass
 
-    print("\t|| ", comp.symid, end='')
+    print("~", comp.symid, end='')
 
     print('')
     return
