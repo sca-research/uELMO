@@ -24,11 +24,13 @@ def PrintComponent(comp):
 
             # Simplify NULL by '--'
             if 'NULL' == symstr:
-                symstr = '--'
+                symstr = '-'
 
             # Print Symbols with their IDs.
-            print("{:d}:{:s}({:d}) ".format(
-                i, symstr, comp.symid[i]), end='')
+            # print("{:d}:{:s}({:d}) ".format(
+            #    i, symstr, comp.symid[i]), end='')
+            print("{:s} ".format(symstr), end='')
+
             pass
 
         else:
@@ -76,8 +78,8 @@ def main(argc, argv):
         print("======= FRAME {:02} =======".format(count))
 
         # Print current Execution cycle.
-        print("Core status ~ {:s}".format(
-            frame['Execute_instr_disp'].strip('\0')))
+        print("Core status : {:s}".format(
+            frame['Execute_instr_disp'].strip('\0').strip('Execute: ')))
 
         nosym = True
 
