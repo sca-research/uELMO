@@ -177,40 +177,77 @@ stall by LDR
 
 adds r0,r0,r4           #144
 @@$ dst r0 s
+@@$ src r11 C
 
 mov r4,r11
+@@$ dst r4 C
+@@$ src r0 s
+@@$ src r4 C
 
 adds r0,r0,r4
+@@$ dst r0 P(s)
+@@$ src r0 P(s)
+@@$ src r1 &table
 
-ldrb r4,[r1,r0]
-
-stall by LDR
-
-negs r0,r3
-
-asrs r0,r6
-
-ands r0,r5
-
-negs r0,r0
-
-asrs r0,r6
-
-ands r0,r4
-
-ors r0,r2                   #170
-
-ldrb r5,[r1,r3]
-
-ldrb r4,[r1,r7]
+ldrb r4,[r1,r0]         #151
+@@$ dst r4 s
+@@$ src r3 a1
 
 stall by LDR
 
-adds r5,r5,r4
+negs r0,r3              #154
+@@$ dst r0 -a1
+@@$ src r6 C
 
-mov r2,r11
+asrs r0,r6              #158
+@@$ dst r0 P(a1)
+@@$ src r5 b0
 
-adds r5,r5,r2
+ands r0,r5              #160
+@@$ dst r0 P(b0,a1)
+@@$ src r0 P(b0,a1)
+
+
+negs r0,r0              #161
+@@$ dst r0 P(b0,a1)
+@@$ src r6 C
+
+asrs r0,r6              #164
+@@$ dst r0 P(b0,a1)
+@@$ src r4 s
+
+ands r0,r4              #166
+@@$ dst r0 P(a1,b0)
+@@$ src r2 a0*b1
+
+ors r0,r2               #170
+@@$ dst r0 (a0*b1)+rnd)+(a1*b0)
+@@$ src r1 &table
+@@$ src r3 a1
+
+ldrb r5,[r1,r3]         #178
+@@$ dst r5 loga1
+@@$ src r1 &table
+@@$ src r7 b1
+
+ldrb r4,[r1,r7]         #179
+@@$ dst r4 logb1
+@@$ src r5 loga1
+@@$ src r4 logb1
+
+stall by LDR
+
+adds r5,r5,r4           #181
+@@$ dst r5 s
+@@$ src r11 C
+
+mov r2,r11              #184
+@@$ dst r2 C
+@@$ src r5 s
+@@$ src r2 C
+
+adds r5,r5,r2           #186
+@@$ dst r5 P(s)
 
 ldrb r4,[r1,r5]
 
