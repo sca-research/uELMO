@@ -1,201 +1,201 @@
 mov r8,r8                   #41
 
-mov r8,r8
+mov r8,r8           #42
 @@$ src r0 &a
 
-ldrb r6,[r0,#0x0]
+ldrb r6,[r0,#0x0]   #47
 @@$ dst r6 a0 
 @@$ src r1 &b
 
-ldrb r5,[r1,#0x0]
+ldrb r5,[r1,#0x0]   #48
 @@$ dst r5 b0 
 @@$ src r0 &a
 
-ldrb r3,[r0,#0x4]
+ldrb r3,[r0,#0x4]   #49
 @@$ dst r3 a1 
 @@$ src r1 &b
 
-ldrb r7,[r1,#0x4]
+ldrb r7,[r1,#0x4]   #50
 @@$ dst r7 b1 
 @@$ src r2 rnd
 
-ldrb r2,[r2,#0x0]
+ldrb r2,[r2,#0x0]   #51
 @@$ dst r2 rnd0
 @@$ src r4 &table
 @@$ src r5 b0
 
-ldrb r1,[r4,r5]
+ldrb r1,[r4,r5]     #62
 @@$ dst r1 logb0
 @@$ src r4 &table
 @@$ src r6 a0
 
-ldrb r0,[r4,r6]
+ldrb r0,[r4,r6]     #63
 @@$ dst r0 loga0
 
 stall by LDR
 @@$ src r0 loga0
 @@$ src r1 logb0
 
-adds r0,r0,r1
+adds r0,r0,r1       #65
 @@$ dst r0 s
 @@$ src r11 C
 
-mov r1,r11
+mov r1,r11          #68
 @@$ dst r1 C
 @@$ src r0 s
 @@$ src r1 C
 
-adds r0,r0,r1
+adds r0,r0,r1       #70
 @@$ dst r0 P(s)
 @@$ src r4 &table
 @@$ src r0 P(s)
 
-ldrb r1,[r4,r0]
+ldrb r1,[r4,r0]     #71
 @@$ dst r0 a0b0
 
 stall by LDR
 
-negs r0,r6
+negs r0,r6          #74
 @@$ dst r0 -a0
 
-movs r4,#0x20
+movs r4,#0x20       #77
 @@$ dst r4 C
 @@$ src r4 C
 
-asrs r0,r4
+asrs r0,r4          #78
 @@$ dst r0 P(-a0)
 @@$ src r5 b0
 
-ands r0,r5              #84
+ands r0,r5          #80
 @@$ dst r0 P(a0,b0)
 @@$ src r0 P(a0,b0)
 
-negs r0,r0
+negs r0,r0          #81
 @@$ dst r0 0
 @@$ src r4 C
 
-asrs r0,r4
+asrs r0,r4          #84
 @@$ dst r0 P(a0,b0)
 @@$ src r0 P(a0,b0)
 
-ands r1,r0              #86
+ands r1,r0          #86
 @@$ dst r1 a0*b0
 @@$ src r8 &c
 
-mov r4,r8
+mov r4,r8           #90
 @@$ dst r4 &c
 @@$ src r2 rnd
 
-ors r1,r2
+ors r1,r2           #91
 @@$ dst r1 c0
 @@$ src r4 &table
 
-strb r1,[r4,#0x0]
+strb r1,[r4,#0x0]   #92
 @@$ dst r1 c1
 @@$ src r9 &table
 
-mov r1,r9
+mov r1,r9           #102
 @@$ dst r1 &table
 @@$ src r1 &table
 @@$ src r6 a0
 
-ldrb r0,[r1,r6]
+ldrb r0,[r1,r6]     #103
 @@$ dst r0 loga0
 @@$ src r1 &table
 @@$ src r7 b1
 
-ldrb r4,[r1,r7]
+ldrb r4,[r1,r7]     #104
 @@$ dst r4 logb1
 @@$ src r0 loga0
 @@$ src r4 logb1
 
 stall by LDR
 
-adds r0,r0,r4
+adds r0,r0,r4       #106
 @@$ dst r0 s
 @@$ src r11 C
 
-mov r4,r11
+mov r4,r11          #109
 @@$ dst r4 C
 @@$ src r0 s
 @@$ src r4 C
 
-adds r0,r0,r4
+adds r0,r0,r4       #111
 @@$ dst r0 P(s)
 @@$ src r1 &table
 @@$ src r0 P(s)
 
-ldrb r4,[r1,r0]
+ldrb r4,[r1,r0]     #113
 @@$ dst r4 s
 @@$ src r6 a0
 
 stall by LDR
 
-negs r0,r6              #116
+negs r0,r6          #116
 @@$ dst r0 -a0
 
-movs r6,#0x20
+movs r6,#0x20       #120
 @@$ dst r6 C
 @@$ src r6 C
 
-asrs r0,r6
+asrs r0,r6          #121
 @@$ dst r0 P(a0)
 @@$ src r7 b1
 
-ands r0,r7
+ands r0,r7          #123
 @@$ dst r0 P(a0,b1)
 @@$ src r0 P(a0,b1)
 
-negs r0,r0              #124
+negs r0,r0          #124
 @@$ dst r0 P(a0,b1)
 @@$ src r6 C
 
-asrs r0,r6              #127
+asrs r0,r6          #127
 @@$ dst r0 P(a0,b1)
 @@$ src r4 s
 
-ands r0,r4
+ands r0,r4          #129
 @@$ dst r0 a0*b1
 @@$ src r0 a0*b1
 
-ors r2,r0               #133
+ors r2,r0           #133
 @@$ dst r2 (a0*b1)+rnd
 @@$ src r1 &table
 @@$ src r3 a1
 
-ldrb r0,[r1,r3]         #141
+ldrb r0,[r1,r3]      #141
 @@$ dst r0 loga1
 @@$ src r1 &table
 @@$ src r5 b0
 
-ldrb r4,[r1,r5]
+ldrb r4,[r1,r5]     #142
 @@$ dst r4 logb0
 @@$ src r0 s
 @@$ src r4 C
 
 stall by LDR
 
-adds r0,r0,r4           #144
+adds r0,r0,r4       #144
 @@$ dst r0 s
 @@$ src r11 C
 
-mov r4,r11
+mov r4,r11          #147
 @@$ dst r4 C
 @@$ src r0 s
 @@$ src r4 C
 
-adds r0,r0,r4
+adds r0,r0,r4       #149
 @@$ dst r0 P(s)
 @@$ src r0 P(s)
 @@$ src r1 &table
 
-ldrb r4,[r1,r0]         #151
+ldrb r4,[r1,r0]     #151
 @@$ dst r4 s
 @@$ src r3 a1
 
 stall by LDR
 
-negs r0,r3              #154
+negs r0,r3          #154
 @@$ dst r0 -a1
 @@$ src r6 C
 
