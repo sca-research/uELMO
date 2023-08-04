@@ -13,7 +13,7 @@ sdict = None
 def PrintComponent(comp):
     global sdict, usedict
     # Component info.
-    print("{:s} : [".format(comp.name), end='')
+    print("{:s} : [ ".format(comp.name), end='')
 
     # Symbolic info.
     for i in range(len(comp.symid)):
