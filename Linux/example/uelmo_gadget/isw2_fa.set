@@ -284,7 +284,6 @@ mov r1,r8               #205
 @@$ dst r1 &c
 @@$ src r0 ((a0*b1)+rnd)+(a1*b0)
 
-
 ors r4,r0               #208
 @@$ dst r4 (((a0*b1)+rnd)+(a1*b0))+(a1*b1)
 @@$ src r1 &table
