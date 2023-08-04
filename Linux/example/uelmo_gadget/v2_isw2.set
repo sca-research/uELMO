@@ -46,9 +46,9 @@ mov r1,r11          #68
 @@$ src r1 C
 
 adds r0,r0,r1       #70
-@@$ dst r0 P(s)
+@@$ dst r0 s+256
 @@$ src r4 &table
-@@$ src r0 P(s)
+@@$ src r0 s+256
 
 ldrb r1,[r4,r0]     #71
 @@$ dst r0 a0b0
@@ -63,20 +63,20 @@ movs r4,#0x20       #77
 @@$ src r4 C
 
 asrs r0,r4          #78
-@@$ dst r0 P(-a0)
+@@$ dst r0 -a>>32
 @@$ src r5 b0
 
 ands r0,r5          #80
-@@$ dst r0 P(a0,b0)
-@@$ src r0 P(a0,b0)
+@@$ dst r0 b0&(-a0>>32)
+@@$ src r0 b0&(-a0>>32)
 
 negs r0,r0          #81
-@@$ dst r0 0
+@@$ dst r0 -b0&(-a0>>32)
 @@$ src r4 C
 
 asrs r0,r4          #84
-@@$ dst r0 P(a0,b0)
-@@$ src r0 P(a0,b0)
+@@$ dst r0 (-b0&(-a0>>32))>>32
+@@$ src r0 (-b0&(-a0>>32))>>32
 
 ands r1,r0          #86
 @@$ dst r1 a0*b0
@@ -121,9 +121,9 @@ mov r4,r11          #109
 @@$ src r4 C
 
 adds r0,r0,r4       #111
-@@$ dst r0 P(s)
+@@$ dst r0 s+256
 @@$ src r1 &table
-@@$ src r0 P(s)
+@@$ src r0 s+256
 
 ldrb r4,[r1,r0]     #113
 @@$ dst r4 s
@@ -139,19 +139,19 @@ movs r6,#0x20       #120
 @@$ src r6 C
 
 asrs r0,r6          #121
-@@$ dst r0 P(a0)
+@@$ dst r0 -a0>>32
 @@$ src r7 b1
 
 ands r0,r7          #123
-@@$ dst r0 P(a0,b1)
-@@$ src r0 P(a0,b1)
+@@$ dst r0 b1&(-a0>>32)
+@@$ src r0 b1&(-a0>>32)
 
 negs r0,r0          #124
-@@$ dst r0 P(a0,b1)
+@@$ dst r0 -b1&(-a0>>32)
 @@$ src r6 C
 
 asrs r0,r6          #127
-@@$ dst r0 P(a0,b1)
+@@$ dst r0 (-b1&(-a0>>32))>>32
 @@$ src r4 s
 
 ands r0,r4          #129
@@ -185,8 +185,8 @@ mov r4,r11          #147
 @@$ src r4 C
 
 adds r0,r0,r4       #149
-@@$ dst r0 P(s)
-@@$ src r0 P(s)
+@@$ dst r0 s+256
+@@$ src r0 s+256
 @@$ src r1 &table
 
 ldrb r4,[r1,r0]     #151
@@ -200,23 +200,23 @@ negs r0,r3          #154
 @@$ src r6 C
 
 asrs r0,r6              #158
-@@$ dst r0 P(a1)
+@@$ dst r0 -a1>>32
 @@$ src r5 b0
 
 ands r0,r5              #160
-@@$ dst r0 P(b0,a1)
-@@$ src r0 P(b0,a1)
+@@$ dst r0 b0&(-a1>>32)
+@@$ src r0 b0&(-a1>>32)
 
 negs r0,r0              #161
-@@$ dst r0 P(b0,a1)
+@@$ dst r0 -b0&(-a1>>32)
 @@$ src r6 C
 
 asrs r0,r6              #164
-@@$ dst r0 P(b0,a1)
+@@$ dst r0 (-b0&(-a1>>32))>>32
 @@$ src r4 s
 
 ands r0,r4              #166
-@@$ dst r0 P(a1,b0)
+@@$ dst r0 a1*b0
 @@$ src r2 a0*b1
 
 ors r0,r2               #170
@@ -246,9 +246,9 @@ mov r2,r11              #184
 @@$ src r2 C
 
 adds r5,r5,r2           #186
-@@$ dst r5 P(s)
+@@$ dst r5 s+256
 @@$ src r1 &table
-@@$ src r5 P(s)
+@@$ src r5 s+256
 
 ldrb r4,[r1,r5]         #188
 @@$ dst r4 s
@@ -261,20 +261,20 @@ negs r5,r3              #191
 @@$ src r6 C
 
 asrs r5,r6              #195
-@@$ dst r5 P(a1)
+@@$ dst r5 -a1>>32
 @@$ src r7 b1
 
 ands r5,r7              #197
-@@$ dst r5 P(b1,a1)
-@@$ src r5 P(b1,a1)
+@@$ dst r5 b1&(-a1>>32)
+@@$ src r5 b1&(-a1>>32)
 
 negs r5,r5              #198
-@@$ dst r5 P(b1,a1)
+@@$ dst r5 -b1&(-a1>>32)
 @@$ src r6 C
 
 asrs r5,r6              #201
-@@$ dst r5 P(b1,a1)
-@@$ src r5 P(b1,a1)
+@@$ dst r5 (-b1&(-a1>>32))>>32
+@@$ src r5 (-b1&(-a1>>32))>>32
 
 ands r4,r5              #203
 @@$ dst r4 a1*b1
