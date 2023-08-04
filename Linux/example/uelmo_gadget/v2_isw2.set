@@ -207,7 +207,6 @@ ands r0,r5              #160
 @@$ dst r0 P(b0,a1)
 @@$ src r0 P(b0,a1)
 
-
 negs r0,r0              #161
 @@$ dst r0 P(b0,a1)
 @@$ src r6 C
@@ -221,7 +220,7 @@ ands r0,r4              #166
 @@$ src r2 a0*b1
 
 ors r0,r2               #170
-@@$ dst r0 (a0*b1)+rnd)+(a1*b0)
+@@$ dst r0 ((a0*b1)+rnd)+(a1*b0)
 @@$ src r1 &table
 @@$ src r3 a1
 
@@ -248,30 +247,54 @@ mov r2,r11              #184
 
 adds r5,r5,r2           #186
 @@$ dst r5 P(s)
+@@$ src r1 &table
+@@$ src r5 P(s)
 
-ldrb r4,[r1,r5]
+ldrb r4,[r1,r5]         #188
+@@$ dst r4 s
+@@$ src r3 a1
 
 stall by LDR
 
-negs r5,r3
+negs r5,r3              #191
+@@$ dst r5 -a1
+@@$ src r6 C
 
-asrs r5,r6
+asrs r5,r6              #195
+@@$ dst r5 P(a1)
+@@$ src r7 b1
 
-ands r5,r7
+ands r5,r7              #197
+@@$ dst r5 P(b1,a1)
+@@$ src r5 P(b1,a1)
 
-negs r5,r5
+negs r5,r5              #198
+@@$ dst r5 P(b1,a1)
+@@$ src r6 C
 
-asrs r5,r6
+asrs r5,r6              #201
+@@$ dst r5 P(b1,a1)
+@@$ src r5 P(b1,a1)
 
-ands r4,r5
+ands r4,r5              #203
+@@$ dst r4 a1*b1
+@@$ src r8 &c
 
-mov r1,r8
+mov r1,r8               #205
+@@$ dst r1 &c
+@@$ src r0 ((a0*b1)+rnd)+(a1*b0)
 
-ors r4,r0
 
-strb r1,[r1,#0x4]
+ors r4,r0               #208
+@@$ dst r4 (((a0*b1)+rnd)+(a1*b0))+(a1*b1)
+@@$ src r1 &table
 
-strb r4,[r1,#0x4]
+strb r1,[r1,#0x4]       #210
+@@$ dst r1 &c
+@@$ src r1 &c
+
+strb r4,[r1,#0x4]       #211
+@@$ dst r4 c1
 
 mov r8,r8
 
