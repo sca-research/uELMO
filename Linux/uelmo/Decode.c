@@ -2472,8 +2472,8 @@ void Decode_OneCycle(bool prev)
 #endif
 
         //registers
-        core_current.D2E_reg1_data = read_register(ra_ind);
-        core_current.D2E_reg2_data = read_register(rb_ind);
+        core_current.D2E_reg1_data = read_register_forward(ra_ind);
+        core_current.D2E_reg2_data = read_register_forward(rb_ind);
 #ifdef USE_SMURF
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(ra_ind));
@@ -3304,9 +3304,10 @@ void Decode_OneCycle(bool prev)
 
         //registers
         //core_current.D2E_reg1_data=core_current.Decode_port_data[1];
-        core_current.D2E_reg2_data = read_register(rb_ind);
+        core_current.D2E_reg2_data = read_register_forward(rb_ind);
 #ifdef USE_SMURF
-        SymAssign(sym_core_current.D2E_reg2_data, sym_read_register(rb_ind));
+        SymAssign(sym_core_current.D2E_reg2_data,
+                  sym_read_register_forward(rb_ind));
 #endif
 
         core_current.Execute_Imm = 0;   //Not used
