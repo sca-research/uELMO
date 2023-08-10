@@ -1,12 +1,14 @@
 #ifndef SYMUELMO_H
 #define SYMUELMO_H
-
 #ifdef USE_SMURF
 
+#include "uelmo.h"
+#include "Configure.h"
 #include "smurf/smurf.h"
 #include "smurf/symbolic.h"
 
 #define NON_ARRAY_SYM_COMP (-1)
+#define SYM_ENABLED ((useScript && OnTrace))
 
 typedef struct {
     const char *name;

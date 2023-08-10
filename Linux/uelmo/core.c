@@ -3,9 +3,6 @@
 
 CORE_STATUS core_current;
 
-//global flag that shows whether the current cycle is on the trace
-bool OnTrace = false;
-
 //Check if the current executed LDR instruction requires an extra delay cycle, i.e. LDR r0,xxx; LDR xxx,[r0]
 bool check_delay(unsigned int reg)
 {

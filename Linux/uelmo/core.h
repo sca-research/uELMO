@@ -2,6 +2,7 @@
 #ifndef CORE_H_
 #define CORE_H_
 #include "Configure.h"
+#include "uelmo.h"
 
 #ifdef USE_SMURF
 #include "symuelmo.h"
@@ -78,9 +79,8 @@ typedef struct {
 } CORE_STATUS;
 
 extern CORE_STATUS core_current;
+
 //global flag that shows whether the current cycle is on the trace
-extern bool OnTrace;
-//Check if the current executed LDR instruction requires an extra delay cycle, i.e. LDR r0,xxx; LDR xxx,[r0]
 bool check_delay(unsigned int);
 unsigned int read_register(unsigned int);
 unsigned int read_register_forward(unsigned int);

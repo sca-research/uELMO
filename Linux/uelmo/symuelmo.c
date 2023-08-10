@@ -152,7 +152,7 @@ void CleanSymCore()
 //Assign a Symbol to a component.
 int SymAssign(SymbolicComponent component, uSymbol symbol)
 {
-    if(!useScript)
+    if(!SYM_ENABLED)
     {
         return 0;
     }
@@ -166,7 +166,7 @@ int SymCopy(SymbolicComponent dstcomp, SymbolicComponent srccomp)
 {
     SmurfSymId t;
 
-    if(!useScript)
+    if(!SYM_ENABLED)
     {
         return 0;
     }
@@ -179,7 +179,7 @@ int SymCopy(SymbolicComponent dstcomp, SymbolicComponent srccomp)
 //Clear the Symbol (= reset it to NULL) of ${comp}.
 int SymClear(SymbolicComponent component)
 {
-    if(!useScript)
+    if(!SYM_ENABLED)
     {
         return 0;
     }
@@ -192,7 +192,7 @@ uSymbol GetSym(SymbolicComponent component)
 {
     uSymbol sym = SYM_NULL;
 
-    if(!useScript)
+    if(!SYM_ENABLED)
     {
         return SYM_NULL;
     }
@@ -209,7 +209,7 @@ uSymbol SymEncode(const char *symstr)
     uSymbol sym = SYM_NULL;
     CodeEntry *ce = NULL;
 
-    if(!useScript)
+    if(!SYM_ENABLED)
     {
         return SYM_NULL;
     }
@@ -242,9 +242,9 @@ const char *SymDecode(const uSymbol sym)
     const char *symstr = NULL;
     char errormsg[SMURF_INFO_MAXLEN] = { 0 };
 
-    if(!useScript)
+    if(!SYM_ENABLED)
     {
-        return 0;
+        return NULL;
     }
 
     //Dictionay initialisation check.

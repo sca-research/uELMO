@@ -23,6 +23,9 @@ bool useSmurfTrace = false;
 bool useInputFile = false;
 bool useScript = false;
 
+//global flag that shows whether the current cycle is on the trace
+bool OnTrace = false;
+
 #ifdef USE_SMURF
 SmurfIO *sio = NULL;
 char *smftracepath = NULL;

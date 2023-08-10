@@ -2,6 +2,7 @@
 #define UELMO_H
 
 #include <stdint.h>
+#include <stdbool.h>
 
 #define UELMO_ERROR (-1)
 #define MAX_PATH_LAN (255)
@@ -20,4 +21,5 @@ extern const char *scriptpath;
 
 extern int cyclecount;
 extern uint32_t frameno;
+extern bool OnTrace;
 #endif
