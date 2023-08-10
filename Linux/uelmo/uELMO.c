@@ -197,7 +197,7 @@ void Read_Binary(char *filename)
     }
     memset(rom, 0xFF, sizeof(rom));
     memset(ram, 0x00, sizeof(ram));
-    if(0 != fread(rom, 1, sizeof(rom), fp))
+    if(0 == fread(rom, 1, sizeof(rom), fp))
     {
         perror(NULL);
     }
