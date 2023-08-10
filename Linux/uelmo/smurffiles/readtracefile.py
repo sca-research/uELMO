@@ -13,7 +13,7 @@ def PrintComponent(comp):
 
     # Skip raw bytes output for non OCTET components.
     if VERBOSE or comp.type == 'OCTET':
-        print('[', end='')
+        print('[ ', end='')
         for i in range(len(comp.raw)):
             print("{:02X} ".format(comp.raw[i]), end='')
         print(']', end='')
@@ -24,7 +24,7 @@ def PrintComponent(comp):
         pass
 
     else:
-        print('[', end='')
+        print('[ ', end='')
         if comp.type == 'BOOL':
             for i in range(comp.len):
                 if comp.val[i]:
@@ -42,12 +42,10 @@ def PrintComponent(comp):
                     print(',', end='')
         else:
             raise("Unknown Component type")
-        print("] ", end='')
+        print("]", end='')
         pass
 
-    print("~", comp.symid, end='')
-
-    print('')
+    print("~", comp.symid)
     return
 
 
