@@ -38,6 +38,8 @@ char dictpath[MAX_PATH_LAN] = { 0 };
 uint32_t frameno = 0;
 int cyclecount = 0;
 
+bool oflag = false;
+
 //Print help message.
 void PrintHelp()
 {
@@ -244,6 +246,7 @@ int main(int argc, char *argv[])
         else if(strcmp(argv[ra], "-o") == 0)
         {
             oindex = ra + 1;
+            oflag = true;
         }
         else if(strcmp(argv[ra], "-r") == 0)
         {
@@ -285,8 +288,16 @@ int main(int argc, char *argv[])
     //Load binary files to rom
     Read_Binary(argv[1]);
     //Open output file
-    if(oindex < argc)
+    if(!oflag)
+    {
+        //Disable uELMO output by default.
+        Open_OutputFile("/dev/null");
+    }
+    else if(oindex < argc)
+    {
         Open_OutputFile(argv[oindex]);
+    }
+
     //Open data file
     if(rindex < argc)
         Open_DataFile(argv[rindex]);
