@@ -1,5 +1,6 @@
 #ifdef USE_SMURF
 #include <stdio.h>
+#include <string.h>
 
 #include "smurf/smurf.h"
 #include "symuelmo.h"
