@@ -157,6 +157,11 @@ int SymAssign(SymbolicComponent component, uSymbol symbol)
         return 0;
     }
 
+    if(verbose)
+    {
+        printf("#[%d] %s = %s\n", frameno, component.name, SymDecode(symbol));
+    }
+
     SfSetFrameSymid(component.sid_p, symbol.symid);
     return 0;
 }
@@ -169,6 +174,14 @@ int SymCopy(SymbolicComponent dstcomp, SymbolicComponent srccomp)
     if(!SYM_ENABLED)
     {
         return 0;
+    }
+
+    if(verbose)
+    {
+
+        printf("#[%d] %s[%d] = %s[%d] -> %s\n", frameno, dstcomp.name,
+               dstcomp.index, srccomp.name, srccomp.index,
+               SymDecode(GetSym(srccomp)));
     }
 
     t = SfGetFrameSymid(srccomp.sid_p);

@@ -22,4 +22,5 @@ extern const char *scriptpath;
 extern int cyclecount;
 extern uint32_t frameno;
 extern bool OnTrace;
+extern bool verbose;
 #endif

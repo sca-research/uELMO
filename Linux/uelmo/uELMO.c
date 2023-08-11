@@ -22,6 +22,7 @@ bool ioSupported = false;
 bool useSmurfTrace = false;
 bool useInputFile = false;
 bool useScript = false;
+bool verbose = false;
 
 //global flag that shows whether the current cycle is on the trace
 bool OnTrace = false;
@@ -256,6 +257,10 @@ int main(int argc, char *argv[])
         else if(strcmp(argv[ra], "-fvr") == 0)
         {
             fvr = true;
+        }
+        else if(strcmp(argv[ra], "--verbose") == 0)
+        {
+            verbose = true;
         }
 #ifdef USE_SMURF
         else if(strcmp(argv[ra], "--io") == 0)
