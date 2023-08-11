@@ -54,6 +54,7 @@ void PrintHelp()
     printf("\t-N ${n} : Set number of traces to ${n}.\n");
     printf("\t-o ${output} : Output into ${output}.\n");
     printf("\t-r ${input} : Use input file ${input}.\n");
+    printf("\t--verbose : Print verbose emulation log.\n");
 #ifdef USE_SMURF
     printf("Smurf Extensions:\n");
     printf
