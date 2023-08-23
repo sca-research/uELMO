@@ -1245,11 +1245,12 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
 #ifdef USE_SMURF
-        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
-        //SymAssign(sym_core_current.Execute_ALU_result, SymGetMemAddrAnnotation());
-        SymAssign(sym_core_current.Memory_addr, sym_exe_result);
-        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
-        //sym_core_current.Execute_destination_regindex = 0xff;
+        //Clear Memory addr and ALU output.
+        SymClear(sym_core_current.Memory_addr);
+        SymClear(sym_core_current.Execute_ALU_result);
+        //Mem-to-reg mechanism triggered.
+        SymAssign(sym_core_current.Memory_data, sym_exe_result);
+        SymAssign(sym_core_current.Memory_readbuf, sym_exe_result);
 #endif
 
         return false;
@@ -1296,11 +1297,12 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
 
 #ifdef USE_SMURF
-        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
-        //SymAssign(sym_core_current.Execute_ALU_result, SymGetMemAddrAnnotation());
-        SymAssign(sym_core_current.Memory_addr, sym_exe_result);
-        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
-        //sym_core_current.Execute_destination_regindex = 0xff;
+        ////Clear Memory addr and ALU output.
+        SymClear(sym_core_current.Memory_addr);
+        SymClear(sym_core_current.Execute_ALU_result);
+        //Mem-to-reg mechanism triggered.
+        SymAssign(sym_core_current.Memory_data, sym_exe_result);
+        SymAssign(sym_core_current.Memory_readbuf, sym_exe_result);
 #endif
         return false;
     }
@@ -1329,11 +1331,12 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 0xff;       //Let memory do this
         core_current.cpsr_valid = false;
 #ifdef USE_SMURF
-        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
-        //SymAssign(sym_core_current.Execute_ALU_result, SymGetMemAddrAnnotation());
-        SymAssign(sym_core_current.Memory_addr, sym_exe_result);
-        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
-        //sym_core_current.Execute_destination_regindex = 0xff;
+        //Clear Memory addr and ALU output.
+        SymClear(sym_core_current.Memory_addr);
+        SymClear(sym_core_current.Execute_ALU_result);
+        //Mem-to-reg mechanism triggered.
+        SymAssign(sym_core_current.Memory_data, sym_exe_result);
+        SymAssign(sym_core_current.Memory_readbuf, sym_exe_result);
 #endif
 
         return false;
@@ -1381,11 +1384,12 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
 
 #ifdef USE_SMURF
-        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
-        //SymAssign(sym_core_current.Execute_ALU_result, SymGetMemAddrAnnotation());
-        SymAssign(sym_core_current.Memory_addr, sym_exe_result);
-        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
-        //sym_core_current.Execute_destination_regindex = 0xff;
+        //Clear Memory addr and ALU output.
+        SymClear(sym_core_current.Memory_addr);
+        SymClear(sym_core_current.Execute_ALU_result);
+        //Mem-to-reg mechanism triggered.
+        SymAssign(sym_core_current.Memory_data, sym_exe_result);
+        SymAssign(sym_core_current.Memory_readbuf, sym_exe_result);
 #endif
 
         return false;
@@ -1435,11 +1439,12 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
 #ifdef USE_SMURF
-        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
-        //SymAssign(sym_core_current.Execute_ALU_result, SymGetMemAddrAnnotation());
-        SymAssign(sym_core_current.Memory_addr, sym_exe_result);
-        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
-        //sym_core_current.Execute_destination_regindex = 0xff;
+        //Clear Memory addr and ALU output.
+        SymClear(sym_core_current.Memory_addr);
+        SymClear(sym_core_current.Execute_ALU_result);
+        //Mem-to-reg mechanism triggered.
+        SymAssign(sym_core_current.Memory_data, sym_exe_result);
+        SymAssign(sym_core_current.Memory_readbuf, sym_exe_result);
 #endif
 
         return false;
@@ -1491,11 +1496,12 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
 #ifdef USE_SMURF
-        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
-        //SymAssign(sym_core_current.Execute_ALU_result, SymGetMemAddrAnnotation());
-        SymAssign(sym_core_current.Memory_addr, sym_exe_result);
-        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
-        //sym_core_current.Execute_destination_regindex = 0xff;
+        //Clear Memory addr and ALU output.
+        SymClear(sym_core_current.Memory_addr);
+        SymClear(sym_core_current.Execute_ALU_result);
+        //Mem-to-reg mechanism triggered.
+        SymAssign(sym_core_current.Memory_data, sym_exe_result);
+        SymAssign(sym_core_current.Memory_readbuf, sym_exe_result);
 #endif
 
         return false;
@@ -1543,12 +1549,12 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
 
 #ifdef USE_SMURF
-        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
-        //SymAssign(sym_core_current.Execute_ALU_result, SymGetMemAddrAnnotation());
-        SymAssign(sym_core_current.Memory_addr, sym_exe_result);
-        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
-
-        //sym_core_current.Execute_destination_regindex = 0xff;
+        //Clear Memory addr and ALU output.
+        SymClear(sym_core_current.Memory_addr);
+        SymClear(sym_core_current.Execute_ALU_result);
+        //Mem-to-reg mechanism triggered.
+        SymAssign(sym_core_current.Memory_data, sym_exe_result);
+        SymAssign(sym_core_current.Memory_readbuf, sym_exe_result);
 #endif
         return false;
     }
@@ -1594,11 +1600,12 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
 
 #ifdef USE_SMURF
-        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
-        //SymAssign(sym_core_current.Execute_ALU_result, SymGetMemAddrAnnotation());
-        SymAssign(sym_core_current.Memory_addr, sym_exe_result);
-        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
-        //sym_core_current.Execute_destination_regindex = 0xff;
+        //Clear Memory addr and ALU output.
+        SymClear(sym_core_current.Memory_addr);
+        SymClear(sym_core_current.Execute_ALU_result);
+        //Mem-to-reg mechanism triggered.
+        SymAssign(sym_core_current.Memory_data, sym_exe_result);
+        SymAssign(sym_core_current.Memory_readbuf, sym_exe_result);
 #endif
         return false;
     }
@@ -1647,11 +1654,12 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
 
 #ifdef USE_SMURF
-        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
-        //SymAssign(sym_core_current.Execute_ALU_result, SymGetMemAddrAnnotation());
-        SymAssign(sym_core_current.Memory_addr, sym_exe_result);
-        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
-        //sym_core_current.Execute_destination_regindex = 0xff;
+        //Clear Memory addr and ALU output.
+        SymClear(sym_core_current.Memory_addr);
+        SymClear(sym_core_current.Execute_ALU_result);
+        //Mem-to-reg mechanism triggered.
+        SymAssign(sym_core_current.Memory_data, sym_exe_result);
+        SymAssign(sym_core_current.Memory_readbuf, sym_exe_result);
 #endif
 
         return false;
@@ -1699,11 +1707,12 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
 
 #ifdef USE_SMURF
-        //SymAssign(sym_core_current.Memory_addr, SymGetMemAddrAnnotation());
-        //SymAssign(sym_core_current.Execute_ALU_result, SymGetMemAddrAnnotation());
-        SymAssign(sym_core_current.Memory_addr, sym_exe_result);
-        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
-        //sym_core_current.Execute_destination_regindex = 0xff;
+        //Clear Memory addr and ALU output.
+        SymClear(sym_core_current.Memory_addr);
+        SymClear(sym_core_current.Execute_ALU_result);
+        //Mem-to-reg mechanism triggered.
+        SymAssign(sym_core_current.Memory_data, sym_exe_result);
+        SymAssign(sym_core_current.Memory_readbuf, sym_exe_result);
 #endif
 
         return false;

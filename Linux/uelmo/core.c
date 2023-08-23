@@ -146,8 +146,14 @@ void Clock(bool pause)
             write_register(core_current.Memory_read_targetreg_buf,
                            core_current.Memory_readbuf + 2);
         else
+        {
             write_register(core_current.Memory_read_targetreg_buf,
                            core_current.Memory_readbuf);
+#ifdef USE_SMURF
+            sym_write_register(core_current.Memory_read_targetreg_buf,
+                               GetSym(sym_core_current.Memory_readbuf));
+#endif
+        }
         core_current.Read_reg_update = false;
         core_current.Memory_read_targetreg_buf = 0xff;
     }
