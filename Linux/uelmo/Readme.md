@@ -77,3 +77,8 @@ You can use the readtracefile.py at uELMO/Linux/uelmo/smurffiles to display a SM
 $ python3 readtracefile.py ${SMURF_FORMAT_OUTPUT}
 ```
 The same script also serves as an example of how to use the SMURF python module to interpret a SMURF trace.
+
+## 6. Known issues
+1. A potential bug may exist in the forward mechanism that it does not trigger in some code sequences. This has been noticed once in SUB(1) instruction. The temporary patch for SUB(1) is to write back to the target register immediately ignoring the forward mechanism. Such patching results into a memory cycle inconsistency (i.e. the ALU output is written back to the register earlier than it should be).
+
+2. Symbols are annotated to Memory_data and Memory_readbuf in the first cycle of LDR instructions, despite data are physically loaded into the bus in the next cycle.
