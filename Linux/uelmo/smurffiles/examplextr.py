@@ -129,26 +129,27 @@ def main(argc, argv):
     # Extract leakage.
     # HW of D2E regs.
     count = st.Extract(D2E_data_HW)
-    print("# Number of leakage extraced:", count)
+    print("# Number of leakage extraced:{}\n".format(count))
+    st.Reset()
 
     # Linear weighted bits of D2E regs.
-    st.Reset()
     count = st.Extract(D2E_data_LB)
-    print("# Number of leakage extraced:", count)
+    print("# Number of leakage extraced:{}\n".format(count))
+    st.Reset()
 
     # HD of D2E regs.
-    st.Reset()
     count = st.Extract(D2E_data_HD, 2)
-    print("# Number of leakage extraced:", count)
-
-    # Import Dictionary if provided.
+    print("# Number of leakage extraced:{}\n".format(count))
     st.Reset()
+
+    # Symbol IDs of D2E regs.
+    # Import Dictionary if provided.
     if len(sys.argv) >= 3:
         symdict = smurf.EncodeDict()
         symdict.Import(sys.argv[2])
-
-    count = st.Extract(D2E_data_Sym)  # Symbol IDs of D2E regs.
-    print("# Number of leakage extraced:", count)
+        pass
+    count = st.Extract(D2E_data_Sym)
+    print("# Number of leakage extraced:{}\n".format(count))
 
     return 0
 
