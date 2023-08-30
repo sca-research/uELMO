@@ -63,7 +63,7 @@ def ParseComponent(comp, seperator=":"):
 
 
 # Print with indention control.
-def Prt(string, ilv=0, ichr='    '):
+def Prt(mvstatement, ilv=0, ichr='    ', iscomment=False):
     indentstr = ''
 
     # Prepend indention.
@@ -73,7 +73,13 @@ def Prt(string, ilv=0, ichr='    '):
         i += 1
         pass
 
-    print(indentstr, string)
+    # Print the content.
+    if iscomment:  # Print in comments.
+        print("{:s} (* {:s} *)".format(indentstr, mvstatement))
+        pass
+    else:
+        print(indentstr, mvstatement)
+        pass
 
     return
 
@@ -92,7 +98,7 @@ def FrameToMV(frame):
     global symdict
 
     # Frame number in comment.
-    Prt("(* Frame {:02d}*)".format(frame["FrameNo"][0]), 1)
+    Prt("Frame {:02d}".format(frame["FrameNo"][0]), 1, iscomment=True)
 
     # Assign Components with a Symbol
     for compname in frame.components:
@@ -137,8 +143,8 @@ def FrameToMV(frame):
     return
 
 
-# Procude MaskVerif end lines.
-def PrintMVEnd():
+# Procude MaskVerif tailing lines.
+def PrintMVTailer():
     Prt('(* End of Frames *)', 1)
     Prt('end\n', 1)
     Prt('verbose 1')
@@ -183,7 +189,7 @@ def main(argc, argv):
     # print("# Number of leakage extraced:{}\n".format(count))
 
     # Print MaskVerif end lines.
-    PrintMVEnd()
+    PrintMVTailer()
 
     return 0
 
