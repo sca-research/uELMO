@@ -1112,7 +1112,7 @@ bool Execute_OneCylce(bool wait_mem)
         rb_ind = core_current.Decode_port_regindex[1];
         if(DEBUG_CORE)
             printf("eors r%u,r%u\n", ra_ind, rb_ind);
-        sprintf(core_current.Execute_instr_disp, "Execute:eors r%u,r%u",
+        sprintf(core_current.Execute_instr_disp, "Execute: eors r%u,r%u",
                 ra_ind, rb_ind);
         //Functional
         rc = ra ^ rb;
