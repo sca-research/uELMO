@@ -1,9 +1,11 @@
 #!/usr/bin/python3
+import sys
+
 import smurf
 
 FORCE_LINEAR = 0  # force all leakage to be linear
 
-NON_ACTIVE_REG = 0  # Allows leakage for non-active registers
+NON_ACTIVE_REG = 1  # Allows leakage for non-active registers
 NON_ACTIVE_MEM = 1  # Allows leakage for non-active memory buses
 
 MICROARCHITECTURAL = 1  # Allows leakage from the micro-architecture
@@ -15,7 +17,13 @@ TRANSITION = 1  # Allows for transition leakage
 LSB_NEIGHBOUR = 1  # Allows for LSB based neibouring effect
 
 
+def dbgprint(*args):
+    print(*args, '- ', end='')
+    return
+
 # Hack of C sprintf
+
+
 def sprintf(*args):
     formatstr = args[0]
     varargs = args[1:]
@@ -25,12 +33,12 @@ def sprintf(*args):
 
 # Hack of original output.
 def Write_Instr(disp):
-    print(disp)
+    print("Instr:", disp)
     return
 
 
 def Write_leakage_label(disp, ltype):
-    print("{:d} {:s}".format(ltype, disp))
+    print("Label: {:d} {:s}".format(ltype, disp))
     return
 
 
@@ -56,7 +64,7 @@ def Combine4(a, b, c, d):
 # print out the instruction discription for current cycle
 def Generate_Leakage_Instr(current, header):
     if header:
-        disp = sprintf("%s\n%s\n%s\n", current['Execute_instr_disp'],
+        disp = sprintf("{:s}\n{:s}\n{:s}\n", current['Execute_instr_disp'],
                        current['Decode_instr_disp'], current['Memory_instr_disp'])
         Write_Instr(disp)
         pass
@@ -72,10 +80,11 @@ def Generate_Leakage_Select(current, header):
     if NON_ACTIVE_REG:  # reg[16]: nominal
         for i in range(16):
             if header:
-                disp = sprintf("Reg %d", i)
+                disp = sprintf("Reg {:d}", i)
                 Write_leakage_label(disp, 0)
                 pass
             else:
+                dbgprint('reg')
                 Write_leakage_data(current['reg'][i], 32, 0)
                 pass
             pass
@@ -87,7 +96,8 @@ def Generate_Leakage_Select(current, header):
             Write_leakage_label("CPSR", 1)
             pass
         else:
-            Write_leakage_data((current['cpsr'][0], 32, 1))
+            dbgprint('cpsr')
+            Write_leakage_data(current['cpsr'][0], 32, 1)
             pass
         pass
 
@@ -97,6 +107,7 @@ def Generate_Leakage_Select(current, header):
             Write_leakage_label("Pipeline Reg 1", 0)
             pass
         else:
+            dbgprint('D2E_reg1')
             Write_leakage_data(current['D2E_reg1'][0], 32, 0)
             pass
 
@@ -104,6 +115,7 @@ def Generate_Leakage_Select(current, header):
             Write_leakage_label("Pipeline Reg 2", 0)
             pass
         else:
+            dbgprint('D2E_reg2')
             Write_leakage_data(current['D2E_reg2'][0], 32, 0)
             pass
         pass
@@ -118,10 +130,11 @@ def Generate_Leakage_Select(current, header):
     if MICROARCHITECTURAL and DECODE_PORT:
         for i in range(3):
             if header:
-                disp = sprintf("Decoding port %d", i)
+                disp = sprintf("Decoding port {:d}", i)
                 Write_leakage_label(disp, 1)
                 pass
             else:
+                dbgprint('Decode_port_data')
                 Write_leakage_data(current['Decode_port_data'][i], 32, 1)
                 pass
         pass
@@ -130,10 +143,11 @@ def Generate_Leakage_Select(current, header):
     if MICROARCHITECTURAL and DECODE_PORT and GLITCHY_DECODE:
         for i in range(3):
             if header:
-                disp = sprintf("Glitchy decoding port %d", i)
+                disp = sprintf("Glitchy decoding port {:d}", i)
                 Write_leakage_label(disp, 1)
                 pass
             else:
+                dbgprint('glitchy_Decode_port_data')
                 Write_leakage_data(
                     current['glitchy_Decode_port_data'][i], 32, 1)
                 pass
@@ -147,6 +161,7 @@ def Generate_Leakage_Select(current, header):
         Write_leakage_label("ALU output", 0)
         pass
     else:
+        dbgprint('Execute_ALU_result')
         Write_leakage_data(current['Execute_ALU_result'][0], 32, 0)
         pass
 
@@ -157,6 +172,7 @@ def Generate_Leakage_Select(current, header):
             Write_leakage_label("Memory address", 0)
             pass
         else:
+            dbgprint('Memory_addr')
             Write_leakage_data(current['Memory_addr'][0], 32, 0)
             pass
 
@@ -165,6 +181,7 @@ def Generate_Leakage_Select(current, header):
             Write_leakage_label("Memory data", 0)
             pass
         else:
+            dbgprint('Memory_data')
             Write_leakage_data(current['Memory_data'], 32, 0)
             pass
 
@@ -173,6 +190,7 @@ def Generate_Leakage_Select(current, header):
             Write_leakage_label("Memory write buffer", 0)
             pass
         else:
+            dbgprint('Memory_writebuf')
             Write_leakage_data(current['Memory_writebuf'][0], 32, 0)
             pass
 
@@ -180,8 +198,8 @@ def Generate_Leakage_Select(current, header):
         if header:
             Write_leakage_label("Memory write buffer delayed", 0)
         else:
-            Write_leakage_data(
-                current['Memory_writebuf_delayed'][0],                               32, 0)
+            dbgprint('Memory_writebuf_delayed')
+            Write_leakage_data(current['Memory_writebuf_delayed'][0], 32, 0)
             pass
 
         # Memory read buffer, nomial
@@ -189,8 +207,8 @@ def Generate_Leakage_Select(current, header):
             Write_leakage_label("Memory read buffer", 0)
             pass
         else:
-            Write_leakage_data(
-                current['Memory_readbuf'],                               32, 0)
+            dbgprint('Memory_readbuf')
+            Write_leakage_data(current['Memory_readbuf'],  32, 0)
             pass
         pass
 
@@ -215,7 +233,7 @@ def Generate_Leakage_Transition(CORE_STATUS * prev, CORE_STATUS * current,
         #{
             if header)
             #{
-                sprintf(disp, "LSB Neighbouring Reg %d XOR Reg %d", i, i ^ 0x1);
+                sprintf(disp, "LSB Neighbouring Reg {:d} XOR Reg {:d}", i, i ^ 0x1);
                 Write_leakage_label(disp, 1);
             #}
             else:
@@ -233,7 +251,7 @@ def Generate_Leakage_Transition(CORE_STATUS * prev, CORE_STATUS * current,
         #{
             if header)
             #{
-                sprintf(disp, "Previous Reg %d", i);
+                sprintf(disp, "Previous Reg {:d}", i);
                 Write_leakage_label(disp, 1);
             #}
             else:
@@ -247,7 +265,7 @@ def Generate_Leakage_Transition(CORE_STATUS * prev, CORE_STATUS * current,
         #{
             if header)
             #{
-                sprintf(disp, "Reg %d HD", i);
+                sprintf(disp, "Reg {:d} HD", i);
                 Write_leakage_label(disp, 1);
             #}
             else:
@@ -314,7 +332,7 @@ def Generate_Leakage_Transition(CORE_STATUS * prev, CORE_STATUS * current,
         #{
             if header)
             #{
-                sprintf(disp, "Previous Decoding port %d", i);
+                sprintf(disp, "Previous Decoding port {:d}", i);
                 Write_leakage_label(disp, 1);
             #}
             else:
@@ -322,7 +340,7 @@ def Generate_Leakage_Transition(CORE_STATUS * prev, CORE_STATUS * current,
                                    32, 1);
             if header)
             #{
-                sprintf(disp, "Decoding port %d HD", i);
+                sprintf(disp, "Decoding port {:d} HD", i);
                 Write_leakage_label(disp, 1);
             #}
             else:
@@ -343,7 +361,7 @@ def Generate_Leakage_Transition(CORE_STATUS * prev, CORE_STATUS * current,
         #{
             if header)
             #{
-                sprintf(disp, "Glitchy decoding port %d XOR current port %d", i,
+                sprintf(disp, "Glitchy decoding port {:d} XOR current port {:d}", i,
                         i);
                 Write_leakage_label(disp, 1);
             #}
@@ -358,7 +376,7 @@ def Generate_Leakage_Transition(CORE_STATUS * prev, CORE_STATUS * current,
             #}
             if header)
             #{
-                sprintf(disp, "Glitchy decoding port %d XOR previous port %d",
+                sprintf(disp, "Glitchy decoding port {:d} XOR previous port {:d}",
                         i, i);
                 Write_leakage_label(disp, 1);
             #}
@@ -498,3 +516,24 @@ def Generate_Leakage_Interaction(CORE_STATUS * prev, CORE_STATUS * current,
     #}
 #}
 '''
+
+
+def TestExtractor(frame):
+    print('FrameNo: {}'.format(frame['FrameNo'][0]))
+    Generate_Leakage_Instr(frame, False)
+    Generate_Leakage_Select(frame, False)
+    print('')
+    return
+
+
+def main(argc, argv):
+    testtrace = argv[1]
+    core = smurf.Core.Load('uelmo.json')
+    trace = smurf.Trace(core)
+    trace.Open(testtrace)
+    trace.Extract(TestExtractor)
+    return
+
+
+if __name__ == '__main__':
+    exit(main(len(sys.argv), sys.argv))
