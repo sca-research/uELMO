@@ -17,11 +17,6 @@ TRANSITION = 1  # Allows for transition leakage
 LSB_NEIGHBOUR = 1  # Allows for LSB based neibouring effect
 
 
-def dbgprint(*args):
-    print(*args, '- ', end='')
-    return
-
-
 # Hack of C sprintf
 def sprintf(*args):
     formatstr = args[0]
@@ -214,280 +209,257 @@ def Generate_Leakage_Select(current, header):
     return
 
 
-'''
-#Part 2: select the components in each frame that produce transition leakage
-#each component can be linear or nominal (i.e. combining two nominal state)
-#header==True--->write out the discription for header
-#header==False --->write out leakage state data
-def Generate_Leakage_Transition(CORE_STATUS * prev, CORE_STATUS * current,
-                                 bool header)
-#{
-    int i;
-    char disp[50];
-    unsigned int temp = 0;
-    #LSB Neighbouring effect
-    if TRANSITION and LSB_NEIGHBOUR)
-    #{
-        for (i = 0; i < 13; i = i + 2)  #no PC, LR or SP
-        #{
-            if header)
-            #{
-                sprintf(disp, "LSB Neighbouring Reg {:d} XOR Reg {:d}", i, i ^ 0x1);
-                Write_leakage_label(disp, 1);
-            #}
+# Part 2: select the components in each frame that produce transition leakage
+# each component can be linear or nominal (i.e. combining two nominal state)
+# header==True--->write out the discription for header
+# header==False --->write out leakage state data
+def Generate_Leakage_Transition(prev, current, header):
+    # LSB Neighbouring effect
+    if TRANSITION and LSB_NEIGHBOUR:
+        # no PC, LR or SP
+        i = 0
+        while i < 13:
+            if header:
+                disp = sprintf(
+                    disp, "LSB Neighbouring Reg {:d} XOR Reg {:d}", i, i ^ 0x1)
+                Write_leakage_label(disp, 1)
+                pass
             else:
-            #{
-                temp = current->reg[i] ^ current->reg[i ^ 0x1];
-                Write_leakage_data((uint8_t *) & (temp), 32,
-                                   1);
-            #}
-        #}
-    #}
-    #Target register HD
-    if TRANSITION)              #reg[16]: linear
-    #{
-        for (i = 0; i < 13; i++)        #no PC, LR or SP
-        #{
-            if header)
-            #{
-                sprintf(disp, "Previous Reg {:d}", i);
-                Write_leakage_label(disp, 1);
-            #}
-            else:
-            #{
-                Write_leakage_data((uint8_t *) & (prev->reg[i]),
-                                   32, 1);
-            #}
+                temp = current['reg'][i] ^ current['reg'][i ^ 0x1]
+                Write_leakage_data(temp, 32, 1)
+                pass
 
-        #}
-        for (i = 0; i < 13; i++)
-        #{
-            if header)
-            #{
-                sprintf(disp, "Reg {:d} HD", i);
-                Write_leakage_label(disp, 1);
-            #}
-            else:
-            #{
-                temp = prev->reg[i] ^ current->reg[i];
-                Write_leakage_data((uint8_t *) & (temp), 32,
-                                   1);
-            #}
+            i += 2
+            pass
+        pass
 
-        #}
-    #}
-    if CPSR and TRANSITION)
-    #{
+    # Target register HD
+    if TRANSITION:  # reg[16]: linear
+        for i in range(13):  # no PC, LR or SP
+            if header:
+                disp = sprintf("Previous Reg {:d}", i)
+                Write_leakage_label(disp, 1)
+                pass
+            else:
+                Write_leakage_data(prev['reg'][i], 32, 1)
+                pass
+            pass
+
+        for i in range(13):
+            if header:
+                disp = sprintf("Reg {:d} HD", i)
+                Write_leakage_label(disp, 1)
+                pass
+            else:
+                temp = prev['reg'][i] ^ current['reg'][i]
+                Write_leakage_data(temp, 32, 1)
+                pass
+            pass
+        pass
+
+    if CPSR and TRANSITION:
         #CPSR, linear
-        if header)
-            Write_leakage_label("Previous CPSR", 1);
+        if header:
+            Write_leakage_label("Previous CPSR", 1)
+            pass
         else:
-            Write_leakage_data((uint8_t *) & (prev->cpsr), 32,
-                               1);
-        if header)
-            Write_leakage_label("CPSR HD", 1);
-        else:
-        #{
-            temp = (prev->cpsr) ^ (current->cpsr);
-            Write_leakage_data((uint8_t *) & (temp), 32, 1);
-        #}
-    #}
+            Write_leakage_data(prev['cpsr'][0], 32, 1)
+            pass
 
-    #2 pipeline registers, linear
-    if MICROARCHITECTURAL and TRANSITION)
-    #{
-        if header)
-            Write_leakage_label("Previous Pipeline Reg 1", 1);
+        if header:
+            Write_leakage_label("CPSR HD", 1)
+            pass
         else:
-            Write_leakage_data((uint8_t *) & (prev->D2E_reg1),
-                               32, 1);
-        if header)
-            Write_leakage_label("Previous Pipeline Reg 2", 1);
-        else:
-            Write_leakage_data((uint8_t *) & (prev->D2E_reg2),
-                               32, 1);
-        if header)
-            Write_leakage_label("Pipeline Reg 1 HD", 1);
-        else:
-        #{
-            temp = (prev->D2E_reg1) ^ (current->D2E_reg1);
-            Write_leakage_data((uint8_t *) & temp, 32, 1);
-        #}
-        if header)
-            Write_leakage_label("Pipeline Reg 2 HD", 1);
-        else:
-        #{
-            temp = (prev->D2E_reg2) ^ (current->D2E_reg2);
-            Write_leakage_data((uint8_t *) & temp, 32, 1);
-        #}
+            temp = prev['cpsr'][0] ^ current['cpsr'][0]
+            Write_leakage_data(temp, 32, 1)
+            pass
+        pass
 
-    #}
+    # 2 pipeline registers, linear
+    if MICROARCHITECTURAL and TRANSITION:
+        if header:
+            Write_leakage_label("Previous Pipeline Reg 1", 1)
+            pass
+        else:
+            Write_leakage_data(prev['D2E_reg1'][0], 32, 1)
+            pass
 
-    #Decode
-    #Decoding register access, linear
-    if MICROARCHITECTURAL and DECODE_PORT and TRANSITION)
-    #{
-        for (i = 0; i < 3; i++)
-        #{
-            if header)
-            #{
-                sprintf(disp, "Previous Decoding port {:d}", i);
-                Write_leakage_label(disp, 1);
-            #}
+        if header:
+            Write_leakage_label("Previous Pipeline Reg 2", 1)
+            pass
+        else:
+            Write_leakage_data(prev['D2E_reg2'][0], 32, 1)
+            pass
+
+        if header:
+            Write_leakage_label("Pipeline Reg 1 HD", 1)
+            pass
+        else:
+            temp = prev['D2E_reg1'][0] ^ current['D2E_reg1'][0]
+            Write_leakage_data(temp, 32, 1)
+            pass
+
+        if header:
+            Write_leakage_label("Pipeline Reg 2 HD", 1)
+            pass
+        else:
+            temp = prev['D2E_reg2'][0] ^ current['D2E_reg2'][0]
+            Write_leakage_data(temp, 32, 1)
+            pass
+        pass
+
+    # Decode
+    # Decoding register access, linear
+    if MICROARCHITECTURAL and DECODE_PORT and TRANSITION:
+        for i in range(3):
+            if header:
+                disp = sprintf("Previous Decoding port {:d}", i)
+                Write_leakage_label(disp, 1)
+                pass
             else:
-                Write_leakage_data((uint8_t *) & (prev->Decode_port_data[i]),
-                                   32, 1);
-            if header)
-            #{
-                sprintf(disp, "Decoding port {:d} HD", i);
-                Write_leakage_label(disp, 1);
-            #}
+                Write_leakage_data(prev['Decode_port_data'][i], 32, 1)
+                pass
+
+            if header:
+                disp = sprintf("Decoding port {:d} HD", i)
+                Write_leakage_label(disp, 1)
+                pass
             else:
-            #{
-                temp =
-                    (prev->
-                     Decode_port_data[i]) ^ (current->Decode_port_data[i]);
-                Write_leakage_data((uint8_t *) & (temp), 32,
-                                   1);
-            #}
-        #}
-    #}
+                temp = prev['Decode_port_data'][i] ^ current['Decode_port_data'][i]
+                Write_leakage_data(temp, 32, 1)
+                pass
+            pass
+        pass
 
-    #Glitchy decoding register access, linear
-    if MICROARCHITECTURAL and DECODE_PORT and GLITCHY_DECODE and TRANSITION)
-    #{
-        for (i = 0; i < 3; i++)
-        #{
-            if header)
-            #{
-                sprintf(disp, "Glitchy decoding port {:d} XOR current port {:d}", i,
-                        i);
-                Write_leakage_label(disp, 1);
-            #}
+    # Glitchy decoding register access, linear
+    if MICROARCHITECTURAL and DECODE_PORT and GLITCHY_DECODE and TRANSITION:
+        for i in range(3):
+            if header:
+                disp = sprintf(
+                    "Glitchy decoding port {:d} XOR current port {:d}", i, i)
+                Write_leakage_label(disp, 1)
+                pass
             else:
-            #{
-                temp =
-                    (current->
-                     glitchy_Decode_port_data[i]) ^
-                    (current->Decode_port_data[i]);
-                Write_leakage_data((uint8_t *) & (temp), 32,
-                                   1);
-            #}
-            if header)
-            #{
-                sprintf(disp, "Glitchy decoding port {:d} XOR previous port {:d}",
-                        i, i);
-                Write_leakage_label(disp, 1);
-            #}
+                temp = current['glitchy_Decode_port_data'][i] ^ current['Decode_port_data'][i]
+                Write_leakage_data(temp, 32, 1)
+                pass
+
+            if header:
+                disp = sprintf(
+                    "Glitchy decoding port {:d} XOR previous port {:d}", i, i)
+                Write_leakage_label(disp, 1)
+                pass
             else:
-            #{
-                temp =
-                    (current->
-                     glitchy_Decode_port_data[i]) ^ (prev->Decode_port_data[i]);
-                Write_leakage_data((uint8_t *) & (temp), 32,
-                                   1);
-            #}
-        #}
-    #}
+                temp = current['glitchy_Decode_port_data'][i] ^ prev['Decode_port_data'][i]
+                Write_leakage_data(temp, 32, 1)
+                pass
+            pass
+        pass
 
-    #Execute
-    #Only ALU output, other captured by decode (pipeline register) or interaction (combinatorial)
-    #ALU output, nominal
-    if TRANSITION)
-    #{
-        if header)
-            Write_leakage_label("Previous ALU output", 1);
+    # Execute
+    # Only ALU output, other captured by decode (pipeline register) or interaction (combinatorial)
+    # ALU output, nominal
+    if TRANSITION:
+        if header:
+            Write_leakage_label("Previous ALU output", 1)
+            pass
         else:
-            Write_leakage_data((uint8_t *) & (prev->Execute_ALU_result),
-                               32, 1);
-        if header)
-            Write_leakage_label("ALU output HD", 1);
-        else:
-        #{
-            temp = (prev->Execute_ALU_result) ^ (current->Execute_ALU_result);
-            Write_leakage_data((uint8_t *) & (temp), 32, 1);
-        #}
-    #}
+            Write_leakage_data(prev['Execute_ALU_result'][0], 32, 1)
+            pass
 
-    #Memory subsystem
-    if (TRANSITION)
-       and (NON_ACTIVE_MEM or (current->Read_valid == True)
-           or (current->Write_valid == True)
-           or (current->Write_valid_delayed == True)))
-    #{
-        #Memory address
-        if header)
-            Write_leakage_label("Previous Memory address", 0);
+        if header:
+            Write_leakage_label("ALU output HD", 1)
+            pass
         else:
-            Write_leakage_data((uint8_t *) & (prev->Memory_addr),
-                               32, 0);
-        if header)
-            Write_leakage_label("Memory address HD", 1);
-        else:
-        #{
-            temp = (prev->Memory_addr) ^ (current->Memory_addr);
-            Write_leakage_data((uint8_t *) & (temp), 32, 1);
-        #}
-        #Memory data, nomial
-        if header)
-            Write_leakage_label("Previous Memory data", 0);
-        else:
-            Write_leakage_data((uint8_t *) & (prev->Memory_data),
-                               32, 0);
-        if header)
-            Write_leakage_label("Memory data HD", 1);
-        else:
-        #{
-            temp = (prev->Memory_data) ^ (current->Memory_data);
-            Write_leakage_data((uint8_t *) & (temp), 32, 1);
-        #}
+            temp = prev['Execute_ALU_result'][0] ^ current['Execute_ALU_result'][0]
+            Write_leakage_data(temp, 32, 1)
+            pass
+        pass
 
-        #Memory write buffer, nomial
-        if header)
-            Write_leakage_label("Previous Memory write buffer", 0);
+    # Memory subsystem
+    if TRANSITION and (NON_ACTIVE_MEM or (current['Read_valid'][0] == True) or (current['Write_valid'][0] == True) or (current['Write_valid_delayed'][0] == True)):
+        # Memory address
+        if header:
+            Write_leakage_label("Previous Memory address", 0)
+            pass
         else:
-            Write_leakage_data((uint8_t *) & (prev->Memory_writebuf),
-                               32, 0);
-        if header)
-            Write_leakage_label("Memory write buffer HD", 1);
-        else:
-        #{
-            temp = (prev->Memory_writebuf) ^ (current->Memory_writebuf);
-            Write_leakage_data((uint8_t *) & (temp), 32, 1);
-        #}
-        #Memory write buffer delayed, nomial
-        if header)
-            Write_leakage_label("Previous Memory write buffer delayed", 0);
-        else:
-            Write_leakage_data((uint8_t *) & (prev->Memory_writebuf_delayed),
-                               32, 0);
-        if header)
-            Write_leakage_label("Memory write buffer delayed HD", 1);
-        else:
-        #{
-            temp =
-                (prev->
-                 Memory_writebuf_delayed) ^ (current->Memory_writebuf_delayed);
-            Write_leakage_data((uint8_t *) & (temp), 32, 1);
-        #}
-        #Memory read buffer, nomial
-        if header)
-            Write_leakage_label("Previous Memory read buffer", 0);
-        else:
-            Write_leakage_data((uint8_t *) & (prev->Memory_readbuf),
-                               32, 0);
-        if header)
-            Write_leakage_label("Memory read buffer HD", 1);
-        else:
-        #{
-            temp = (current->Memory_readbuf) ^ (prev->Memory_readbuf);
-            Write_leakage_data((uint8_t *) & (temp), 32, 1);
-        #}
+            Write_leakage_data(prev['Memory_addr'][0], 32, 0)
+            pass
 
-    #}
+        if header:
+            Write_leakage_label("Memory address HD", 1)
+            pass
+        else:
+            temp = prev['Memory_addr'][0] ^ current['Memory_addr'][0]
+            Write_leakage_data(temp, 32, 1)
+            pass
 
-#}
-'''
+        # Memory data, nomial
+        if header:
+            Write_leakage_label("Previous Memory data", 0)
+            pass
+        else:
+            Write_leakage_data(prev['Memory_data'][0], 32, 0)
+            pass
+
+        if header:
+            Write_leakage_label("Memory data HD", 1)
+            pass
+        else:
+            temp = prev['Memory_data'][0] ^ current['Memory_data'][0]
+            Write_leakage_data(temp, 32, 1)
+            pass
+
+        # Memory write buffer, nomial
+        if header:
+            Write_leakage_label("Previous Memory write buffer", 0)
+            pass
+        else:
+            Write_leakage_data(prev['Memory_writebuf'][0], 32, 0)
+            pass
+
+        if header:
+            Write_leakage_label("Memory write buffer HD", 1)
+            pass
+        else:
+            temp = prev['Memory_writebuf'][0] ^ current['Memory_writebuf'][0]
+            Write_leakage_data(temp, 32, 1)
+            pass
+
+        # Memory write buffer delayed, nomial
+        if header:
+            Write_leakage_label("Previous Memory write buffer delayed", 0)
+            pass
+        else:
+            Write_leakage_data(prev['Memory_writebuf_delayed'][0], 32, 0)
+            pass
+
+        if header:
+            Write_leakage_label("Memory write buffer delayed HD", 1)
+            pass
+        else:
+            temp = prev['Memory_writebuf_delayed'][0] ^ current['Memory_writebuf_delayed'][0]
+            Write_leakage_data(temp, 32, 1)
+            pass
+
+        # Memory read buffer, nomial
+        if header:
+            Write_leakage_label("Previous Memory read buffer", 0)
+            pass
+        else:
+            Write_leakage_data(prev['Memory_readbuf'][0], 32, 0)
+            pass
+
+        if header:
+            Write_leakage_label("Memory read buffer HD", 1)
+            pass
+        else:
+            temp = current['Memory_readbuf'][0] ^ prev['Memory_readbuf'][0]
+            Write_leakage_data(temp, 32, 1)
+            pass
+
+        pass
+    return
 
 
 # Part 3: select the components in each frame that produce interaction leakage
@@ -520,6 +492,7 @@ def TestExtractor(frame):
     print('FrameNo: {}'.format(frame[1]['FrameNo'][0]))
     Generate_Leakage_Instr(frame[1], header)
     Generate_Leakage_Select(frame[1], header)
+    Generate_Leakage_Transition(frame[0], frame[1], header)
     Generate_Leakage_Interaction(frame[0], frame[1], header)
     print('')
     return
