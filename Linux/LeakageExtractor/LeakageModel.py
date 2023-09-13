@@ -78,7 +78,6 @@ def Generate_Leakage_Select(current, header):
                 Write_leakage_label(disp, 0)
                 pass
             else:
-                dbgprint('reg')
                 Write_leakage_data(current['reg'][i], 32, 0)
                 pass
             pass
@@ -90,7 +89,6 @@ def Generate_Leakage_Select(current, header):
             Write_leakage_label("CPSR", 1)
             pass
         else:
-            dbgprint('cpsr')
             Write_leakage_data(current['cpsr'][0], 32, 1)
             pass
         pass
@@ -101,7 +99,6 @@ def Generate_Leakage_Select(current, header):
             Write_leakage_label("Pipeline Reg 1", 0)
             pass
         else:
-            dbgprint('D2E_reg1')
             Write_leakage_data(current['D2E_reg1'][0], 32, 0)
             pass
 
@@ -109,7 +106,6 @@ def Generate_Leakage_Select(current, header):
             Write_leakage_label("Pipeline Reg 2", 0)
             pass
         else:
-            dbgprint('D2E_reg2')
             Write_leakage_data(current['D2E_reg2'][0], 32, 0)
             pass
         pass
@@ -128,7 +124,6 @@ def Generate_Leakage_Select(current, header):
                 Write_leakage_label(disp, 1)
                 pass
             else:
-                dbgprint('Decode_port_data')
                 Write_leakage_data(current['Decode_port_data'][i], 32, 1)
                 pass
         pass
@@ -141,7 +136,6 @@ def Generate_Leakage_Select(current, header):
                 Write_leakage_label(disp, 1)
                 pass
             else:
-                dbgprint('glitchy_Decode_port_data')
                 Write_leakage_data(
                     current['glitchy_Decode_port_data'][i], 32, 1)
                 pass
@@ -155,7 +149,6 @@ def Generate_Leakage_Select(current, header):
         Write_leakage_label("ALU output", 0)
         pass
     else:
-        dbgprint('Execute_ALU_result')
         Write_leakage_data(current['Execute_ALU_result'][0], 32, 0)
         pass
 
@@ -166,7 +159,6 @@ def Generate_Leakage_Select(current, header):
             Write_leakage_label("Memory address", 0)
             pass
         else:
-            dbgprint('Memory_addr')
             Write_leakage_data(current['Memory_addr'][0], 32, 0)
             pass
 
@@ -175,7 +167,6 @@ def Generate_Leakage_Select(current, header):
             Write_leakage_label("Memory data", 0)
             pass
         else:
-            dbgprint('Memory_data')
             Write_leakage_data(current['Memory_data'], 32, 0)
             pass
 
@@ -184,7 +175,6 @@ def Generate_Leakage_Select(current, header):
             Write_leakage_label("Memory write buffer", 0)
             pass
         else:
-            dbgprint('Memory_writebuf')
             Write_leakage_data(current['Memory_writebuf'][0], 32, 0)
             pass
 
@@ -192,7 +182,6 @@ def Generate_Leakage_Select(current, header):
         if header:
             Write_leakage_label("Memory write buffer delayed", 0)
         else:
-            dbgprint('Memory_writebuf_delayed')
             Write_leakage_data(current['Memory_writebuf_delayed'][0], 32, 0)
             pass
 
@@ -201,7 +190,6 @@ def Generate_Leakage_Select(current, header):
             Write_leakage_label("Memory read buffer", 0)
             pass
         else:
-            dbgprint('Memory_readbuf')
             Write_leakage_data(current['Memory_readbuf'],  32, 0)
             pass
         pass
@@ -479,7 +467,6 @@ def Generate_Leakage_Interaction(prev, current, header):
                 current['D2E_reg1'][0], current['D2E_reg2'][0], prev['D2E_reg1'][0], prev['D2E_reg2'][0])
 
             # Reg A * Reg B *prev_Reg A * prev_Reg B: Full
-            dbgprint('combine')
             Write_leakage_data(combine, 4 * 32, 0)
             pass
         pass
