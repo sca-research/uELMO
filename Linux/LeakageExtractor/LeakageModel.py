@@ -21,9 +21,8 @@ def dbgprint(*args):
     print(*args, '- ', end='')
     return
 
+
 # Hack of C sprintf
-
-
 def sprintf(*args):
     formatstr = args[0]
     varargs = args[1:]
@@ -53,10 +52,10 @@ def Combine4(a, b, c, d):
     arr = bytearray()
 
     # Concatinate a b c d as bytes.
-    arr += a.to_bytes(4, 'littlt')
-    arr += b.to_bytes(4, 'littlt')
-    arr += c.to_bytes(4, 'littlt')
-    arr += d.to_bytes(4, 'littlt')
+    arr += a.to_bytes(4, 'little')
+    arr += b.to_bytes(4, 'little')
+    arr += c.to_bytes(4, 'little')
+    arr += d.to_bytes(4, 'little')
 
     return arr
 
@@ -488,40 +487,40 @@ def Generate_Leakage_Transition(CORE_STATUS * prev, CORE_STATUS * current,
     #}
 
 #}
-
-#Part 3: select the components in each frame that produce interaction leakage
-#all nominal 
-#header==True--->write out the discription for header
-#header==False --->write out leakage state data
-
-def Generate_Leakage_Interaction(CORE_STATUS * prev, CORE_STATUS * current,
-                                  bool header)
-#{
-    uint8_t *combine = NULL;
-    if TRANSITION and MICROARCHITECTURAL)
-    #{
-        if header)
-        #{
-            Write_leakage_label("Reg A * Reg B * Previous Reg A * Previous Reg B", 0);  #Reg A * Reg B *prev_Reg A * prev_Reg B: Full
-        #}
-        else:
-        #{
-            combine = (uint8_t *) malloc(4 * 32);
-            Combine4(current->D2E_reg1, current->D2E_reg2, prev->D2E_reg1,
-                     prev->D2E_reg2, combine);
-            Write_leakage_data(combine, 4 * 32, 0);   #Reg A * Reg B *prev_Reg A * prev_Reg B: Full
-            free(combine);
-        #}
-
-    #}
-#}
 '''
 
 
+# Part 3: select the components in each frame that produce interaction leakage
+# all nominal
+# header==True--->write out the discription for header
+# header==False --->write out leakage state data
+def Generate_Leakage_Interaction(prev, current, header):
+    if TRANSITION and MICROARCHITECTURAL:
+        if header:
+            # Reg A * Reg B *prev_Reg A * prev_Reg B: Full
+            Write_leakage_label(
+                "Reg A * Reg B * Previous Reg A * Previous Reg B", 0)
+            pass
+
+        else:
+            combine = Combine4(
+                current['D2E_reg1'][0], current['D2E_reg2'][0], prev['D2E_reg1'][0], prev['D2E_reg2'][0])
+
+            # Reg A * Reg B *prev_Reg A * prev_Reg B: Full
+            dbgprint('combine')
+            Write_leakage_data(combine, 4 * 32, 0)
+            pass
+        pass
+
+    return
+
+
 def TestExtractor(frame):
-    print('FrameNo: {}'.format(frame['FrameNo'][0]))
-    Generate_Leakage_Instr(frame, False)
-    Generate_Leakage_Select(frame, False)
+    header = False
+    print('FrameNo: {}'.format(frame[1]['FrameNo'][0]))
+    Generate_Leakage_Instr(frame[1], header)
+    Generate_Leakage_Select(frame[1], header)
+    Generate_Leakage_Interaction(frame[0], frame[1], header)
     print('')
     return
 
@@ -531,7 +530,7 @@ def main(argc, argv):
     core = smurf.Core.Load('uelmo.json')
     trace = smurf.Trace(core)
     trace.Open(testtrace)
-    trace.Extract(TestExtractor)
+    trace.Extract(TestExtractor, 2)
     return
 
 
