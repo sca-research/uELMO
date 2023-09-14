@@ -36,8 +36,8 @@ def Write_leakage_label(disp, ltype):
     return
 
 
-def Write_leakage_data(data, dlen, dtype):
-    print("{:d}[{:d}]: {}".format(dtype, dlen, data))
+def Write_leakage_data(data, dlen, dtype, src="N/A"):
+    print("{:s}: {:d}[{:d}]: {}".format(src, dtype, dlen, data))
     return
 
 
@@ -209,7 +209,7 @@ def Generate_Leakage_Transition(prev, current, header):
         while i < 13:
             if header:
                 disp = sprintf(
-                    disp, "LSB Neighbouring Reg {:d} XOR Reg {:d}", i, i ^ 0x1)
+                    "LSB Neighbouring Reg {:d} XOR Reg {:d}", i, i ^ 0x1)
                 Write_leakage_label(disp, 1)
                 pass
             else:
@@ -474,15 +474,38 @@ def Generate_Leakage_Interaction(prev, current, header):
     return
 
 
-def TestExtractor(frame):
-    header = False
+def TestExtractorHeader(frame):
     print('FrameNo: {}'.format(frame[1]['FrameNo'][0]))
-    Generate_Leakage_Instr(frame[1], header)
-    Generate_Leakage_Select(frame[1], header)
-    Generate_Leakage_Transition(frame[0], frame[1], header)
-    Generate_Leakage_Interaction(frame[0], frame[1], header)
-    print('')
+
+    if frame[1]['core_valid'][0]:
+        header = True
+        Generate_Leakage_Instr(frame[1], header)
+        Generate_Leakage_Select(frame[1], header)
+        Generate_Leakage_Transition(frame[0], frame[1], header)
+        Generate_Leakage_Interaction(frame[0], frame[1], header)
+        print('')
+        pass
+    else:
+        print("Core invalid.")
+        pass
+
     return
+
+
+def TestExtractorBody(frame):
+    print('FrameNo: {}'.format(frame[1]['FrameNo'][0]))
+
+    if frame[1]['core_valid'][0]:
+        header = False
+        Generate_Leakage_Instr(frame[1], header)
+        Generate_Leakage_Select(frame[1], header)
+        Generate_Leakage_Transition(frame[0], frame[1], header)
+        Generate_Leakage_Interaction(frame[0], frame[1], header)
+        print('')
+        pass
+    else:
+        print("Core invalid.")
+        pass
 
 
 def main(argc, argv):
@@ -490,7 +513,15 @@ def main(argc, argv):
     core = smurf.Core.Load('uelmo.json')
     trace = smurf.Trace(core)
     trace.Open(testtrace)
-    trace.Extract(TestExtractor, 2)
+
+    # Header
+    trace.Extract(TestExtractorHeader, 2)
+    trace.Reset()
+
+    # TODO: First Frame skipped in with windowsize of 2.
+    # Data
+    trace.Extract(TestExtractorBody, 2)
+
     return
 
 
