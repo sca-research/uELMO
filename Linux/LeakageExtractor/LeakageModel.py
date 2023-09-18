@@ -37,7 +37,7 @@ def Write_leakage_label(disp, ltype):
 
 
 def Write_leakage_data(data, dlen, dtype, src="N/A"):
-    print("{:s}: {:d}[{:d}]: {}".format(src, dtype, dlen, data))
+    print("{:s} Type {:d} Length {:d} : {}".format(src, dtype, dlen, data))
     return
 
 
@@ -73,41 +73,18 @@ def Generate_Leakage_Instr(current):
 def Generate_Leakage_Select(current, header):
     if NON_ACTIVE_REG:  # reg[16]: nominal
         for i in range(16):
-            if header:
-                disp = sprintf("Reg {:d}", i)
-                Write_leakage_label(disp, 0)
-                pass
-            else:
-                Write_leakage_data(current['reg'][i], 32, 0)
-                pass
-            pass
+            Write_leakage_data(current['reg'][i], 32, 0, "Reg {:}".format(i))
         pass
 
     # CPSR, linear
     if CPSR:
-        if header:
-            Write_leakage_label("CPSR", 1)
-            pass
-        else:
-            Write_leakage_data(current['cpsr'][0], 32, 1)
-            pass
+        Write_leakage_data(current['cpsr'][0], 32, 1, "CPSR")
         pass
 
     # 2 pipeline registers, nominal
     if MICROARCHITECTURAL:
-        if header:
-            Write_leakage_label("Pipeline Reg 1", 0)
-            pass
-        else:
-            Write_leakage_data(current['D2E_reg1'][0], 32, 0)
-            pass
-
-        if header:
-            Write_leakage_label("Pipeline Reg 2", 0)
-            pass
-        else:
-            Write_leakage_data(current['D2E_reg2'][0], 32, 0)
-            pass
+        Write_leakage_data(current['D2E_reg1'][0], 32, 0, "Pipeline Reg 1")
+        Write_leakage_data(current['D2E_reg2'][0], 32, 0, "Pipeline Reg 2")
         pass
 
     # pipeline data bus (i.e. D.9 and 10) whether comes from decoding reg ports, or
@@ -119,79 +96,41 @@ def Generate_Leakage_Select(current, header):
     # Decoding register access, linear
     if MICROARCHITECTURAL and DECODE_PORT:
         for i in range(3):
-            if header:
-                disp = sprintf("Decoding port {:d}", i)
-                Write_leakage_label(disp, 1)
-                pass
-            else:
-                Write_leakage_data(current['Decode_port_data'][i], 32, 1)
-                pass
+            Write_leakage_data(
+                current['Decode_port_data'][i], 32, 1, "Decoding port {:d}".format(i))
         pass
 
     # Glitchy decoding register access, linear
     if MICROARCHITECTURAL and DECODE_PORT and GLITCHY_DECODE:
         for i in range(3):
-            if header:
-                disp = sprintf("Glitchy decoding port {:d}", i)
-                Write_leakage_label(disp, 1)
-                pass
-            else:
-                Write_leakage_data(
-                    current['glitchy_Decode_port_data'][i], 32, 1)
-                pass
-            pass
+            Write_leakage_data(current['glitchy_Decode_port_data']
+                               [i], 32, 1, "Glitchy decoding port {:d}".format(i))
         pass
 
     # Execute
     # Only ALU output, other captured by decode (pipeline register) or interaction (combinatorial)
     # ALU output, nominal
-    if header:
-        Write_leakage_label("ALU output", 0)
-        pass
-    else:
-        Write_leakage_data(current['Execute_ALU_result'][0], 32, 0)
-        pass
+    Write_leakage_data(current['Execute_ALU_result'][0], 32, 0, "ALU output")
 
     # Memory subsystem
     if NON_ACTIVE_MEM or (current['Read_valid'][0] == True) or (current['Write_valid'][0] == True):
         # Memory address, nomial
-        if header:
-            Write_leakage_label("Memory address", 0)
-            pass
-        else:
-            Write_leakage_data(current['Memory_addr'][0], 32, 0)
-            pass
+        Write_leakage_data(current['Memory_addr'][0], 32, 0, "Memory address")
 
         # Memory data, nomial
-        if header:
-            Write_leakage_label("Memory data", 0)
-            pass
-        else:
-            Write_leakage_data(current['Memory_data'], 32, 0)
-            pass
+        Write_leakage_data(current['Memory_data'], 32, 0, "Memory data")
 
         # Memory write buffer, nomial
-        if header:
-            Write_leakage_label("Memory write buffer", 0)
-            pass
-        else:
-            Write_leakage_data(current['Memory_writebuf'][0], 32, 0)
-            pass
+        Write_leakage_data(current['Memory_writebuf']
+                           [0], 32, 0, "Memory write buffer")
 
         # Memory write buffer delayed, nomial
-        if header:
-            Write_leakage_label("Memory write buffer delayed", 0)
-        else:
-            Write_leakage_data(current['Memory_writebuf_delayed'][0], 32, 0)
-            pass
+        Write_leakage_data(
+            current['Memory_writebuf_delayed'][0], 32, 0, "Memory write buffer delayed")
 
         # Memory read buffer, nomial
-        if header:
-            Write_leakage_label("Memory read buffer", 0)
-            pass
-        else:
-            Write_leakage_data(current['Memory_readbuf'],  32, 0)
-            pass
+        Write_leakage_data(current['Memory_readbuf'],
+                           32, 0, "Memory read buffer")
         pass
 
     return
@@ -207,15 +146,9 @@ def Generate_Leakage_Transition(prev, current, header):
         # no PC, LR or SP
         i = 0
         while i < 13:
-            if header:
-                disp = sprintf(
-                    "LSB Neighbouring Reg {:d} XOR Reg {:d}", i, i ^ 0x1)
-                Write_leakage_label(disp, 1)
-                pass
-            else:
-                temp = current['reg'][i] ^ current['reg'][i ^ 0x1]
-                Write_leakage_data(temp, 32, 1)
-                pass
+            temp = current['reg'][i] ^ current['reg'][i ^ 0x1]
+            Write_leakage_data(
+                temp, 32, 1, "LSB Neighbouring Reg {:d} XOR Reg {:d}".format(i, i ^ 0x1))
 
             i += 2
             pass
@@ -454,21 +387,14 @@ def Generate_Leakage_Transition(prev, current, header):
 # all nominal
 # header==True--->write out the discription for header
 # header==False --->write out leakage state data
-def Generate_Leakage_Interaction(prev, current, header):
+def Generate_Leakage_Interaction(prev, current):
     if TRANSITION and MICROARCHITECTURAL:
-        if header:
-            # Reg A * Reg B *prev_Reg A * prev_Reg B: Full
-            Write_leakage_label(
-                "Reg A * Reg B * Previous Reg A * Previous Reg B", 0)
-            pass
+        combine = Combine4(
+            current['D2E_reg1'][0], current['D2E_reg2'][0], prev['D2E_reg1'][0], prev['D2E_reg2'][0])
 
-        else:
-            combine = Combine4(
-                current['D2E_reg1'][0], current['D2E_reg2'][0], prev['D2E_reg1'][0], prev['D2E_reg2'][0])
-
-            # Reg A * Reg B *prev_Reg A * prev_Reg B: Full
-            Write_leakage_data(combine, 4 * 32, 0)
-            pass
+        # Reg A * Reg B *prev_Reg A * prev_Reg B: Full
+        Write_leakage_data(combine, 4 * 32, 0,
+                           "Reg A * Reg B * Previous Reg A * Previous Reg B")
         pass
 
     return
@@ -655,10 +581,10 @@ def TestExtractorBody(frame):
 
     if frame[1]['core_valid'][0]:
         header = False
-        Generate_Leakage_Instr(frame[1], header)
+        #Generate_Leakage_Instr(frame[1], header)
         Generate_Leakage_Select(frame[1], header)
         Generate_Leakage_Transition(frame[0], frame[1], header)
-        Generate_Leakage_Interaction(frame[0], frame[1], header)
+        Generate_Leakage_Interaction(frame[0], frame[1])
         print('')
         pass
     else:
@@ -682,7 +608,7 @@ def main(argc, argv):
 
     # TODO: First Frame skipped with windowsize of 2.
     # Data
-    #trace.Extract(TestExtractorBody, 2)
+    trace.Extract(TestExtractorBody, 2)
 
     return
 
