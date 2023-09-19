@@ -1,65 +1,65 @@
 {
-  "Reg 0": {
+  "Reg[0]": {
     "type": 0,
     "len": 32
   },
-  "Reg 1": {
+  "Reg[1]": {
     "type": 0,
     "len": 32
   },
-  "Reg 2": {
+  "Reg[2]": {
     "type": 0,
     "len": 32
   },
-  "Reg 3": {
+  "Reg[3]": {
     "type": 0,
     "len": 32
   },
-  "Reg 4": {
+  "Reg[4]": {
     "type": 0,
     "len": 32
   },
-  "Reg 5": {
+  "Reg[5]": {
     "type": 0,
     "len": 32
   },
-  "Reg 6": {
+  "Reg[6]": {
     "type": 0,
     "len": 32
   },
-  "Reg 7": {
+  "Reg[7]": {
     "type": 0,
     "len": 32
   },
-  "Reg 8": {
+  "Reg[8]": {
     "type": 0,
     "len": 32
   },
-  "Reg 9": {
+  "Reg[9]": {
     "type": 0,
     "len": 32
   },
-  "Reg 10": {
+  "Reg[10]": {
     "type": 0,
     "len": 32
   },
-  "Reg 11": {
+  "Reg[11]": {
     "type": 0,
     "len": 32
   },
-  "Reg 12": {
+  "Reg[12]": {
     "type": 0,
     "len": 32
   },
-  "Reg 13": {
+  "Reg[13]": {
     "type": 0,
     "len": 32
   },
-  "Reg 14": {
+  "Reg[14]": {
     "type": 0,
     "len": 32
   },
-  "Reg 15": {
+  "Reg[15]": {
     "type": 0,
     "len": 32
   },
@@ -67,315 +67,315 @@
     "type": 1,
     "len": 32
   },
-  "Pipeline Reg 1": {
+  "PipeReg[0]": {
     "type": 0,
     "len": 32
   },
-  "Pipeline Reg 2": {
+  "PipeReg[1]": {
     "type": 0,
     "len": 32
   },
-  "Decoding port 0": {
+  "DecodePort[0]": {
     "type": 1,
     "len": 32
   },
-  "Decoding port 1": {
+  "DecodePort[1]": {
     "type": 1,
     "len": 32
   },
-  "Decoding port 2": {
+  "DecodePort[2]": {
     "type": 1,
     "len": 32
   },
-  "Glitchy decoding port 0": {
+  "GlitchyDecodePort[0]": {
     "type": 1,
     "len": 32
   },
-  "Glitchy decoding port 1": {
+  "GlitchyDecodePort[1]": {
     "type": 1,
     "len": 32
   },
-  "Glitchy decoding port 2": {
+  "GlitchyDecodePort[2]": {
     "type": 1,
     "len": 32
   },
-  "ALU output": {
+  "ALU_output": {
     "type": 0,
     "len": 32
   },
-  "Memory address": {
+  "MemAddr": {
     "type": 0,
     "len": 32
   },
-  "Memory data": {
+  "MemData": {
     "type": 0,
     "len": 32
   },
-  "Memory write buffer": {
+  "MemWrBuf": {
     "type": 0,
     "len": 32
   },
-  "Memory write buffer delayed": {
+  "MemWrBufDelayed": {
     "type": 0,
     "len": 32
   },
-  "Memory read buffer": {
+  "MemRdBuf": {
     "type": 0,
     "len": 32
   },
-  "LSB Neighbouring Reg 0 XOR Reg 1": {
+  "Reg[0]^Reg[1]": {
     "type": 1,
     "len": 32
   },
-  "LSB Neighbouring Reg 2 XOR Reg 3": {
+  "Reg[2]^Reg[3]": {
     "type": 1,
     "len": 32
   },
-  "LSB Neighbouring Reg 4 XOR Reg 5": {
+  "Reg[4]^Reg[5]": {
     "type": 1,
     "len": 32
   },
-  "LSB Neighbouring Reg 6 XOR Reg 7": {
+  "Reg[6]^Reg[7]": {
     "type": 1,
     "len": 32
   },
-  "LSB Neighbouring Reg 8 XOR Reg 9": {
+  "Reg[8]^Reg[9]": {
     "type": 1,
     "len": 32
   },
-  "LSB Neighbouring Reg 10 XOR Reg 11": {
+  "Reg[10]^Reg[11]": {
     "type": 1,
     "len": 32
   },
-  "LSB Neighbouring Reg 12 XOR Reg 13": {
+  "Reg[12]^Reg[13]": {
     "type": 1,
     "len": 32
   },
-  "Previous Reg 0": {
+  "PrevReg[0]": {
     "type": 1,
     "len": 32
   },
-  "Previous Reg 1": {
+  "PrevReg[1]": {
     "type": 1,
     "len": 32
   },
-  "Previous Reg 2": {
+  "PrevReg[2]": {
     "type": 1,
     "len": 32
   },
-  "Previous Reg 3": {
+  "PrevReg[3]": {
     "type": 1,
     "len": 32
   },
-  "Previous Reg 4": {
+  "PrevReg[4]": {
     "type": 1,
     "len": 32
   },
-  "Previous Reg 5": {
+  "PrevReg[5]": {
     "type": 1,
     "len": 32
   },
-  "Previous Reg 6": {
+  "PrevReg[6]": {
     "type": 1,
     "len": 32
   },
-  "Previous Reg 7": {
+  "PrevReg[7]": {
     "type": 1,
     "len": 32
   },
-  "Previous Reg 8": {
+  "PrevReg[8]": {
     "type": 1,
     "len": 32
   },
-  "Previous Reg 9": {
+  "PrevReg[9]": {
     "type": 1,
     "len": 32
   },
-  "Previous Reg 10": {
+  "PrevReg[10]": {
     "type": 1,
     "len": 32
   },
-  "Previous Reg 11": {
+  "PrevReg[11]": {
     "type": 1,
     "len": 32
   },
-  "Previous Reg 12": {
+  "PrevReg[12]": {
     "type": 1,
     "len": 32
   },
-  "Reg 0 HD": {
+  "HD_Reg[0]": {
     "type": 1,
     "len": 32
   },
-  "Reg 1 HD": {
+  "HD_Reg[1]": {
     "type": 1,
     "len": 32
   },
-  "Reg 2 HD": {
+  "HD_Reg[2]": {
     "type": 1,
     "len": 32
   },
-  "Reg 3 HD": {
+  "HD_Reg[3]": {
     "type": 1,
     "len": 32
   },
-  "Reg 4 HD": {
+  "HD_Reg[4]": {
     "type": 1,
     "len": 32
   },
-  "Reg 5 HD": {
+  "HD_Reg[5]": {
     "type": 1,
     "len": 32
   },
-  "Reg 6 HD": {
+  "HD_Reg[6]": {
     "type": 1,
     "len": 32
   },
-  "Reg 7 HD": {
+  "HD_Reg[7]": {
     "type": 1,
     "len": 32
   },
-  "Reg 8 HD": {
+  "HD_Reg[8]": {
     "type": 1,
     "len": 32
   },
-  "Reg 9 HD": {
+  "HD_Reg[9]": {
     "type": 1,
     "len": 32
   },
-  "Reg 10 HD": {
+  "HD_Reg[10]": {
     "type": 1,
     "len": 32
   },
-  "Reg 11 HD": {
+  "HD_Reg[11]": {
     "type": 1,
     "len": 32
   },
-  "Reg 12 HD": {
+  "HD_Reg[12]": {
     "type": 1,
     "len": 32
   },
-  "Previous CPSR": {
+  "PrevCPSR": {
     "type": 1,
     "len": 32
   },
-  "CPSR HD": {
+  "HD_CPSR": {
     "type": 1,
     "len": 32
   },
-  "Previous Pipeline Reg 1": {
+  "PrevPipeReg[0]": {
     "type": 1,
     "len": 32
   },
-  "Previous Pipeline Reg 2": {
+  "PrevPipeReg[1]": {
     "type": 1,
     "len": 32
   },
-  "Pipeline Reg 1 HD": {
+  "HD_PrevPipeReg[0]": {
     "type": 1,
     "len": 32
   },
-  "Pipeline Reg 2 HD": {
+  "HD_PrevPipeReg[1]": {
     "type": 1,
     "len": 32
   },
-  "Previous Decoding port 0": {
+  "PrevDecodePort[0]": {
     "type": 1,
     "len": 32
   },
-  "Decoding port 0 HD": {
+  "HD_DecodePort[0]": {
     "type": 1,
     "len": 32
   },
-  "Previous Decoding port 1": {
+  "PrevDecodePort[1]": {
     "type": 1,
     "len": 32
   },
-  "Decoding port 1 HD": {
+  "HD_DecodePort[1]": {
     "type": 1,
     "len": 32
   },
-  "Previous Decoding port 2": {
+  "PrevDecodePort[2]": {
     "type": 1,
     "len": 32
   },
-  "Decoding port 2 HD": {
+  "HD_DecodePort[2]": {
     "type": 1,
     "len": 32
   },
-  "Glitchy decoding port 0 XOR current port 0": {
+  "GlitchyDecodePort[0]^DecodePort0": {
     "type": 1,
     "len": 32
   },
-  "Glitchy decoding port 0 XOR previous port 0": {
+  "GlitchyDecodePort[0]^PrevDecodePort[0]": {
     "type": 1,
     "len": 32
   },
-  "Glitchy decoding port 1 XOR current port 1": {
+  "GlitchyDecodePort[1]^DecodePort1": {
     "type": 1,
     "len": 32
   },
-  "Glitchy decoding port 1 XOR previous port 1": {
+  "GlitchyDecodePort[1]^PrevDecodePort[1]": {
     "type": 1,
     "len": 32
   },
-  "Glitchy decoding port 2 XOR current port 2": {
+  "GlitchyDecodePort[2]^DecodePort2": {
     "type": 1,
     "len": 32
   },
-  "Glitchy decoding port 2 XOR previous port 2": {
+  "GlitchyDecodePort[2]^PrevDecodePort[2]": {
     "type": 1,
     "len": 32
   },
-  "Previous ALU output": {
+  "Prev_ALU_output": {
     "type": 1,
     "len": 32
   },
-  "ALU Output HD": {
+  "HD_ALU_output": {
     "type": 1,
     "len": 32
   },
-  "Previous Memory address": {
+  "PrevMemAddr": {
     "type": 0,
     "len": 32
   },
-  "Memory address HD": {
+  "HD_MemAddr": {
     "type": 1,
     "len": 32
   },
-  "Previous Memory data": {
+  "PrevMemData": {
     "type": 0,
     "len": 32
   },
-  "Memory data HD": {
+  "HD_MemData": {
     "type": 1,
     "len": 32
   },
-  "Previous Memory write buffer": {
+  "PrevMemWrBuf": {
     "type": 0,
     "len": 32
   },
-  "Memory write buffer HD": {
+  "HD_MemWrBuf": {
     "type": 1,
     "len": 32
   },
-  "Previous Memory Write buffer delayed": {
+  "PrevMemWrBufDelayed": {
     "type": 0,
     "len": 32
   },
-  "Memory write buffer delayed HD": {
+  "HD_MemWrBufDelayed": {
     "type": 1,
     "len": 32
   },
-  "Previous Memory read buffer": {
+  "PrevMemRdBuf": {
     "type": 0,
     "len": 32
   },
-  "Memory read buffer HD": {
+  "HD_MemRdBuf": {
     "type": 1,
     "len": 32
   },
-  "Reg A * Reg B * Previous Reg A * Previous Reg B": {
+  "PipeReg[0]*PipeReg[1]*PrevPipeReg[0]*PrevPipeReg[1]": {
     "type": 0,
     "len": 128
   }
