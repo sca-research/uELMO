@@ -1,382 +1,477 @@
 {
   "Reg[0]": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "Reg[1]": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "Reg[2]": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "Reg[3]": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "Reg[4]": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "Reg[5]": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "Reg[6]": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "Reg[7]": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "Reg[8]": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "Reg[9]": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "Reg[10]": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "Reg[11]": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "Reg[12]": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "Reg[13]": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "Reg[14]": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "Reg[15]": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "CPSR": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "PipeReg[0]": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "PipeReg[1]": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "DecodePort[0]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "DecodePort[1]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "DecodePort[2]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "GlitchyDecodePort[0]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "GlitchyDecodePort[1]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "GlitchyDecodePort[2]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "ALU_output": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "MemAddr": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "MemData": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "MemWrBuf": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "MemWrBufDelayed": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "MemRdBuf": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "Reg[0]^Reg[1]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "Reg[2]^Reg[3]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "Reg[4]^Reg[5]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "Reg[6]^Reg[7]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "Reg[8]^Reg[9]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "Reg[10]^Reg[11]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "Reg[12]^Reg[13]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "PrevReg[0]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "PrevReg[1]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "PrevReg[2]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "PrevReg[3]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "PrevReg[4]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "PrevReg[5]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "PrevReg[6]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "PrevReg[7]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "PrevReg[8]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "PrevReg[9]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "PrevReg[10]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "PrevReg[11]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "PrevReg[12]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "HD_Reg[0]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "HD_Reg[1]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "HD_Reg[2]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "HD_Reg[3]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "HD_Reg[4]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "HD_Reg[5]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "HD_Reg[6]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "HD_Reg[7]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "HD_Reg[8]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "HD_Reg[9]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "HD_Reg[10]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "HD_Reg[11]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "HD_Reg[12]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "PrevCPSR": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "HD_CPSR": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "PrevPipeReg[0]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "PrevPipeReg[1]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "HD_PrevPipeReg[0]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "HD_PrevPipeReg[1]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "PrevDecodePort[0]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "HD_DecodePort[0]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "PrevDecodePort[1]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "HD_DecodePort[1]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "PrevDecodePort[2]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "HD_DecodePort[2]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "GlitchyDecodePort[0]^DecodePort0": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "GlitchyDecodePort[0]^PrevDecodePort[0]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "GlitchyDecodePort[1]^DecodePort1": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "GlitchyDecodePort[1]^PrevDecodePort[1]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "GlitchyDecodePort[2]^DecodePort2": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "GlitchyDecodePort[2]^PrevDecodePort[2]": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "Prev_ALU_output": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "HD_ALU_output": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "PrevMemAddr": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "HD_MemAddr": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "PrevMemData": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "HD_MemData": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "PrevMemWrBuf": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "HD_MemWrBuf": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "PrevMemWrBufDelayed": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "HD_MemWrBufDelayed": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "PrevMemRdBuf": {
     "type": 0,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "HD_MemRdBuf": {
     "type": 1,
-    "len": 32
+    "len": 32,
+    "enabled": 0
   },
   "PipeReg[0]*PipeReg[1]*PrevPipeReg[0]*PrevPipeReg[1]": {
     "type": 0,
-    "len": 128
+    "len": 128,
+    "enabled": 0
   }
 }
