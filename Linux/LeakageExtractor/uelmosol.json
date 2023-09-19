@@ -1,0 +1,382 @@
+{
+  "Reg 0": {
+    "type": 0,
+    "len": 32
+  },
+  "Reg 1": {
+    "type": 0,
+    "len": 32
+  },
+  "Reg 2": {
+    "type": 0,
+    "len": 32
+  },
+  "Reg 3": {
+    "type": 0,
+    "len": 32
+  },
+  "Reg 4": {
+    "type": 0,
+    "len": 32
+  },
+  "Reg 5": {
+    "type": 0,
+    "len": 32
+  },
+  "Reg 6": {
+    "type": 0,
+    "len": 32
+  },
+  "Reg 7": {
+    "type": 0,
+    "len": 32
+  },
+  "Reg 8": {
+    "type": 0,
+    "len": 32
+  },
+  "Reg 9": {
+    "type": 0,
+    "len": 32
+  },
+  "Reg 10": {
+    "type": 0,
+    "len": 32
+  },
+  "Reg 11": {
+    "type": 0,
+    "len": 32
+  },
+  "Reg 12": {
+    "type": 0,
+    "len": 32
+  },
+  "Reg 13": {
+    "type": 0,
+    "len": 32
+  },
+  "Reg 14": {
+    "type": 0,
+    "len": 32
+  },
+  "Reg 15": {
+    "type": 0,
+    "len": 32
+  },
+  "CPSR": {
+    "type": 1,
+    "len": 32
+  },
+  "Pipeline Reg 1": {
+    "type": 0,
+    "len": 32
+  },
+  "Pipeline Reg 2": {
+    "type": 0,
+    "len": 32
+  },
+  "Decoding port 0": {
+    "type": 1,
+    "len": 32
+  },
+  "Decoding port 1": {
+    "type": 1,
+    "len": 32
+  },
+  "Decoding port 2": {
+    "type": 1,
+    "len": 32
+  },
+  "Glitchy decoding port 0": {
+    "type": 1,
+    "len": 32
+  },
+  "Glitchy decoding port 1": {
+    "type": 1,
+    "len": 32
+  },
+  "Glitchy decoding port 2": {
+    "type": 1,
+    "len": 32
+  },
+  "ALU output": {
+    "type": 0,
+    "len": 32
+  },
+  "Memory address": {
+    "type": 0,
+    "len": 32
+  },
+  "Memory data": {
+    "type": 0,
+    "len": 32
+  },
+  "Memory write buffer": {
+    "type": 0,
+    "len": 32
+  },
+  "Memory write buffer delayed": {
+    "type": 0,
+    "len": 32
+  },
+  "Memory read buffer": {
+    "type": 0,
+    "len": 32
+  },
+  "LSB Neighbouring Reg 0 XOR Reg 1": {
+    "type": 1,
+    "len": 32
+  },
+  "LSB Neighbouring Reg 2 XOR Reg 3": {
+    "type": 1,
+    "len": 32
+  },
+  "LSB Neighbouring Reg 4 XOR Reg 5": {
+    "type": 1,
+    "len": 32
+  },
+  "LSB Neighbouring Reg 6 XOR Reg 7": {
+    "type": 1,
+    "len": 32
+  },
+  "LSB Neighbouring Reg 8 XOR Reg 9": {
+    "type": 1,
+    "len": 32
+  },
+  "LSB Neighbouring Reg 10 XOR Reg 11": {
+    "type": 1,
+    "len": 32
+  },
+  "LSB Neighbouring Reg 12 XOR Reg 13": {
+    "type": 1,
+    "len": 32
+  },
+  "Previous Reg 0": {
+    "type": 1,
+    "len": 32
+  },
+  "Previous Reg 1": {
+    "type": 1,
+    "len": 32
+  },
+  "Previous Reg 2": {
+    "type": 1,
+    "len": 32
+  },
+  "Previous Reg 3": {
+    "type": 1,
+    "len": 32
+  },
+  "Previous Reg 4": {
+    "type": 1,
+    "len": 32
+  },
+  "Previous Reg 5": {
+    "type": 1,
+    "len": 32
+  },
+  "Previous Reg 6": {
+    "type": 1,
+    "len": 32
+  },
+  "Previous Reg 7": {
+    "type": 1,
+    "len": 32
+  },
+  "Previous Reg 8": {
+    "type": 1,
+    "len": 32
+  },
+  "Previous Reg 9": {
+    "type": 1,
+    "len": 32
+  },
+  "Previous Reg 10": {
+    "type": 1,
+    "len": 32
+  },
+  "Previous Reg 11": {
+    "type": 1,
+    "len": 32
+  },
+  "Previous Reg 12": {
+    "type": 1,
+    "len": 32
+  },
+  "Reg 0 HD": {
+    "type": 1,
+    "len": 32
+  },
+  "Reg 1 HD": {
+    "type": 1,
+    "len": 32
+  },
+  "Reg 2 HD": {
+    "type": 1,
+    "len": 32
+  },
+  "Reg 3 HD": {
+    "type": 1,
+    "len": 32
+  },
+  "Reg 4 HD": {
+    "type": 1,
+    "len": 32
+  },
+  "Reg 5 HD": {
+    "type": 1,
+    "len": 32
+  },
+  "Reg 6 HD": {
+    "type": 1,
+    "len": 32
+  },
+  "Reg 7 HD": {
+    "type": 1,
+    "len": 32
+  },
+  "Reg 8 HD": {
+    "type": 1,
+    "len": 32
+  },
+  "Reg 9 HD": {
+    "type": 1,
+    "len": 32
+  },
+  "Reg 10 HD": {
+    "type": 1,
+    "len": 32
+  },
+  "Reg 11 HD": {
+    "type": 1,
+    "len": 32
+  },
+  "Reg 12 HD": {
+    "type": 1,
+    "len": 32
+  },
+  "Previous CPSR": {
+    "type": 1,
+    "len": 32
+  },
+  "CPSR HD": {
+    "type": 1,
+    "len": 32
+  },
+  "Previous Pipeline Reg 1": {
+    "type": 1,
+    "len": 32
+  },
+  "Previous Pipeline Reg 2": {
+    "type": 1,
+    "len": 32
+  },
+  "Pipeline Reg 1 HD": {
+    "type": 1,
+    "len": 32
+  },
+  "Pipeline Reg 2 HD": {
+    "type": 1,
+    "len": 32
+  },
+  "Previous Decoding port 0": {
+    "type": 1,
+    "len": 32
+  },
+  "Decoding port 0 HD": {
+    "type": 1,
+    "len": 32
+  },
+  "Previous Decoding port 1": {
+    "type": 1,
+    "len": 32
+  },
+  "Decoding port 1 HD": {
+    "type": 1,
+    "len": 32
+  },
+  "Previous Decoding port 2": {
+    "type": 1,
+    "len": 32
+  },
+  "Decoding port 2 HD": {
+    "type": 1,
+    "len": 32
+  },
+  "Glitchy decoding port 0 XOR current port 0": {
+    "type": 1,
+    "len": 32
+  },
+  "Glitchy decoding port 0 XOR previous port 0": {
+    "type": 1,
+    "len": 32
+  },
+  "Glitchy decoding port 1 XOR current port 1": {
+    "type": 1,
+    "len": 32
+  },
+  "Glitchy decoding port 1 XOR previous port 1": {
+    "type": 1,
+    "len": 32
+  },
+  "Glitchy decoding port 2 XOR current port 2": {
+    "type": 1,
+    "len": 32
+  },
+  "Glitchy decoding port 2 XOR previous port 2": {
+    "type": 1,
+    "len": 32
+  },
+  "Previous ALU output": {
+    "type": 1,
+    "len": 32
+  },
+  "ALU Output HD": {
+    "type": 1,
+    "len": 32
+  },
+  "Previous Memory address": {
+    "type": 0,
+    "len": 32
+  },
+  "Memory address HD": {
+    "type": 1,
+    "len": 32
+  },
+  "Previous Memory data": {
+    "type": 0,
+    "len": 32
+  },
+  "Memory data HD": {
+    "type": 1,
+    "len": 32
+  },
+  "Previous Memory write buffer": {
+    "type": 0,
+    "len": 32
+  },
+  "Memory write buffer HD": {
+    "type": 1,
+    "len": 32
+  },
+  "Previous Memory Write buffer delayed": {
+    "type": 0,
+    "len": 32
+  },
+  "Memory write buffer delayed HD": {
+    "type": 1,
+    "len": 32
+  },
+  "Previous Memory read buffer": {
+    "type": 0,
+    "len": 32
+  },
+  "Memory read buffer HD": {
+    "type": 1,
+    "len": 32
+  },
+  "Reg A * Reg B * Previous Reg A * Previous Reg B": {
+    "type": 0,
+    "len": 128
+  }
+}
