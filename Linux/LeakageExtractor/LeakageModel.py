@@ -17,27 +17,184 @@ TRANSITION = 1  # Allows for transition leakage
 LSB_NEIGHBOUR = 1  # Allows for LSB based neibouring effect
 
 
-# Hack of C sprintf
-def sprintf(*args):
-    formatstr = args[0]
-    varargs = args[1:]
-    retstr = args[0].format(*varargs)
-    return retstr
-
-
-# Hacking original output API.
-def Write_Instr(disp):
-    print("Instr:", disp)
-    return
-
-
-def Write_leakage_label(disp, ltype):
-    print("Label: {:s} {:d}".format(disp, ltype))
-    return
-
-
 def Write_leakage_data(data, dlen, dtype, src="N/A"):
     print("{:s} Type {:d} Length {:d} : {}".format(src, dtype, dlen, data))
+    return
+
+
+# Output type of a leakage.
+def LeakageType(name, lkgtype):
+    print("{:s}: {:d}".format(name, lkgtype))
+    return
+
+
+# Header for leakage handled by the uELMO modeling/detection method.
+def UelmoHeader(core):
+    print('#uELMO leakage header')
+    print('#{Name}: {Type}')
+    # Part 1: select components.
+    # reg[]
+    if NON_ACTIVE_REG:
+        for i in range(core.components['reg'].len):
+            LeakageType('Reg {:d}'.format(i), 0)
+            pass
+        pass
+
+    # CPSR
+    if CPSR:
+        LeakageType('CPSR', 1)
+        pass
+
+    # Pipline registers
+    if MICROARCHITECTURAL:
+        LeakageType("Pipeline Reg 1", 0)
+        LeakageType("Pipeline Reg 2", 0)
+        pass
+
+    # Decoding register
+    if MICROARCHITECTURAL and DECODE_PORT:
+        for i in range(core.components['Decode_port_data'].len):
+            LeakageType('Decoding port {:d}'.format(i), 1)
+            pass
+
+        # Glitchy decoding register
+        if GLITCHY_DECODE:
+            for i in range(core.components['glitchy_Decode_port_data'].len):
+                LeakageType('Glitchy decoding port {:d}'.format(i), 1)
+                pass
+            pass
+        pass
+
+    # ALU output
+    LeakageType("ALU output", 0)
+
+    # Memory subsystem
+    if NON_ACTIVE_MEM:  # Read and Write valid check removed.
+        # Memory address
+        LeakageType("Memory address", 0)
+
+        # Memory data
+        LeakageType("Memory data", 0)
+
+        # Memory write buffer
+        LeakageType("Memory write buffer", 0)
+
+        # Memory write buffer delayed
+        LeakageType("Memory write buffer delayed", 0)
+
+        # Memory read buffer
+        LeakageType("Memory read buffer", 0)
+        pass
+
+    # Part 2: transitional leakage.
+    # LSB neibouring effect
+    if TRANSITION and LSB_NEIGHBOUR:
+        # no PC, LR or SP
+        i = 0
+        while i < 13:
+            LeakageType(
+                "LSB Neighbouring Reg {:d} XOR Reg {:d}".format(i, i ^ 0x1), 1)
+            i += 2
+            pass
+        pass
+
+    # Target register HD
+    if TRANSITION:  # reg[16]: linear
+        for i in range(13):  # no PC, LR or SP
+            LeakageType("Previous Reg {:d}".format(i), 1)
+            pass
+
+        for i in range(13):
+            LeakageType("Reg {:d} HD".format(i), 1)
+            pass
+        pass
+
+    if CPSR and TRANSITION:
+        #CPSR, linear
+        LeakageType("Previous CPSR", 1)
+        LeakageType("CPSR HD", 1)
+        pass
+
+    # 2 pipeline registers, linear
+    if MICROARCHITECTURAL and TRANSITION:
+        LeakageType("Previous Pipeline Reg 1", 1)
+        LeakageType("Previous Pipeline Reg 2", 1)
+        LeakageType("Pipeline Reg 1 HD", 1)
+        LeakageType("Pipeline Reg 2 HD", 1)
+        pass
+
+    # Decode
+    # Decoding register access, linear
+    if MICROARCHITECTURAL and DECODE_PORT and TRANSITION:
+        for i in range(3):
+            LeakageType("Previous Decoding port {:d}".format(i), 1)
+            LeakageType("Decoding port {:d} HD".format(i), 1)
+            pass
+
+        # Glitchy
+        if GLITCHY_DECODE:
+            for i in range(3):
+                LeakageType(
+                    "Glitchy decoding port {:d} XOR current port {:d}".format(i, i), 1)
+                LeakageType(
+                    "Glitchy decoding port {:d} XOR previous port {:d}".format(i, i), 1)
+            pass
+        pass
+
+    # Execute
+    # Only ALU output, other captured by decode (pipeline register) or interaction (combinatorial)
+    # ALU output, nominal
+    if TRANSITION:
+        LeakageType("Previous ALU output", 1)
+        LeakageType("ALU output HD", 1)
+        pass
+
+    # Memory subsystem
+    if TRANSITION and NON_ACTIVE_MEM:
+        # Read, Write and delayed Write valid check removed
+        # Memory address
+        LeakageType("Previous Memory address", 0)
+        LeakageType("Memory address HD", 1)
+
+        # Memory data, nomial
+        LeakageType("Previous Memory data", 0)
+        LeakageType("Memory data HD", 1)
+
+        # Memory write buffer, nomial
+        LeakageType("Previous Memory write buffer", 0)
+        LeakageType("Memory write buffer HD", 1)
+
+        # Memory write buffer delayed, nomial
+        LeakageType("Previous Memory write buffer delayed", 0)
+        LeakageType("Memory write buffer delayed HD", 1)
+
+        # Memory read buffer, nomial
+        LeakageType("Previous Memory read buffer", 0)
+        LeakageType("Memory read buffer HD", 1)
+        pass
+
+    # Part 3: interaction leakage.
+    # Reg A * Reg B *prev_Reg A * prev_Reg B: Full
+    if TRANSITION and MICROARCHITECTURAL:
+        LeakageType("Reg A * Reg B * Previous Reg A * Previous Reg B", 0)
+        pass
+
+    print('#End of header')
+
+    return
+
+
+def InstExtractor(frame):
+    print('#FrameNo: {}'.format(frame['FrameNo'][0]))
+
+    if frame['core_valid'][0]:
+        Generate_Leakage_Instr(frame)
+        print('')
+        pass
+    else:
+        print("Core invalid.")
+        pass
+
     return
 
 
@@ -57,11 +214,12 @@ def Combine4(a, b, c, d):
 
 # print out the instruction discription for current cycle
 def Generate_Leakage_Instr(current):
-    disp = "{:s}\n{:s}\n{:s}".format(
+    print("Pipeline:")
+
+    print("E: {:s}\nD: {:s}\nM: {:s}".format(
         current['Execute_instr_disp'],
         current['Decode_instr_disp'],
-        current['Memory_instr_disp'])
-    Write_Instr(disp)
+        current['Memory_instr_disp']))
 
     return
 
@@ -277,182 +435,6 @@ def Generate_Leakage_Interaction(prev, current):
         # Reg A * Reg B *prev_Reg A * prev_Reg B: Full
         Write_leakage_data(combine, 4 * 32, 0,
                            "Reg A * Reg B * Previous Reg A * Previous Reg B")
-        pass
-
-    return
-
-
-# Output type of a leakage.
-def LeakageType(name, lkgtype):
-    print("{:s}: {:d}".format(name, lkgtype))
-    return
-
-
-# Header for leakage handled by the uELMO modeling/detection method.
-def UelmoHeader(core):
-    print('#uELMO leakage header')
-    print('#{Name}: {Type}')
-    # Part 1: select components.
-    # reg[]
-    if NON_ACTIVE_REG:
-        for i in range(core.components['reg'].len):
-            LeakageType('Reg {:d}'.format(i), 0)
-            pass
-        pass
-
-    # CPSR
-    if CPSR:
-        LeakageType('CPSR', 1)
-        pass
-
-    # Pipline registers
-    if MICROARCHITECTURAL:
-        LeakageType("Pipeline Reg 1", 0)
-        LeakageType("Pipeline Reg 2", 0)
-        pass
-
-    # Decoding register
-    if MICROARCHITECTURAL and DECODE_PORT:
-        for i in range(core.components['Decode_port_data'].len):
-            LeakageType('Decoding port {:d}'.format(i), 1)
-            pass
-
-        # Glitchy decoding register
-        if GLITCHY_DECODE:
-            for i in range(core.components['glitchy_Decode_port_data'].len):
-                LeakageType('Glitchy decoding port {:d}'.format(i), 1)
-                pass
-            pass
-        pass
-
-    # ALU output
-    LeakageType("ALU output", 0)
-
-    # Memory subsystem
-    if NON_ACTIVE_MEM:  # Read and Write valid check removed.
-        # Memory address
-        LeakageType("Memory address", 0)
-
-        # Memory data
-        LeakageType("Memory data", 0)
-
-        # Memory write buffer
-        LeakageType("Memory write buffer", 0)
-
-        # Memory write buffer delayed
-        LeakageType("Memory write buffer delayed", 0)
-
-        # Memory read buffer
-        LeakageType("Memory read buffer", 0)
-        pass
-
-    # Part 2: transitional leakage.
-    # LSB neibouring effect
-    if TRANSITION and LSB_NEIGHBOUR:
-        # no PC, LR or SP
-        i = 0
-        while i < 13:
-            LeakageType(
-                "LSB Neighbouring Reg {:d} XOR Reg {:d}".format(i, i ^ 0x1), 1)
-            i += 2
-            pass
-        pass
-
-    # Target register HD
-    if TRANSITION:  # reg[16]: linear
-        for i in range(13):  # no PC, LR or SP
-            LeakageType("Previous Reg {:d}".format(i), 1)
-            pass
-
-        for i in range(13):
-            LeakageType("Reg {:d} HD".format(i), 1)
-            pass
-        pass
-
-    if CPSR and TRANSITION:
-        #CPSR, linear
-        LeakageType("Previous CPSR", 1)
-        LeakageType("CPSR HD", 1)
-        pass
-
-    # 2 pipeline registers, linear
-    if MICROARCHITECTURAL and TRANSITION:
-        LeakageType("Previous Pipeline Reg 1", 1)
-        LeakageType("Previous Pipeline Reg 2", 1)
-        LeakageType("Pipeline Reg 1 HD", 1)
-        LeakageType("Pipeline Reg 2 HD", 1)
-        pass
-
-    # Decode
-    # Decoding register access, linear
-    if MICROARCHITECTURAL and DECODE_PORT and TRANSITION:
-        for i in range(3):
-            LeakageType("Previous Decoding port {:d}".format(i), 1)
-            LeakageType("Decoding port {:d} HD".format(i), 1)
-            pass
-
-        # Glitchy
-        if GLITCHY_DECODE:
-            for i in range(3):
-                LeakageType(
-                    "Glitchy decoding port {:d} XOR current port {:d}".format(i, i), 1)
-                LeakageType(
-                    "Glitchy decoding port {:d} XOR previous port {:d}".format(i, i), 1)
-            pass
-        pass
-
-    # Execute
-    # Only ALU output, other captured by decode (pipeline register) or interaction (combinatorial)
-    # ALU output, nominal
-    if TRANSITION:
-        LeakageType("Previous ALU output", 1)
-        LeakageType("ALU output HD", 1)
-        pass
-
-    # Memory subsystem
-    if TRANSITION and NON_ACTIVE_MEM:
-        # Read, Write and delayed Write valid check removed
-        # Memory address
-        LeakageType("Previous Memory address", 0)
-        LeakageType("Memory address HD", 1)
-
-        # Memory data, nomial
-        LeakageType("Previous Memory data", 0)
-        LeakageType("Memory data HD", 1)
-
-        # Memory write buffer, nomial
-        LeakageType("Previous Memory write buffer", 0)
-        LeakageType("Memory write buffer HD", 1)
-
-        # Memory write buffer delayed, nomial
-        LeakageType("Previous Memory write buffer delayed", 0)
-        LeakageType("Memory write buffer delayed HD", 1)
-
-        # Memory read buffer, nomial
-        LeakageType("Previous Memory read buffer", 0)
-        LeakageType("Memory read buffer HD", 1)
-        pass
-
-    # Part 3: interaction leakage.
-    # Reg A * Reg B *prev_Reg A * prev_Reg B: Full
-    if TRANSITION and MICROARCHITECTURAL:
-        LeakageType("Reg A * Reg B * Previous Reg A * Previous Reg B", 0)
-        pass
-
-    print('#End of header')
-
-    return
-
-
-def InstExtractor(frame):
-    print('#FrameNo: {}'.format(frame['FrameNo'][0]))
-
-    if frame['core_valid'][0]:
-        Generate_Leakage_Instr(frame)
-        print('')
-        pass
-    else:
-        print("Core invalid.")
         pass
 
     return
