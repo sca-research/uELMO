@@ -70,7 +70,7 @@ def Generate_Leakage_Instr(current):
 # each component can be linear or nominal
 # header==True--->write out the discription for header
 # header==False --->write out leakage state data
-def Generate_Leakage_Select(current, header):
+def Generate_Leakage_Select(current):
     if NON_ACTIVE_REG:  # reg[16]: nominal
         for i in range(16):
             Write_leakage_data(current['reg'][i], 32, 0, "Reg {:}".format(i))
@@ -157,123 +157,59 @@ def Generate_Leakage_Transition(prev, current, header):
     # Target register HD
     if TRANSITION:  # reg[16]: linear
         for i in range(13):  # no PC, LR or SP
-            if header:
-                disp = sprintf("Previous Reg {:d}", i)
-                Write_leakage_label(disp, 1)
-                pass
-            else:
-                Write_leakage_data(prev['reg'][i], 32, 1)
-                pass
+            Write_leakage_data(prev['reg'][i], 32, 1,
+                               "Previous Reg {:d}".format(i))
             pass
 
         for i in range(13):
-            if header:
-                disp = sprintf("Reg {:d} HD", i)
-                Write_leakage_label(disp, 1)
-                pass
-            else:
-                temp = prev['reg'][i] ^ current['reg'][i]
-                Write_leakage_data(temp, 32, 1)
-                pass
+            temp = prev['reg'][i] ^ current['reg'][i]
+            Write_leakage_data(temp, 32, 1, "Reg {:d} HD".format(i))
             pass
         pass
 
     if CPSR and TRANSITION:
         #CPSR, linear
-        if header:
-            Write_leakage_label("Previous CPSR", 1)
-            pass
-        else:
-            Write_leakage_data(prev['cpsr'][0], 32, 1)
-            pass
+        Write_leakage_data(prev['cpsr'][0], 32, 1, "Previous CPSR")
 
-        if header:
-            Write_leakage_label("CPSR HD", 1)
-            pass
-        else:
-            temp = prev['cpsr'][0] ^ current['cpsr'][0]
-            Write_leakage_data(temp, 32, 1)
-            pass
+        temp = prev['cpsr'][0] ^ current['cpsr'][0]
+        Write_leakage_data(temp, 32, 1, "CPSR HD")
         pass
 
     # 2 pipeline registers, linear
     if MICROARCHITECTURAL and TRANSITION:
-        if header:
-            Write_leakage_label("Previous Pipeline Reg 1", 1)
-            pass
-        else:
-            Write_leakage_data(prev['D2E_reg1'][0], 32, 1)
-            pass
+        Write_leakage_data(prev['D2E_reg1'][0], 32, 1,
+                           "Previous Pipeline Reg 1")
+        Write_leakage_data(prev['D2E_reg2'][0], 32, 1,
+                           "Previous Pipeline Reg 2")
 
-        if header:
-            Write_leakage_label("Previous Pipeline Reg 2", 1)
-            pass
-        else:
-            Write_leakage_data(prev['D2E_reg2'][0], 32, 1)
-            pass
+        temp = prev['D2E_reg1'][0] ^ current['D2E_reg1'][0]
+        Write_leakage_data(temp, 32, 1, "Pipeline Reg 1 HD")
 
-        if header:
-            Write_leakage_label("Pipeline Reg 1 HD", 1)
-            pass
-        else:
-            temp = prev['D2E_reg1'][0] ^ current['D2E_reg1'][0]
-            Write_leakage_data(temp, 32, 1)
-            pass
-
-        if header:
-            Write_leakage_label("Pipeline Reg 2 HD", 1)
-            pass
-        else:
-            temp = prev['D2E_reg2'][0] ^ current['D2E_reg2'][0]
-            Write_leakage_data(temp, 32, 1)
-            pass
+        temp = prev['D2E_reg2'][0] ^ current['D2E_reg2'][0]
+        Write_leakage_data(temp, 32, 1, "Pipeline Reg 2 HD")
         pass
 
     # Decode
     # Decoding register access, linear
     if MICROARCHITECTURAL and DECODE_PORT and TRANSITION:
         for i in range(3):
-            if header:
-                disp = sprintf("Previous Decoding port {:d}", i)
-                Write_leakage_label(disp, 1)
-                pass
-            else:
-                Write_leakage_data(prev['Decode_port_data'][i], 32, 1)
-                pass
-
-            if header:
-                disp = sprintf("Decoding port {:d} HD", i)
-                Write_leakage_label(disp, 1)
-                pass
-            else:
-                temp = prev['Decode_port_data'][i] ^ current['Decode_port_data'][i]
-                Write_leakage_data(temp, 32, 1)
-                pass
+            Write_leakage_data(prev['Decode_port_data'][i],
+                               32, 1, "Previous Decoding port {:d}".format(i))
+            temp = prev['Decode_port_data'][i] ^ current['Decode_port_data'][i]
+            Write_leakage_data(temp, 32, 1, "Decoding port {:d} HD".format(i))
             pass
         pass
 
     # Glitchy decoding register access, linear
     if MICROARCHITECTURAL and DECODE_PORT and GLITCHY_DECODE and TRANSITION:
         for i in range(3):
-            if header:
-                disp = sprintf(
-                    "Glitchy decoding port {:d} XOR current port {:d}", i, i)
-                Write_leakage_label(disp, 1)
-                pass
-            else:
-                temp = current['glitchy_Decode_port_data'][i] ^ current['Decode_port_data'][i]
-                Write_leakage_data(temp, 32, 1)
-                pass
+            temp = current['glitchy_Decode_port_data'][i] ^ current['Decode_port_data'][i]
+            Write_leakage_data(
+                temp, 32, 1, "Glitchy decoding port {:d} XOR current port {:d}".format(i, i))
 
-            if header:
-                disp = sprintf(
-                    "Glitchy decoding port {:d} XOR previous port {:d}", i, i)
-                Write_leakage_label(disp, 1)
-                pass
-            else:
-                temp = current['glitchy_Decode_port_data'][i] ^ prev['Decode_port_data'][i]
-                Write_leakage_data(temp, 32, 1)
-                pass
+            temp = current['glitchy_Decode_port_data'][i] ^ prev['Decode_port_data'][i]
+            Write_leakage_data(
+                temp, 32, 1, "Glitchy decoding port {:d} XOR previous port {:d}".format(i, i))
             pass
         pass
 
@@ -281,105 +217,51 @@ def Generate_Leakage_Transition(prev, current, header):
     # Only ALU output, other captured by decode (pipeline register) or interaction (combinatorial)
     # ALU output, nominal
     if TRANSITION:
-        if header:
-            Write_leakage_label("Previous ALU output", 1)
-            pass
-        else:
-            Write_leakage_data(prev['Execute_ALU_result'][0], 32, 1)
-            pass
+        Write_leakage_data(prev['Execute_ALU_result']
+                           [0], 32, 1, "Previous ALU output")
 
-        if header:
-            Write_leakage_label("ALU output HD", 1)
-            pass
-        else:
-            temp = prev['Execute_ALU_result'][0] ^ current['Execute_ALU_result'][0]
-            Write_leakage_data(temp, 32, 1)
-            pass
+        temp = prev['Execute_ALU_result'][0] ^ current['Execute_ALU_result'][0]
+        Write_leakage_data(temp, 32, 1, "ALU Output HD")
         pass
 
     # Memory subsystem
     if TRANSITION and (NON_ACTIVE_MEM or (current['Read_valid'][0] == True) or (current['Write_valid'][0] == True) or (current['Write_valid_delayed'][0] == True)):
         # Memory address
-        if header:
-            Write_leakage_label("Previous Memory address", 0)
-            pass
-        else:
-            Write_leakage_data(prev['Memory_addr'][0], 32, 0)
-            pass
+        Write_leakage_data(prev['Memory_addr'][0], 32,
+                           0, "Previous Memory address")
 
-        if header:
-            Write_leakage_label("Memory address HD", 1)
-            pass
-        else:
-            temp = prev['Memory_addr'][0] ^ current['Memory_addr'][0]
-            Write_leakage_data(temp, 32, 1)
-            pass
+        temp = prev['Memory_addr'][0] ^ current['Memory_addr'][0]
+        Write_leakage_data(temp, 32, 1, "Memory address HD")
 
         # Memory data, nomial
-        if header:
-            Write_leakage_label("Previous Memory data", 0)
-            pass
-        else:
-            Write_leakage_data(prev['Memory_data'][0], 32, 0)
-            pass
+        Write_leakage_data(prev['Memory_data'][0], 32,
+                           0, "Previous Memory data")
 
-        if header:
-            Write_leakage_label("Memory data HD", 1)
-            pass
-        else:
-            temp = prev['Memory_data'][0] ^ current['Memory_data'][0]
-            Write_leakage_data(temp, 32, 1)
-            pass
+        temp = prev['Memory_data'][0] ^ current['Memory_data'][0]
+        Write_leakage_data(temp, 32, 1, "Memory data HD")
 
         # Memory write buffer, nomial
-        if header:
-            Write_leakage_label("Previous Memory write buffer", 0)
-            pass
-        else:
-            Write_leakage_data(prev['Memory_writebuf'][0], 32, 0)
-            pass
+        Write_leakage_data(prev['Memory_writebuf'][0],
+                           32, 0, "Previous Memory write buffer")
 
-        if header:
-            Write_leakage_label("Memory write buffer HD", 1)
-            pass
-        else:
-            temp = prev['Memory_writebuf'][0] ^ current['Memory_writebuf'][0]
-            Write_leakage_data(temp, 32, 1)
-            pass
+        temp = prev['Memory_writebuf'][0] ^ current['Memory_writebuf'][0]
+        Write_leakage_data(temp, 32, 1, "Memory write buffer HD")
 
         # Memory write buffer delayed, nomial
-        if header:
-            Write_leakage_label("Previous Memory write buffer delayed", 0)
-            pass
-        else:
-            Write_leakage_data(prev['Memory_writebuf_delayed'][0], 32, 0)
-            pass
+        Write_leakage_data(prev['Memory_writebuf_delayed']
+                           [0], 32, 0, "Previous Memory Write buffer delayed")
 
-        if header:
-            Write_leakage_label("Memory write buffer delayed HD", 1)
-            pass
-        else:
-            temp = prev['Memory_writebuf_delayed'][0] ^ current['Memory_writebuf_delayed'][0]
-            Write_leakage_data(temp, 32, 1)
-            pass
+        temp = prev['Memory_writebuf_delayed'][0] ^ current['Memory_writebuf_delayed'][0]
+        Write_leakage_data(temp, 32, 1, "Memory write buffer delayed HD")
 
         # Memory read buffer, nomial
-        if header:
-            Write_leakage_label("Previous Memory read buffer", 0)
-            pass
-        else:
-            Write_leakage_data(prev['Memory_readbuf'][0], 32, 0)
-            pass
+        Write_leakage_data(prev['Memory_readbuf'][0],
+                           32, 0, "Previous Memory read buffer")
 
-        if header:
-            Write_leakage_label("Memory read buffer HD", 1)
-            pass
-        else:
-            temp = current['Memory_readbuf'][0] ^ prev['Memory_readbuf'][0]
-            Write_leakage_data(temp, 32, 1)
-            pass
-
+        temp = current['Memory_readbuf'][0] ^ prev['Memory_readbuf'][0]
+        Write_leakage_data(temp, 32, 1, "Memory read buffer HD")
         pass
+
     return
 
 
@@ -582,7 +464,7 @@ def TestExtractorBody(frame):
     if frame[1]['core_valid'][0]:
         header = False
         #Generate_Leakage_Instr(frame[1], header)
-        Generate_Leakage_Select(frame[1], header)
+        Generate_Leakage_Select(frame[1])
         Generate_Leakage_Transition(frame[0], frame[1], header)
         Generate_Leakage_Interaction(frame[0], frame[1])
         print('')
