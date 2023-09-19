@@ -24,18 +24,6 @@ def Write_leakage_data(data, dlen, dtype, src="N/A"):
     global sol
 
     print("{:s} Type {:d} Length {:d} : {}".format(src, dtype, dlen, data))
-
-    if src not in sol:
-        sol[src] = dict()
-        sol[src]['type'] = dtype
-        sol[src]['len'] = dlen
-        pass
-    else:
-        if sol[src]['type'] != dtype or sol[src]['len'] != dlen:
-            print("WARNING: INCONSISTANT LEN OR TYPE")
-            pass
-        pass
-
     return
 
 
