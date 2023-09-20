@@ -2,476 +2,666 @@
   "Reg[0]": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 0
   },
   "Reg[1]": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 1
   },
   "Reg[2]": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 2
   },
   "Reg[3]": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 3
   },
   "Reg[4]": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 4
   },
   "Reg[5]": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 5
   },
   "Reg[6]": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 6
   },
   "Reg[7]": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 7
   },
   "Reg[8]": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 8
   },
   "Reg[9]": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 9
   },
   "Reg[10]": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 10
   },
   "Reg[11]": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 11
   },
   "Reg[12]": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 12
   },
   "Reg[13]": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 13
   },
   "Reg[14]": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 14
   },
   "Reg[15]": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 15
   },
   "CPSR": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "cpsr",
+    "compidx": 0
   },
   "PipeReg1": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "D2E_reg1",
+    "compidx": 0
   },
   "PipeReg2": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "D2E_reg2",
+    "compidx": 0
   },
   "DecodePort[0]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "Decode_port_data",
+    "compidx": 0
   },
   "DecodePort[1]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "Decode_port_data",
+    "compidx": 1
   },
   "DecodePort[2]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "Decode_port_data",
+    "compidx": 2
   },
   "GlitchyDecodePort[0]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "glitchy_Decode_port_data",
+    "compidx": 0
   },
   "GlitchyDecodePort[1]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "glitchy_Decode_port_data",
+    "compidx": 1
   },
   "GlitchyDecodePort[2]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "glitchy_Decode_port_data",
+    "compidx": 2
   },
   "ALU_output": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "Execute_ALU_result",
+    "compidx": 0
   },
   "MemAddr": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "Memory_addr",
+    "compidx": 0
   },
   "MemData": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "Memory_data",
+    "compidx": 0
   },
   "MemWrBuf": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "Memory_writebuf",
+    "compidx": 0
   },
   "MemWrBufDelayed": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "Memory_writebuf_delayed",
+    "compidx": 0
   },
   "MemRdBuf": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "Memory_readbuf",
+    "compidx": 0
   },
   "Reg[0]^Reg[1]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "Reg[2]^Reg[3]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "Reg[4]^Reg[5]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "Reg[6]^Reg[7]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "Reg[8]^Reg[9]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "Reg[10]^Reg[11]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "Reg[12]^Reg[13]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "PrevReg[0]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 0
   },
   "PrevReg[1]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 1
   },
   "PrevReg[2]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 2
   },
   "PrevReg[3]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 3
   },
   "PrevReg[4]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 4
   },
   "PrevReg[5]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 5
   },
   "PrevReg[6]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 6
   },
   "PrevReg[7]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 7
   },
   "PrevReg[8]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 8
   },
   "PrevReg[9]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 9
   },
   "PrevReg[10]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 10
   },
   "PrevReg[11]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 11
   },
   "PrevReg[12]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "reg",
+    "compidx": 12
   },
   "HD_Reg[0]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "HD_Reg[1]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "HD_Reg[2]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "HD_Reg[3]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "HD_Reg[4]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "HD_Reg[5]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "HD_Reg[6]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "HD_Reg[7]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "HD_Reg[8]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "HD_Reg[9]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "HD_Reg[10]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "HD_Reg[11]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "HD_Reg[12]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "PrevCPSR": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "cpsr",
+    "compidx": 0
   },
   "HD_CPSR": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "PrevPipeReg1": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "D2E_reg1",
+    "compidx": 0
   },
   "PrevPipeReg2": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "D2E_reg2",
+    "compidx": 0
   },
   "HD_PrevPipeReg1": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "HD_PrevPipeReg2": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "PrevDecodePort[0]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "Decode_port_data",
+    "compidx": 0
   },
   "HD_DecodePort[0]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "PrevDecodePort[1]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "Decode_port_data",
+    "compidx": 1
   },
   "HD_DecodePort[1]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "PrevDecodePort[2]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "Decode_port_data",
+    "compidx": 2
   },
   "HD_DecodePort[2]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "GlitchyDecodePort[0]^DecodePort0": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "GlitchyDecodePort[0]^PrevDecodePort[0]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "GlitchyDecodePort[1]^DecodePort1": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "GlitchyDecodePort[1]^PrevDecodePort[1]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "GlitchyDecodePort[2]^DecodePort2": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "GlitchyDecodePort[2]^PrevDecodePort[2]": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "Prev_ALU_output": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "Execute_ALU_result",
+    "compidx": 0
   },
   "HD_ALU_output": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "PrevMemAddr": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "Memory_addrL",
+    "compidx": 0
   },
   "HD_MemAddr": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "PrevMemData": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "Memory_data",
+    "compidx": 0
   },
   "HD_MemData": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "PrevMemWrBuf": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "Memory_writebuf",
+    "compidx": 0
   },
   "HD_MemWrBuf": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "PrevMemWrBufDelayed": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "Memory_writebuf_delayed",
+    "compidx": 0
   },
   "HD_MemWrBufDelayed": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "PrevMemRdBuf": {
     "type": 0,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "Memory_readbuf",
+    "compidx": 0
   },
   "HD_MemRdBuf": {
     "type": 1,
     "len": 32,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   },
   "PipeReg1*PipeReg2*PrevPipeReg1*PrevPipeReg2": {
     "type": 0,
     "len": 128,
-    "enabled": 0
+    "enabled": 0,
+    "compname": "NULL",
+    "compidx": 0
   }
 }
