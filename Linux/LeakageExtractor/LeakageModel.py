@@ -24,11 +24,18 @@ sol = json.load(open('uelmosol.json', 'r'))
 # Smurf Encoding dictionary for Symbols.
 symdict = None
 
+# Default expanded expression.
 DEFAULT_EXPANDED_EXPR = "[EXPANDED_EXPRESSION]"
-
 
 # Leakage functions.
 LEAKAGE_FUNC = {0: 'Full', 1: 'Linear', 2: 'Transtion', 3: 'Interaction'}
+
+
+# Print help message.
+def PrintHelp():
+    print(
+        "Usage:\tpython3 LeakageExtractor.py {TARGET_TRACE} [DICTIONARY_FILE]")
+    return
 
 
 # Encode a Symbol ID into string.
@@ -92,7 +99,7 @@ def WriteLeakage(src, data, frame=None, expr=DEFAULT_EXPANDED_EXPR):
 
     else:
         # Use default expression.
-        if frame is None or compname is 'NULL':  # Symbol not available.
+        if frame is None or compname == 'NULL':  # Symbol not available.
             print(
                 "{:s}({:d}) : [{:d}] {} *EXPRESSION_NOT_AVIALBLE".format(src, datatype, datalen, data))
             pass
@@ -609,6 +616,13 @@ def TestExtractorBody(frame):
 
 def main(argc, argv):
     global sol, symdict
+
+    # Print help message.
+    if 1 >= argc:
+        PrintHelp()
+        return 0
+        pass
+
     testtrace = argv[1]
     core = smurf.Core.Load('uelmo.json')
     trace = smurf.Trace(core)
@@ -631,7 +645,7 @@ def main(argc, argv):
     # Data
     trace.Extract(TestExtractorBody, 2)
 
-    return
+    return 0
 
 
 if __name__ == '__main__':
