@@ -27,6 +27,51 @@ symdict = None
 DEFAULT_EXPANDED_EXPR = "[EXPANDED_EXPRESSION]"
 
 
+# Leakage functions.
+LEAKAGE_FUNC = {0: 'Full', 1: 'Linear', 2: 'Transtion', 3: 'Interaction'}
+
+
+# Encode a Symbol ID into string.
+def SymToStr(symid):
+    global symdict
+    if symdict is None:
+        return str(symid)
+        pass
+    else:
+        return symdict[symid]
+        pass
+
+    return
+
+
+# Construct expanded expression from a given operand and a list of Symbol IDs.
+def ExpandExpr(op, *symids):
+    expr = str()
+
+    # Return None string if all args are NULL.
+    if all(sym == smurf.SYM_ID_NULL for sym in symids):
+        return ""
+        pass
+
+    # Prepends operand.
+    expr += op + '('  # 'op('
+
+    # Add the first argument.
+    expr += SymToStr(symids[0])  # 'op(arg0'
+    symids = symids[1:]
+
+    # Add other arguments.
+    for arg in symids:
+        expr += ','+SymToStr(arg)
+        pass
+
+    # Enclose bracket.
+    expr += ')'
+
+    return expr
+
+
+# Write out leakage.
 def WriteLeakage(src, data, frame=None, expr=DEFAULT_EXPANDED_EXPR):
     global sol, symdict
     datatype = sol[src]['type']
@@ -34,10 +79,16 @@ def WriteLeakage(src, data, frame=None, expr=DEFAULT_EXPANDED_EXPR):
     compname = sol[src]['compname']
     compidx = sol[src]['compidx']
 
-    if expr is not DEFAULT_EXPANDED_EXPR:  # Expanded expression specified.
-        print("{:s}({:d}) : [{:d}] {} *{:s}".format(src,
-              datatype, datalen, data, expr))
-        pass
+    if expr is not DEFAULT_EXPANDED_EXPR:  # Expression specified.
+        if expr == '':  # NULL expression specified.
+            print(
+                "{:s}({:d}) : [{:d}] {} *NO_SYMBOL".format(src, datatype, datalen, data))
+            pass
+
+        else:  # Trivial expression specified.
+            print("{:s}({:d}) : [{:d}] {} *{:s}".format(src,
+                  datatype, datalen, data, expr))
+            pass
 
     else:
         # Use default expression.
@@ -52,26 +103,10 @@ def WriteLeakage(src, data, frame=None, expr=DEFAULT_EXPANDED_EXPR):
                     "{:s}({:d}) : [{:d}] {} *NO_SYMBOL".format(src, datatype, datalen, data))
                 pass
             else:
-                # Print symbolic leakage.
-                if datatype == 0:  # Leakage type Full
-                    lkgfunc = 'Full'
-                    pass
-                elif datatype == 1:  # Leakage type Linear
-                    lkgfunc = 'Linear'
-                    pass
-                else:
-                    raise Exception('Unrecognised leakage type.')
-                    pass
 
-                if symdict is None:  # Do not decode Symbols.
-                    print("{:s}({:d}) : [{:d}] {} *{:s}({:d})".format(src,
-                          datatype, datalen, data, lkgfunc, symid))
-                    pass
-                else:
-                    # Decode Symbols.
-                    print("{:s}({:d}) : [{:d}] {} *{:s}({:s})".format(src,
-                          datatype, datalen, data, lkgfunc, symdict[symid]))
-                    pass
+                # Print symbolic expression.
+                print("{:s}({:d}) : [{:d}] {} *{:s}({:s})".format(src, datatype, datalen, data,
+                                                                  LEAKAGE_FUNC[datatype], SymToStr(symid)))
                 pass
             pass
         pass
@@ -370,9 +405,14 @@ def Generate_Leakage_Transition(prev, current, header):
         # no PC, LR or SP
         i = 0
         while i < 13:
-            temp = current['reg'][i] ^ current['reg'][i ^ 0x1]
             # LSB Neighbouring Reg i XOR Reg j -> Reg[i]^Reg[j]
-            WriteLeakage("Reg[{:d}]^Reg[{:d}]".format(i, i ^ 0x1), temp)
+            src = "Reg[{:d}]^Reg[{:d}]".format(i, i ^ 0x1)
+            temp = current['reg'][i] ^ current['reg'][i ^ 0x1]
+
+            expr = ExpandExpr(LEAKAGE_FUNC[2], current.components['reg'].symid[i],
+                              current.components['reg'].symid[i ^ 0x1])
+            WriteLeakage(src, temp, expr=expr)
+
             i += 2
             pass
         pass
@@ -386,8 +426,11 @@ def Generate_Leakage_Transition(prev, current, header):
 
         for i in range(13):
             temp = prev['reg'][i] ^ current['reg'][i]
+            expr = ExpandExpr(
+                LEAKAGE_FUNC[2], prev.components['reg'].symid[i], current.components['reg'].symid[i])
+
             # Reg i HD -> HD_Reg[i]
-            WriteLeakage("HD_Reg[{:d}]".format(i), temp)
+            WriteLeakage("HD_Reg[{:d}]".format(i), temp, expr=expr)
             pass
         pass
 
@@ -398,7 +441,9 @@ def Generate_Leakage_Transition(prev, current, header):
 
         # CPSR HD -> HD_CPSR
         temp = prev['cpsr'][0] ^ current['cpsr'][0]
-        WriteLeakage("HD_CPSR", temp)
+        expr = ExpandExpr(
+            LEAKAGE_FUNC[2], prev.components['cpsr'].symid[0], current.components['cpsr'].symid[0])
+        WriteLeakage("HD_CPSR", temp, expr=expr)
         pass
 
     # 2 pipeline registers, linear
@@ -409,10 +454,14 @@ def Generate_Leakage_Transition(prev, current, header):
 
         # Pipeline Reg {1,2} HD -> HD_PipeReg{1,2}
         temp = prev['D2E_reg1'][0] ^ current['D2E_reg1'][0]
-        WriteLeakage("HD_PrevPipeReg1", temp)
+        expr = ExpandExpr(
+            LEAKAGE_FUNC[2], prev.components['D2E_reg1'].symid[0], current.components['D2E_reg1'].symid[0])
+        WriteLeakage("HD_PipeReg1", temp, expr=expr)
 
         temp = prev['D2E_reg2'][0] ^ current['D2E_reg2'][0]
-        WriteLeakage("HD_PrevPipeReg2", temp)
+        expr = ExpandExpr(
+            LEAKAGE_FUNC[2], prev.components['D2E_reg2'].symid[0], current.components['D2E_reg2'].symid[0])
+        WriteLeakage("HD_PipeReg2", temp, expr=expr)
         pass
 
     # Decode
@@ -425,7 +474,9 @@ def Generate_Leakage_Transition(prev, current, header):
 
             # Decoding port i HD -> HD_DecodePort[i]
             temp = prev['Decode_port_data'][i] ^ current['Decode_port_data'][i]
-            WriteLeakage("HD_DecodePort[{:d}]".format(i), temp)
+            expr = ExpandExpr(LEAKAGE_FUNC[2], prev.components['Decode_port_data'].symid[i],
+                              current.components['Decode_port_data'].symid[i])
+            WriteLeakage("HD_DecodePort[{:d}]".format(i), temp, expr=expr)
             pass
         pass
 
@@ -434,13 +485,17 @@ def Generate_Leakage_Transition(prev, current, header):
         for i in range(3):
             # Glitchy decoding port i XOR current port i -> HD_Glitchy_DecodePort[i]^DecodePort[i]
             temp = current['glitchy_Decode_port_data'][i] ^ current['Decode_port_data'][i]
+            expr = ExpandExpr(LEAKAGE_FUNC[2], current.components['glitchy_Decode_port_data'].symid[i],
+                              current.components['Decode_port_data'].symid[i])
             WriteLeakage("GlitchyDecodePort[{:d}]^DecodePort{:d}".format(i, i),
-                         temp)
+                         temp, expr=expr)
 
             # Glitchy decoding port i XOR previous port i
             temp = current['glitchy_Decode_port_data'][i] ^ prev['Decode_port_data'][i]
+            expr = ExpandExpr(
+                LEAKAGE_FUNC[2], current.components['glitchy_Decode_port_data'].symid[i], prev.components['Decode_port_data'].symid[i])
             WriteLeakage("GlitchyDecodePort[{:d}]^PrevDecodePort[{:d}]".format(i, i),
-                         temp)
+                         temp, expr=expr)
             pass
         pass
 
@@ -453,7 +508,9 @@ def Generate_Leakage_Transition(prev, current, header):
 
         # ALU output HD -> HD_ALU_output
         temp = prev['Execute_ALU_result'][0] ^ current['Execute_ALU_result'][0]
-        WriteLeakage("HD_ALU_output", temp)
+        expr = ExpandExpr(LEAKAGE_FUNC[2], prev.components['Execute_ALU_result'].symid[0],
+                          current.components['Execute_ALU_result'].symid[0])
+        WriteLeakage("HD_ALU_output", temp, expr=expr)
         pass
 
     # Memory subsystem
@@ -464,7 +521,9 @@ def Generate_Leakage_Transition(prev, current, header):
 
         # Memory address HD -> HD_MemAddr
         temp = prev['Memory_addr'][0] ^ current['Memory_addr'][0]
-        WriteLeakage("HD_MemAddr", temp)
+        expr = ExpandExpr(LEAKAGE_FUNC[2], prev.components['Memory_addr'].symid[0],
+                          current.components['Memory_addr'].symid[0])
+        WriteLeakage("HD_MemAddr", temp, expr=expr)
 
         # Memory data, nomial
         # Previous Memory data -> PrevMemData
@@ -472,7 +531,9 @@ def Generate_Leakage_Transition(prev, current, header):
 
         # Memory data HD -> HD_MemData
         temp = prev['Memory_data'][0] ^ current['Memory_data'][0]
-        WriteLeakage("HD_MemData", temp)
+        expr = ExpandExpr(LEAKAGE_FUNC[2], prev.components['Memory_data'].symid[0],
+                          current.components['Memory_data'].symid[0])
+        WriteLeakage("HD_MemData", temp, expr=expr)
 
         # Memory write buffer, nomial
         # Previous Memory write buffer -> PrevMemWrBuf
@@ -480,7 +541,9 @@ def Generate_Leakage_Transition(prev, current, header):
 
         # Memory write buffer HD -> HD_MemWrBuf
         temp = prev['Memory_writebuf'][0] ^ current['Memory_writebuf'][0]
-        WriteLeakage("HD_MemWrBuf", temp)
+        expr = ExpandExpr(LEAKAGE_FUNC[2], prev.components['Memory_writebuf'].symid[0],
+                          current.components['Memory_writebuf'].symid[0])
+        WriteLeakage("HD_MemWrBuf", temp, expr=expr)
 
         # Memory write buffer delayed, nomial
         # Previous Memory Write buffer delayed -> PrevMemWrBufDelayed
@@ -489,7 +552,9 @@ def Generate_Leakage_Transition(prev, current, header):
 
         # Memory write buffer delayed HD -> HD_MemWrBufDelayed
         temp = prev['Memory_writebuf_delayed'][0] ^ current['Memory_writebuf_delayed'][0]
-        WriteLeakage("HD_MemWrBufDelayed", temp)
+        expr = ExpandExpr(LEAKAGE_FUNC[2], prev.components['Memory_writebuf_delayed'].symid[0],
+                          current.components['Memory_writebuf_delayed'].symid[0])
+        WriteLeakage("HD_MemWrBufDelayed", temp, expr=expr)
 
         # Memory read buffer, nomial
         # Previous Memory read buffer -> PrevMemRdBuf
@@ -497,7 +562,9 @@ def Generate_Leakage_Transition(prev, current, header):
 
         # Memory read buffer HD -> HD_MemRdBuf
         temp = current['Memory_readbuf'][0] ^ prev['Memory_readbuf'][0]
-        WriteLeakage("HD_MemRdBuf", temp)
+        expr = ExpandExpr(LEAKAGE_FUNC[2], prev.components['Memory_readbuf'].symid[0],
+                          current.components['Memory_readbuf'].symid[0])
+        WriteLeakage("HD_MemRdBuf", temp, expr=expr)
         pass
 
     return
@@ -514,8 +581,10 @@ def Generate_Leakage_Interaction(prev, current):
 
         # Reg A * Reg B *prev_Reg A * prev_Reg B: Full
         # Reg A * Reg B * Previous Reg A * Previous Reg B -> PipeReg1*PipeReg2*PrevPipeReg1*PrevPipeReg2
-        WriteLeakage(
-            "PipeReg1*PipeReg2*PrevPipeReg1*PrevPipeReg2", combine)
+        expr = ExpandExpr(LEAKAGE_FUNC[3], current.components['D2E_reg1'].symid[0], current.components['D2E_reg2'].symid[0],
+                          prev.components['D2E_reg1'].symid[0], prev.components['D2E_reg2'].symid[0])
+        WriteLeakage("PipeReg1*PipeReg2*PrevPipeReg1*PrevPipeReg2",
+                     combine, expr=expr)
 
         pass
 
@@ -551,12 +620,12 @@ def main(argc, argv):
         pass
 
     # uELMO leakage header.
-    UelmoHeader(core)
-    print('')
+    # UelmoHeader(core)
+    # print('')
 
     # Instrctions of trace.
-    trace.Extract(InstExtractor)
-    trace.Reset()
+    # trace.Extract(InstExtractor)
+    # trace.Reset()
 
     # TODO: First Frame skipped with windowsize of 2.
     # Data
