@@ -475,14 +475,14 @@
     "compname": "D2E_reg2",
     "compidx": 0
   },
-  "HD_PrevPipeReg1": {
+  "HD_PipeReg1": {
     "type": 1,
     "len": 32,
     "enabled": 0,
     "compname": "NULL",
     "compidx": 0
   },
-  "HD_PrevPipeReg2": {
+  "HD_PipeReg2": {
     "type": 1,
     "len": 32,
     "enabled": 0,
