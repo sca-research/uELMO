@@ -84,12 +84,12 @@
     "len": 32,
     "enabled": 0
   },
-  "PipeReg[0]": {
+  "PipeReg1": {
     "type": 0,
     "len": 32,
     "enabled": 0
   },
-  "PipeReg[1]": {
+  "PipeReg2": {
     "type": 0,
     "len": 32,
     "enabled": 0
@@ -329,22 +329,22 @@
     "len": 32,
     "enabled": 0
   },
-  "PrevPipeReg[0]": {
+  "PrevPipeReg1": {
     "type": 1,
     "len": 32,
     "enabled": 0
   },
-  "PrevPipeReg[1]": {
+  "PrevPipeReg2": {
     "type": 1,
     "len": 32,
     "enabled": 0
   },
-  "HD_PrevPipeReg[0]": {
+  "HD_PrevPipeReg1": {
     "type": 1,
     "len": 32,
     "enabled": 0
   },
-  "HD_PrevPipeReg[1]": {
+  "HD_PrevPipeReg2": {
     "type": 1,
     "len": 32,
     "enabled": 0
@@ -469,7 +469,7 @@
     "len": 32,
     "enabled": 0
   },
-  "PipeReg[0]*PipeReg[1]*PrevPipeReg[0]*PrevPipeReg[1]": {
+  "PipeReg1*PipeReg2*PrevPipeReg1*PrevPipeReg2": {
     "type": 0,
     "len": 128,
     "enabled": 0

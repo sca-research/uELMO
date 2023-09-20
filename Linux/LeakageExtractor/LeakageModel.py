@@ -250,9 +250,9 @@ def Generate_Leakage_Select(current):
 
     # 2 pipeline registers, nominal
     if MICROARCHITECTURAL:
-        # Pipeline Reg {1,2} -> PipeReg[{0,1}]
-        WriteLeakage("PipeReg[0]", current['D2E_reg1'][0])
-        WriteLeakage("PipeReg[1]", current['D2E_reg2'][0])
+        # Pipeline Reg {1,2} -> PipeReg{1,2}
+        WriteLeakage("PipeReg1", current['D2E_reg1'][0])
+        WriteLeakage("PipeReg2", current['D2E_reg2'][0])
         pass
 
     # pipeline data bus (i.e. D.9 and 10) whether comes from decoding reg ports, or
@@ -352,16 +352,16 @@ def Generate_Leakage_Transition(prev, current, header):
 
     # 2 pipeline registers, linear
     if MICROARCHITECTURAL and TRANSITION:
-        # Previous Pipeine Reg {1,2} -> PrevPipeReg[{0,1}]
-        WriteLeakage("PrevPipeReg[0]", prev['D2E_reg1'][0])
-        WriteLeakage("PrevPipeReg[1]", prev['D2E_reg2'][0])
+        # Previous Pipeine Reg {1,2} -> PrevPipeReg{1,2}
+        WriteLeakage("PrevPipeReg1", prev['D2E_reg1'][0])
+        WriteLeakage("PrevPipeReg2", prev['D2E_reg2'][0])
 
-        # Pipeline Reg {1,2} HD -> HD_PipeReg[{0,1}]
+        # Pipeline Reg {1,2} HD -> HD_PipeReg{1,2}
         temp = prev['D2E_reg1'][0] ^ current['D2E_reg1'][0]
-        WriteLeakage("HD_PrevPipeReg[0]", temp)
+        WriteLeakage("HD_PrevPipeReg1", temp)
 
         temp = prev['D2E_reg2'][0] ^ current['D2E_reg2'][0]
-        WriteLeakage("HD_PrevPipeReg[1]", temp)
+        WriteLeakage("HD_PrevPipeReg2", temp)
         pass
 
     # Decode
@@ -461,9 +461,9 @@ def Generate_Leakage_Interaction(prev, current):
             current['D2E_reg1'][0], current['D2E_reg2'][0], prev['D2E_reg1'][0], prev['D2E_reg2'][0])
 
         # Reg A * Reg B *prev_Reg A * prev_Reg B: Full
-        # Reg A * Reg B * Previous Reg A * Previous Reg B -> PipeReg[0]*PipeReg[1]*PrevPipeReg[0]*PrevPipeReg[1]
+        # Reg A * Reg B * Previous Reg A * Previous Reg B -> PipeReg1*PipeReg2*PrevPipeReg1*PrevPipeReg2
         WriteLeakage(
-            "PipeReg[0]*PipeReg[1]*PrevPipeReg[0]*PrevPipeReg[1]", combine)
+            "PipeReg1*PipeReg2*PrevPipeReg1*PrevPipeReg2", combine)
 
         pass
 
