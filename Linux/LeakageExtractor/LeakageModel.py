@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import sys
 import json
+import base64
 
 import smurf
 
@@ -24,11 +25,12 @@ sol = json.load(open('uelmosol.json', 'r'))
 # Smurf Encoding dictionary for Symbols.
 symdict = None
 
-# Default expanded expression.
-DEFAULT_EXPANDED_EXPR = "[EXPANDED_EXPRESSION]"
-
 # Leakage functions.
 LEAKAGE_FUNC = {0: 'Full', 1: 'Linear', 2: 'Transtion', 3: 'Interaction'}
+
+
+# Output file
+outfile = dict()
 
 
 # Print help message.
@@ -78,47 +80,50 @@ def ExpandExpr(op, *symids):
     return expr
 
 
+# Encode bytes into utf8 string using base85.
+def B2SEncode(data, dlen=None):
+    if type(data) is int:
+        data = data.to_bytes(dlen, 'little')
+        pass
+    encstr = base64.b85encode(data).decode('utf8')
+    return encstr
+
+
 # Write out leakage.
-def WriteLeakage(src, data, frame=None, expr=DEFAULT_EXPANDED_EXPR):
+def WriteLeakage(src, data, frame=None, expr=None):
     global sol, symdict
     datatype = sol[src]['type']
     datalen = sol[src]['len']
     compname = sol[src]['compname']
     compidx = sol[src]['compidx']
 
-    if expr is not DEFAULT_EXPANDED_EXPR:  # Expression specified.
-        if expr == '':  # NULL expression specified.
-            print(
-                "{:s}({:d}) : [{:d}] {} *NO_SYMBOL".format(src, datatype, datalen, data))
-            pass
-
-        else:  # Trivial expression specified.
-            print("{:s}({:d}) : [{:d}] {} *{:s}".format(src,
-                  datatype, datalen, data, expr))
-            pass
-
-    else:
+    if expr is None:  # Expression not specified.
         # Use default expression.
-        if frame is None or compname == 'NULL':  # Symbol not available.
-            print(
-                "{:s}({:d}) : [{:d}] {} *EXPRESSION_NOT_AVIALBLE".format(src, datatype, datalen, data))
+        # Default expression unavailble.
+        if frame is None or compname == 'NULL':
+            expr = "EXPRESSION_NOT_AVIALBLE"
             pass
-        else:
+
+        else:  # Symbol annotated in the trace.
             symid = frame.components[compname].symid[compidx]
             if symid == smurf.SYM_ID_NULL:  # Symbol ID is NULL.
-                print(
-                    "{:s}({:d}) : [{:d}] {} *NO_SYMBOL".format(src, datatype, datalen, data))
+                expr = "NO_SYMBOL"
                 pass
-            else:
-
-                # Print symbolic expression.
-                print("{:s}({:d}) : [{:d}] {} *{:s}({:s})".format(src, datatype, datalen, data,
-                                                                  LEAKAGE_FUNC[datatype], SymToStr(symid)))
+            else:  # Symbol annotated in uELMO.
+                expr = "{:s}({:s})".format(
+                    LEAKAGE_FUNC[datatype], SymToStr(symid))
                 pass
             pass
         pass
+    elif expr == '':  # NULL expression.
+        expr = "NO_SYMBOL"
+        pass
 
-    return
+    print("{:s}({:d}) : [{:d}] {} *{:s}".format(src,
+          datatype, datalen, data, expr))
+    datablob = {'val': B2SEncode(data, datalen), 'sym': expr}
+
+    return (src, datablob)
 
 
 # Output type of a leakage.
