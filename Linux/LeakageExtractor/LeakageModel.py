@@ -80,12 +80,27 @@ def ExpandExpr(op, *symids):
     return expr
 
 
+# Trim a byte array.
+def TrimBytes(origin):
+    # Find the last non zero byte.
+    for i in reversed(range(len(origin))):
+        if 0 != origin[i]:
+            i += 1
+            break
+        pass
+
+    if i == 0:
+        return bytes([0])
+    else:
+        return origin[0: i]
+
+
 # Encode bytes into utf8 string using base85.
 def B2SEncode(data, dlen=None):
     if type(data) is int:
         data = data.to_bytes(dlen, 'little')
         pass
-    encstr = base64.b85encode(data).decode('utf8')
+    encstr = base64.b85encode(TrimBytes(data)).decode('utf8')
     return encstr
 
 
@@ -119,8 +134,8 @@ def WriteLeakage(src, data, frame=None, expr=None):
         expr = "NO_SYMBOL"
         pass
 
-    print("{:s}({:d}) : [{:d}] {} *{:s}".format(src,
-          datatype, datalen, data, expr))
+    print("{:s}({:d}) : [{:d}] {} *{:s}".format(
+        src, datatype, datalen, data, expr))
     datablob = {'val': B2SEncode(data, datalen), 'sym': expr}
 
     return (src, datablob)
