@@ -333,7 +333,6 @@ def Combine4(a, b, c, d):
 
 # print out the instruction discription for current cycle
 def Generate_Leakage_Instr(current):
-
     print("Pipeline:")
 
     print("E: {:s}\nD: {:s}\nM: {:s}".format(
@@ -349,22 +348,30 @@ def Generate_Leakage_Instr(current):
 # header==True--->write out the discription for header
 # header==False --->write out leakage state data
 def Generate_Leakage_Select(current):
+    global outfile, traceno, frameno
     if NON_ACTIVE_REG:  # reg[16]: nominal
         for i in range(16):
             # Reg i -> Reg[i]
-            WriteLeakage("Reg[{:d}]".format(i), current['reg'][i], current)
+            (src, rec) = WriteLeakage(
+                "Reg[{:d}]".format(i), current['reg'][i], current)
+            outfile[traceno][frameno][src] = rec
+
         pass
 
     # CPSR, linear
     if CPSR:
-        WriteLeakage("CPSR", current['cpsr'][0], current)
+        (src, rec) = WriteLeakage("CPSR", current['cpsr'][0], current)
+        outfile[traceno][frameno][src] = rec
         pass
 
     # 2 pipeline registers, nominal
     if MICROARCHITECTURAL:
         # Pipeline Reg {1,2} -> PipeReg{1,2}
-        WriteLeakage("PipeReg1", current['D2E_reg1'][0], current)
-        WriteLeakage("PipeReg2", current['D2E_reg2'][0], current)
+        (src, rec) = WriteLeakage("PipeReg1", current['D2E_reg1'][0], current)
+        outfile[traceno][frameno][src] = rec
+        (src, rec) = WriteLeakage("PipeReg2", current['D2E_reg2'][0], current)
+        outfile[traceno][frameno][src] = rec
+
         pass
 
     # pipeline data bus (i.e. D.9 and 10) whether comes from decoding reg ports, or
@@ -377,46 +384,59 @@ def Generate_Leakage_Select(current):
     if MICROARCHITECTURAL and DECODE_PORT:
         for i in range(3):
             # Decoding port i -> DecodePort[i]
-            WriteLeakage("DecodePort[{:d}]".format(
+            (src, rec) = WriteLeakage("DecodePort[{:d}]".format(
                 i), current['Decode_port_data'][i], current)
+            outfile[traceno][frameno][src] = rec
         pass
 
     # Glitchy decoding register access, linear
     if MICROARCHITECTURAL and DECODE_PORT and GLITCHY_DECODE:
         for i in range(3):
             # Glitchy decoding port i -> GlitchyDecodePort[i]
-            WriteLeakage("GlitchyDecodePort[{:d}]".format(i),
-                         current['glitchy_Decode_port_data'][i], current)
+            (src, rec) = WriteLeakage("GlitchyDecodePort[{:d}]".format(i),
+                                      current['glitchy_Decode_port_data'][i], current)
+            outfile[traceno][frameno][src] = rec
         pass
 
     # Execute
     # Only ALU output, other captured by decode (pipeline register) or interaction (combinatorial)
     # ALU output, nominal
     # ALU output -> ALU_output
-    WriteLeakage("ALU_output", current['Execute_ALU_result'][0], current)
+    (src, rec) = WriteLeakage("ALU_output",
+                              current['Execute_ALU_result'][0], current)
+    outfile[traceno][frameno][src] = rec
 
     # Memory subsystem
     if NON_ACTIVE_MEM or (current['Read_valid'][0] == True) or (current['Write_valid'][0] == True):
         # Memory address, nomial
         # Memory address -> MemAddr
-        WriteLeakage("MemAddr", current['Memory_addr'][0], current)
+        (src, rec) = WriteLeakage("MemAddr",
+                                  current['Memory_addr'][0], current)
+        outfile[traceno][frameno][src] = rec
 
         # Memory data, nomial
         # Memory data -> MemData
-        WriteLeakage("MemData", current['Memory_data'][0], current)
+        (src, rec) = WriteLeakage("MemData",
+                                  current['Memory_data'][0], current)
+        outfile[traceno][frameno][src] = rec
 
         # Memory write buffer, nomial
         # Memory write buffer -> MemWrBuf
-        WriteLeakage("MemWrBuf", current['Memory_writebuf'][0], current)
+        (src, rec) = WriteLeakage("MemWrBuf",
+                                  current['Memory_writebuf'][0], current)
+        outfile[traceno][frameno][src] = rec
 
         # Memory write buffer delayed, nomial
         # Memory write buffer delayed -> MemWrBufDelayed
-        WriteLeakage("MemWrBufDelayed",
-                     current['Memory_writebuf_delayed'][0], current)
+        (src, rec) = WriteLeakage("MemWrBufDelayed",
+                                  current['Memory_writebuf_delayed'][0], current)
+        outfile[traceno][frameno][src] = rec
 
         # Memory read buffer, nomial
         # Memory read buffer -> MemRdBuf
-        WriteLeakage("MemRdBuf", current['Memory_readbuf'][0], current)
+        (src, rec) = WriteLeakage("MemRdBuf",
+                                  current['Memory_readbuf'][0], current)
+        outfile[traceno][frameno][src] = rec
         pass
 
     return
@@ -438,7 +458,8 @@ def Generate_Leakage_Transition(prev, current, header):
 
             expr = ExpandExpr(LEAKAGE_FUNC[2], current.components['reg'].symid[i],
                               current.components['reg'].symid[i ^ 0x1])
-            WriteLeakage(src, temp, expr=expr)
+            (src, rec) = WriteLeakage(src, temp, expr=expr)
+            outfile[traceno][frameno][src] = rec
 
             i += 2
             pass
@@ -448,7 +469,9 @@ def Generate_Leakage_Transition(prev, current, header):
     if TRANSITION:  # reg[16]: linear
         for i in range(13):  # no PC, LR or SP
             # Previous Reg i -> PrevReg[i]
-            WriteLeakage("PrevReg[{:d}]".format(i), prev['reg'][i], prev)
+            (src, rec) = WriteLeakage(
+                "PrevReg[{:d}]".format(i), prev['reg'][i], prev)
+            outfile[traceno][frameno][src] = rec
             pass
 
         for i in range(13):
@@ -457,38 +480,46 @@ def Generate_Leakage_Transition(prev, current, header):
                 LEAKAGE_FUNC[2], prev.components['reg'].symid[i], current.components['reg'].symid[i])
 
             # Reg i HD -> HD_Reg[i]
-            WriteLeakage("HD_Reg[{:d}]".format(i), temp, expr=expr)
+            (src, rec) = WriteLeakage(
+                "HD_Reg[{:d}]".format(i), temp, expr=expr)
+            outfile[traceno][frameno][src] = rec
             pass
         pass
 
     if CPSR and TRANSITION:
         #CPSR, linear
         # Previous CPSR -> PrevCPSR
-        WriteLeakage("PrevCPSR", prev['cpsr'][0], prev)
+        (src, rec) = WriteLeakage("PrevCPSR", prev['cpsr'][0], prev)
+        outfile[traceno][frameno][src] = rec
 
         # CPSR HD -> HD_CPSR
         temp = prev['cpsr'][0] ^ current['cpsr'][0]
         expr = ExpandExpr(
             LEAKAGE_FUNC[2], prev.components['cpsr'].symid[0], current.components['cpsr'].symid[0])
-        WriteLeakage("HD_CPSR", temp, expr=expr)
+        (src, rec) = WriteLeakage("HD_CPSR", temp, expr=expr)
+        outfile[traceno][frameno][src] = rec
         pass
 
     # 2 pipeline registers, linear
     if MICROARCHITECTURAL and TRANSITION:
         # Previous Pipeine Reg {1,2} -> PrevPipeReg{1,2}
-        WriteLeakage("PrevPipeReg1", prev['D2E_reg1'][0], prev)
-        WriteLeakage("PrevPipeReg2", prev['D2E_reg2'][0], prev)
+        (src, rec) = WriteLeakage("PrevPipeReg1", prev['D2E_reg1'][0], prev)
+        outfile[traceno][frameno][src] = rec
+        (src, rec) = WriteLeakage("PrevPipeReg2", prev['D2E_reg2'][0], prev)
+        outfile[traceno][frameno][src] = rec
 
         # Pipeline Reg {1,2} HD -> HD_PipeReg{1,2}
         temp = prev['D2E_reg1'][0] ^ current['D2E_reg1'][0]
         expr = ExpandExpr(
             LEAKAGE_FUNC[2], prev.components['D2E_reg1'].symid[0], current.components['D2E_reg1'].symid[0])
-        WriteLeakage("HD_PipeReg1", temp, expr=expr)
+        (src, rec) = WriteLeakage("HD_PipeReg1", temp, expr=expr)
+        outfile[traceno][frameno][src] = rec
 
         temp = prev['D2E_reg2'][0] ^ current['D2E_reg2'][0]
         expr = ExpandExpr(
             LEAKAGE_FUNC[2], prev.components['D2E_reg2'].symid[0], current.components['D2E_reg2'].symid[0])
-        WriteLeakage("HD_PipeReg2", temp, expr=expr)
+        (src, rec) = WriteLeakage("HD_PipeReg2", temp, expr=expr)
+        outfile[traceno][frameno][src] = rec
         pass
 
     # Decode
@@ -496,14 +527,17 @@ def Generate_Leakage_Transition(prev, current, header):
     if MICROARCHITECTURAL and DECODE_PORT and TRANSITION:
         for i in range(3):
             # Previous Decodeing port i -> PrevDecodePort[i]
-            WriteLeakage("PrevDecodePort[{:d}]".format(i),
-                         prev['Decode_port_data'][i], prev)
+            (src, rec) = WriteLeakage("PrevDecodePort[{:d}]".format(i),
+                                      prev['Decode_port_data'][i], prev)
+            outfile[traceno][frameno][src] = rec
 
             # Decoding port i HD -> HD_DecodePort[i]
             temp = prev['Decode_port_data'][i] ^ current['Decode_port_data'][i]
             expr = ExpandExpr(LEAKAGE_FUNC[2], prev.components['Decode_port_data'].symid[i],
                               current.components['Decode_port_data'].symid[i])
-            WriteLeakage("HD_DecodePort[{:d}]".format(i), temp, expr=expr)
+            (src, rec) = WriteLeakage(
+                "HD_DecodePort[{:d}]".format(i), temp, expr=expr)
+            outfile[traceno][frameno][src] = rec
             pass
         pass
 
@@ -514,15 +548,17 @@ def Generate_Leakage_Transition(prev, current, header):
             temp = current['glitchy_Decode_port_data'][i] ^ current['Decode_port_data'][i]
             expr = ExpandExpr(LEAKAGE_FUNC[2], current.components['glitchy_Decode_port_data'].symid[i],
                               current.components['Decode_port_data'].symid[i])
-            WriteLeakage("GlitchyDecodePort[{:d}]^DecodePort{:d}".format(i, i),
-                         temp, expr=expr)
+            (src, rec) = WriteLeakage("GlitchyDecodePort[{:d}]^DecodePort{:d}".format(i, i),
+                                      temp, expr=expr)
+            outfile[traceno][frameno][src] = rec
 
             # Glitchy decoding port i XOR previous port i
             temp = current['glitchy_Decode_port_data'][i] ^ prev['Decode_port_data'][i]
             expr = ExpandExpr(
                 LEAKAGE_FUNC[2], current.components['glitchy_Decode_port_data'].symid[i], prev.components['Decode_port_data'].symid[i])
-            WriteLeakage("GlitchyDecodePort[{:d}]^PrevDecodePort[{:d}]".format(i, i),
-                         temp, expr=expr)
+            (src, rec) = WriteLeakage("GlitchyDecodePort[{:d}]^PrevDecodePort[{:d}]".format(i, i),
+                                      temp, expr=expr)
+            outfile[traceno][frameno][src] = rec
             pass
         pass
 
@@ -531,67 +567,82 @@ def Generate_Leakage_Transition(prev, current, header):
     # ALU output, nominal
     if TRANSITION:
         # Previous ALU output -> Prev_ALU_output
-        WriteLeakage("Prev_ALU_output", prev['Execute_ALU_result'][0], prev)
+        (src, rec) = WriteLeakage("Prev_ALU_output",
+                                  prev['Execute_ALU_result'][0], prev)
+        outfile[traceno][frameno][src] = rec
 
         # ALU output HD -> HD_ALU_output
         temp = prev['Execute_ALU_result'][0] ^ current['Execute_ALU_result'][0]
         expr = ExpandExpr(LEAKAGE_FUNC[2], prev.components['Execute_ALU_result'].symid[0],
                           current.components['Execute_ALU_result'].symid[0])
-        WriteLeakage("HD_ALU_output", temp, expr=expr)
+        (src, rec) = WriteLeakage("HD_ALU_output", temp, expr=expr)
+        outfile[traceno][frameno][src] = rec
         pass
 
     # Memory subsystem
     if TRANSITION and (NON_ACTIVE_MEM or (current['Read_valid'][0] == True) or (current['Write_valid'][0] == True) or (current['Write_valid_delayed'][0] == True)):
         # Memory address
         # Previous Memory address -> PrevMemAddr
-        WriteLeakage("PrevMemAddr", prev['Memory_addr'][0], prev)
+        (src, rec) = WriteLeakage("PrevMemAddr", prev['Memory_addr'][0], prev)
+        outfile[traceno][frameno][src] = rec
 
         # Memory address HD -> HD_MemAddr
         temp = prev['Memory_addr'][0] ^ current['Memory_addr'][0]
         expr = ExpandExpr(LEAKAGE_FUNC[2], prev.components['Memory_addr'].symid[0],
                           current.components['Memory_addr'].symid[0])
-        WriteLeakage("HD_MemAddr", temp, expr=expr)
+        (src, rec) = WriteLeakage("HD_MemAddr", temp, expr=expr)
+        outfile[traceno][frameno][src] = rec
 
         # Memory data, nomial
         # Previous Memory data -> PrevMemData
-        WriteLeakage("PrevMemData", prev['Memory_data'][0], prev)
+        (src, rec) = WriteLeakage("PrevMemData", prev['Memory_data'][0], prev)
+        outfile[traceno][frameno][src] = rec
 
         # Memory data HD -> HD_MemData
         temp = prev['Memory_data'][0] ^ current['Memory_data'][0]
         expr = ExpandExpr(LEAKAGE_FUNC[2], prev.components['Memory_data'].symid[0],
                           current.components['Memory_data'].symid[0])
-        WriteLeakage("HD_MemData", temp, expr=expr)
+        (src, rec) = WriteLeakage("HD_MemData", temp, expr=expr)
+        outfile[traceno][frameno][src] = rec
 
         # Memory write buffer, nomial
         # Previous Memory write buffer -> PrevMemWrBuf
-        WriteLeakage("PrevMemWrBuf", prev['Memory_writebuf'][0], prev)
+        (src, rec) = WriteLeakage(
+            "PrevMemWrBuf", prev['Memory_writebuf'][0], prev)
+        outfile[traceno][frameno][src] = rec
 
         # Memory write buffer HD -> HD_MemWrBuf
         temp = prev['Memory_writebuf'][0] ^ current['Memory_writebuf'][0]
         expr = ExpandExpr(LEAKAGE_FUNC[2], prev.components['Memory_writebuf'].symid[0],
                           current.components['Memory_writebuf'].symid[0])
-        WriteLeakage("HD_MemWrBuf", temp, expr=expr)
+        (src, rec) = WriteLeakage("HD_MemWrBuf", temp, expr=expr)
+        outfile[traceno][frameno][src] = rec
 
         # Memory write buffer delayed, nomial
         # Previous Memory Write buffer delayed -> PrevMemWrBufDelayed
-        WriteLeakage("PrevMemWrBufDelayed",
-                     prev['Memory_writebuf_delayed'][0], prev)
+        (src, rec) = WriteLeakage("PrevMemWrBufDelayed",
+                                  prev['Memory_writebuf_delayed'][0], prev)
+        outfile[traceno][frameno][src] = rec
 
         # Memory write buffer delayed HD -> HD_MemWrBufDelayed
         temp = prev['Memory_writebuf_delayed'][0] ^ current['Memory_writebuf_delayed'][0]
         expr = ExpandExpr(LEAKAGE_FUNC[2], prev.components['Memory_writebuf_delayed'].symid[0],
                           current.components['Memory_writebuf_delayed'].symid[0])
-        WriteLeakage("HD_MemWrBufDelayed", temp, expr=expr)
+        (src, rec) = WriteLeakage("HD_MemWrBufDelayed", temp, expr=expr)
+        outfile[traceno][frameno][src] = rec
 
         # Memory read buffer, nomial
         # Previous Memory read buffer -> PrevMemRdBuf
-        WriteLeakage("PrevMemRdBuf", prev['Memory_readbuf'][0], prev)
+        (src, rec) = WriteLeakage(
+            "PrevMemRdBuf", prev['Memory_readbuf'][0], prev)
+        outfile[traceno][frameno][src] = rec
 
         # Memory read buffer HD -> HD_MemRdBuf
         temp = current['Memory_readbuf'][0] ^ prev['Memory_readbuf'][0]
         expr = ExpandExpr(LEAKAGE_FUNC[2], prev.components['Memory_readbuf'].symid[0],
                           current.components['Memory_readbuf'].symid[0])
-        WriteLeakage("HD_MemRdBuf", temp, expr=expr)
+        (src, rec) = WriteLeakage("HD_MemRdBuf", temp, expr=expr)
+        outfile[traceno][frameno][src] = rec
         pass
 
     return
@@ -610,16 +661,27 @@ def Generate_Leakage_Interaction(prev, current):
         # Reg A * Reg B * Previous Reg A * Previous Reg B -> PipeReg1*PipeReg2*PrevPipeReg1*PrevPipeReg2
         expr = ExpandExpr(LEAKAGE_FUNC[3], current.components['D2E_reg1'].symid[0], current.components['D2E_reg2'].symid[0],
                           prev.components['D2E_reg1'].symid[0], prev.components['D2E_reg2'].symid[0])
-        WriteLeakage("PipeReg1*PipeReg2*PrevPipeReg1*PrevPipeReg2",
-                     combine, expr=expr)
-
+        (src, rec) = WriteLeakage("PipeReg1*PipeReg2*PrevPipeReg1*PrevPipeReg2",
+                                  combine, expr=expr)
+        outfile[traceno][frameno][src] = rec
         pass
 
     return
 
 
 def TestExtractorBody(frame):
+    global outfile, traceno, frameno
     print('FrameNo: {}'.format(frame[1]['FrameNo'][0]))
+
+    # Update traceno and frameno
+    traceno = frame[1]["TraceNo"][0]
+    frameno = frame[1]["FrameNo"][0]
+
+    if traceno not in outfile:
+        outfile[traceno] = dict()
+        pass
+
+    outfile[traceno][frameno] = dict()
 
     if frame[1]['core_valid'][0]:
         header = False
@@ -632,6 +694,7 @@ def TestExtractorBody(frame):
     else:
         print("Core invalid.")
         pass
+    return
 
 
 def main(argc, argv):
@@ -664,6 +727,10 @@ def main(argc, argv):
     # TODO: First Frame skipped with windowsize of 2.
     # Data
     trace.Extract(TestExtractorBody, 2)
+    #print(json.dumps(outfile, indent=2))
+
+    # Save extraced leakage as a json file.
+    json.dump(outfile, open('output.ltc.json', 'w'), indent=2)
 
     return 0
 
