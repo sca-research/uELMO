@@ -727,10 +727,11 @@ def main(argc, argv):
     # TODO: First Frame skipped with windowsize of 2.
     # Data
     trace.Extract(TestExtractorBody, 2)
-    #print(json.dumps(outfile, indent=2))
 
     # Save extraced leakage as a json file.
-    json.dump(outfile, open('output.ltc.json', 'w'), indent=2)
+    outfilename = "{:s}.lkg.json".format(testtrace)
+    json.dump(outfile, open(outfilename, 'w'), indent=2)
+    print("#Extracted leakage saved as: {:s}".format(outfilename))
 
     return 0
 
