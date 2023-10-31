@@ -63,7 +63,7 @@ movs r4,#0x20       #77
 @@$ src r4 32
 
 asrs r0,r4          #78
-@@$ dst r0 -a>>32
+@@$ dst r0 -a0>>32
 @@$ src r5 b0
 
 ands r0,r5          #80
