@@ -51,7 +51,7 @@ adds r0,r0,r1       #70
 @@$ src r0 s+256
 
 ldrb r1,[r4,r0]     #71
-@@$ dst r0 a0b0
+@@$ dst r0 a0*b0
 
 stall by LDR
 
