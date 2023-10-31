@@ -26,7 +26,7 @@ sol = json.load(open('uelmosol.json', 'r'))
 symdict = None
 
 # Leakage functions.
-LEAKAGE_FUNC = {0: 'Full', 1: 'Linear', 2: 'Transtion', 3: 'Interaction'}
+LEAKAGE_FUNC = {0: 'Full', 1: 'Linear', 2: 'Transition', 3: 'Interaction'}
 
 
 # Output file
