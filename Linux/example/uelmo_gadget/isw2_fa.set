@@ -20,7 +20,7 @@ ldrb r7,[r1,#0x4]   #50
 @@$ src r2 rnd
 
 ldrb r2,[r2,#0x0]   #51
-@@$ dst r2 rnd0
+@@$ dst r2 rnd
 @@$ src r4 &table
 @@$ src r5 b0
 
