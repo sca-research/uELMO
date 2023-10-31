@@ -5,6 +5,7 @@ import smurf
 uelmocore = "uelmo.json"
 tracefile = None
 VERBOSE = False
+SYM_ENABLED = False
 
 
 def PrintComponent(comp):
@@ -41,7 +42,7 @@ def PrintComponent(comp):
                 if i != len(comp.val) - 1:
                     print(',', end='')
         else:
-            raise("Unknown Component type")
+            raise ("Unknown Component type")
         print("]", end='')
         pass
 
@@ -60,6 +61,10 @@ def main(argc, argv):
         pass
 
     core = smurf.Core.Load(uelmocore)
+    if core.version >= 2:
+        SYM_ENABLED = True
+        pass
+
     st = smurf.Trace(core)
     st.Open(tracefile)
     count = 0
