@@ -38,12 +38,12 @@ stall by LDR
 
 adds r0,r0,r1       #65
 @@$ dst r0 s
-@@$ src r11 C
+@@$ src r11 32
 
 mov r1,r11          #68
-@@$ dst r1 C
+@@$ dst r1 256
 @@$ src r0 s
-@@$ src r1 C
+@@$ src r1 256
 
 adds r0,r0,r1       #70
 @@$ dst r0 s+256
@@ -59,8 +59,8 @@ negs r0,r6          #74
 @@$ dst r0 -a0
 
 movs r4,#0x20       #77
-@@$ dst r4 C
-@@$ src r4 C
+@@$ dst r4 32
+@@$ src r4 32
 
 asrs r0,r4          #78
 @@$ dst r0 -a>>32
@@ -72,7 +72,7 @@ ands r0,r5          #80
 
 negs r0,r0          #81
 @@$ dst r0 -b0&(-a0>>32)
-@@$ src r4 C
+@@$ src r4 32
 
 asrs r0,r4          #84
 @@$ dst r0 (-b0&(-a0>>32))>>32
