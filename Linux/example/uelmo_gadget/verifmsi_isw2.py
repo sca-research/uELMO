@@ -107,6 +107,8 @@ withGlitches = True
 print(checkSecurity(order, withGlitches, 'ni', exp[0x2A]))
 '''
 
+# Trasitional TPS security.
+print("\n\nTransitions")
 trs = list()
 trs += [(b1) + (na1 >> 32)]
 trs += [(a1*b0) + (a1*b1)]
@@ -285,8 +287,6 @@ trs += [(rnd) + (a0*b0)]
 trs += [(C32) + (na1)]
 trs += [(s+C256) + (s)]
 
-# Trasitional TPS security.
-print("\n\nTransitions")
 for i in range((len(trs))):
     res = checkTpsVal(trs[i])
     if res:
@@ -294,5 +294,42 @@ for i in range((len(trs))):
         pass
     else:
         print('{:02d}: {}\n is TPS insecure'.format(i, trs[i]))
+        pass
+    pass
+
+# Interaction leakages.
+print('\n\nInteraction')
+itl = list()
+itl += [(na1) + (na1 >> 32) + (na1) + (b0)]
+itl += [(s+C256) + (nb1 & (na1 >> 32)) + (b1 & (na1 >> 32)) + (C32)]
+itl += [(b1 & (na0 >> 32)) + (C32) + (C32) + (na0 >> 32)]
+itl += [(a1*b1) + (a1*b1) + ((nb1 & (na1 >> 32)) >> 32) + (a1*b0)]
+itl += [(b1 & (na1 >> 32)) + (C32) + (na1) + (na1 >> 32)]
+itl += [(b0 & (na1 >> 32)) + (C32) + (na1) + (na1 >> 32)]
+itl += [(C32) + (na0 >> 32) + (C32) + (b0)]
+itl += [((nb1 & (na1 >> 32)) >> 32) + (a1*b0) + (s+C256) + (nb1 & (na1 >> 32))]
+itl += [(s+C256) + (nb0 & (na0 >> 32)) + (b0 & (na0 >> 32)) + (C32)]
+itl += [(s+C256) + (nb0 & (na0 >> 32)) + (s+C256) + (nb0 & (na0 >> 32))]
+itl += [(b0 & (na0 >> 32)) + (C32) + (C32) + (na0 >> 32)]
+itl += [((nb0 & (na1 >> 32)) >> 32) + (a0*b1) + (nb0 & (na1 >> 32)) + (s+C256)]
+itl += [(C32) + (na0 >> 32) + (C32) + (b1)]
+itl += [(na1) + (na1 >> 32) + (na1) + (b1)]
+itl += [(logb0) + (logb0) + (logb0) + (logb0)]
+itl += [(loga1) + (loga1) + (loga1) + (loga1)]
+itl += [(loga0) + (loga0) + (loga0) + (loga0)]
+itl += [(nb1 & (na0 >> 32)) + (s+C256) + (b1 & (na0 >> 32)) + (C32)]
+itl += [(s) + (loga1) + (s) + (loga1)]
+itl += [((nb0 & (na0 >> 32)) >> 32) + (rnd) + (s+C256) + (nb0 & (na0 >> 32))]
+itl += [(s+C256) + (nb1 & (na1 >> 32)) + (s+C256) + (nb1 & (na1 >> 32))]
+itl += [(nb0 & (na1 >> 32)) + (s+C256) + (b0 & (na1 >> 32)) + (C32)]
+itl += [(rnd) + ((nb1 & (na0 >> 32)) >> 32) + (nb1 & (na0 >> 32)) + (s+C256)]
+
+for i in range((len(itl))):
+    res = checkTpsVal(itl[i])
+    if res:
+        print('{:02d}: {}\n is TPS secure'.format(i, itl[i]))
+        pass
+    else:
+        print('{:02d}: {}\n is TPS insecure'.format(i, itl[i]))
         pass
     pass
