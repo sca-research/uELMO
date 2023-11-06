@@ -1,7 +1,7 @@
 import re
 
 # Files of Transition lines from printlkg.py.
-f = open('intlkg.log', 'r')
+f = open('../intlkg.log', 'r')
 
 l = set(f.readlines())
 
@@ -45,6 +45,6 @@ for i in l:
     # Parse arguments.
     (a1, a2, a3, a4) = params[2:6]
 
-    print("itl += [({}) + ({}) + ({}) + ({})]".format(a1, a2, a3, a4))
+    print("itl += [Concat(({}), ({}), ({}), ({}))]".format(a1, a2, a3, a4))
 
     pass

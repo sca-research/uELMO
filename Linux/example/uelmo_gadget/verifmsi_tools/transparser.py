@@ -1,7 +1,7 @@
 import re
 
 # Files of Transition lines from printlkg.py.
-f = open('translkg.log', 'r')
+f = open('../translkg.log', 'r')
 
 l = set(f.readlines())
 
@@ -24,7 +24,8 @@ def SyntaxParser(line):
 for i in l:
     i = SyntaxParser(i)
 
-    [t, x, y, e] = args.split(i)
+    params = args.split(i)
+    (x, y) = params[2:4]
 
     if x.startswith('&') or y.startswith('&') or 'NULL' in [x, y] or x == y:
         continue
@@ -38,6 +39,6 @@ for i in l:
         y = 'C32'
         pass
 
-    print('trs += [({}) + ({})]'.format(x, y))
+    print('trs += [Concat(({}), ({}))]'.format(x, y))
 
     pass
