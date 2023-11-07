@@ -39,6 +39,7 @@ for i in l:
         y = 'C32'
         pass
 
-    print('trs += [Concat(({}), ({}))]'.format(x, y))
+    #print('trs += [Concat(({}), ({}))]'.format(x, y))
+    print('trs += [({}) + ({})]'.format(x, y))
 
     pass
