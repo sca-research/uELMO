@@ -45,6 +45,7 @@ for i in l:
     # Parse arguments.
     (a1, a2, a3, a4) = params[2:6]
 
-    print("itl += [Concat(({}), ({}), ({}), ({}))]".format(a1, a2, a3, a4))
+    #print("itl += [Concat(({}), ({}), ({}), ({}))]".format(a1, a2, a3, a4))
+    print("itl += [({}) * ({}) * ({}) * ({})]".format(a1, a2, a3, a4))
 
     pass
