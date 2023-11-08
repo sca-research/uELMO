@@ -91,11 +91,11 @@ print("Expressions:")
 for i in exp:
     (res, usedbitexp, time) = checkTpsVal(exp[i])
     if res:
-        print('TPS Secure: [{:02d}] {}: '.format(i, exp[i]))
+        print("TPS Secure:\t [{:02d}] {}".format(i, exp[i]))
         pass
     else:
-        print('TPS Insecure: [{:02d}] {}: '.format(i, exp[i]))
-        print('!!!!!LEAKAGE FOUND!!!!!')
+        print("TPS Insecure:\t [{:02d}] {}".format(i, exp[i]))
+        print("!!!!!LEAKAGE FOUND!!!!!")
         pass
     pass
 
@@ -108,7 +108,7 @@ print(checkSecurity(order, withGlitches, 'ni', exp[0x2A]))
 '''
 
 # Trasitional TPS security.
-print("\n\nTransitions")
+print("\nTransitions")
 trs = list()
 trs += [(logb1) + (loga1)]
 trs += [(b0 & (na0 >> 32)) + (s+C256)]
@@ -407,16 +407,16 @@ trs += [(na1) + (na1 >> 32)]
 for i in range((len(trs))):
     (res, usedbitexp, time) = checkTpsVal(trs[i])
     if res:
-        print('TPS Secure: [{:02d}] {}: '.format(i, trs[i]))
+        print("TPS Secure:\t [{:02d}] {}".format(i, trs[i]))
         pass
     else:
-        print('TPS Insecure: [{:02d}] {}: '.format(i, trs[i]))
+        print("TPS Insecure:\t [{:02d}] {}".format(i, trs[i]))
         print('!!!!!LEAKAGE FOUND!!!!!')
         pass
 
 
 # Interaction leakages.
-print('\n\nInteraction')
+print('\nInteraction')
 itl = list()
 itl += [((nb0 & (na1 >> 32)) >> 32) * (a0*b1) * (nb0 & (na1 >> 32)) * (s+C256)]
 itl += [(nb0 & (na1 >> 32)) * (s+C256) * (b0 & (na1 >> 32)) * (C32)]
@@ -445,9 +445,9 @@ itl += [(s+C256) * (nb1 & (na1 >> 32)) * (b1 & (na1 >> 32)) * (C32)]
 for i in range((len(itl))):
     (res, usedbitexp, time) = checkTpsVal(itl[i])
     if res:
-        print('{:02d}: {}: TPS secure'.format(i, itl[i]))
+        print("TPS Secure:\t [{:02d}] {}".format(i, itl[i]))
         pass
     else:
-        print('{:02d}: {}: TPS insecure'.format(i, itl[i]))
+        print("TPS Insecure:\t [{:02d}] {}".format(i, itl[i]))
+        print('!!!!!LEAKAGE FOUND!!!!!')
         pass
-    pass
