@@ -11,12 +11,23 @@ a0, a1 = getRealShares(a, 2)
 b0, b1 = getRealShares(b, 2)
 '''
 
-
+'''
 # Using Secret-Mask syntax.
 a0 = symbol('a0', 'S', 32)
 a1 = symbol('a1', 'S', 32)
 b0 = symbol('b0', 'S', 32)
 b1 = symbol('b1', 'S', 32)
+'''
+
+# '''
+# Manual sharing.
+a = symbol('a', 'S', 32)  # Secret input. Not in FAET.
+b = symbol('b', 'S', 32)  # Secret input. Not in FAET.
+a0 = symbol('a0', 'M', 32)  # Mask.
+b0 = symbol('b0', 'M', 32)  # Mask.
+a1 = a ^ a0
+b1 = b ^ b0
+# '''
 
 
 # Randomness
@@ -78,12 +89,13 @@ exp[0x2A] = exp[0x25] + (a1 * b1)  # (((a0*b1)+rnd)+(a1*b0))+(a1*b1)
 # For TPS security.
 print("Expressions:")
 for i in exp:
-    res = checkTpsVal(exp[i])
+    (res, usedbitexp, time) = checkTpsVal(exp[i])
     if res:
-        print('{:02d}: {}\n is TPS secure'.format(i, exp[i]))
+        print('TPS Secure: [{:02d}] {}: '.format(i, exp[i]))
         pass
     else:
-        print('{:02d}: {}\n is TPS insecure'.format(i, exp[i]))
+        print('TPS Insecure: [{:02d}] {}: '.format(i, exp[i]))
+        print('!!!!!LEAKAGE FOUND!!!!!')
         pass
     pass
 
@@ -393,14 +405,14 @@ trs += [(C32) + (b0 & (na0 >> 32))]
 trs += [(b0) + (s)]
 trs += [(na1) + (na1 >> 32)]
 for i in range((len(trs))):
-    res = checkTpsVal(trs[i])
+    (res, usedbitexp, time) = checkTpsVal(trs[i])
     if res:
-        print('{:02d}: {}\n is TPS secure'.format(i, trs[i]))
+        print('TPS Secure: [{:02d}] {}: '.format(i, trs[i]))
         pass
     else:
-        print('{:02d}: {}\n is TPS insecure'.format(i, trs[i]))
+        print('TPS Insecure: [{:02d}] {}: '.format(i, trs[i]))
+        print('!!!!!LEAKAGE FOUND!!!!!')
         pass
-    pass
 
 
 # Interaction leakages.
@@ -431,11 +443,11 @@ itl += [(loga0) * (loga0) * (loga0) * (loga0)]
 itl += [(s+C256) * (nb1 & (na1 >> 32)) * (b1 & (na1 >> 32)) * (C32)]
 
 for i in range((len(itl))):
-    res = checkTpsVal(itl[i])
+    (res, usedbitexp, time) = checkTpsVal(itl[i])
     if res:
-        print('{:02d}: {}\n is TPS secure'.format(i, itl[i]))
+        print('{:02d}: {}: TPS secure'.format(i, itl[i]))
         pass
     else:
-        print('{:02d}: {}\n is TPS insecure'.format(i, itl[i]))
+        print('{:02d}: {}: TPS insecure'.format(i, itl[i]))
         pass
     pass
