@@ -11,6 +11,9 @@
 //Script used in this simulation.
 SmurfScript *script = NULL;
 
+//Flag for first block.
+bool firstcmdblock = true;
+
 //Initialise the script file by path ${scriptpath}.
 //Return values: 
 //  0   : If a script is intialised.
@@ -131,6 +134,12 @@ void UlangSed(int linenumber, const char *line, void *arg)
     int uargc = 0;
     char *uargv[ULANG_MAX_ARGC] = { 0 };
 
+    //Ignore if not enabled.
+    if(!SYM_ENABLED)
+    {
+        return;
+    }
+
     //Check if the line is a Ulang command.
     //Ignore all non command lines.
     if(IsUlangCmd(line))
@@ -180,7 +189,29 @@ void UlangSed(int linenumber, const char *line, void *arg)
 //Read in an command block.
 int ReadNextCmdBlock()
 {
+    //Skip the first command block.
+    if(firstcmdblock)
+    {
+        if(verbose)
+        {
+            printf("#Skip the first command block.\n");
+        }
+        ProcessSib(script, NULL, NULL);
+        firstcmdblock = false;
+    }
+
+    if(verbose)
+    {
+        printf("#Frame %d:\n", frameno);
+    }
     ProcessSib(script, UlangSed, NULL);
+    return 0;
+}
+
+//Reset script cursor.
+int ResetScript()
+{
+    ResetCursor(script);
     return 0;
 }
 

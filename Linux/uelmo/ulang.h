@@ -20,6 +20,9 @@ typedef void (*UlangCmd)(int argc, char **argv);
 //The ULANG script.
 extern SmurfScript *script;
 
+//Flag for first block.
+extern bool firstcmdblock;
+
 //Initialise the script file by path ${scriptpath}.
 //Return values: 
 //  0   : If a script is intialised.
@@ -34,6 +37,9 @@ void UlangSed(int linenumber, const char *line, void *arg);
 
 //Read in the next command block.
 int ReadNextCmdBlock();
+
+//Reset script cursoe.
+int ResetScript();
 
 //ULANG callback manager. argc and argv are passed to the handler functions.
 void UlangCbManager(const char *op, int argc, char *argv[]);
