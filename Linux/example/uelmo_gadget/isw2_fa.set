@@ -217,7 +217,7 @@ asrs r0,r6              #164
 
 ands r0,r4              #166
 @@$ dst r0 a1*b0
-@@$ src r2 a0*b1
+@@$ src r2 a0*b1+rnd
 
 ors r0,r2               #170
 @@$ dst r0 ((a0*b1)+rnd)+(a1*b0)
