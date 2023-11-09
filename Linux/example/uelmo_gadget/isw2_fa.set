@@ -86,7 +86,7 @@ mov r4,r8           #90
 @@$ dst r4 &c
 @@$ src r2 rnd
 
-ors r1,r2           #91
+eors r1,r2           #91
 @@$ dst r1 c0
 @@$ src r4 &table
 
@@ -158,7 +158,7 @@ ands r0,r4          #129
 @@$ dst r0 a0*b1
 @@$ src r0 a0*b1
 
-ors r2,r0           #133
+eors r2,r0           #133
 @@$ dst r2 (a0*b1)+rnd
 @@$ src r1 &table
 @@$ src r3 a1
@@ -219,7 +219,7 @@ ands r0,r4              #166
 @@$ dst r0 a1*b0
 @@$ src r2 a0*b1+rnd
 
-ors r0,r2               #170
+eors r0,r2               #170
 @@$ dst r0 ((a0*b1)+rnd)+(a1*b0)
 @@$ src r1 &table
 @@$ src r3 a1
@@ -284,7 +284,7 @@ mov r1,r8               #205
 @@$ dst r1 &c
 @@$ src r0 ((a0*b1)+rnd)+(a1*b0)
 
-ors r4,r0               #208
+eors r4,r0               #208
 @@$ dst r4 (((a0*b1)+rnd)+(a1*b0))+(a1*b1)
 @@$ src r1 &table
 
