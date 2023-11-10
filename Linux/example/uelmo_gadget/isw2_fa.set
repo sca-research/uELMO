@@ -217,7 +217,7 @@ asrs r0,r6              #184
 
 ands r0,r4              #186
 @@$ dst r0 s11
-@@$ src r2 a0*b1+rnd
+@@$ src r2 (a0*b1)^rnd
 
 eors r0,r2               #190
 @@$ dst r0 ((a0*b1)^rnd)^(a1*b0)
@@ -282,7 +282,7 @@ ands r4,r5              #235
 
 mov r1,r8               #237
 @@$ dst r1 &c
-@@$ src r0 ((a0*b1)+rnd)+(a1*b0)
+@@$ src r0 ((a0*b1)^rnd)^(a1*b0)
 
 eors r4,r0               #240
 @@$ dst r4 (((a0*b1)^rnd)^(a1*b0))^(a1*b1)
