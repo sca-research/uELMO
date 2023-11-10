@@ -115,20 +115,20 @@ D2E_reg1_data : [ 32 ]
 D2E_reg2_data : [ logb0 ]
 Decode_port_data : [ logb0 32 - ]
 glitchy_Decode_port_data : [ logb0 logb0 b1 ]
-Execute_ALU_result : [ s ]
+Execute_ALU_result : [ s0 ]
 Memory_data : [ loga0 ]
 Memory_readbuf : [ loga0 ]
 ========================
 
 ======= FRAME 11 =======
 Core status : mov r1,r11
-reg : [ s 256 logb0 b1 &table b0 a0 rnd - - - 32 - - - - ]
+reg : [ s0 256 logb0 b1 &table b0 a0 rnd - - - 32 - - - - ]
 D2E_reg1 : [ loga0 ]
 D2E_reg2 : [ logb0 ]
-D2E_reg1_data : [ s ]
+D2E_reg1_data : [ s0 ]
 D2E_reg2_data : [ 256 ]
-Decode_port_data : [ s 256 s ]
-glitchy_Decode_port_data : [ s - b1 ]
+Decode_port_data : [ s0 256 s0 ]
+glitchy_Decode_port_data : [ s0 - b1 ]
 Execute_ALU_result : [ 256 ]
 Memory_data : [ loga0 ]
 Memory_readbuf : [ loga0 ]
@@ -136,75 +136,75 @@ Memory_readbuf : [ loga0 ]
 
 ======= FRAME 12 =======
 Core status : adds r0,r0,r1
-reg : [ s+256 256 logb0 b1 &table b0 a0 rnd - - - 32 - - - - ]
-D2E_reg1 : [ s ]
+reg : [ s1 256 logb0 b1 &table b0 a0 rnd - - - 32 - - - - ]
+D2E_reg1 : [ s0 ]
 D2E_reg2 : [ 256 ]
 D2E_reg1_data : [ &table ]
-D2E_reg2_data : [ s+256 ]
-Decode_port_data : [ 256 &table s+256 ]
-glitchy_Decode_port_data : [ 256 s+256 &table ]
-Execute_ALU_result : [ s+256 ]
+D2E_reg2_data : [ s1 ]
+Decode_port_data : [ 256 &table s1 ]
+glitchy_Decode_port_data : [ 256 s1 &table ]
+Execute_ALU_result : [ s1 ]
 Memory_data : [ loga0 ]
 Memory_readbuf : [ loga0 ]
 ========================
 
 ======= FRAME 13 =======
 Core status : ldrb r1,[r4,r0]
-reg : [ s+256 256 logb0 b1 &table b0 a0 rnd - - - 32 - - - - ]
+reg : [ s1 256 logb0 b1 &table b0 a0 rnd - - - 32 - - - - ]
 D2E_reg1 : [ &table ]
-D2E_reg2 : [ s+256 ]
+D2E_reg2 : [ s1 ]
 D2E_reg1_data : [ &table ]
 D2E_reg2_data : [ a0 ]
-Decode_port_data : [ s+256 a0 - ]
-glitchy_Decode_port_data : [ s+256 a0 256 ]
-Memory_data : [ a0*b0 ]
-Memory_readbuf : [ a0*b0 ]
+Decode_port_data : [ s1 a0 - ]
+glitchy_Decode_port_data : [ s1 a0 256 ]
+Memory_data : [ s2 ]
+Memory_readbuf : [ s2 ]
 ========================
 
 ======= FRAME 14 =======
 Core status : stall by LDR
-reg : [ s+256 256 logb0 b1 &table b0 a0 rnd - - - 32 - - - - ]
+reg : [ s1 256 logb0 b1 &table b0 a0 rnd - - - 32 - - - - ]
 D2E_reg1 : [ &table ]
 D2E_reg2 : [ a0 ]
 D2E_reg1_data : [ &table ]
 D2E_reg2_data : [ a0 ]
-Decode_port_data : [ s+256 a0 - ]
-glitchy_Decode_port_data : [ s+256 &table 256 ]
-Memory_data : [ a0*b0 ]
-Memory_readbuf : [ a0*b0 ]
+Decode_port_data : [ s1 a0 - ]
+glitchy_Decode_port_data : [ s1 &table 256 ]
+Memory_data : [ s2 ]
+Memory_readbuf : [ s2 ]
 ========================
 
 ======= FRAME 15 =======
 Core status : negs r0,r6
-reg : [ s+256 a0*b0 logb0 b1 &table b0 a0 rnd - - - 32 - - - - ]
+reg : [ s1 s2 logb0 b1 &table b0 a0 rnd - - - 32 - - - - ]
 D2E_reg1 : [ &table ]
 D2E_reg2 : [ a0 ]
 D2E_reg1_data : [ &table ]
 D2E_reg2_data : [ a0 ]
 Decode_port_data : [ &table - - ]
-glitchy_Decode_port_data : [ s+256 &table 256 ]
+glitchy_Decode_port_data : [ s1 &table 256 ]
 Execute_ALU_result : [ -a0 ]
-Memory_data : [ a0*b0 ]
-Memory_readbuf : [ a0*b0 ]
+Memory_data : [ s2 ]
+Memory_readbuf : [ s2 ]
 ========================
 
 ======= FRAME 16 =======
 Core status : movs r4,#0x20
-reg : [ -a0 a0*b0 logb0 b1 32 b0 a0 rnd - - - 32 - - - - ]
+reg : [ -a0 s2 logb0 b1 32 b0 a0 rnd - - - 32 - - - - ]
 D2E_reg1 : [ &table ]
 D2E_reg2 : [ a0 ]
 D2E_reg1_data : [ -a0 ]
 D2E_reg2_data : [ 32 ]
 Decode_port_data : [ -a0 32 - ]
-glitchy_Decode_port_data : [ a0*b0 &table 256 ]
+glitchy_Decode_port_data : [ s2 &table 256 ]
 Execute_ALU_result : [ 32 ]
-Memory_data : [ a0*b0 ]
-Memory_readbuf : [ a0*b0 ]
+Memory_data : [ s2 ]
+Memory_readbuf : [ s2 ]
 ========================
 
 ======= FRAME 17 =======
 Core status : asrs r0,r4
-reg : [ -a0 a0*b0 logb0 b1 32 b0 a0 rnd - - - 32 - - - - ]
+reg : [ -a0 s2 logb0 b1 32 b0 a0 rnd - - - 32 - - - - ]
 D2E_reg1 : [ -a0 ]
 D2E_reg2 : [ 32 ]
 D2E_reg1_data : [ -a0>>32 ]
@@ -212,13 +212,13 @@ D2E_reg2_data : [ b0 ]
 Decode_port_data : [ -a0 b0 - ]
 glitchy_Decode_port_data : [ -a0 b0 256 ]
 Execute_ALU_result : [ -a0>>32 ]
-Memory_data : [ a0*b0 ]
-Memory_readbuf : [ a0*b0 ]
+Memory_data : [ s2 ]
+Memory_readbuf : [ s2 ]
 ========================
 
 ======= FRAME 18 =======
 Core status : ands r0,r5
-reg : [ b0&(-a0>>32) a0*b0 logb0 b1 32 b0 a0 rnd - - - 32 - - - - ]
+reg : [ b0&(-a0>>32) s2 logb0 b1 32 b0 a0 rnd - - - 32 - - - - ]
 D2E_reg1 : [ -a0>>32 ]
 D2E_reg2 : [ b0 ]
 D2E_reg1_data : [ -a0>>32 ]
@@ -226,13 +226,13 @@ D2E_reg2_data : [ b0&(-a0>>32) ]
 Decode_port_data : [ b0&(-a0>>32) b0&(-a0>>32) - ]
 glitchy_Decode_port_data : [ b0&(-a0>>32) b0&(-a0>>32) 256 ]
 Execute_ALU_result : [ b0&(-a0>>32) ]
-Memory_data : [ a0*b0 ]
-Memory_readbuf : [ a0*b0 ]
+Memory_data : [ s2 ]
+Memory_readbuf : [ s2 ]
 ========================
 
 ======= FRAME 19 =======
 Core status : negs r0,r0
-reg : [ b0&(-a0>>32) a0*b0 logb0 b1 32 b0 a0 rnd - - - 32 - - - - ]
+reg : [ b0&(-a0>>32) s2 logb0 b1 32 b0 a0 rnd - - - 32 - - - - ]
 D2E_reg1 : [ -a0>>32 ]
 D2E_reg2 : [ b0&(-a0>>32) ]
 D2E_reg1_data : [ -b0&(-a0>>32) ]
@@ -240,50 +240,50 @@ D2E_reg2_data : [ 32 ]
 Decode_port_data : [ b0&(-a0>>32) 32 - ]
 glitchy_Decode_port_data : [ b0&(-a0>>32) 32 256 ]
 Execute_ALU_result : [ -b0&(-a0>>32) ]
-Memory_data : [ a0*b0 ]
-Memory_readbuf : [ a0*b0 ]
+Memory_data : [ s2 ]
+Memory_readbuf : [ s2 ]
 ========================
 
 ======= FRAME 20 =======
 Core status : asrs r0,r4
-reg : [ (-b0&(-a0>>32))>>32 a0*b0 logb0 b1 32 b0 a0 rnd - - - 32 - - - - ]
+reg : [ (-b0&(-a0>>32))>>32 s2 logb0 b1 32 b0 a0 rnd - - - 32 - - - - ]
 D2E_reg1 : [ -b0&(-a0>>32) ]
 D2E_reg2 : [ 32 ]
-D2E_reg1_data : [ a0*b0 ]
+D2E_reg1_data : [ s2 ]
 D2E_reg2_data : [ (-b0&(-a0>>32))>>32 ]
-Decode_port_data : [ a0*b0 (-b0&(-a0>>32))>>32 - ]
-glitchy_Decode_port_data : [ a0*b0 (-b0&(-a0>>32))>>32 256 ]
+Decode_port_data : [ s2 (-b0&(-a0>>32))>>32 - ]
+glitchy_Decode_port_data : [ s2 (-b0&(-a0>>32))>>32 256 ]
 Execute_ALU_result : [ (-b0&(-a0>>32))>>32 ]
-Memory_data : [ a0*b0 ]
-Memory_readbuf : [ a0*b0 ]
+Memory_data : [ s2 ]
+Memory_readbuf : [ s2 ]
 ========================
 
 ======= FRAME 21 =======
 Core status : ands r1,r0
-reg : [ (-b0&(-a0>>32))>>32 a0*b0 logb0 b1 32 b0 a0 rnd &c - - 32 - - - - ]
-D2E_reg1 : [ a0*b0 ]
+reg : [ (-b0&(-a0>>32))>>32 s2 logb0 b1 32 b0 a0 rnd &c - - 32 - - - - ]
+D2E_reg1 : [ s2 ]
 D2E_reg2 : [ (-b0&(-a0>>32))>>32 ]
 D2E_reg1_data : [ &c ]
 D2E_reg2_data : [ (-b0&(-a0>>32))>>32 ]
 Decode_port_data : [ 32 &c - ]
 glitchy_Decode_port_data : [ 32 (-b0&(-a0>>32))>>32 256 ]
 Execute_ALU_result : [ a0*b0 ]
-Memory_data : [ a0*b0 ]
-Memory_readbuf : [ a0*b0 ]
+Memory_data : [ s2 ]
+Memory_readbuf : [ s2 ]
 ========================
 
 ======= FRAME 22 =======
 Core status : mov r4,r8
 reg : [ (-b0&(-a0>>32))>>32 a0*b0 rnd b1 32 b0 a0 rnd &c - - 32 - - - - ]
-D2E_reg1 : [ a0*b0 ]
+D2E_reg1 : [ s2 ]
 D2E_reg2 : [ (-b0&(-a0>>32))>>32 ]
 D2E_reg1_data : [ a0*b0 ]
 D2E_reg2_data : [ rnd ]
 Decode_port_data : [ a0*b0 rnd - ]
 glitchy_Decode_port_data : [ a0*b0 - 256 ]
 Execute_ALU_result : [ &c ]
-Memory_data : [ a0*b0 ]
-Memory_readbuf : [ a0*b0 ]
+Memory_data : [ s2 ]
+Memory_readbuf : [ s2 ]
 ========================
 
 ======= FRAME 23 =======
@@ -296,8 +296,8 @@ D2E_reg2_data : [ c0 ]
 Decode_port_data : [ a0*b0 &table - ]
 glitchy_Decode_port_data : [ a0*b0 &table 256 ]
 Execute_ALU_result : [ c0 ]
-Memory_data : [ a0*b0 ]
-Memory_readbuf : [ a0*b0 ]
+Memory_data : [ s2 ]
+Memory_readbuf : [ s2 ]
 ========================
 
 ======= FRAME 24 =======
@@ -310,8 +310,8 @@ D2E_reg2_data : [ c0 ]
 Decode_port_data : [ c0 &table - ]
 glitchy_Decode_port_data : [ c0 c0 256 ]
 Execute_ALU_result : [ c0 ]
-Memory_data : [ a0*b0 ]
-Memory_readbuf : [ a0*b0 ]
+Memory_data : [ s2 ]
+Memory_readbuf : [ s2 ]
 ========================
 
 ======= FRAME 25 =======
@@ -324,8 +324,8 @@ D2E_reg2_data : [ a0 ]
 Decode_port_data : [ (-b0&(-a0>>32))>>32 &table a0 ]
 glitchy_Decode_port_data : [ &c &table 256 ]
 Execute_ALU_result : [ &table ]
-Memory_data : [ a0*b0 ]
-Memory_readbuf : [ a0*b0 ]
+Memory_data : [ s2 ]
+Memory_readbuf : [ s2 ]
 ========================
 
 ======= FRAME 26 =======
@@ -376,7 +376,7 @@ D2E_reg1_data : [ 256 ]
 D2E_reg2_data : [ logb1 ]
 Decode_port_data : [ logb1 256 - ]
 glitchy_Decode_port_data : [ logb1 &table b1 ]
-Execute_ALU_result : [ s ]
+Execute_ALU_result : [ s4 ]
 Memory_data : [ logb1 ]
 Memory_readbuf : [ logb1 ]
 ========================
@@ -401,71 +401,71 @@ reg : [ s+256 &table rnd b1 256 b0 a0 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ s ]
 D2E_reg2 : [ 256 ]
 D2E_reg1_data : [ &table ]
-D2E_reg2_data : [ s+256 ]
+D2E_reg2_data : [ s5 ]
 Decode_port_data : [ 256 &table s+256 ]
 glitchy_Decode_port_data : [ 256 s+256 &table ]
-Execute_ALU_result : [ s+256 ]
+Execute_ALU_result : [ s5 ]
 Memory_data : [ logb1 ]
 Memory_readbuf : [ logb1 ]
 ========================
 
 ======= FRAME 32 =======
 Core status : ldrb r4,[r1,r0]
-reg : [ s+256 &table rnd b1 256 b0 a0 b1 &c &table - 256 - - - - ]
+reg : [ s5 &table rnd b1 256 b0 a0 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ &table ]
-D2E_reg2 : [ s+256 ]
+D2E_reg2 : [ s5 ]
 D2E_reg1_data : [ &table ]
 D2E_reg2_data : [ a0 ]
-Decode_port_data : [ s+256 a0 - ]
-glitchy_Decode_port_data : [ s+256 a0 &table ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Decode_port_data : [ s5 a0 - ]
+glitchy_Decode_port_data : [ s5 a0 &table ]
+Memory_data : [ s6 ]
+Memory_readbuf : [ s6 ]
 ========================
 
 ======= FRAME 33 =======
 Core status : stall by LDR
-reg : [ s+256 &table rnd b1 256 b0 a0 b1 &c &table - 256 - - - - ]
+reg : [ s5 &table rnd b1 256 b0 a0 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ &table ]
 D2E_reg2 : [ a0 ]
 D2E_reg1_data : [ &table ]
 D2E_reg2_data : [ a0 ]
-Decode_port_data : [ s+256 a0 - ]
-glitchy_Decode_port_data : [ s+256 256 &table ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Decode_port_data : [ s5 a0 - ]
+glitchy_Decode_port_data : [ s5 256 &table ]
+Memory_data : [ s6 ]
+Memory_readbuf : [ s6 ]
 ========================
 
 ======= FRAME 34 =======
 Core status : negs r0,r6
-reg : [ s+256 &table rnd b1 s b0 a0 b1 &c &table - 256 - - - - ]
+reg : [ s5 &table rnd b1 s6 b0 a0 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ &table ]
 D2E_reg2 : [ a0 ]
 D2E_reg1_data : [ a0 ]
 D2E_reg2_data : [ a0 ]
 Decode_port_data : [ a0 - - ]
-glitchy_Decode_port_data : [ s+256 s &table ]
+glitchy_Decode_port_data : [ s5 s6 &table ]
 Execute_ALU_result : [ -a0 ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Memory_data : [ s6 ]
+Memory_readbuf : [ s6 ]
 ========================
 
 ======= FRAME 35 =======
 Core status : movs r6,#0x20
-reg : [ -a0 &table rnd b1 s b0 32 b1 &c &table - 256 - - - - ]
+reg : [ -a0 &table rnd b1 s6 b0 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ a0 ]
 D2E_reg2 : [ a0 ]
 D2E_reg1_data : [ -a0 ]
 D2E_reg2_data : [ 32 ]
 Decode_port_data : [ -a0 32 - ]
-glitchy_Decode_port_data : [ &table s &table ]
+glitchy_Decode_port_data : [ &table s6 &table ]
 Execute_ALU_result : [ 32 ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Memory_data : [ s6 ]
+Memory_readbuf : [ s6 ]
 ========================
 
 ======= FRAME 36 =======
 Core status : asrs r0,r6
-reg : [ -a0 &table rnd b1 s b0 32 b1 &c &table - 256 - - - - ]
+reg : [ -a0 &table rnd b1 s6 b0 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ -a0 ]
 D2E_reg2 : [ 32 ]
 D2E_reg1_data : [ -a0>>32 ]
@@ -473,13 +473,13 @@ D2E_reg2_data : [ b1 ]
 Decode_port_data : [ -a0 b1 - ]
 glitchy_Decode_port_data : [ -a0 b1 &table ]
 Execute_ALU_result : [ -a0>>32 ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Memory_data : [ s6 ]
+Memory_readbuf : [ s6 ]
 ========================
 
 ======= FRAME 37 =======
 Core status : ands r0,r7
-reg : [ b1&(-a0>>32) &table rnd b1 s b0 32 b1 &c &table - 256 - - - - ]
+reg : [ b1&(-a0>>32) &table rnd b1 s6 b0 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ -a0>>32 ]
 D2E_reg2 : [ b1 ]
 D2E_reg1_data : [ -a0>>32 ]
@@ -487,13 +487,13 @@ D2E_reg2_data : [ b1&(-a0>>32) ]
 Decode_port_data : [ b1&(-a0>>32) b1&(-a0>>32) - ]
 glitchy_Decode_port_data : [ b1&(-a0>>32) b1&(-a0>>32) &table ]
 Execute_ALU_result : [ b1&(-a0>>32) ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Memory_data : [ s6 ]
+Memory_readbuf : [ s6 ]
 ========================
 
 ======= FRAME 38 =======
 Core status : negs r0,r0
-reg : [ b1&(-a0>>32) &table rnd b1 s b0 32 b1 &c &table - 256 - - - - ]
+reg : [ b1&(-a0>>32) &table rnd b1 s6 b0 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ -a0>>32 ]
 D2E_reg2 : [ b1&(-a0>>32) ]
 D2E_reg1_data : [ -b1&(-a0>>32) ]
@@ -501,81 +501,81 @@ D2E_reg2_data : [ 32 ]
 Decode_port_data : [ b1&(-a0>>32) 32 - ]
 glitchy_Decode_port_data : [ b1&(-a0>>32) 32 &table ]
 Execute_ALU_result : [ -b1&(-a0>>32) ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Memory_data : [ s6 ]
+Memory_readbuf : [ s6 ]
 ========================
 
 ======= FRAME 39 =======
 Core status : asrs r0,r6
-reg : [ -b1&(-a0>>32) &table rnd b1 s b0 32 b1 &c &table - 256 - - - - ]
+reg : [ -b1&(-a0>>32) &table rnd b1 s6 b0 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ -b1&(-a0>>32) ]
 D2E_reg2 : [ 32 ]
 D2E_reg1_data : [ (-b1&(-a0>>32))>>32 ]
-D2E_reg2_data : [ s ]
-Decode_port_data : [ -b1&(-a0>>32) s - ]
-glitchy_Decode_port_data : [ -b1&(-a0>>32) s &table ]
+D2E_reg2_data : [ s6 ]
+Decode_port_data : [ -b1&(-a0>>32) s6 - ]
+glitchy_Decode_port_data : [ -b1&(-a0>>32) s6 &table ]
 Execute_ALU_result : [ (-b1&(-a0>>32))>>32 ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Memory_data : [ s6 ]
+Memory_readbuf : [ s6 ]
 ========================
 
 ======= FRAME 40 =======
 Core status : ands r0,r4
-reg : [ a0*b1 &table rnd b1 s b0 32 b1 &c &table - 256 - - - - ]
+reg : [ a0*b1 &table rnd b1 s6 b0 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ (-b1&(-a0>>32))>>32 ]
-D2E_reg2 : [ s ]
+D2E_reg2 : [ s6 ]
 D2E_reg1_data : [ rnd ]
 D2E_reg2_data : [ a0*b1 ]
 Decode_port_data : [ rnd a0*b1 - ]
 glitchy_Decode_port_data : [ rnd a0*b1 &table ]
 Execute_ALU_result : [ a0*b1 ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Memory_data : [ s6 ]
+Memory_readbuf : [ s6 ]
 ========================
 
 ======= FRAME 41 =======
 Core status : eors r2,r0
-reg : [ a0*b1 &table rnd a1 s b0 32 b1 &c &table - 256 - - - - ]
+reg : [ a0*b1 &table rnd a1 s6 b0 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ rnd ]
 D2E_reg2 : [ a0*b1 ]
 D2E_reg1_data : [ &table ]
 D2E_reg2_data : [ a1 ]
 Decode_port_data : [ a0*b1 &table a1 ]
 glitchy_Decode_port_data : [ a0*b1 &table &table ]
-Execute_ALU_result : [ (a0*b1)+rnd ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Execute_ALU_result : [ (a0*b1)^rnd ]
+Memory_data : [ s6 ]
+Memory_readbuf : [ s6 ]
 ========================
 
 ======= FRAME 42 =======
 Core status : ldrb r0,[r1,r3]
-reg : [ a0*b1 &table (a0*b1)+rnd a1 s b0 32 b1 &c &table - 256 - - - - ]
+reg : [ a0*b1 &table (a0*b1)^rnd a1 s6 b0 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ &table ]
 D2E_reg2 : [ a1 ]
 D2E_reg1_data : [ &table ]
 D2E_reg2_data : [ b0 ]
-Decode_port_data : [ s &table b0 ]
-glitchy_Decode_port_data : [ s &table b0 ]
+Decode_port_data : [ s6 &table b0 ]
+glitchy_Decode_port_data : [ s6 &table b0 ]
 Memory_data : [ loga1 ]
 Memory_readbuf : [ loga1 ]
 ========================
 
 ======= FRAME 43 =======
 Core status : ldrb r4,[r1,r5]
-reg : [ s &table (a0*b1)+rnd a1 logb0 b0 32 b1 &c &table - 256 - - - - ]
+reg : [ s6 &table (a0*b1)^rnd a1 logb0 b0 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ &table ]
 D2E_reg2 : [ b0 ]
 D2E_reg1_data : [ logb0 ]
 D2E_reg2_data : [ logb0 ]
-Decode_port_data : [ s logb0 s ]
-glitchy_Decode_port_data : [ s s logb0 ]
+Decode_port_data : [ s6 logb0 s6 ]
+glitchy_Decode_port_data : [ s6 s6 logb0 ]
 Memory_data : [ logb0 ]
 Memory_readbuf : [ logb0 ]
 ========================
 
 ======= FRAME 44 =======
 Core status : stall by LDR
-reg : [ logb0 &table (a0*b1)+rnd a1 logb0 b0 32 b1 &c &table - 256 - - - - ]
+reg : [ logb0 &table (a0*b1)^rnd a1 logb0 b0 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ logb0 ]
 D2E_reg2 : [ logb0 ]
 D2E_reg1_data : [ logb0 ]
@@ -588,27 +588,27 @@ Memory_readbuf : [ logb0 ]
 
 ======= FRAME 45 =======
 Core status : adds r0,r0,r4
-reg : [ logb0 &table (a0*b1)+rnd a1 logb0 b0 32 b1 &c &table - 256 - - - - ]
+reg : [ logb0 &table (a0*b1)^rnd a1 logb0 b0 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ logb0 ]
 D2E_reg2 : [ logb0 ]
 D2E_reg1_data : [ 256 ]
 D2E_reg2_data : [ logb0 ]
 Decode_port_data : [ logb0 256 - ]
 glitchy_Decode_port_data : [ logb0 &table a1 ]
-Execute_ALU_result : [ s ]
+Execute_ALU_result : [ s8 ]
 Memory_data : [ logb0 ]
 Memory_readbuf : [ logb0 ]
 ========================
 
 ======= FRAME 46 =======
 Core status : mov r4,r11
-reg : [ s &table (a0*b1)+rnd a1 256 b0 32 b1 &c &table - 256 - - - - ]
+reg : [ s8 &table (a0*b1)^rnd a1 256 b0 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ logb0 ]
 D2E_reg2 : [ logb0 ]
-D2E_reg1_data : [ s ]
+D2E_reg1_data : [ s8 ]
 D2E_reg2_data : [ 256 ]
-Decode_port_data : [ s 256 s ]
-glitchy_Decode_port_data : [ s s a1 ]
+Decode_port_data : [ s8 256 s8 ]
+glitchy_Decode_port_data : [ s8 s8 a1 ]
 Execute_ALU_result : [ 256 ]
 Memory_data : [ logb0 ]
 Memory_readbuf : [ logb0 ]
@@ -616,61 +616,61 @@ Memory_readbuf : [ logb0 ]
 
 ======= FRAME 47 =======
 Core status : adds r0,r0,r4
-reg : [ s+256 &table (a0*b1)+rnd a1 256 b0 32 b1 &c &table - 256 - - - - ]
-D2E_reg1 : [ s ]
+reg : [ s+256 &table (a0*b1)^rnd a1 256 b0 32 b1 &c &table - 256 - - - - ]
+D2E_reg1 : [ s8 ]
 D2E_reg2 : [ 256 ]
 D2E_reg1_data : [ &table ]
-D2E_reg2_data : [ s+256 ]
+D2E_reg2_data : [ s9 ]
 Decode_port_data : [ 256 &table s+256 ]
 glitchy_Decode_port_data : [ 256 s+256 &table ]
-Execute_ALU_result : [ s+256 ]
+Execute_ALU_result : [ s9 ]
 Memory_data : [ logb0 ]
 Memory_readbuf : [ logb0 ]
 ========================
 
 ======= FRAME 48 =======
 Core status : ldrb r4,[r1,r0]
-reg : [ s+256 &table (a0*b1)+rnd a1 256 b0 32 b1 &c &table - 256 - - - - ]
+reg : [ s9 &table (a0*b1)^rnd a1 256 b0 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ &table ]
-D2E_reg2 : [ s+256 ]
+D2E_reg2 : [ s9 ]
 D2E_reg1_data : [ &table ]
 D2E_reg2_data : [ a1 ]
-Decode_port_data : [ s+256 a1 - ]
-glitchy_Decode_port_data : [ s+256 a1 &table ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Decode_port_data : [ s9 a1 - ]
+glitchy_Decode_port_data : [ s9 a1 &table ]
+Memory_data : [ s10 ]
+Memory_readbuf : [ s10 ]
 ========================
 
 ======= FRAME 49 =======
 Core status : stall by LDR
-reg : [ s+256 &table (a0*b1)+rnd a1 256 b0 32 b1 &c &table - 256 - - - - ]
+reg : [ s9 &table (a0*b1)^rnd a1 256 b0 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ &table ]
 D2E_reg2 : [ a1 ]
 D2E_reg1_data : [ &table ]
 D2E_reg2_data : [ a1 ]
-Decode_port_data : [ s+256 a1 - ]
-glitchy_Decode_port_data : [ s+256 32 &table ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Decode_port_data : [ s9 a1 - ]
+glitchy_Decode_port_data : [ s9 32 &table ]
+Memory_data : [ s10 ]
+Memory_readbuf : [ s10 ]
 ========================
 
 ======= FRAME 50 =======
 Core status : negs r0,r3
-reg : [ s+256 &table (a0*b1)+rnd a1 s b0 32 b1 &c &table - 256 - - - - ]
+reg : [ s9 &table (a0*b1)^rnd a1 s10 b0 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ &table ]
 D2E_reg2 : [ a1 ]
 D2E_reg1_data : [ -a1 ]
 D2E_reg2_data : [ 32 ]
-Decode_port_data : [ s+256 32 - ]
-glitchy_Decode_port_data : [ s+256 32 &table ]
+Decode_port_data : [ s9 32 - ]
+glitchy_Decode_port_data : [ s9 32 &table ]
 Execute_ALU_result : [ -a1 ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Memory_data : [ s10 ]
+Memory_readbuf : [ s10 ]
 ========================
 
 ======= FRAME 51 =======
 Core status : asrs r0,r6
-reg : [ -a1 &table (a0*b1)+rnd a1 s b0 32 b1 &c &table - 256 - - - - ]
+reg : [ -a1 &table (a0*b1)^rnd a1 s10 b0 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ -a1 ]
 D2E_reg2 : [ 32 ]
 D2E_reg1_data : [ -a1>>32 ]
@@ -678,13 +678,13 @@ D2E_reg2_data : [ b0 ]
 Decode_port_data : [ -a1 b0 - ]
 glitchy_Decode_port_data : [ -a1 b0 &table ]
 Execute_ALU_result : [ -a1>>32 ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Memory_data : [ s10 ]
+Memory_readbuf : [ s10 ]
 ========================
 
 ======= FRAME 52 =======
 Core status : ands r0,r5
-reg : [ b0&(-a1>>32) &table (a0*b1)+rnd a1 s b0 32 b1 &c &table - 256 - - - - ]
+reg : [ b0&(-a1>>32) &table (a0*b1)^rnd a1 s10 b0 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ -a1>>32 ]
 D2E_reg2 : [ b0 ]
 D2E_reg1_data : [ -a1>>32 ]
@@ -692,13 +692,13 @@ D2E_reg2_data : [ b0&(-a1>>32) ]
 Decode_port_data : [ b0&(-a1>>32) b0&(-a1>>32) - ]
 glitchy_Decode_port_data : [ b0&(-a1>>32) b0&(-a1>>32) &table ]
 Execute_ALU_result : [ b0&(-a1>>32) ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Memory_data : [ s10 ]
+Memory_readbuf : [ s10 ]
 ========================
 
 ======= FRAME 53 =======
 Core status : negs r0,r0
-reg : [ b0&(-a1>>32) &table (a0*b1)+rnd a1 s b0 32 b1 &c &table - 256 - - - - ]
+reg : [ b0&(-a1>>32) &table (a0*b1)^rnd a1 s10 b0 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ -a1>>32 ]
 D2E_reg2 : [ b0&(-a1>>32) ]
 D2E_reg1_data : [ -b0&(-a1>>32) ]
@@ -706,68 +706,68 @@ D2E_reg2_data : [ 32 ]
 Decode_port_data : [ b0&(-a1>>32) 32 - ]
 glitchy_Decode_port_data : [ b0&(-a1>>32) 32 &table ]
 Execute_ALU_result : [ -b0&(-a1>>32) ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Memory_data : [ s10 ]
+Memory_readbuf : [ s10 ]
 ========================
 
 ======= FRAME 54 =======
 Core status : asrs r0,r6
-reg : [ -b0&(-a1>>32) &table (a0*b1)+rnd a1 s b0 32 b1 &c &table - 256 - - - - ]
+reg : [ -b0&(-a1>>32) &table (a0*b1)^rnd a1 s10 b0 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ -b0&(-a1>>32) ]
 D2E_reg2 : [ 32 ]
 D2E_reg1_data : [ (-b0&(-a1>>32))>>32 ]
-D2E_reg2_data : [ s ]
-Decode_port_data : [ -b0&(-a1>>32) s - ]
-glitchy_Decode_port_data : [ -b0&(-a1>>32) s &table ]
+D2E_reg2_data : [ s10 ]
+Decode_port_data : [ -b0&(-a1>>32) s10 - ]
+glitchy_Decode_port_data : [ -b0&(-a1>>32) s10 &table ]
 Execute_ALU_result : [ (-b0&(-a1>>32))>>32 ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Memory_data : [ s10 ]
+Memory_readbuf : [ s10 ]
 ========================
 
 ======= FRAME 55 =======
 Core status : ands r0,r4
-reg : [ (-b0&(-a1>>32))>>32 &table a0*b1+rnd a1 s b0 32 b1 &c &table - 256 - - - - ]
+reg : [ (-b0&(-a1>>32))>>32 &table a0*b1+rnd a1 s10 b0 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ (-b0&(-a1>>32))>>32 ]
-D2E_reg2 : [ s ]
-D2E_reg1_data : [ a1*b0 ]
+D2E_reg2 : [ s10 ]
+D2E_reg1_data : [ s11 ]
 D2E_reg2_data : [ a0*b1+rnd ]
 Decode_port_data : [ (-b0&(-a1>>32))>>32 a0*b1+rnd - ]
 glitchy_Decode_port_data : [ (-b0&(-a1>>32))>>32 a0*b1+rnd &table ]
-Execute_ALU_result : [ a1*b0 ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Execute_ALU_result : [ s11 ]
+Memory_data : [ s10 ]
+Memory_readbuf : [ s10 ]
 ========================
 
 ======= FRAME 56 =======
 Core status : eors r0,r2
-reg : [ a1*b0 &table a0*b1+rnd a1 s b0 32 b1 &c &table - 256 - - - - ]
-D2E_reg1 : [ a1*b0 ]
+reg : [ s11 &table a0*b1+rnd a1 s10 b0 32 b1 &c &table - 256 - - - - ]
+D2E_reg1 : [ s11 ]
 D2E_reg2 : [ a0*b1+rnd ]
 D2E_reg1_data : [ &table ]
 D2E_reg2_data : [ a1 ]
 Decode_port_data : [ b0 &table a1 ]
 glitchy_Decode_port_data : [ b0 &table &table ]
-Execute_ALU_result : [ ((a0*b1)+rnd)+(a1*b0) ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Execute_ALU_result : [ ((a0*b1)^rnd)^(a1*b0) ]
+Memory_data : [ s10 ]
+Memory_readbuf : [ s10 ]
 ========================
 
 ======= FRAME 57 =======
 Core status : ldrb r5,[r1,r3]
-reg : [ ((a0*b1)+rnd)+(a1*b0) &table a0*b1+rnd a1 s b0 32 b1 &c &table - 256 - - - - ]
+reg : [ ((a0*b1)^rnd)^(a1*b0) &table a0*b1+rnd a1 s10 b0 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ &table ]
 D2E_reg2 : [ a1 ]
 D2E_reg1_data : [ &table ]
 D2E_reg2_data : [ b1 ]
-Decode_port_data : [ s &table b1 ]
-glitchy_Decode_port_data : [ s &table b1 ]
+Decode_port_data : [ s10 &table b1 ]
+glitchy_Decode_port_data : [ s10 &table b1 ]
 Memory_data : [ loga1 ]
 Memory_readbuf : [ loga1 ]
 ========================
 
 ======= FRAME 58 =======
 Core status : ldrb r4,[r1,r7]
-reg : [ ((a0*b1)+rnd)+(a1*b0) &table a0*b1+rnd a1 logb1 loga1 32 b1 &c &table - 256 - - - - ]
+reg : [ ((a0*b1)^rnd)^(a1*b0) &table a0*b1+rnd a1 logb1 loga1 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ &table ]
 D2E_reg2 : [ b1 ]
 D2E_reg1_data : [ logb1 ]
@@ -780,7 +780,7 @@ Memory_readbuf : [ logb1 ]
 
 ======= FRAME 59 =======
 Core status : stall by LDR
-reg : [ ((a0*b1)+rnd)+(a1*b0) &table a0*b1+rnd a1 logb1 logb1 32 b1 &c &table - 256 - - - - ]
+reg : [ ((a0*b1)^rnd)^(a1*b0) &table a0*b1+rnd a1 logb1 logb1 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ logb1 ]
 D2E_reg2 : [ logb1 ]
 D2E_reg1_data : [ logb1 ]
@@ -793,27 +793,27 @@ Memory_readbuf : [ logb1 ]
 
 ======= FRAME 60 =======
 Core status : adds r5,r5,r4
-reg : [ ((a0*b1)+rnd)+(a1*b0) &table a0*b1+rnd a1 logb1 logb1 32 b1 &c &table - 256 - - - - ]
+reg : [ ((a0*b1)^rnd)^(a1*b0) &table a0*b1+rnd a1 logb1 logb1 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ logb1 ]
 D2E_reg2 : [ logb1 ]
 D2E_reg1_data : [ 256 ]
 D2E_reg2_data : [ logb1 ]
 Decode_port_data : [ a0*b1+rnd 256 - ]
 glitchy_Decode_port_data : [ a0*b1+rnd &table a1 ]
-Execute_ALU_result : [ s ]
+Execute_ALU_result : [ s12 ]
 Memory_data : [ logb1 ]
 Memory_readbuf : [ logb1 ]
 ========================
 
 ======= FRAME 61 =======
 Core status : mov r2,r11
-reg : [ ((a0*b1)+rnd)+(a1*b0) &table 256 a1 logb1 s 32 b1 &c &table - 256 - - - - ]
+reg : [ ((a0*b1)^rnd)^(a1*b0) &table 256 a1 logb1 s12 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ logb1 ]
 D2E_reg2 : [ logb1 ]
-D2E_reg1_data : [ s ]
+D2E_reg1_data : [ s12 ]
 D2E_reg2_data : [ 256 ]
-Decode_port_data : [ s 256 s ]
-glitchy_Decode_port_data : [ - s a1 ]
+Decode_port_data : [ s12 256 s12 ]
+glitchy_Decode_port_data : [ - s12 a1 ]
 Execute_ALU_result : [ 256 ]
 Memory_data : [ logb1 ]
 Memory_readbuf : [ logb1 ]
@@ -821,61 +821,61 @@ Memory_readbuf : [ logb1 ]
 
 ======= FRAME 62 =======
 Core status : adds r5,r5,r2
-reg : [ ((a0*b1)+rnd)+(a1*b0) &table 256 a1 logb1 s+256 32 b1 &c &table - 256 - - - - ]
-D2E_reg1 : [ s ]
+reg : [ ((a0*b1)^rnd)^(a1*b0) &table 256 a1 logb1 s+256 32 b1 &c &table - 256 - - - - ]
+D2E_reg1 : [ s12 ]
 D2E_reg2 : [ 256 ]
 D2E_reg1_data : [ &table ]
-D2E_reg2_data : [ s+256 ]
+D2E_reg2_data : [ s13 ]
 Decode_port_data : [ logb1 &table s+256 ]
 glitchy_Decode_port_data : [ logb1 s+256 &table ]
-Execute_ALU_result : [ s+256 ]
+Execute_ALU_result : [ s13 ]
 Memory_data : [ logb1 ]
 Memory_readbuf : [ logb1 ]
 ========================
 
 ======= FRAME 63 =======
 Core status : ldrb r4,[r1,r5]
-reg : [ ((a0*b1)+rnd)+(a1*b0) &table 256 a1 logb1 s+256 32 b1 &c &table - 256 - - - - ]
+reg : [ ((a0*b1)^rnd)^(a1*b0) &table 256 a1 logb1 s13 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ &table ]
-D2E_reg2 : [ s+256 ]
+D2E_reg2 : [ s13 ]
 D2E_reg1_data : [ &table ]
 D2E_reg2_data : [ a1 ]
-Decode_port_data : [ s+256 a1 - ]
-glitchy_Decode_port_data : [ s+256 a1 &table ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Decode_port_data : [ s13 a1 - ]
+glitchy_Decode_port_data : [ s13 a1 &table ]
+Memory_data : [ s14 ]
+Memory_readbuf : [ s14 ]
 ========================
 
 ======= FRAME 64 =======
 Core status : stall by LDR
-reg : [ ((a0*b1)+rnd)+(a1*b0) &table 256 a1 logb1 s+256 32 b1 &c &table - 256 - - - - ]
+reg : [ ((a0*b1)^rnd)^(a1*b0) &table 256 a1 logb1 s13 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ &table ]
 D2E_reg2 : [ a1 ]
 D2E_reg1_data : [ &table ]
 D2E_reg2_data : [ a1 ]
-Decode_port_data : [ s+256 a1 - ]
-glitchy_Decode_port_data : [ s+256 32 &table ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Decode_port_data : [ s13 a1 - ]
+glitchy_Decode_port_data : [ s13 32 &table ]
+Memory_data : [ s14 ]
+Memory_readbuf : [ s14 ]
 ========================
 
 ======= FRAME 65 =======
 Core status : negs r5,r3
-reg : [ ((a0*b1)+rnd)+(a1*b0) &table 256 a1 s s+256 32 b1 &c &table - 256 - - - - ]
+reg : [ ((a0*b1)^rnd)^(a1*b0) &table 256 a1 s14 s13 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ &table ]
 D2E_reg2 : [ a1 ]
 D2E_reg1_data : [ -a1 ]
 D2E_reg2_data : [ 32 ]
-Decode_port_data : [ s+256 32 - ]
-glitchy_Decode_port_data : [ s+256 32 &table ]
+Decode_port_data : [ s13 32 - ]
+glitchy_Decode_port_data : [ s13 32 &table ]
 Execute_ALU_result : [ -a1 ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Memory_data : [ s14 ]
+Memory_readbuf : [ s14 ]
 ========================
 
 ======= FRAME 66 =======
 Core status : asrs r5,r6
-reg : [ ((a0*b1)+rnd)+(a1*b0) &table 256 a1 s -a1 32 b1 &c &table - 256 - - - - ]
+reg : [ ((a0*b1)^rnd)^(a1*b0) &table 256 a1 s14 -a1 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ -a1 ]
 D2E_reg2 : [ 32 ]
 D2E_reg1_data : [ -a1>>32 ]
@@ -883,13 +883,13 @@ D2E_reg2_data : [ b1 ]
 Decode_port_data : [ -a1 b1 - ]
 glitchy_Decode_port_data : [ -a1 b1 &table ]
 Execute_ALU_result : [ -a1>>32 ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Memory_data : [ s14 ]
+Memory_readbuf : [ s14 ]
 ========================
 
 ======= FRAME 67 =======
 Core status : ands r5,r7
-reg : [ ((a0*b1)+rnd)+(a1*b0) &table 256 a1 s b1&(-a1>>32) 32 b1 &c &table - 256 - - - - ]
+reg : [ ((a0*b1)^rnd)^(a1*b0) &table 256 a1 s14 b1&(-a1>>32) 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ -a1>>32 ]
 D2E_reg2 : [ b1 ]
 D2E_reg1_data : [ -a1>>32 ]
@@ -897,13 +897,13 @@ D2E_reg2_data : [ b1&(-a1>>32) ]
 Decode_port_data : [ b1&(-a1>>32) b1&(-a1>>32) - ]
 glitchy_Decode_port_data : [ b1&(-a1>>32) b1&(-a1>>32) &table ]
 Execute_ALU_result : [ b1&(-a1>>32) ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Memory_data : [ s14 ]
+Memory_readbuf : [ s14 ]
 ========================
 
 ======= FRAME 68 =======
 Core status : negs r5,r5
-reg : [ ((a0*b1)+rnd)+(a1*b0) &table 256 a1 s b1&(-a1>>32) 32 b1 &c &table - 256 - - - - ]
+reg : [ ((a0*b1)^rnd)^(a1*b0) &table 256 a1 s14 b1&(-a1>>32) 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ -a1>>32 ]
 D2E_reg2 : [ b1&(-a1>>32) ]
 D2E_reg1_data : [ -b1&(-a1>>32) ]
@@ -911,135 +911,135 @@ D2E_reg2_data : [ 32 ]
 Decode_port_data : [ b1&(-a1>>32) 32 - ]
 glitchy_Decode_port_data : [ b1&(-a1>>32) 32 &table ]
 Execute_ALU_result : [ -b1&(-a1>>32) ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Memory_data : [ s14 ]
+Memory_readbuf : [ s14 ]
 ========================
 
 ======= FRAME 69 =======
 Core status : asrs r5,r6
-reg : [ ((a0*b1)+rnd)+(a1*b0) &table 256 a1 s (-b1&(-a1>>32))>>32 32 b1 &c &table - 256 - - - - ]
+reg : [ ((a0*b1)^rnd)^(a1*b0) &table 256 a1 s14 (-b1&(-a1>>32))>>32 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ -b1&(-a1>>32) ]
 D2E_reg2 : [ 32 ]
-D2E_reg1_data : [ s ]
+D2E_reg1_data : [ s14 ]
 D2E_reg2_data : [ (-b1&(-a1>>32))>>32 ]
-Decode_port_data : [ s (-b1&(-a1>>32))>>32 - ]
-glitchy_Decode_port_data : [ s (-b1&(-a1>>32))>>32 &table ]
+Decode_port_data : [ s14 (-b1&(-a1>>32))>>32 - ]
+glitchy_Decode_port_data : [ s14 (-b1&(-a1>>32))>>32 &table ]
 Execute_ALU_result : [ (-b1&(-a1>>32))>>32 ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Memory_data : [ s14 ]
+Memory_readbuf : [ s14 ]
 ========================
 
 ======= FRAME 70 =======
 Core status : ands r4,r5
-reg : [ ((a0*b1)+rnd)+(a1*b0) &table 256 a1 s (-b1&(-a1>>32))>>32 32 b1 &c &table - 256 - - - - ]
-D2E_reg1 : [ s ]
+reg : [ ((a0*b1)^rnd)^(a1*b0) &table 256 a1 s14 (-b1&(-a1>>32))>>32 32 b1 &c &table - 256 - - - - ]
+D2E_reg1 : [ s14 ]
 D2E_reg2 : [ (-b1&(-a1>>32))>>32 ]
 D2E_reg1_data : [ &c ]
 D2E_reg2_data : [ (-b1&(-a1>>32))>>32 ]
 Decode_port_data : [ &table &c - ]
-glitchy_Decode_port_data : [ &table ((a0*b1)+rnd)+(a1*b0) &table ]
-Execute_ALU_result : [ a1*b1 ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+glitchy_Decode_port_data : [ &table ((a0*b1)^rnd)^(a1*b0) &table ]
+Execute_ALU_result : [ s15 ]
+Memory_data : [ s14 ]
+Memory_readbuf : [ s14 ]
 ========================
 
 ======= FRAME 71 =======
 Core status : mov r1,r8
-reg : [ ((a0*b1)+rnd)+(a1*b0) &table 256 a1 a1*b1 (-b1&(-a1>>32))>>32 32 b1 &c &table - 256 - - - - ]
-D2E_reg1 : [ s ]
+reg : [ ((a0*b1)+rnd)+(a1*b0) &table 256 a1 s15 (-b1&(-a1>>32))>>32 32 b1 &c &table - 256 - - - - ]
+D2E_reg1 : [ s14 ]
 D2E_reg2 : [ (-b1&(-a1>>32))>>32 ]
-D2E_reg1_data : [ a1*b1 ]
+D2E_reg1_data : [ s15 ]
 D2E_reg2_data : [ ((a0*b1)+rnd)+(a1*b0) ]
-Decode_port_data : [ a1*b1 ((a0*b1)+rnd)+(a1*b0) - ]
-glitchy_Decode_port_data : [ a1*b1 &c &table ]
+Decode_port_data : [ s15 ((a0*b1)+rnd)+(a1*b0) - ]
+glitchy_Decode_port_data : [ s15 &c &table ]
 Execute_ALU_result : [ &c ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Memory_data : [ s14 ]
+Memory_readbuf : [ s14 ]
 ========================
 
 ======= FRAME 72 =======
 Core status : eors r4,r0
-reg : [ ((a0*b1)+rnd)+(a1*b0) &table 256 a1 a1*b1 (-b1&(-a1>>32))>>32 32 b1 &c &table - 256 - - - - ]
-D2E_reg1 : [ a1*b1 ]
+reg : [ ((a0*b1)+rnd)+(a1*b0) &table 256 a1 s15 (-b1&(-a1>>32))>>32 32 b1 &c &table - 256 - - - - ]
+D2E_reg1 : [ s15 ]
 D2E_reg2 : [ ((a0*b1)+rnd)+(a1*b0) ]
 D2E_reg1_data : [ &table ]
 D2E_reg2_data : [ &table ]
 Decode_port_data : [ &table &table - ]
 glitchy_Decode_port_data : [ &table &table &table ]
-Execute_ALU_result : [ (((a0*b1)+rnd)+(a1*b0))+(a1*b1) ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Execute_ALU_result : [ (((a0*b1)^rnd)^(a1*b0))^(a1*b1) ]
+Memory_data : [ s14 ]
+Memory_readbuf : [ s14 ]
 ========================
 
 ======= FRAME 73 =======
 Core status : strb r1,[r1,#0x4]
-reg : [ ((a0*b1)+rnd)+(a1*b0) &c 256 a1 (((a0*b1)+rnd)+(a1*b0))+(a1*b1) (-b1&(-a1>>32))>>32 32 b1 &c &table - 256 - - - - ]
+reg : [ ((a0*b1)+rnd)+(a1*b0) &c 256 a1 (((a0*b1)^rnd)^(a1*b0))^(a1*b1) (-b1&(-a1>>32))>>32 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ &table ]
 D2E_reg2 : [ &table ]
 D2E_reg1_data : [ &c ]
-D2E_reg2_data : [ (((a0*b1)+rnd)+(a1*b0))+(a1*b1) ]
-Decode_port_data : [ (((a0*b1)+rnd)+(a1*b0))+(a1*b1) &c - ]
-glitchy_Decode_port_data : [ (((a0*b1)+rnd)+(a1*b0))+(a1*b1) &c &table ]
-Execute_ALU_result : [ (((a0*b1)+rnd)+(a1*b0))+(a1*b1) ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+D2E_reg2_data : [ (((a0*b1)^rnd)^(a1*b0))^(a1*b1) ]
+Decode_port_data : [ (((a0*b1)^rnd)^(a1*b0))^(a1*b1) &c - ]
+glitchy_Decode_port_data : [ (((a0*b1)^rnd)^(a1*b0))^(a1*b1) &c &table ]
+Execute_ALU_result : [ (((a0*b1)^rnd)^(a1*b0))^(a1*b1) ]
+Memory_data : [ s14 ]
+Memory_readbuf : [ s14 ]
 ========================
 
 ======= FRAME 74 =======
 Core status : strb r4,[r1,#0x4]
-reg : [ ((a0*b1)+rnd)+(a1*b0) &c 256 a1 (((a0*b1)+rnd)+(a1*b0))+(a1*b1) (-b1&(-a1>>32))>>32 32 b1 &c &table - 256 - - - - ]
+reg : [ ((a0*b1)+rnd)+(a1*b0) &c 256 a1 (((a0*b1)^rnd)^(a1*b0))^(a1*b1) (-b1&(-a1>>32))>>32 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ &c ]
-D2E_reg2 : [ (((a0*b1)+rnd)+(a1*b0))+(a1*b1) ]
+D2E_reg2 : [ (((a0*b1)^rnd)^(a1*b0))^(a1*b1) ]
 D2E_reg1_data : [ &c ]
-D2E_reg2_data : [ (((a0*b1)+rnd)+(a1*b0))+(a1*b1) ]
+D2E_reg2_data : [ (((a0*b1)^rnd)^(a1*b0))^(a1*b1) ]
 Decode_port_data : [ &c &c - ]
 glitchy_Decode_port_data : [ ((a0*b1)+rnd)+(a1*b0) ((a0*b1)+rnd)+(a1*b0) &table ]
-Execute_ALU_result : [ (((a0*b1)+rnd)+(a1*b0))+(a1*b1) ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Execute_ALU_result : [ (((a0*b1)^rnd)^(a1*b0))^(a1*b1) ]
+Memory_data : [ s14 ]
+Memory_readbuf : [ s14 ]
 ========================
 
 ======= FRAME 75 =======
 Core status : mov r8,r8
-reg : [ ((a0*b1)+rnd)+(a1*b0) &c 256 a1 (((a0*b1)+rnd)+(a1*b0))+(a1*b1) (-b1&(-a1>>32))>>32 32 b1 &c &table - 256 - - - - ]
+reg : [ ((a0*b1)+rnd)+(a1*b0) &c 256 a1 (((a0*b1)^rnd)^(a1*b0))^(a1*b1) (-b1&(-a1>>32))>>32 32 b1 &c &table - 256 - - - - ]
 D2E_reg1 : [ &c ]
-D2E_reg2 : [ (((a0*b1)+rnd)+(a1*b0))+(a1*b1) ]
-D2E_reg2_data : [ (((a0*b1)+rnd)+(a1*b0))+(a1*b1) ]
+D2E_reg2 : [ (((a0*b1)^rnd)^(a1*b0))^(a1*b1) ]
+D2E_reg2_data : [ (((a0*b1)^rnd)^(a1*b0))^(a1*b1) ]
 Decode_port_data : [ &c &c - ]
 glitchy_Decode_port_data : [ &c &c &table ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Memory_data : [ s14 ]
+Memory_readbuf : [ s14 ]
 ========================
 
 ======= FRAME 76 =======
 Core status : mov r8,r8
-reg : [ ((a0*b1)+rnd)+(a1*b0) &c 256 a1 (((a0*b1)+rnd)+(a1*b0))+(a1*b1) (-b1&(-a1>>32))>>32 32 b1 - &table - 256 - - - - ]
+reg : [ ((a0*b1)+rnd)+(a1*b0) &c 256 a1 (((a0*b1)^rnd)^(a1*b0))^(a1*b1) (-b1&(-a1>>32))>>32 32 b1 - &table - 256 - - - - ]
 D2E_reg1 : [ &c ]
-D2E_reg2 : [ (((a0*b1)+rnd)+(a1*b0))+(a1*b1) ]
-D2E_reg2_data : [ (((a0*b1)+rnd)+(a1*b0))+(a1*b1) ]
-Decode_port_data : [ (((a0*b1)+rnd)+(a1*b0))+(a1*b1) - - ]
+D2E_reg2 : [ (((a0*b1)^rnd)^(a1*b0))^(a1*b1) ]
+D2E_reg2_data : [ (((a0*b1)^rnd)^(a1*b0))^(a1*b1) ]
+Decode_port_data : [ (((a0*b1)^rnd)^(a1*b0))^(a1*b1) - - ]
 glitchy_Decode_port_data : [ (-b1&(-a1>>32))>>32 ((a0*b1)+rnd)+(a1*b0) &table ]
-Memory_data : [ s ]
-Memory_readbuf : [ s ]
+Memory_data : [ s14 ]
+Memory_readbuf : [ s14 ]
 ========================
 
 ======= FRAME 77 =======
 Core status : ldr r4,[PC+#0x14]
-reg : [ ((a0*b1)+rnd)+(a1*b0) &c 256 a1 (((a0*b1)+rnd)+(a1*b0))+(a1*b1) (-b1&(-a1>>32))>>32 32 b1 - &table - 256 - - - - ]
-D2E_reg2 : [ (((a0*b1)+rnd)+(a1*b0))+(a1*b1) ]
+reg : [ ((a0*b1)+rnd)+(a1*b0) &c 256 a1 (((a0*b1)^rnd)^(a1*b0))^(a1*b1) (-b1&(-a1>>32))>>32 32 b1 - &table - 256 - - - - ]
+D2E_reg2 : [ (((a0*b1)^rnd)^(a1*b0))^(a1*b1) ]
 D2E_reg1_data : [ (-b1&(-a1>>32))>>32 ]
-D2E_reg2_data : [ (((a0*b1)+rnd)+(a1*b0))+(a1*b1) ]
+D2E_reg2_data : [ (((a0*b1)^rnd)^(a1*b0))^(a1*b1) ]
 Decode_port_data : [ (-b1&(-a1>>32))>>32 - - ]
 glitchy_Decode_port_data : [ (-b1&(-a1>>32))>>32 ((a0*b1)+rnd)+(a1*b0) &table ]
 ========================
 
 ======= FRAME 78 =======
 Core status : stall by LDR
-reg : [ ((a0*b1)+rnd)+(a1*b0) &c 256 a1 (((a0*b1)+rnd)+(a1*b0))+(a1*b1) (-b1&(-a1>>32))>>32 32 b1 - &table - 256 - - - - ]
+reg : [ ((a0*b1)+rnd)+(a1*b0) &c 256 a1 (((a0*b1)^rnd)^(a1*b0))^(a1*b1) (-b1&(-a1>>32))>>32 32 b1 - &table - 256 - - - - ]
 D2E_reg1 : [ (-b1&(-a1>>32))>>32 ]
-D2E_reg2 : [ (((a0*b1)+rnd)+(a1*b0))+(a1*b1) ]
+D2E_reg2 : [ (((a0*b1)^rnd)^(a1*b0))^(a1*b1) ]
 D2E_reg1_data : [ (-b1&(-a1>>32))>>32 ]
-D2E_reg2_data : [ (((a0*b1)+rnd)+(a1*b0))+(a1*b1) ]
+D2E_reg2_data : [ (((a0*b1)^rnd)^(a1*b0))^(a1*b1) ]
 Decode_port_data : [ (-b1&(-a1>>32))>>32 - - ]
 glitchy_Decode_port_data : [ ((a0*b1)+rnd)+(a1*b0) ((a0*b1)+rnd)+(a1*b0) &table ]
 ========================
@@ -1048,7 +1048,7 @@ glitchy_Decode_port_data : [ ((a0*b1)+rnd)+(a1*b0) ((a0*b1)+rnd)+(a1*b0) &table 
 Core status : movs r5,#0x00
 reg : [ ((a0*b1)+rnd)+(a1*b0) &c 256 a1 - (-b1&(-a1>>32))>>32 32 b1 - &table - 256 - - - - ]
 D2E_reg1 : [ (-b1&(-a1>>32))>>32 ]
-D2E_reg2 : [ (((a0*b1)+rnd)+(a1*b0))+(a1*b1) ]
+D2E_reg2 : [ (((a0*b1)^rnd)^(a1*b0))^(a1*b1) ]
 Decode_port_data : [ (-b1&(-a1>>32))>>32 - - ]
 glitchy_Decode_port_data : [ ((a0*b1)+rnd)+(a1*b0) ((a0*b1)+rnd)+(a1*b0) &table ]
 ========================
