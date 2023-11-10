@@ -117,13 +117,13 @@ adds r0,r0,r4       #118
 
 mov r4,r11          #121
 @@$ dst r4 256
-@@$ src r0 s
+@@$ src r0 s4
 @@$ src r4 256
 
 adds r0,r0,r4       #123
 @@$ dst r0 s5
 @@$ src r1 &table
-@@$ src r0 s+256
+@@$ src r0 s5
 
 ldrb r4,[r1,r0]     #125
 @@$ dst r4 s6
@@ -186,7 +186,7 @@ mov r4,r11          #167
 
 adds r0,r0,r4       #169
 @@$ dst r0 s9
-@@$ src r0 s+256
+@@$ src r0 s9
 @@$ src r1 &table
 
 ldrb r4,[r1,r0]     #171
@@ -248,7 +248,7 @@ mov r2,r11              #216
 adds r5,r5,r2           #218
 @@$ dst r5 s13
 @@$ src r1 &table
-@@$ src r5 s+256
+@@$ src r5 s13
 
 ldrb r4,[r1,r5]         #220
 @@$ dst r4 s14
