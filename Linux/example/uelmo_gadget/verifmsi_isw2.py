@@ -56,19 +56,19 @@ a1b1 = GMul(a1, b1)
 
 s0 = loga0 + logb0
 s1 = s0 + C256
-s2 = GLog(s1)
+s2 = GExp(s1)
 s3 = GMul(a0, b0)
 s4 = loga0 + logb1
 s5 = s4 + C256
-s6 = GLog(s5)
+s6 = GExp(s5)
 s7 = GMul(a0, b1)
 s8 = loga1 + logb0
 s9 = s8 + C256
-s10 = GLog(s9)
+s10 = GExp(s9)
 s11 = GMul(a1, b0)
 s12 = loga1 + logb1
 s13 = s12 + C256
-s14 = GLog(s13)
+s14 = GExp(s13)
 s15 = GMul(a1, b1)
 
 c0 = a0b0 ^ rnd
