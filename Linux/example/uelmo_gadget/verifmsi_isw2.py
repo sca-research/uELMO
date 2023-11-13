@@ -128,16 +128,21 @@ exp[0x34] = ((a0b1 ^ rnd) ^ a1b0) ^ a1b1
 # For TPS security.
 print("Expressions:")
 for i in exp:
-    (res, usedbitexp, time) = checkTpsVal(exp[i])
-    if res:
-        print("TPS Secure:\t [{:02d}] {}".format(i, exp[i]))
+    try:
+        e = simplify(exp[i])
+        (res, usedbitexp, time) = checkTpsVal(e)
+        if res:
+            print("TPS Secure:\t [{:02d}] {}".format(i, exp[i]))
+            pass
+        else:
+            print("TPS Insecure:\t [{:02d}] {}".format(i, exp[i]))
+            print("!!!!!LEAKAGE FOUND!!!!!")
+            pass
         pass
-    else:
-        print("TPS Insecure:\t [{:02d}] {}".format(i, exp[i]))
-        print("!!!!!LEAKAGE FOUND!!!!!")
-        pass
-    pass
 
+    except AssertionError as err:
+        print("!!!ERROR!!!: Assertion failed at:", exp[i])
+        pass
 
 '''
 # For Gate-style description.
@@ -541,13 +546,19 @@ trs += [(a1) + (logb0)]
 trs += [(a0b1) + (s6)]
 
 for i in range((len(trs))):
-    (res, usedbitexp, time) = checkTpsVal(trs[i])
-    if res:
-        print("TPS Secure:\t [{:02d}] {}".format(i, trs[i]))
+    try:
+        e = simplify(trs[i])
+        (res, usedbitexp, time) = checkTpsVal(e)
+        if res:
+            print("TPS Secure:\t [{:02d}] {}".format(i, trs[i]))
+            pass
+        else:
+            print("TPS Insecure:\t [{:02d}] {}".format(i, trs[i]))
+            print('!!!!!LEAKAGE FOUND!!!!!')
+            pass
         pass
-    else:
-        print("TPS Insecure:\t [{:02d}] {}".format(i, trs[i]))
-        print('!!!!!LEAKAGE FOUND!!!!!')
+    except AssertionError as err:
+        print("!!!ERROR!!!: Assertion failed at:", trs[i])
         pass
 
 
@@ -592,11 +603,18 @@ itl += [(na0 >> 32) * (b0 & (na0 >> 32)) * (na0 >> 32) * (b0)]
 itl += [(nb0 & (na1 >> 32)) * (C32) * (na1 >> 32) * (b0 & (na1 >> 32))]
 
 for i in range((len(itl))):
-    (res, usedbitexp, time) = checkTpsVal(itl[i])
-    if res:
-        print("TPS Secure:\t [{:02d}] {}".format(i, itl[i]))
+    try:
+        e = simplify(itl[i])
+        (res, usedbitexp, time) = checkTpsVal(e)
+
+        if res:
+            print("TPS Secure:\t [{:02d}] {}".format(i, itl[i]))
+            pass
+        else:
+            print("TPS Insecure:\t [{:02d}] {}".format(i, itl[i]))
+            print('!!!!!LEAKAGE FOUND!!!!!')
+            pass
         pass
-    else:
-        print("TPS Insecure:\t [{:02d}] {}".format(i, itl[i]))
-        print('!!!!!LEAKAGE FOUND!!!!!')
+    except AssertionError as err:
+        print("!!!ERROR!!!: Assertion failed at:", itl[i])
         pass
