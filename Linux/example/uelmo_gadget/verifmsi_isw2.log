@@ -1,0 +1,737 @@
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+Expressions:
+TPS Secure:	 [02] a0
+TPS Secure:	 [04] b0
+TPS Secure:	 [05] a0 ^ a
+TPS Secure:	 [06] b ^ b0
+TPS Secure:	 [07] rnd
+TPS Secure:	 [09] GLog(b0)
+TPS Secure:	 [10] GLog(a0)
+TPS Secure:	 [11] GLog(a0) + GLog(b0)
+TPS Secure:	 [14] 0x100 + (GLog(a0) + GLog(b0))
+TPS Secure:	 [15] GExp(0x100 + (GLog(a0) + GLog(b0)))
+TPS Secure:	 [16] ~a0
+TPS Secure:	 [17] ~a0 >> 32
+TPS Secure:	 [18] (~a0 >> 32) & b0
+TPS Secure:	 [19] ~((~a0 >> 32) & b0)
+TPS Secure:	 [20] ~((~a0 >> 32) & b0) >> 32
+TPS Secure:	 [21] GMul(a0, b0)
+TPS Secure:	 [23] GMul(a0, b0) ^ rnd
+TPS Secure:	 [24] GMul(a0 ^ a, b ^ b0) ^ ((GMul(a0, b ^ b0) ^ rnd) ^ GMul(a0 ^ a, b0))
+TPS Secure:	 [25] GLog(b ^ b0)
+TPS Secure:	 [26] GLog(b ^ b0) + GLog(a0)
+TPS Secure:	 [27] (GLog(b ^ b0) + GLog(a0)) + 0x100
+TPS Secure:	 [28] GExp((GLog(b ^ b0) + GLog(a0)) + 0x100)
+TPS Secure:	 [29] (~a0 >> 32) & (b ^ b0)
+TPS Secure:	 [30] ~((~a0 >> 32) & (b ^ b0))
+TPS Secure:	 [31] ~((~a0 >> 32) & (b ^ b0)) >> 32
+TPS Secure:	 [32] GMul(a0, b0)
+TPS Secure:	 [33] GMul(a0, b ^ b0) ^ rnd
+TPS Secure:	 [34] GLog(a0 ^ a)
+TPS Secure:	 [35] GLog(b0) + GLog(a0 ^ a)
+TPS Secure:	 [36] (GLog(b0) + GLog(a0 ^ a)) + 0x100
+TPS Secure:	 [37] GExp((GLog(b0) + GLog(a0 ^ a)) + 0x100)
+TPS Secure:	 [38] ~(a0 ^ a)
+TPS Secure:	 [39] ~(a0 ^ a) >> 32
+TPS Secure:	 [40] (~(a0 ^ a) >> 32) & b0
+TPS Secure:	 [41] ~((~(a0 ^ a) >> 32) & b0)
+TPS Secure:	 [42] ~((~(a0 ^ a) >> 32) & b0) >> 32
+TPS Secure:	 [43] GMul(a0 ^ a, b0)
+TPS Secure:	 [44] (GMul(a0, b ^ b0) ^ rnd) ^ GMul(a0 ^ a, b0)
+TPS Secure:	 [45] GLog(b ^ b0) + GLog(a0 ^ a)
+TPS Secure:	 [46] (GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100
+TPS Secure:	 [47] GExp((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100)
+TPS Secure:	 [48] (~(a0 ^ a) >> 32) & (b ^ b0)
+TPS Secure:	 [49] ~((~(a0 ^ a) >> 32) & (b ^ b0))
+TPS Secure:	 [50] ~((~(a0 ^ a) >> 32) & (b ^ b0)) >> 32
+TPS Secure:	 [51] GMul(a0 ^ a, b ^ b0)
+TPS Secure:	 [52] GMul(a0 ^ a, b ^ b0) ^ ((GMul(a0, b ^ b0) ^ rnd) ^ GMul(a0 ^ a, b0))
+
+Transitions
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+TPS Secure:	 [00] a0 + b0
+TPS Secure:	 [01] GExp((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100) + GMul(a0 ^ a, b ^ b0)
+TPS Secure:	 [02] ((~a0 >> 32) & (b ^ b0)) + ((~a0 >> 32) & ~(b ^ b0))
+TPS Secure:	 [03] ((~a0 >> 32) & b0) + ((~a0 >> 32) & ~b0 >> 32)
+TPS Secure:	 [04] (a0 ^ a) + GLog(b0)
+TPS Secure:	 [05] (a0 ^ a) + 0x20
+TPS Secure:	 [06] GLog(b ^ b0) + (GMul(a0, b ^ b0) ^ rnd)
+TPS Secure:	 [07] GLog(b ^ b0) + ((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100)
+TPS Secure:	 [08] 0x100 + (GLog(a0) + GLog(b0))
+TPS Secure:	 [09] ((GMul(a0, b ^ b0) ^ rnd) ^ GMul(a0 ^ a, b0)) + GMul(a0 ^ a, b0)
+TPS Secure:	 [10] (GMul(a0, b ^ b0) ^ rnd) + GLog(a0 ^ a)
+TPS Secure:	 [11] 0x20 + ((~a0 >> 32) & ~b0 >> 32)
+TPS Secure:	 [12] (GLog(b0) + GLog(a0 ^ a)) + 0x100
+TPS Secure:	 [13] ((~(a0 ^ a) >> 32) & (b ^ b0)) + ~(a0 ^ a)
+TPS Secure:	 [14] (GLog(b ^ b0) + GLog(a0)) + ((GLog(b ^ b0) + GLog(a0)) + 0x100)
+TPS Secure:	 [15] GLog(b ^ b0) + GLog(a0)
+TPS Secure:	 [16] ((~a0 >> 32) & (b ^ b0)) + 0x20
+TPS Secure:	 [17] GLog(b ^ b0) + (GLog(b ^ b0) + GLog(a0 ^ a))
+TPS Secure:	 [18] GLog(b0) + (GLog(a0) + GLog(b0))
+TPS Secure:	 [19] a0 + 0x100
+TPS Secure:	 [20] ((GLog(b0) + GLog(a0 ^ a)) + 0x100) + ~(a0 ^ a)
+TPS Secure:	 [21] ~(a0 ^ a) + (~(a0 ^ a) >> 32)
+TPS Secure:	 [22] 0x100 + ((GLog(b ^ b0) + GLog(a0)) + 0x100)
+TPS Secure:	 [23] GLog(b ^ b0) + (GLog(b ^ b0) + GLog(a0 ^ a))
+TPS Secure:	 [24] ((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100) + 0x100
+TPS Secure:	 [25] GLog(b ^ b0) + (b ^ b0)
+TPS Secure:	 [26] ((~a0 >> 32) & (b ^ b0)) + 0x20
+TPS Secure:	 [27] b0 + ((~(a0 ^ a) >> 32) & b0)
+TPS Secure:	 [28] GExp((GLog(b0) + GLog(a0 ^ a)) + 0x100) + b0
+TPS Secure:	 [29] 0x20 + (b ^ b0)
+TPS Secure:	 [30] GLog(b0) + GExp((GLog(b0) + GLog(a0 ^ a)) + 0x100)
+TPS Secure:	 [31] a0 + (b ^ b0)
+TPS Secure:	 [32] GExp((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100) + ((~(a0 ^ a) >> 32) & ~(b ^ b0))
+TPS Secure:	 [33] 0x20 + ((~a0 >> 32) & ~b0 >> 32)
+TPS Secure:	 [34] (0x100 + (GLog(a0) + GLog(b0))) + 0x100
+TPS Secure:	 [35] 0x100 + GLog(b0)
+TPS Secure:	 [36] rnd + ((~a0 >> 32) & ~b0 >> 32)
+TPS Secure:	 [37] 0x20 + ((~(a0 ^ a) >> 32) & b0)
+TPS Secure:	 [38] GLog(a0) + GLog(b0)
+TPS Secure:	 [39] ((~(a0 ^ a) >> 32) & (b ^ b0)) + ~(a0 ^ a)
+TPS Secure:	 [40] (a0 ^ a) + GLog(a0 ^ a)
+TPS Secure:	 [41] rnd + GLog(b0)
+TPS Secure:	 [42] (a0 ^ a) + b0
+TPS Secure:	 [43] GLog(a0) + (b ^ b0)
+TPS Secure:	 [44] (GLog(b ^ b0) + GLog(a0 ^ a)) + (GMul(a0, b ^ b0) ^ rnd)
+TPS Secure:	 [45] (GLog(b ^ b0) + GLog(a0)) + (b ^ b0)
+TPS Secure:	 [46] GLog(b ^ b0) + (a0 ^ a)
+TPS Secure:	 [47] GExp((GLog(b ^ b0) + GLog(a0)) + 0x100) + 0x20
+TPS Secure:	 [48] 0x100 + (GMul(a0, b ^ b0) ^ rnd)
+TPS Secure:	 [49] ((~(a0 ^ a) >> 32) & ~(b ^ b0) >> 32) + (GMul(a0 ^ a, b ^ b0) ^ ((GMul(a0, b ^ b0) ^ rnd) ^ GMul(a0 ^ a, b0)))
+TPS Secure:	 [50] ~(a0 ^ a) + ((~(a0 ^ a) >> 32) & b0)
+TPS Secure:	 [51] (~a0 >> 32) + 0x20
+TPS Secure:	 [52] (a0 ^ a) + b0
+TPS Secure:	 [53] (0x100 + (GLog(a0) + GLog(b0))) + 0x100
+TPS Secure:	 [54] ((~a0 >> 32) & b0) + b0
+TPS Secure:	 [55] ((~a0 >> 32) & (b ^ b0)) + ((~a0 >> 32) & ~(b ^ b0))
+TPS Secure:	 [56] GExp((GLog(b ^ b0) + GLog(a0)) + 0x100) + 0x20
+TPS Secure:	 [57] GLog(a0) + GExp(0x100 + (GLog(a0) + GLog(b0)))
+TPS Secure:	 [58] ((~a0 >> 32) & b0) + GExp(0x100 + (GLog(a0) + GLog(b0)))
+TPS Secure:	 [59] GLog(b ^ b0) + (GLog(b ^ b0) + GLog(a0 ^ a))
+TPS Secure:	 [60] (GLog(b ^ b0) + GLog(a0)) + 0x100
+TPS Secure:	 [61] GExp((GLog(b0) + GLog(a0 ^ a)) + 0x100) + 0x20
+TPS Secure:	 [62] GLog(b ^ b0) + GLog(a0)
+TPS Secure:	 [63] a0 + GLog(b0)
+TPS Secure:	 [64] (a0 ^ a) + (b ^ b0)
+TPS Secure:	 [65] ((~(a0 ^ a) >> 32) & ~(b ^ b0) >> 32) + 0x20
+TPS Secure:	 [66] 0x20 + (b ^ b0)
+TPS Secure:	 [67] (GLog(b ^ b0) + GLog(a0)) + 0x100
+TPS Secure:	 [68] rnd + (GMul(a0, b ^ b0) ^ rnd)
+TPS Secure:	 [69] 0x100 + (GLog(a0) + GLog(b0))
+TPS Secure:	 [70] (0x100 + (GLog(a0) + GLog(b0))) + (GLog(a0) + GLog(b0))
+TPS Secure:	 [71] (GLog(b ^ b0) + GLog(a0)) + 0x100
+TPS Secure:	 [72] GMul(a0, b ^ b0) + ((~a0 >> 32) & ~(b ^ b0) >> 32)
+TPS Secure:	 [73] GLog(b ^ b0) + GLog(a0 ^ a)
+TPS Secure:	 [74] 0x20 + (b ^ b0)
+TPS Secure:	 [75] (GLog(b0) + GLog(a0 ^ a)) + GLog(b0)
+TPS Secure:	 [76] ~a0 + GExp(0x100 + (GLog(a0) + GLog(b0)))
+TPS Secure:	 [77] ((~(a0 ^ a) >> 32) & ~b0 >> 32) + ((~(a0 ^ a) >> 32) & ~b0)
+TPS Secure:	 [78] a0 + 0x20
+TPS Secure:	 [79] GLog(b ^ b0) + GLog(a0 ^ a)
+TPS Secure:	 [80] (a0 ^ a) + b0
+TPS Secure:	 [81] GLog(b ^ b0) + (GLog(b ^ b0) + GLog(a0 ^ a))
+TPS Insecure:	 [82] (GLog(a0) + GLog(b0)) + (b ^ b0)
+!!!!!LEAKAGE FOUND!!!!!
+TPS Secure:	 [83] ((~(a0 ^ a) >> 32) & (b ^ b0)) + (b ^ b0)
+TPS Secure:	 [84] GLog(b ^ b0) + GLog(a0 ^ a)
+TPS Secure:	 [85] GLog(a0) + (GLog(a0) + GLog(b0))
+TPS Secure:	 [86] ((~(a0 ^ a) >> 32) & ~b0 >> 32) + b0
+TPS Secure:	 [87] b0 + 0x20
+TPS Secure:	 [88] ((~a0 >> 32) & (b ^ b0)) + ((~a0 >> 32) & ~(b ^ b0))
+TPS Secure:	 [89] GMul(a0, b0) + 0x20
+TPS Secure:	 [90] ~(a0 ^ a) + ((~(a0 ^ a) >> 32) & b0)
+TPS Secure:	 [91] (~(a0 ^ a) >> 32) + ((~(a0 ^ a) >> 32) & b0)
+TPS Secure:	 [92] GLog(a0) + GLog(b0)
+TPS Secure:	 [93] a0 + (GMul(a0, b0) ^ rnd)
+TPS Secure:	 [94] GExp(0x100 + (GLog(a0) + GLog(b0))) + 0x20
+TPS Secure:	 [95] 0x100 + ((GLog(b0) + GLog(a0 ^ a)) + 0x100)
+TPS Secure:	 [96] GExp(0x100 + (GLog(a0) + GLog(b0))) + ((~a0 >> 32) & ~b0)
+TPS Secure:	 [97] rnd + ((~a0 >> 32) & ~(b ^ b0))
+TPS Secure:	 [98] ((~(a0 ^ a) >> 32) & ~(b ^ b0) >> 32) + GMul(a0 ^ a, b ^ b0)
+TPS Insecure:	 [99] GLog(b0) + GExp((GLog(b ^ b0) + GLog(a0)) + 0x100)
+!!!!!LEAKAGE FOUND!!!!!
+TPS Secure:	 [100] GMul(a0, b ^ b0) + GExp((GLog(b ^ b0) + GLog(a0)) + 0x100)
+TPS Secure:	 [101] GMul(a0, b0) + 0x20
+TPS Secure:	 [102] 0x100 + GExp((GLog(b0) + GLog(a0 ^ a)) + 0x100)
+TPS Secure:	 [103] ((~(a0 ^ a) >> 32) & ~b0 >> 32) + ((~(a0 ^ a) >> 32) & ~b0)
+TPS Secure:	 [104] GMul(a0, b ^ b0) + (GMul(a0, b ^ b0) ^ rnd)
+TPS Secure:	 [105] GExp((GLog(b ^ b0) + GLog(a0)) + 0x100) + 0x20
+TPS Secure:	 [106] (GLog(b ^ b0) + GLog(a0)) + 0x100
+TPS Secure:	 [107] GLog(a0) + ((~a0 >> 32) & ~b0 >> 32)
+TPS Secure:	 [108] ((~a0 >> 32) & b0) + ~a0
+TPS Secure:	 [109] a0 + (b ^ b0)
+TPS Secure:	 [110] ((~a0 >> 32) & (b ^ b0)) + ~a0
+TPS Secure:	 [111] GMul(a0, b0) + GExp(0x100 + (GLog(a0) + GLog(b0)))
+TPS Secure:	 [112] (~a0 >> 32) + ((~a0 >> 32) & (b ^ b0))
+TPS Insecure:	 [113] GExp((GLog(b ^ b0) + GLog(a0)) + 0x100) + GLog(a0 ^ a)
+!!!!!LEAKAGE FOUND!!!!!
+TPS Secure:	 [114] GExp((GLog(b ^ b0) + GLog(a0)) + 0x100) + 0x20
+TPS Secure:	 [115] (0x100 + (GLog(a0) + GLog(b0))) + GExp(0x100 + (GLog(a0) + GLog(b0)))
+TPS Secure:	 [116] (GMul(a0, b ^ b0) ^ rnd) + GExp((GLog(b0) + GLog(a0 ^ a)) + 0x100)
+TPS Secure:	 [117] ((~(a0 ^ a) >> 32) & ~b0 >> 32) + GMul(a0 ^ a, b0)
+TPS Secure:	 [118] ((~a0 >> 32) & ~(b ^ b0)) + ((~a0 >> 32) & ~(b ^ b0) >> 32)
+TPS Secure:	 [119] 0x100 + (GLog(a0) + GLog(b0))
+TPS Secure:	 [120] ((~(a0 ^ a) >> 32) & b0) + ((~(a0 ^ a) >> 32) & ~b0)
+TPS Secure:	 [121] rnd + (GMul(a0, b0) ^ rnd)
+TPS Secure:	 [122] GLog(b ^ b0) + 0x100
+TPS Secure:	 [123] rnd + GLog(b0)
+TPS Secure:	 [124] 0x20 + ((~a0 >> 32) & ~b0 >> 32)
+TPS Secure:	 [125] ((~a0 >> 32) & b0) + ~a0
+TPS Secure:	 [126] GLog(b ^ b0) + 0x100
+TPS Secure:	 [127] ((~(a0 ^ a) >> 32) & (b ^ b0)) + (b ^ b0)
+TPS Secure:	 [128] (GLog(b0) + GLog(a0 ^ a)) + (a0 ^ a)
+TPS Secure:	 [129] (~a0 >> 32) + ((~a0 >> 32) & ~(b ^ b0))
+TPS Secure:	 [130] (GLog(b0) + GLog(a0 ^ a)) + 0x100
+TPS Secure:	 [131] b0 + GLog(a0 ^ a)
+TPS Secure:	 [132] ((~(a0 ^ a) >> 32) & ~b0 >> 32) + ((~(a0 ^ a) >> 32) & ~b0)
+TPS Secure:	 [133] (GMul(a0, b ^ b0) ^ rnd) + GExp((GLog(b0) + GLog(a0 ^ a)) + 0x100)
+TPS Secure:	 [134] ((~a0 >> 32) & b0) + b0
+TPS Secure:	 [135] GExp((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100) + ((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100)
+TPS Secure:	 [136] (0x100 + (GLog(a0) + GLog(b0))) + (GLog(a0) + GLog(b0))
+TPS Insecure:	 [137] GLog(b0) + (b ^ b0)
+!!!!!LEAKAGE FOUND!!!!!
+TPS Secure:	 [138] 0x100 + GExp(0x100 + (GLog(a0) + GLog(b0)))
+TPS Secure:	 [139] ((~(a0 ^ a) >> 32) & ~b0 >> 32) + GMul(a0 ^ a, b0)
+TPS Secure:	 [140] ((~(a0 ^ a) >> 32) & ~(b ^ b0) >> 32) + (GMul(a0 ^ a, b ^ b0) ^ ((GMul(a0, b ^ b0) ^ rnd) ^ GMul(a0 ^ a, b0)))
+TPS Secure:	 [141] a0 + (b ^ b0)
+TPS Secure:	 [142] b0 + 0x20
+TPS Secure:	 [143] (a0 ^ a) + (b ^ b0)
+TPS Secure:	 [144] rnd + (a0 ^ a)
+TPS Insecure:	 [145] GLog(b ^ b0) + b0
+!!!!!LEAKAGE FOUND!!!!!
+TPS Secure:	 [146] GExp((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100) + ((~(a0 ^ a) >> 32) & (b ^ b0))
+TPS Secure:	 [147] ((~(a0 ^ a) >> 32) & ~b0 >> 32) + ((~(a0 ^ a) >> 32) & ~b0)
+TPS Secure:	 [148] (a0 ^ a) + (GLog(b ^ b0) + GLog(a0 ^ a))
+TPS Secure:	 [149] (GLog(b0) + GLog(a0 ^ a)) + 0x100
+TPS Secure:	 [150] ((~(a0 ^ a) >> 32) & ~(b ^ b0) >> 32) + GMul(a0 ^ a, b ^ b0)
+TPS Secure:	 [151] GLog(b ^ b0) + GExp((GLog(b ^ b0) + GLog(a0)) + 0x100)
+TPS Secure:	 [152] GLog(a0) + GLog(b0)
+TPS Insecure:	 [153] (a0 ^ a) + GExp((GLog(b ^ b0) + GLog(a0)) + 0x100)
+!!!!!LEAKAGE FOUND!!!!!
+TPS Secure:	 [154] (GMul(a0, b0) ^ rnd) + ((~a0 >> 32) & ~b0 >> 32)
+TPS Secure:	 [155] GLog(b ^ b0) + (b ^ b0)
+TPS Secure:	 [156] GLog(b0) + b0
+TPS Secure:	 [157] GLog(b ^ b0) + (GLog(b ^ b0) + GLog(a0))
+TPS Secure:	 [158] GExp((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100) + ((~(a0 ^ a) >> 32) & ~(b ^ b0) >> 32)
+TPS Secure:	 [159] GLog(b0) + GLog(a0 ^ a)
+TPS Secure:	 [160] ((~(a0 ^ a) >> 32) & ~(b ^ b0) >> 32) + ((GMul(a0, b ^ b0) ^ rnd) ^ GMul(a0 ^ a, b0))
+TPS Secure:	 [161] ((~a0 >> 32) & (b ^ b0)) + ((~a0 >> 32) & ~(b ^ b0))
+TPS Secure:	 [162] ((GMul(a0, b ^ b0) ^ rnd) ^ GMul(a0 ^ a, b0)) + (GMul(a0 ^ a, b ^ b0) ^ ((GMul(a0, b ^ b0) ^ rnd) ^ GMul(a0 ^ a, b0)))
+TPS Secure:	 [163] GLog(b ^ b0) + (GLog(b ^ b0) + GLog(a0))
+TPS Secure:	 [164] (a0 ^ a) + ((GLog(b0) + GLog(a0 ^ a)) + 0x100)
+TPS Secure:	 [165] ((~(a0 ^ a) >> 32) & ~b0 >> 32) + b0
+TPS Secure:	 [166] (a0 ^ a) + (GMul(a0, b ^ b0) ^ rnd)
+TPS Secure:	 [167] 0x100 + ((GLog(b ^ b0) + GLog(a0)) + 0x100)
+TPS Secure:	 [168] ~a0 + ((GLog(b ^ b0) + GLog(a0)) + 0x100)
+TPS Secure:	 [169] GExp((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100) + GLog(b ^ b0)
+TPS Secure:	 [170] GLog(b0) + b0
+TPS Secure:	 [171] GLog(b ^ b0) + 0x100
+TPS Secure:	 [172] a0 + ~a0
+TPS Secure:	 [173] ((~a0 >> 32) & b0) + ((~a0 >> 32) & ~b0)
+TPS Secure:	 [174] GMul(a0, b0) + (GMul(a0, b0) ^ rnd)
+TPS Secure:	 [175] GExp((GLog(b0) + GLog(a0 ^ a)) + 0x100) + GLog(a0 ^ a)
+TPS Secure:	 [176] rnd + ((~a0 >> 32) & ~(b ^ b0))
+TPS Secure:	 [177] (a0 ^ a) + b0
+TPS Secure:	 [178] ((~(a0 ^ a) >> 32) & ~(b ^ b0) >> 32) + (GMul(a0 ^ a, b ^ b0) ^ ((GMul(a0, b ^ b0) ^ rnd) ^ GMul(a0 ^ a, b0)))
+TPS Secure:	 [179] b0 + ((~(a0 ^ a) >> 32) & b0)
+TPS Secure:	 [180] ((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100) + (GLog(b ^ b0) + GLog(a0 ^ a))
+TPS Secure:	 [181] a0 + ((GLog(b ^ b0) + GLog(a0)) + 0x100)
+TPS Secure:	 [182] GLog(b0) + GExp((GLog(b0) + GLog(a0 ^ a)) + 0x100)
+TPS Secure:	 [183] 0x100 + b0
+TPS Secure:	 [184] (GMul(a0, b0) ^ rnd) + ((~a0 >> 32) & ~b0 >> 32)
+TPS Secure:	 [185] GLog(a0) + (b ^ b0)
+TPS Secure:	 [186] 0x100 + (GLog(a0) + GLog(b0))
+TPS Secure:	 [187] (a0 ^ a) + 0x20
+TPS Secure:	 [188] GExp((GLog(b0) + GLog(a0 ^ a)) + 0x100) + GLog(a0 ^ a)
+TPS Secure:	 [189] GExp(0x100 + (GLog(a0) + GLog(b0))) + 0x20
+TPS Secure:	 [190] ((~(a0 ^ a) >> 32) & (b ^ b0)) + 0x20
+TPS Secure:	 [191] (0x100 + (GLog(a0) + GLog(b0))) + ~a0
+TPS Secure:	 [192] ((~(a0 ^ a) >> 32) & ~(b ^ b0) >> 32) + ((~(a0 ^ a) >> 32) & ~(b ^ b0))
+TPS Secure:	 [193] 0x100 + ((GLog(b0) + GLog(a0 ^ a)) + 0x100)
+TPS Secure:	 [194] rnd + a0
+TPS Insecure:	 [195] GLog(b0) + GExp((GLog(b ^ b0) + GLog(a0)) + 0x100)
+!!!!!LEAKAGE FOUND!!!!!
+TPS Secure:	 [196] ((~(a0 ^ a) >> 32) & ~b0 >> 32) + ((~(a0 ^ a) >> 32) & ~b0)
+TPS Secure:	 [197] GLog(b ^ b0) + GLog(a0)
+TPS Secure:	 [198] rnd + (b ^ b0)
+TPS Secure:	 [199] GLog(b ^ b0) + GExp((GLog(b ^ b0) + GLog(a0)) + 0x100)
+TPS Secure:	 [200] GExp((GLog(b0) + GLog(a0 ^ a)) + 0x100) + 0x20
+TPS Secure:	 [201] ((~(a0 ^ a) >> 32) & ~(b ^ b0) >> 32) + ((GMul(a0, b ^ b0) ^ rnd) ^ GMul(a0 ^ a, b0))
+TPS Secure:	 [202] ((~(a0 ^ a) >> 32) & ~(b ^ b0) >> 32) + 0x20
+TPS Secure:	 [203] (~a0 >> 32) + ~a0
+TPS Secure:	 [204] ((~(a0 ^ a) >> 32) & ~(b ^ b0) >> 32) + ((~(a0 ^ a) >> 32) & (b ^ b0))
+TPS Secure:	 [205] rnd + ((~a0 >> 32) & ~(b ^ b0) >> 32)
+TPS Secure:	 [206] GLog(a0) + GExp(0x100 + (GLog(a0) + GLog(b0)))
+TPS Secure:	 [207] GLog(b ^ b0) + ((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100)
+TPS Secure:	 [208] (GLog(b0) + GLog(a0 ^ a)) + ((GLog(b0) + GLog(a0 ^ a)) + 0x100)
+TPS Secure:	 [209] ((~a0 >> 32) & (b ^ b0)) + ~a0
+TPS Insecure:	 [210] GLog(b0) + GExp((GLog(b ^ b0) + GLog(a0)) + 0x100)
+!!!!!LEAKAGE FOUND!!!!!
+TPS Secure:	 [211] ~(a0 ^ a) + (~(a0 ^ a) >> 32)
+TPS Secure:	 [212] ((~a0 >> 32) & (b ^ b0)) + 0x20
+TPS Secure:	 [213] ((~a0 >> 32) & ~(b ^ b0)) + ((~a0 >> 32) & ~(b ^ b0) >> 32)
+TPS Secure:	 [214] GMul(a0, b ^ b0) + ((~a0 >> 32) & ~(b ^ b0))
+TPS Secure:	 [215] GLog(b ^ b0) + GLog(a0)
+TPS Secure:	 [216] (GLog(b0) + GLog(a0 ^ a)) + GLog(b0)
+TPS Secure:	 [217] ((~(a0 ^ a) >> 32) & ~(b ^ b0) >> 32) + 0x20
+TPS Secure:	 [218] b0 + 0x20
+TPS Secure:	 [219] (GLog(b0) + GLog(a0 ^ a)) + 0x100
+TPS Secure:	 [220] GLog(a0) + GExp(0x100 + (GLog(a0) + GLog(b0)))
+TPS Secure:	 [221] GMul(a0, b ^ b0) + GExp((GLog(b ^ b0) + GLog(a0)) + 0x100)
+TPS Secure:	 [222] a0 + ((GLog(b ^ b0) + GLog(a0)) + 0x100)
+TPS Secure:	 [223] GLog(b ^ b0) + (GLog(b ^ b0) + GLog(a0 ^ a))
+TPS Secure:	 [224] ((~a0 >> 32) & (b ^ b0)) + (b ^ b0)
+TPS Secure:	 [225] GExp((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100) + GMul(a0 ^ a, b ^ b0)
+TPS Secure:	 [226] ((~a0 >> 32) & b0) + 0x20
+TPS Secure:	 [227] 0x100 + ((GLog(b ^ b0) + GLog(a0)) + 0x100)
+TPS Secure:	 [228] ((~a0 >> 32) & b0) + (~a0 >> 32)
+TPS Secure:	 [229] ((GLog(b0) + GLog(a0 ^ a)) + 0x100) + ~(a0 ^ a)
+TPS Secure:	 [230] rnd + (b ^ b0)
+TPS Secure:	 [231] GMul(a0, b ^ b0) + GExp((GLog(b ^ b0) + GLog(a0)) + 0x100)
+TPS Secure:	 [232] b0 + ((~(a0 ^ a) >> 32) & b0)
+TPS Secure:	 [233] GExp(0x100 + (GLog(a0) + GLog(b0))) + ((~a0 >> 32) & ~b0 >> 32)
+TPS Secure:	 [234] GMul(a0, b0) + ((~a0 >> 32) & ~b0 >> 32)
+TPS Secure:	 [235] a0 + (b ^ b0)
+TPS Secure:	 [236] GLog(b0) + GLog(a0 ^ a)
+TPS Secure:	 [237] ((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100) + ~(a0 ^ a)
+TPS Secure:	 [238] ((~(a0 ^ a) >> 32) & b0) + ((~(a0 ^ a) >> 32) & ~b0)
+TPS Secure:	 [239] (GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100
+TPS Secure:	 [240] a0 + b0
+TPS Secure:	 [241] GLog(a0) + GLog(b0)
+TPS Secure:	 [242] b0 + 0x20
+TPS Secure:	 [243] ((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100) + 0x100
+TPS Secure:	 [244] GLog(a0) + (b ^ b0)
+TPS Secure:	 [245] ((~a0 >> 32) & b0) + b0
+TPS Secure:	 [246] GLog(b ^ b0) + (b ^ b0)
+TPS Secure:	 [247] ((~a0 >> 32) & (b ^ b0)) + ~a0
+TPS Secure:	 [248] GLog(b0) + 0x20
+TPS Secure:	 [249] (a0 ^ a) + b0
+TPS Secure:	 [250] 0x100 + ((GLog(b0) + GLog(a0 ^ a)) + 0x100)
+TPS Secure:	 [251] GLog(b ^ b0) + GLog(a0)
+TPS Secure:	 [252] GLog(a0) + GLog(b0)
+TPS Secure:	 [253] 0x120
+TPS Secure:	 [254] GMul(a0, b ^ b0) + rnd
+TPS Secure:	 [255] a0 + 0x100
+TPS Secure:	 [256] 0x100 + GExp((GLog(b ^ b0) + GLog(a0)) + 0x100)
+TPS Secure:	 [257] GExp((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100) + GLog(b ^ b0)
+TPS Secure:	 [258] 0x20 + ((~(a0 ^ a) >> 32) & b0)
+TPS Secure:	 [259] GLog(b0) + (GLog(a0) + GLog(b0))
+TPS Secure:	 [260] (GLog(b0) + GLog(a0 ^ a)) + GLog(b0)
+TPS Secure:	 [261] GMul(a0 ^ a, b ^ b0) + (GMul(a0 ^ a, b ^ b0) ^ ((GMul(a0, b ^ b0) ^ rnd) ^ GMul(a0 ^ a, b0)))
+TPS Secure:	 [262] 0x100 + ((GLog(b ^ b0) + GLog(a0)) + 0x100)
+TPS Secure:	 [263] GExp((GLog(b0) + GLog(a0 ^ a)) + 0x100) + GLog(a0 ^ a)
+TPS Secure:	 [264] GLog(b ^ b0) + (GMul(a0, b ^ b0) ^ rnd)
+TPS Secure:	 [265] (GLog(b ^ b0) + GLog(a0)) + 0x100
+TPS Secure:	 [266] 0x100 + GLog(b0)
+TPS Secure:	 [267] GLog(b ^ b0) + GLog(a0)
+TPS Secure:	 [268] ~(a0 ^ a) + ((~(a0 ^ a) >> 32) & b0)
+TPS Secure:	 [269] GLog(b ^ b0) + ((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100)
+TPS Secure:	 [270] ((~(a0 ^ a) >> 32) & b0) + ((~(a0 ^ a) >> 32) & ~b0)
+TPS Secure:	 [271] ((~(a0 ^ a) >> 32) & (b ^ b0)) + ((~(a0 ^ a) >> 32) & ~(b ^ b0))
+TPS Secure:	 [272] 0x100 + GLog(b0)
+TPS Secure:	 [273] a0 + GExp((GLog(b ^ b0) + GLog(a0)) + 0x100)
+TPS Secure:	 [274] GLog(b ^ b0) + (b ^ b0)
+TPS Insecure:	 [275] GLog(b ^ b0) + GExp((GLog(b0) + GLog(a0 ^ a)) + 0x100)
+!!!!!LEAKAGE FOUND!!!!!
+TPS Secure:	 [276] GLog(b ^ b0) + GLog(a0 ^ a)
+TPS Secure:	 [277] ((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100) + ~(a0 ^ a)
+TPS Secure:	 [278] GLog(b ^ b0) + GLog(a0 ^ a)
+TPS Secure:	 [279] ((~a0 >> 32) & b0) + GExp(0x100 + (GLog(a0) + GLog(b0)))
+TPS Secure:	 [280] GLog(b ^ b0) + GLog(a0)
+TPS Secure:	 [281] ((~(a0 ^ a) >> 32) & ~b0 >> 32) + GMul(a0 ^ a, b0)
+TPS Secure:	 [282] GLog(a0 ^ a) + (b ^ b0)
+TPS Secure:	 [283] GExp((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100) + ~(a0 ^ a)
+TPS Secure:	 [284] (~a0 >> 32) + ((~a0 >> 32) & ~b0)
+TPS Secure:	 [285] ((~a0 >> 32) & ~b0) + ((~a0 >> 32) & ~b0 >> 32)
+TPS Secure:	 [286] GMul(a0, b0) + GExp(0x100 + (GLog(a0) + GLog(b0)))
+TPS Secure:	 [287] GExp((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100) + ((~(a0 ^ a) >> 32) & (b ^ b0))
+TPS Secure:	 [288] ((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100) + (GLog(b ^ b0) + GLog(a0 ^ a))
+TPS Secure:	 [289] a0 + ~a0
+TPS Secure:	 [290] a0 + 0x20
+TPS Secure:	 [291] (0x100 + (GLog(a0) + GLog(b0))) + a0
+TPS Secure:	 [292] 0x20 + ((~(a0 ^ a) >> 32) & b0)
+TPS Secure:	 [293] (a0 ^ a) + (b ^ b0)
+TPS Insecure:	 [294] GExp((GLog(b ^ b0) + GLog(a0)) + 0x100) + GLog(a0 ^ a)
+!!!!!LEAKAGE FOUND!!!!!
+TPS Secure:	 [295] a0 + 0x100
+TPS Secure:	 [296] GExp((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100) + ((~(a0 ^ a) >> 32) & (b ^ b0))
+TPS Secure:	 [297] ((~a0 >> 32) & (b ^ b0)) + (b ^ b0)
+TPS Secure:	 [298] GExp((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100) + GLog(b ^ b0)
+TPS Secure:	 [299] GExp((GLog(b0) + GLog(a0 ^ a)) + 0x100) + b0
+TPS Secure:	 [300] GLog(b0) + b0
+TPS Secure:	 [301] (GLog(b0) + GLog(a0 ^ a)) + ((GLog(b0) + GLog(a0 ^ a)) + 0x100)
+TPS Secure:	 [302] GMul(a0, b ^ b0) + GExp((GLog(b ^ b0) + GLog(a0)) + 0x100)
+TPS Secure:	 [303] ((~(a0 ^ a) >> 32) & ~(b ^ b0) >> 32) + ((GMul(a0, b ^ b0) ^ rnd) ^ GMul(a0 ^ a, b0))
+TPS Secure:	 [304] ((~(a0 ^ a) >> 32) & (b ^ b0)) + 0x20
+TPS Secure:	 [305] (0x100 + (GLog(a0) + GLog(b0))) + 0x100
+TPS Secure:	 [306] GLog(a0) + GLog(b0)
+TPS Secure:	 [307] ((~(a0 ^ a) >> 32) & b0) + ((~(a0 ^ a) >> 32) & ~b0)
+TPS Secure:	 [308] ~a0 + GExp(0x100 + (GLog(a0) + GLog(b0)))
+TPS Secure:	 [309] 0x100 + ((GLog(b ^ b0) + GLog(a0)) + 0x100)
+TPS Secure:	 [310] 0x20 + (b ^ b0)
+TPS Secure:	 [311] 0x120
+TPS Secure:	 [312] (a0 ^ a) + b0
+TPS Insecure:	 [313] GLog(b0) + GExp((GLog(b ^ b0) + GLog(a0)) + 0x100)
+!!!!!LEAKAGE FOUND!!!!!
+TPS Secure:	 [314] rnd + (b ^ b0)
+TPS Secure:	 [315] ((~a0 >> 32) & b0) + 0x20
+TPS Secure:	 [316] (GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100
+TPS Secure:	 [317] rnd + (b ^ b0)
+TPS Secure:	 [318] ((GLog(b0) + GLog(a0 ^ a)) + 0x100) + ~(a0 ^ a)
+TPS Secure:	 [319] GExp((GLog(b0) + GLog(a0 ^ a)) + 0x100) + 0x20
+TPS Secure:	 [320] (~(a0 ^ a) >> 32) + ((~(a0 ^ a) >> 32) & ~b0)
+TPS Secure:	 [321] (a0 ^ a) + (GMul(a0, b ^ b0) ^ rnd)
+TPS Secure:	 [322] (a0 ^ a) + 0x20
+TPS Secure:	 [323] GMul(a0, b ^ b0) + rnd
+TPS Secure:	 [324] GLog(b ^ b0) + (GLog(b ^ b0) + GLog(a0))
+TPS Secure:	 [325] (0x100 + (GLog(a0) + GLog(b0))) + 0x100
+TPS Secure:	 [326] GLog(b0) + 0x20
+TPS Secure:	 [327] ((~a0 >> 32) & (b ^ b0)) + (b ^ b0)
+TPS Secure:	 [328] GLog(b ^ b0) + GLog(a0 ^ a)
+TPS Secure:	 [329] GLog(b ^ b0) + (GLog(b ^ b0) + GLog(a0))
+TPS Secure:	 [330] GLog(b ^ b0) + (GMul(a0, b ^ b0) ^ rnd)
+TPS Secure:	 [331] GMul(a0, b0) + (GMul(a0, b0) ^ rnd)
+TPS Secure:	 [332] GExp((GLog(b0) + GLog(a0 ^ a)) + 0x100) + GLog(a0 ^ a)
+TPS Secure:	 [333] (GLog(b ^ b0) + GLog(a0)) + ((GLog(b ^ b0) + GLog(a0)) + 0x100)
+TPS Secure:	 [334] GLog(b ^ b0) + GLog(a0)
+TPS Secure:	 [335] ((~a0 >> 32) & b0) + GExp(0x100 + (GLog(a0) + GLog(b0)))
+TPS Secure:	 [336] rnd + GLog(b0)
+TPS Secure:	 [337] (GLog(b0) + GLog(a0 ^ a)) + 0x100
+TPS Secure:	 [338] ((~(a0 ^ a) >> 32) & ~(b ^ b0) >> 32) + ((GMul(a0, b ^ b0) ^ rnd) ^ GMul(a0 ^ a, b0))
+TPS Secure:	 [339] GLog(b ^ b0) + GLog(a0 ^ a)
+TPS Secure:	 [340] ((GMul(a0, b ^ b0) ^ rnd) ^ GMul(a0 ^ a, b0)) + GMul(a0 ^ a, b0)
+TPS Secure:	 [341] 0x100 + GLog(b0)
+TPS Insecure:	 [342] b0 + GExp((GLog(b ^ b0) + GLog(a0)) + 0x100)
+!!!!!LEAKAGE FOUND!!!!!
+TPS Secure:	 [343] (GLog(b0) + GLog(a0 ^ a)) + GLog(b0)
+TPS Secure:	 [344] a0 + b0
+TPS Secure:	 [345] rnd + GLog(b0)
+TPS Secure:	 [346] (0x100 + (GLog(a0) + GLog(b0))) + 0x100
+TPS Secure:	 [347] ((~(a0 ^ a) >> 32) & ~(b ^ b0)) + (~(a0 ^ a) >> 32)
+TPS Secure:	 [348] (a0 ^ a) + 0x100
+TPS Secure:	 [349] (GMul(a0, b ^ b0) ^ rnd) + GExp((GLog(b0) + GLog(a0 ^ a)) + 0x100)
+TPS Secure:	 [350] ((~(a0 ^ a) >> 32) & (b ^ b0)) + ~(a0 ^ a)
+TPS Secure:	 [351] (a0 ^ a) + (b ^ b0)
+TPS Secure:	 [352] ((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100) + ~(a0 ^ a)
+TPS Secure:	 [353] (0x100 + (GLog(a0) + GLog(b0))) + 0x100
+TPS Secure:	 [354] (a0 ^ a) + (b ^ b0)
+TPS Secure:	 [355] ((~(a0 ^ a) >> 32) & (b ^ b0)) + 0x20
+TPS Insecure:	 [356] b0 + GExp((GLog(b ^ b0) + GLog(a0)) + 0x100)
+!!!!!LEAKAGE FOUND!!!!!
+TPS Secure:	 [357] GMul(a0, b ^ b0) + GExp((GLog(b ^ b0) + GLog(a0)) + 0x100)
+TPS Secure:	 [358] a0 + ((GLog(b ^ b0) + GLog(a0)) + 0x100)
+TPS Secure:	 [359] 0x100 + ((GLog(b0) + GLog(a0 ^ a)) + 0x100)
+TPS Secure:	 [360] a0 + b0
+TPS Secure:	 [361] (0x100 + (GLog(a0) + GLog(b0))) + 0x100
+TPS Secure:	 [362] GMul(a0, b0) + ((~a0 >> 32) & ~b0 >> 32)
+TPS Secure:	 [363] ((~(a0 ^ a) >> 32) & ~(b ^ b0) >> 32) + (GMul(a0 ^ a, b ^ b0) ^ ((GMul(a0, b ^ b0) ^ rnd) ^ GMul(a0 ^ a, b0)))
+TPS Secure:	 [364] (a0 ^ a) + (b ^ b0)
+TPS Secure:	 [365] ((~a0 >> 32) & b0) + 0x20
+TPS Secure:	 [366] ((~a0 >> 32) & b0) + ~a0
+TPS Secure:	 [367] ((~(a0 ^ a) >> 32) & (b ^ b0)) + (~(a0 ^ a) >> 32)
+TPS Secure:	 [368] GExp((GLog(b0) + GLog(a0 ^ a)) + 0x100) + b0
+TPS Secure:	 [369] (a0 ^ a) + 0x20
+TPS Secure:	 [370] GLog(b ^ b0) + (a0 ^ a)
+TPS Secure:	 [371] 0x100 + ((GLog(b0) + GLog(a0 ^ a)) + 0x100)
+TPS Secure:	 [372] ((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100) + 0x100
+TPS Secure:	 [373] (GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100
+TPS Insecure:	 [374] GLog(b0) + GExp((GLog(b ^ b0) + GLog(a0)) + 0x100)
+!!!!!LEAKAGE FOUND!!!!!
+TPS Secure:	 [375] (a0 ^ a) + ((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100)
+TPS Secure:	 [376] GLog(a0) + (GLog(a0) + GLog(b0))
+TPS Insecure:	 [377] GLog(b0) + GExp((GLog(b ^ b0) + GLog(a0)) + 0x100)
+!!!!!LEAKAGE FOUND!!!!!
+TPS Secure:	 [378] GMul(a0, b0) + (GMul(a0, b0) ^ rnd)
+TPS Secure:	 [379] ((~(a0 ^ a) >> 32) & (b ^ b0)) + (b ^ b0)
+TPS Insecure:	 [380] GLog(b0) + GExp((GLog(b ^ b0) + GLog(a0)) + 0x100)
+!!!!!LEAKAGE FOUND!!!!!
+TPS Secure:	 [381] GLog(b ^ b0) + GLog(a0 ^ a)
+TPS Secure:	 [382] a0 + b0
+TPS Secure:	 [383] GLog(a0) + GExp(0x100 + (GLog(a0) + GLog(b0)))
+TPS Secure:	 [384] ~a0 + 0x20
+TPS Insecure:	 [385] GMul(a0, b ^ b0) + (a0 ^ a)
+!!!!!LEAKAGE FOUND!!!!!
+TPS Secure:	 [386] a0 + b0
+TPS Secure:	 [387] (a0 ^ a) + GLog(b0)
+TPS Secure:	 [388] GMul(a0, b ^ b0) + GExp((GLog(b ^ b0) + GLog(a0)) + 0x100)
+
+Interaction
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+*** Warning: shift value (32) >= bit width of expression (32)
+TPS Secure:	 [00] (((~a0 >> 32) & ~b0) * (GExp(0x100 + (GLog(a0) + GLog(b0))) * ((~a0 >> 32) & ~b0 >> 32))) * 0x20
+TPS Secure:	 [01] (GExp(0x100 + (GLog(a0) + GLog(b0))) * (GExp(0x100 + (GLog(a0) + GLog(b0))) * ((~a0 >> 32) & ~b0 >> 32))) * ((~a0 >> 32) & ~b0 >> 32)
+TPS Secure:	 [02] GLog(b0) * ((GLog(b0) * GLog(b0)) * GLog(b0))
+TPS Secure:	 [03] ((~(a0 ^ a) >> 32) & ~(b ^ b0) >> 32) * (GExp((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100) * (GExp((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100) * ((~(a0 ^ a) >> 32) & ~(b ^ b0) >> 32)))
+TPS Secure:	 [04] GLog(b0) * ((GLog(a0) * GLog(b0)) * GLog(a0))
+TPS Secure:	 [05] GExp((GLog(b0) + GLog(a0 ^ a)) + 0x100) * (((~(a0 ^ a) >> 32) & ~b0 >> 32) * ((GMul(a0, b ^ b0) ^ rnd) * GMul(a0 ^ a, b0)))
+TPS Secure:	 [06] 0x20 * (((~a0 >> 32) * (b ^ b0)) * ~a0)
+TPS Secure:	 [07] ((((~a0 >> 32) & ~(b ^ b0) >> 32) * GExp((GLog(b ^ b0) + GLog(a0)) + 0x100)) * ((~a0 >> 32) & ~(b ^ b0))) * 0x20
+TPS Secure:	 [08] ((((~(a0 ^ a) >> 32) & ~b0 >> 32) * GExp((GLog(b0) + GLog(a0 ^ a)) + 0x100)) * ((~(a0 ^ a) >> 32) & ~b0)) * 0x20
+TPS Secure:	 [09] ((~a0 >> 32) & b0) * ((~a0 >> 32) * (((~a0 >> 32) & ~b0) * 0x20))
+!!!ERROR!!!: Assertion failed at: GLog(b ^ b0) * (GLog(b ^ b0) * ((GLog(b ^ b0) + GLog(a0 ^ a)) * 0x100))
+TPS Secure:	 [11] (((~a0 >> 32) * ((~a0 >> 32) & (b ^ b0))) * (~a0 >> 32)) * (b ^ b0)
+TPS Secure:	 [12] GLog(b ^ b0) * ((GLog(b ^ b0) * GLog(b ^ b0)) * GLog(b ^ b0))
+TPS Secure:	 [13] (~a0 * ((~a0 >> 32) * b0)) * 0x20
+TPS Secure:	 [14] ((~(a0 ^ a) >> 32) & ~(b ^ b0) >> 32) * (GExp((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100) * (GMul(a0 ^ a, b ^ b0) * ((GMul(a0, b ^ b0) ^ rnd) ^ GMul(a0 ^ a, b0))))
+TPS Secure:	 [15] ((((~(a0 ^ a) >> 32) & (b ^ b0)) * (~(a0 ^ a) >> 32)) * (~(a0 ^ a) >> 32)) * (b ^ b0)
+TPS Secure:	 [16] ((GMul(a0, b0) * rnd) * GExp(0x100 + (GLog(a0) + GLog(b0)))) * ((~a0 >> 32) & ~b0 >> 32)
+!!!ERROR!!!: Assertion failed at: (GLog(a0) * (0x100 * (GLog(a0) + GLog(b0)))) * GLog(b0)
+TPS Secure:	 [18] (((~(a0 ^ a) >> 32) & ~(b ^ b0) >> 32) * (((~(a0 ^ a) >> 32) & ~(b ^ b0) >> 32) * (GMul(a0 ^ a, b ^ b0) ^ ((GMul(a0, b ^ b0) ^ rnd) ^ GMul(a0 ^ a, b0))))) * (GMul(a0 ^ a, b ^ b0) ^ ((GMul(a0, b ^ b0) ^ rnd) ^ GMul(a0 ^ a, b0)))
+TPS Secure:	 [19] a0 * (a0 * (~a0 * 0x20))
+TPS Secure:	 [20] ((GMul(a0, b ^ b0) * rnd) * ((~a0 >> 32) & ~(b ^ b0) >> 32)) * GExp((GLog(b ^ b0) + GLog(a0)) + 0x100)
+TPS Secure:	 [21] (~(a0 ^ a) * ((~(a0 ^ a) >> 32) * (b ^ b0))) * 0x20
+TPS Secure:	 [22] (((~(a0 ^ a) >> 32) & ~(b ^ b0)) * (GExp((GLog(b ^ b0) + GLog(a0 ^ a)) + 0x100) * ((~(a0 ^ a) >> 32) & ~(b ^ b0) >> 32))) * 0x20
+TPS Secure:	 [23] ((~a0 >> 32) & (b ^ b0)) * ((~a0 >> 32) * (((~a0 >> 32) & ~(b ^ b0)) * 0x20))
+TPS Secure:	 [24] (~(a0 ^ a) * ((~(a0 ^ a) >> 32) * b0)) * 0x20
+TPS Secure:	 [25] ((~(a0 ^ a) >> 32) & (b ^ b0)) * ((~(a0 ^ a) >> 32) * (((~(a0 ^ a) >> 32) & ~(b ^ b0)) * 0x20))
+!!!ERROR!!!: Assertion failed at: GLog(b ^ b0) * (((GLog(b ^ b0) + GLog(a0)) * 0x100) * GLog(b ^ b0))
+TPS Secure:	 [27] (((~(a0 ^ a) >> 32) * ((~(a0 ^ a) >> 32) & b0)) * (~(a0 ^ a) >> 32)) * b0
+!!!ERROR!!!: Assertion failed at: GLog(b0) * (((GLog(b0) + GLog(a0 ^ a)) * 0x100) * GLog(b0))
+TPS Secure:	 [29] b0 * ((((~a0 >> 32) & b0) * (~a0 >> 32)) * (~a0 >> 32))
+TPS Secure:	 [30] ((0x20 * ((~(a0 ^ a) >> 32) & ~b0)) * (~(a0 ^ a) >> 32)) * ((~(a0 ^ a) >> 32) & b0)
