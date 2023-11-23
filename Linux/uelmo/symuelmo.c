@@ -159,7 +159,16 @@ int SymAssign(SymbolicComponent component, uSymbol symbol)
 
     if(verbose)
     {
-        printf("#[%d] %s = %s\n", frameno, component.name, SymDecode(symbol));
+        if(NON_ARRAY_SYM_COMP == component.index)
+        {
+            printf("#[%d] %s = %s\n", frameno, component.name,
+                   SymDecode(symbol));
+        }
+        else
+        {
+            printf("#[%d] %s[%d] = %s\n", frameno, component.name,
+                   component.index, SymDecode(symbol));
+        }
     }
 
     SfSetFrameSymid(component.sid_p, symbol.symid);
@@ -178,10 +187,36 @@ int SymCopy(SymbolicComponent dstcomp, SymbolicComponent srccomp)
 
     if(verbose)
     {
+        //array = array
+        if((NON_ARRAY_SYM_COMP != dstcomp.index)
+           && (NON_ARRAY_SYM_COMP != srccomp.index))
+        {
+            printf("#[%d] %s[%d] = %s[%d] -> %s\n", frameno, dstcomp.name,
+                   dstcomp.index, srccomp.name, srccomp.index,
+                   SymDecode(GetSym(srccomp)));
+        }
+        //array = var
+        else if((NON_ARRAY_SYM_COMP != dstcomp.index)
+                && (NON_ARRAY_SYM_COMP == srccomp.index))
+        {
+            printf("#[%d] %s[%d] = %s -> %s\n", frameno, dstcomp.name,
+                   dstcomp.index, srccomp.name, SymDecode(GetSym(srccomp)));
+        }
+        //var = array
+        if((NON_ARRAY_SYM_COMP == dstcomp.index)
+           && (NON_ARRAY_SYM_COMP != srccomp.index))
+        {
+            printf("#[%d] %s = %s[%d] -> %s\n", frameno, dstcomp.name,
+                   srccomp.name, srccomp.index, SymDecode(GetSym(srccomp)));
+        }
+        //var = var
+        if((NON_ARRAY_SYM_COMP == dstcomp.index)
+           && (NON_ARRAY_SYM_COMP == srccomp.index))
+        {
+            printf("#[%d] %s = %s -> %s\n", frameno, dstcomp.name,
+                   srccomp.name, SymDecode(GetSym(srccomp)));
+        }
 
-        printf("#[%d] %s[%d] = %s[%d] -> %s\n", frameno, dstcomp.name,
-               dstcomp.index, srccomp.name, srccomp.index,
-               SymDecode(GetSym(srccomp)));
     }
 
     t = SfGetFrameSymid(srccomp.sid_p);

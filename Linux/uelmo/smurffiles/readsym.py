@@ -79,7 +79,7 @@ def main(argc, argv):
 
         # Print current Execution cycle.
         print("Core status : {:s}".format(
-            frame['Execute_instr_disp'].strip('\0').strip('Execute: ')))
+            frame['Execute_instr_disp'].strip('\0').replace('Execute: ', '')))
 
         nosym = True
 
