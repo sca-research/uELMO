@@ -2,7 +2,7 @@
 .syntax unified
 .text
 .thumb
-
+.extern table       @ table is used for GFMULT (ai*bj multiplications)
 
 .global Isw_2
 .func Isw_2
