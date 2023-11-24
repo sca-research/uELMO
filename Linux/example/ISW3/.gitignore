@@ -1,0 +1,7 @@
+*.d
+*.map
+uelmo_gadget.o
+*.elf
+*.list
+*.sdc
+*.log
