@@ -293,7 +293,7 @@ strb r1,[r1,#0x4]       #242
 @@$ src r1 &c
 
 strb r4,[r1,#0x4]       #243
-@@$ dst r4 c1
+@@$ dst r4 c2
 
 mov r8,r8               #262
 
