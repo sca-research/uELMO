@@ -203,12 +203,13 @@ void UlangSed(int linenumber, const char *line, void *arg)
 //Read in an command block.
 int ReadNextCmdBlock()
 {
+    PrintScriptLog("# Reading block %d\n", frameno);
     //Skip the first command block.
     if(firstcmdblock)
     {
         if(verbose)
         {
-            printf("#Skip the first command block.\n");
+            printf("# Skip the first command block.\n");
         }
         ProcessSib(script, NULL, NULL);
         firstcmdblock = false;
