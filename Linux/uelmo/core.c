@@ -4,10 +4,11 @@
 #if USE_SMURF
 #include "symuelmo.h"
 #include "ulang.h"
+
+uSymbol sym_memdata_pending = {.symid = SMURF_SYM_NULL_ID };    //Pending symbol for memory data.
 #endif
 
 CORE_STATUS core_current;
-
 //Check if the current executed LDR instruction requires an extra delay cycle, i.e. LDR r0,xxx; LDR xxx,[r0]
 bool check_delay(unsigned int reg)
 {
@@ -146,7 +147,9 @@ void do_vflag_bit(unsigned int x)
 //update the core registers with new value
 void Clock(bool pause)
 {
+#if USE_SMURF
     PrintScriptLog("#Clock tick begins.\n");
+#endif
 
     //Memory ---> target register
     if(core_current.Read_reg_update == true)
@@ -159,6 +162,7 @@ void Clock(bool pause)
             write_register(core_current.Memory_read_targetreg_buf,
                            core_current.Memory_readbuf);
 #ifdef USE_SMURF
+            PrintScriptLog("#[%d] Mem -> reg\n", frameno);
             sym_write_register(core_current.Memory_read_targetreg_buf,
                                GetSym(sym_core_current.Memory_readbuf));
 #endif
@@ -174,6 +178,7 @@ void Clock(bool pause)
                        core_current.Execute_ALU_result);
         //core_current.Execute_destination_regindex=0xff;
 #ifdef USE_SMURF
+        PrintScriptLog("#[%d] ALU -> reg\n", frameno);
         sym_write_register(core_current.Execute_destination_regindex,
                            GetSym(sym_core_current.Execute_ALU_result));
 #endif
@@ -212,7 +217,10 @@ void Clock(bool pause)
         core_current.Fetch_valid = true;
     }
 
+#if USE_SMURF
     PrintScriptLog("#Clock tick ends.\n");
+#endif
+
     return;
 }
 
