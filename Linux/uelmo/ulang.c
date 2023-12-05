@@ -203,7 +203,6 @@ void UlangSed(int linenumber, const char *line, void *arg)
 //Read in an command block.
 int ReadNextCmdBlock()
 {
-    PrintScriptLog("# Reading block %d\n", frameno);
     //Skip the first command block.
     if(firstcmdblock)
     {
