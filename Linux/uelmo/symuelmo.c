@@ -17,7 +17,7 @@ bool SymActive = true;
 CORE_STATUS_SYM sym_core_current = { 0 };
 
 //NULL Symbol.
-const uSymbol SYM_NULL = { 0 };
+const uSymbol SYM_NULL = {.symid = 0 };
 
 //Count of Symbols. 
 static int symidcount = 1;      //SYM_NULL existed by default.
