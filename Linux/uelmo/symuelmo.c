@@ -10,6 +10,9 @@
 #include "smurf/symbolic.h"
 #include "smurf/version.h"
 
+//Flag to control symbolic operations.
+bool SymActive = true;
+
 //Clear sym_core_current.
 CORE_STATUS_SYM sym_core_current = { 0 };
 
@@ -152,7 +155,7 @@ void CleanSymCore()
 //Assign a Symbol to a component.
 int SymAssign(SymbolicComponent component, uSymbol symbol)
 {
-    if(!SYM_ENABLED)
+    if((!SYM_ENABLED) || (!SymActive))
     {
         return 0;
     }
@@ -180,7 +183,7 @@ int SymCopy(SymbolicComponent dstcomp, SymbolicComponent srccomp)
 {
     SmurfSymId t;
 
-    if(!SYM_ENABLED)
+    if((!SYM_ENABLED) || (!SymActive))
     {
         return 0;
     }

@@ -23,6 +23,9 @@ typedef struct {
 //NULL Symbol.
 extern const uSymbol SYM_NULL;
 
+//Flag to control symbolic operations.
+extern bool SymActive;
+
 //Check if ${sym} is SYM_NULL.
 int IsSymNull(uSymbol sym);
 
