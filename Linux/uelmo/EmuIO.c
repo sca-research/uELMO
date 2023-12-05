@@ -148,7 +148,6 @@ void Write_Frame()
             SmurfSync(smurf);
             SmurfWrite(smurf);
         }
-
 #endif
         frameno++;
     }
