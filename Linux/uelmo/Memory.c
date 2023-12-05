@@ -2,6 +2,7 @@
 #include "core.h"
 #include "Memory.h"
 #include "EmuIO.h"
+#include "symuelmo.h"
 
 unsigned short rom[ROMSIZE >> 1];
 unsigned short ram[RAMSIZE >> 1];
@@ -259,6 +260,10 @@ bool Memory_OneCycle()
             printf("Read Error!\n");
         }
         core_current.Memory_readbuf = value;
+#if USE_SMURF
+        SymCopy(sym_core_current.Memory_readbuf, sym_core_current.Memory_data);
+#endif
+
         sprintf(core_current.Memory_instr_disp,
                 "Memory: load [0x%X]=0x%X", core_current.Memory_addr, value);
         core_current.Read_reg_update = true;
@@ -278,6 +283,11 @@ bool Memory_OneCycle()
     if(core_current.Write_valid_delayed == true)
     {
         core_current.Memory_writebuf_delayed = core_current.Memory_writebuf;
+#if USE_SMURF
+        SymCopy(sym_core_current.Memory_writebuf_delayed,
+                sym_core_current.Memory_writebuf);
+#endif
+
         core_current.Write_valid_delayed = false;
     }
 
@@ -286,6 +296,10 @@ bool Memory_OneCycle()
         core_current.Write_valid = false;       //unset
         core_current.Write_valid_delayed = true;
         core_current.Memory_writebuf = core_current.Memory_data;
+#if USE_SMURF
+        SymCopy(sym_core_current.Memory_writebuf, sym_core_current.Memory_data);
+#endif
+
         switch (core_current.Write_type)
         {
         case 0:                //word
