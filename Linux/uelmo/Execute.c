@@ -38,7 +38,6 @@ bool Execute_OneCylce(bool wait_mem)
         //sym_exe_result = ResolveDst();
         dstret = ResolveDst();
         sym_exe_result = dstret.sym;
-        PrintScriptLog("# Dst: reg=%d, sym=%d\n", dstret.reg, dstret.sym);
     }
 #endif
 
@@ -1249,12 +1248,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
 #ifdef USE_SMURF
-        //Clear Memory addr and ALU output.
-        SymClear(sym_core_current.Memory_addr);
-        SymClear(sym_core_current.Execute_ALU_result);
-        //Mem-to-reg mechanism triggered.
-        SymAssign(sym_core_current.Memory_data, sym_exe_result);
-        SymAssign(sym_core_current.Memory_readbuf, sym_exe_result);
+        sym_memdata_pending = sym_exe_result;
 #endif
 
         return false;
@@ -1301,12 +1295,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
 
 #ifdef USE_SMURF
-        ////Clear Memory addr and ALU output.
-        SymClear(sym_core_current.Memory_addr);
-        SymClear(sym_core_current.Execute_ALU_result);
-        //Mem-to-reg mechanism triggered.
-        SymAssign(sym_core_current.Memory_data, sym_exe_result);
-        SymAssign(sym_core_current.Memory_readbuf, sym_exe_result);
+        sym_memdata_pending = sym_exe_result;
 #endif
         return false;
     }
@@ -1335,12 +1324,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 0xff;       //Let memory do this
         core_current.cpsr_valid = false;
 #ifdef USE_SMURF
-        //Clear Memory addr and ALU output.
-        SymClear(sym_core_current.Memory_addr);
-        SymClear(sym_core_current.Execute_ALU_result);
-        //Mem-to-reg mechanism triggered.
-        SymAssign(sym_core_current.Memory_data, sym_exe_result);
-        SymAssign(sym_core_current.Memory_readbuf, sym_exe_result);
+        sym_memdata_pending = sym_exe_result;
 #endif
 
         return false;
@@ -1388,12 +1372,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
 
 #ifdef USE_SMURF
-        //Clear Memory addr and ALU output.
-        SymClear(sym_core_current.Memory_addr);
-        SymClear(sym_core_current.Execute_ALU_result);
-        //Mem-to-reg mechanism triggered.
-        SymAssign(sym_core_current.Memory_data, sym_exe_result);
-        SymAssign(sym_core_current.Memory_readbuf, sym_exe_result);
+        sym_memdata_pending = sym_exe_result;
 #endif
 
         return false;
@@ -1443,12 +1422,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
 #ifdef USE_SMURF
-        //Clear Memory addr and ALU output.
-        SymClear(sym_core_current.Memory_addr);
-        SymClear(sym_core_current.Execute_ALU_result);
-        //Mem-to-reg mechanism triggered.
-        SymAssign(sym_core_current.Memory_data, sym_exe_result);
-        SymAssign(sym_core_current.Memory_readbuf, sym_exe_result);
+        sym_memdata_pending = sym_exe_result;
 #endif
 
         return false;
@@ -1500,12 +1474,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
 #ifdef USE_SMURF
-        //Clear Memory addr and ALU output.
-        SymClear(sym_core_current.Memory_addr);
-        SymClear(sym_core_current.Execute_ALU_result);
-        //Mem-to-reg mechanism triggered.
-        SymAssign(sym_core_current.Memory_data, sym_exe_result);
-        SymAssign(sym_core_current.Memory_readbuf, sym_exe_result);
+        sym_memdata_pending = sym_exe_result;
 #endif
 
         return false;
@@ -1553,12 +1522,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
 
 #ifdef USE_SMURF
-        //Clear Memory addr and ALU output.
-        SymClear(sym_core_current.Memory_addr);
-        SymClear(sym_core_current.Execute_ALU_result);
-        //Mem-to-reg mechanism triggered.
-        SymAssign(sym_core_current.Memory_data, sym_exe_result);
-        SymAssign(sym_core_current.Memory_readbuf, sym_exe_result);
+        sym_memdata_pending = sym_exe_result;
 #endif
         return false;
     }
@@ -1604,12 +1568,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
 
 #ifdef USE_SMURF
-        //Clear Memory addr and ALU output.
-        SymClear(sym_core_current.Memory_addr);
-        SymClear(sym_core_current.Execute_ALU_result);
-        //Mem-to-reg mechanism triggered.
-        SymAssign(sym_core_current.Memory_data, sym_exe_result);
-        SymAssign(sym_core_current.Memory_readbuf, sym_exe_result);
+        sym_memdata_pending = sym_exe_result;
 #endif
         return false;
     }
@@ -1658,12 +1617,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
 
 #ifdef USE_SMURF
-        //Clear Memory addr and ALU output.
-        SymClear(sym_core_current.Memory_addr);
-        SymClear(sym_core_current.Execute_ALU_result);
-        //Mem-to-reg mechanism triggered.
-        SymAssign(sym_core_current.Memory_data, sym_exe_result);
-        SymAssign(sym_core_current.Memory_readbuf, sym_exe_result);
+        sym_memdata_pending = sym_exe_result;
 #endif
 
         return false;
@@ -1711,12 +1665,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
 
 #ifdef USE_SMURF
-        //Clear Memory addr and ALU output.
-        SymClear(sym_core_current.Memory_addr);
-        SymClear(sym_core_current.Execute_ALU_result);
-        //Mem-to-reg mechanism triggered.
-        SymAssign(sym_core_current.Memory_data, sym_exe_result);
-        SymAssign(sym_core_current.Memory_readbuf, sym_exe_result);
+        sym_memdata_pending = sym_exe_result;
 #endif
 
         return false;

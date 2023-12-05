@@ -242,6 +242,17 @@ bool Memory_OneCycle()
             core_current.Memory_read_targetreg;
         addr = core_current.Memory_addr & 0xfffffffc;   //align with 4
         core_current.Memory_data = read32(addr);        //read a 32-bit word
+#if USE_SMURF
+        if(IsSymNull(sym_memdata_pending))
+        {
+            SymClear(sym_core_current.Memory_data);
+        }
+        else
+        {
+            SymAssign(sym_core_current.Memory_data, sym_memdata_pending);
+            sym_memdata_pending = SYM_NULL;
+        }
+#endif
         value = core_current.Memory_data;
         switch (core_current.Read_type)
         {
