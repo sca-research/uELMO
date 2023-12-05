@@ -1,6 +1,11 @@
 #include "Configure.h"
 #include "core.h"
 
+#if USE_SMURF
+#include "symuelmo.h"
+#include "ulang.h"
+#endif
+
 CORE_STATUS core_current;
 
 //Check if the current executed LDR instruction requires an extra delay cycle, i.e. LDR r0,xxx; LDR xxx,[r0]
@@ -8,10 +13,13 @@ bool check_delay(unsigned int reg)
 {
     if((core_current.Memory_read_targetreg_buf != 0xff)
        && (reg == core_current.Memory_read_targetreg_buf))
+    {
         return true;
+    }
     else
+    {
         return false;
-
+    }
 }
 
 //Read register from current core status
@@ -138,6 +146,7 @@ void do_vflag_bit(unsigned int x)
 //update the core registers with new value
 void Clock(bool pause)
 {
+    PrintScriptLog("#Clock tick begins.\n");
 
     //Memory ---> target register
     if(core_current.Read_reg_update == true)
@@ -203,6 +212,8 @@ void Clock(bool pause)
         core_current.Fetch_valid = true;
     }
 
+    PrintScriptLog("#Clock tick ends.\n");
+    return;
 }
 
 #ifdef USE_SMURF
