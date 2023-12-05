@@ -1,6 +1,7 @@
 #ifdef USE_SMURF
 #include <stdio.h>
 #include <string.h>
+#include <stdarg.h>
 
 #include "smurf/smurf.h"
 #include "symuelmo.h"
@@ -13,6 +14,19 @@ SmurfScript *script = NULL;
 
 //Flag for first block.
 bool firstcmdblock = true;
+
+//Print script log.
+void PrintScriptLog(const char *fmt, ...)
+{
+    va_list args;
+    va_start(args, fmt);
+    if(verbose && SYM_ENABLED)
+    {
+        vprintf(fmt, args);
+    }
+    va_end(args);
+    return;
+}
 
 //Initialise the script file by path ${scriptpath}.
 //Return values: 
@@ -237,4 +251,5 @@ void UlangCbManager(const char *op, int argc, char **argv)
 
     return;
 }
+
 #endif

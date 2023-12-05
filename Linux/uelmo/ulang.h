@@ -23,6 +23,9 @@ extern SmurfScript *script;
 //Flag for first block.
 extern bool firstcmdblock;
 
+//Print script log.
+void PrintScriptLog(const char *fmt, ...);
+
 //Initialise the script file by path ${scriptpath}.
 //Return values: 
 //  0   : If a script is intialised.
@@ -43,5 +46,6 @@ int ResetScript();
 
 //ULANG callback manager. argc and argv are passed to the handler functions.
 void UlangCbManager(const char *op, int argc, char *argv[]);
+
 #endif
 #endif
