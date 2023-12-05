@@ -5,6 +5,8 @@
 #include "smurf/smurfscript.h"
 #include "symuelmo.h"
 
+#define INVALID_REG (-1)
+
 //ULANG commands implementation.
 //
 //Initialisation and descrution of all commands.

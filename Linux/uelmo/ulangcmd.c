@@ -156,7 +156,7 @@ void RequestDst(int argc, char **argv)
 DstRet ResolveDst()
 {
     struct dstArg *darg = NULL;
-    DstRet ret = { 0 };
+    DstRet ret = { INVALID_REG, SYM_NULL };
 
     //Pull all existing requests.
     while (NULL != (darg = SqPop(dstqueue)))
