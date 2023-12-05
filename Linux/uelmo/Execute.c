@@ -38,6 +38,7 @@ bool Execute_OneCylce(bool wait_mem)
         //sym_exe_result = ResolveDst();
         dstret = ResolveDst();
         sym_exe_result = dstret.sym;
+        PrintScriptLog("# Dst: reg=%d, sym=%d\n", dstret.reg, dstret.sym);
     }
 #endif
 
