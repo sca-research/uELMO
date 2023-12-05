@@ -39,7 +39,12 @@ struct dstArg {
 void RequestDst(int argc, char **argv);
 
 //Resolve all dst requests.
+typedef struct __DstRet__ {
+    int reg;
+    uSymbol sym;
+} DstRet;
+
 //Returns the last Symbol in dst queue.
-uSymbol ResolveDst();
+DstRet ResolveDst();
 #endif
 #endif

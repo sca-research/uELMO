@@ -24,6 +24,7 @@ bool Execute_OneCylce(bool wait_mem)
         || ((inst & 0xFE00) == 0xBC00) || ((inst & 0xF800) == 0xC800);
 
 #ifdef USE_SMURF
+    DstRet dstret = { 0 };
     uSymbol sym_exe_result = SYM_NULL;
 #endif
 
@@ -34,7 +35,9 @@ bool Execute_OneCylce(bool wait_mem)
     //Resolve all dst annotations.
     if(OnTrace && useScript)
     {
-        sym_exe_result = ResolveDst();
+        //sym_exe_result = ResolveDst();
+        dstret = ResolveDst();
+        sym_exe_result = dstret.sym;
     }
 #endif
 
