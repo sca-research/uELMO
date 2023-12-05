@@ -34,7 +34,13 @@ int Execute_OneInstr(int *cycle)
         Clock(wait_exe);
         //Memory run one cycle: 
         //read address and output data to bus
+#ifdef USE_SMURF
+        PrintScriptLog("#Memory cycle begins.\n");
+#endif
         wait_mem = Memory_OneCycle();
+#ifdef USE_SMURF
+        PrintScriptLog("#Memory cycle ends.\n");
+#endif
         if(core_current.core_valid == false)
             return 1;
         if(wait_mem == true)
@@ -50,16 +56,30 @@ int Execute_OneInstr(int *cycle)
         }
 
         //Execute
+#ifdef USE_SMURF
+        PrintScriptLog("#Execute begins.\n");
+#endif
         wait_exe = Execute_OneCylce(wait_mem);
+#ifdef USE_SMURF
+        PrintScriptLog("#Execute ends.\n");
+#endif
         if(wait_exe == false)   //Execute did not stall the pipeline
         {
             //Fetch
             Fetch_OneCycle();
             //Decode
+#ifdef USE_SMURF
+            PrintScriptLog("#Decode begins.\n");
+#endif
             Decode_OneCycle(false);
+#ifdef USE_SMURF
+            PrintScriptLog("#Decode ends.\n");
+#endif
         }
         else
+        {
             sprintf(core_current.Decode_instr_disp, "Decode: stall");
+        }
 
         //Write out current cycle to Frame
         Write_Frame();
