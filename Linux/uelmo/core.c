@@ -5,7 +5,7 @@
 #include "symuelmo.h"
 #include "ulang.h"
 
-uSymbol sym_memdata_pending = {.symid = SMURF_SYM_NULL_ID };    //Pending symbol for memory data.
+uSymbol sym_memrd_pending = {.symid = SMURF_SYM_NULL_ID };      //Pending symbol for memory data.
 #endif
 
 CORE_STATUS core_current;

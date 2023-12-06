@@ -1248,7 +1248,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
 #ifdef USE_SMURF
-        sym_memdata_pending = sym_exe_result;
+        sym_memrd_pending = sym_exe_result;
 #endif
 
         return false;
@@ -1295,7 +1295,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
 
 #ifdef USE_SMURF
-        sym_memdata_pending = sym_exe_result;
+        sym_memrd_pending = sym_exe_result;
 #endif
         return false;
     }
@@ -1324,7 +1324,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 0xff;       //Let memory do this
         core_current.cpsr_valid = false;
 #ifdef USE_SMURF
-        sym_memdata_pending = sym_exe_result;
+        sym_memrd_pending = sym_exe_result;
 #endif
 
         return false;
@@ -1372,7 +1372,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
 
 #ifdef USE_SMURF
-        sym_memdata_pending = sym_exe_result;
+        sym_memrd_pending = sym_exe_result;
 #endif
 
         return false;
@@ -1422,7 +1422,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
 #ifdef USE_SMURF
-        sym_memdata_pending = sym_exe_result;
+        sym_memrd_pending = sym_exe_result;
 #endif
 
         return false;
@@ -1474,7 +1474,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
 #ifdef USE_SMURF
-        sym_memdata_pending = sym_exe_result;
+        sym_memrd_pending = sym_exe_result;
 #endif
 
         return false;
@@ -1522,7 +1522,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
 
 #ifdef USE_SMURF
-        sym_memdata_pending = sym_exe_result;
+        sym_memrd_pending = sym_exe_result;
 #endif
         return false;
     }
@@ -1568,7 +1568,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
 
 #ifdef USE_SMURF
-        sym_memdata_pending = sym_exe_result;
+        sym_memrd_pending = sym_exe_result;
 #endif
         return false;
     }
@@ -1617,7 +1617,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
 
 #ifdef USE_SMURF
-        sym_memdata_pending = sym_exe_result;
+        sym_memrd_pending = sym_exe_result;
 #endif
 
         return false;
@@ -1665,7 +1665,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
 
 #ifdef USE_SMURF
-        sym_memdata_pending = sym_exe_result;
+        sym_memrd_pending = sym_exe_result;
 #endif
 
         return false;
