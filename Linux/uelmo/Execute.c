@@ -2478,6 +2478,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_ALU_result = rb;
         core_current.Execute_destination_regindex = 0xff;       //do not update this
 #ifdef USE_SMURF
+        SymCopy(sym_core_current.Memory_data, sym_core_current.D2E_reg2);
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
         return false;
@@ -2539,8 +2540,9 @@ bool Execute_OneCylce(bool wait_mem)
             core_current.cpsr_valid = false;
             //YY: Annotation happens as data flowed into ALU output.
 #ifdef USE_SMURF
-            SymAssign(sym_core_current.Memory_data, sym_exe_result);
-            SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
+            SymCopy(sym_core_current.Memory_data, sym_core_current.D2E_reg1);
+            SymCopy(sym_core_current.Execute_ALU_result,
+                    sym_core_current.D2E_reg1);
 #endif
             return false;
         }
@@ -2573,8 +2575,8 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //YY: Annotation happens as data flowed into ALU output.
 #ifdef USE_SMURF
-        SymAssign(sym_core_current.Memory_data, sym_exe_result);
-        SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
+        SymCopy(sym_core_current.Memory_data, sym_core_current.D2E_reg2);
+        SymCopy(sym_core_current.Execute_ALU_result, sym_core_current.D2E_reg2);
 #endif
 
         return false;
@@ -2604,6 +2606,12 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_ALU_result = rb;
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
+
+#ifdef USE_SMURF
+        SymCopy(sym_core_current.Memory_data, sym_core_current.D2E_reg2);
+        SymCopy(sym_core_current.Execute_ALU_result, sym_core_current.D2E_reg2);
+#endif
+
         return false;
     }
     //STRB(2)
@@ -2660,10 +2668,10 @@ bool Execute_OneCylce(bool wait_mem)
             core_current.Execute_ALU_result = ra;
             core_current.Execute_destination_regindex = 0xff;   //do not update this
             core_current.cpsr_valid = false;
-            //YY: Annotation happens as data flowed into ALU output.
 #ifdef USE_SMURF
-            SymAssign(sym_core_current.Memory_data, sym_exe_result);
-            SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
+            SymCopy(sym_core_current.Memory_data, sym_core_current.D2E_reg1);
+            SymCopy(sym_core_current.Execute_ALU_result,
+                    sym_core_current.D2E_reg1);
 #endif
 
             return false;

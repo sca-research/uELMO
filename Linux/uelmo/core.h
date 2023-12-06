@@ -6,7 +6,8 @@
 
 #ifdef USE_SMURF
 #include "symuelmo.h"
-extern uSymbol sym_memdata_pending;     //Pending symbol for memory data.
+extern uSymbol sym_memrd_pending;       //Pending symbol for memory read data.
+extern uSymbol sym_memwr_pending;       //Pending symbol for memory write data.
 #endif
 
 #define CPSR_N (1<<31)
