@@ -23,22 +23,36 @@ def Logarithm(mo):
 
 
 with open(sys.argv[1], 'r') as f:
-    for l in f:
+    for dictentry in f:
+        sep = '::'
+
+        # Find "::" sperator between ID and expression.
+        mo = re.search(sep, dictentry)
+        if not mo:  # Not a valid entry
+            print(dictentry, end='')
+            continue
+            pass
+
+        # Decode an entry.
+        (sepl, sepr) = mo.span()
+        dictid = dictentry[:sepl]
+        dictexp = dictentry[sepr:]
+
         # Rewrite constants.
-        l = re.sub("32", "C32", l)
-        l = re.sub("250", "C250", l)
-        l = re.sub("256", "C256", l)
+        dictexp = re.sub("32", "C32", dictexp)
+        dictexp = re.sub("250", "C250", dictexp)
+        dictexp = re.sub("256", "C256", dictexp)
 
         # exp -> GExp
-        l = re.sub("exp", "GExp", l)
+        dictexp = re.sub("exp", "GExp", dictexp)
 
         # a*b -> GMul(a,b)
-        l = re.sub("[ab][012]\*[ab][012]", Multiply, l)
+        dictexp = re.sub("[ab][012]\*[ab][012]", Multiply, dictexp)
 
-        # logX -> GLog(X)
-        l = re.sub("log[ab][012]", Logarithm, l)
+        # dictexpogX -> GLog(X)
+        dictexp = re.sub("log[ab][012]", Logarithm, dictexp)
 
-        print(l, end='')
+        print("{}{}{}".format(dictid, sep, dictexp), end='')
     pass
 
 f.close()
