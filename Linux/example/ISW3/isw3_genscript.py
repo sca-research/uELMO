@@ -61,22 +61,27 @@ def DecodeFunc(exp):
 
 # Full model.
 def Full(x):
+    print("# Full({})".format(x))
     return "({})".format(x)
 
 
 # Full model.
 def Linear(x):
+    print("# Linear({})".format(x))
     return "({})".format(x)
 
 
 # Transition
 def Transition(x, y):
-    return "({}*{})".format(x, y)
+    #    return "C0"
+    print("# Transition({},{})".format(x, y))
+    return "(({})*({}))".format(x, y)
 
 
 # Interaction
 def Interaction(a, b, c, d):
-    return "(Concat({}, {}, {}, {}))".format(a, b, c, d)
+    print("# Interaction({},{},{},{})".format(a, b, c, d))
+    return "(({})+({})+({})+({}))".format(a, b, c, d)
 
 
 # Interpret leakage functions into expressions.
@@ -116,7 +121,7 @@ def GenScriptInit(importfile=None, frameexp="frameexp", indentlv=0):
     initstatement = importinit
 
     # Init Frame expressions as a list.
-    initstatement += '\t'*indentlv + "{} = list()".format(frameexp)
+    initstatement += '\t'*indentlv + "{} = list()\n".format(frameexp)
     return initstatement
 
 
@@ -126,7 +131,7 @@ def ExpandExp(current, new, func=None):
 
 
 # Generate VerifMsi script from decoded expressions.
-def GenScriptBody(frameexps, frameno, indentlv=0, explist="frameexp"):
+def GenScriptBody(frameexps, frameno, indentlv=0, explist="frameexp", tempexp="tempexp"):
     # Initialise RHS to 0
     rhs = "C0"
 
@@ -158,7 +163,11 @@ def GenScriptBody(frameexps, frameno, indentlv=0, explist="frameexp"):
         rhs = ExpandExp(rhs, lkgexp)
         pass
 
-    vrfstatement = '\t'*indentlv + "{}.append({})".format(explist, rhs)
+    # Statement for temporary expression.
+    tempexp_s = '\t'*indentlv + "{} = {}".format(tempexp, rhs)
+
+    # Add tempexp to the expression list.
+    vrfstatement = "{}\n{}.append({})".format(tempexp_s, explist, tempexp)
 
     return vrfstatement
 
@@ -210,6 +219,7 @@ def main(argc, argv):
     print(initstatement)
 
     for frameno in trace0:
+        print("# Frame {}".format(frameno))
         frame = trace0[frameno]
 
         syms = [frame[i]['sym'] for i in frame]
@@ -218,6 +228,7 @@ def main(argc, argv):
 
         s = GenScriptBody(decodedexp, frameno, indentlv=indentlv)
         print(s)
+        print('')
         pass
 
     print(ImportVerifyScript(argv[3]))
