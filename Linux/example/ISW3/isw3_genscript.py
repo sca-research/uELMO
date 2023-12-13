@@ -7,6 +7,8 @@ import sys
 import json
 import re
 
+indentlv = 0
+
 
 # Split an argument string into a list.
 def SplitArgs(argstr):
@@ -100,8 +102,9 @@ def IntepretLkgFunc(func, args):
 
 
 # Generate VerifMsi script initialisation.
-def GenScriptInit(frameexp="frameexp", importfile=None, indentlv=0):
-    if importfile:
+def GenScriptInit(importfile=None, frameexp="frameexp", indentlv=0):
+    # Import initial Python script.
+    if importfile is not None:
         f = open(importfile, 'r')
         importinit = f.read()
         f.close()
@@ -113,7 +116,7 @@ def GenScriptInit(frameexp="frameexp", importfile=None, indentlv=0):
     initstatement = importinit
 
     # Init Frame expressions as a list.
-    initstatement += '\t'*indentlv + ""
+    initstatement += '\t'*indentlv + "{} = list()".format(frameexp)
     return initstatement
 
 
@@ -123,9 +126,9 @@ def ExpandExp(current, new, func=None):
 
 
 # Generate VerifMsi script from decoded expressions.
-def GenScriptBody(frameexps, frameno, indentlv=0, frameexp="frameexp"):
-    # LHS
-    vmexp = '\t'*indentlv + "{}[{}] = \'C0\'".format(frameexp, frameno)
+def GenScriptBody(frameexps, frameno, indentlv=0, explist="frameexp"):
+    # Initialise RHS to 0
+    rhs = "C0"
 
     # Interpret the leakage functions into strings.
     for e in frameexps:
@@ -152,14 +155,19 @@ def GenScriptBody(frameexps, frameno, indentlv=0, frameexp="frameexp"):
         lkgexp = IntepretLkgFunc(f, args)
 
         # Combile leakages by sum.
-        vmexp = ExpandExp(vmexp, lkgexp)
+        rhs = ExpandExp(rhs, lkgexp)
         pass
 
-    return vmexp
+
+    vrfstatement = '\t'*indentlv + "{}.append({})".format(explist, rhs)
+
+    return vrfstatement
 
 
 # Compile symbols.
 def CompileSyms(sym):
+    global indentlv
+
     filteredsym = list()
 
     for s in sym:
@@ -175,26 +183,46 @@ def CompileSyms(sym):
     return filteredsym
 
 
+# Import verification Python script.
+def ImportVerifyScript(importfile=None):
+    print('')
+    if importfile is None:
+        return '# No verify script.'
+        pass
+
+    f = open(importfile, 'r')
+    verifcode = f.read()
+    f.close()
+
+    return verifcode
+
+
+# Main entry.
 def main(argc, argv):
+    global indentlv
+
     lkgfile = json.load(open(argv[1], 'r'))
 
     # Only need Trace 0.
     trace0 = lkgfile['0']
 
     # Generate initialisation.
-    initstatement = GenScriptInit()
+    initstatement = GenScriptInit(argv[2], indentlv=indentlv)
+    print(initstatement)
 
-    # for frameno in ['4']:
-    for frameno in trace0:
+    for frameno in ['4', '5', '6', '7']:
+    #for frameno in trace0:
         frame = trace0[frameno]
 
         syms = [frame[i]['sym'] for i in frame]
 
         decodedexp = CompileSyms(syms)
 
-        s = GenScriptBody(decodedexp, frameno)
+        s = GenScriptBody(decodedexp, frameno, indentlv=indentlv)
         print(s)
         pass
+
+    print(ImportVerifyScript(argv[3]))
 
     return 0
 
