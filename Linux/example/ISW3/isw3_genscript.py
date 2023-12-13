@@ -10,6 +10,12 @@ import re
 indentlv = 0
 
 
+def PrintHelpMsg():
+    print("Usage: (requires Python >= 3.7)")
+    print("\tpython3 [EXTRACTED_LEAKAGE_FILE] [INIT_SCRIPT] [VERIF_SCRIPT]")
+    return
+
+
 # Split an argument string into a list.
 def SplitArgs(argstr):
     args = list()
@@ -208,6 +214,11 @@ def ImportVerifyScript(importfile=None):
 # Main entry.
 def main(argc, argv):
     global indentlv
+
+    if argc < 4 or '-h' in argv:
+        PrintHelpMsg()
+        return 0
+        pass
 
     lkgfile = json.load(open(argv[1], 'r'))
 
