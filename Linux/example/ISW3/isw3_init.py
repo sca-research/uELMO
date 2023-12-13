@@ -10,6 +10,9 @@ c = symbol('c', 'S', 32)
 
 # Masks
 rnd = symbol('rnd', 'M', 32)
+rnd0 = symbol('rnd0', 'M', 32)
+rnd1 = symbol('rnd1', 'M', 32)
+rnd2 = symbol('rnd2', 'M', 32)
 a0 = symbol('a0', 'M', 32)
 a1 = symbol('a1', 'M', 32)
 b0 = symbol('b0', 'M', 32)
