@@ -71,12 +71,12 @@ def Linear(x):
 
 # Transition
 def Transition(x, y):
-    return "({}+{})".format(x, y)
+    return "({}*{})".format(x, y)
 
 
 # Interaction
 def Interaction(a, b, c, d):
-    return "({}+{}+{}+{})".format(a, b, c, d)
+    return "(Concat({}, {}, {}, {}))".format(a, b, c, d)
 
 
 # Interpret leakage functions into expressions.
@@ -158,7 +158,6 @@ def GenScriptBody(frameexps, frameno, indentlv=0, explist="frameexp"):
         rhs = ExpandExp(rhs, lkgexp)
         pass
 
-
     vrfstatement = '\t'*indentlv + "{}.append({})".format(explist, rhs)
 
     return vrfstatement
@@ -210,8 +209,7 @@ def main(argc, argv):
     initstatement = GenScriptInit(argv[2], indentlv=indentlv)
     print(initstatement)
 
-    for frameno in ['4', '5', '6', '7']:
-    #for frameno in trace0:
+    for frameno in trace0:
         frame = trace0[frameno]
 
         syms = [frame[i]['sym'] for i in frame]
