@@ -9,7 +9,10 @@ import re
 
 indentlv = 0
 
+COMPRESSTERMS = False
 
+
+# Print help message.
 def PrintHelpMsg():
     print("Usage: (requires Python >= 3.7)")
     print("\tpython3 [EXTRACTED_LEAKAGE_FILE] [INIT_SCRIPT] [VERIF_SCRIPT]")
@@ -71,7 +74,7 @@ def Full(x):
     return "({})".format(x)
 
 
-# Full model.
+# Linear model.
 def Linear(x):
     print("# Linear({})".format(x))
     return "({})".format(x)
@@ -79,15 +82,22 @@ def Linear(x):
 
 # Transition
 def Transition(x, y):
-    #    return "C0"
+    if x == y:
+        print("# Transition({},{}) -- ignored".format(x, y))
+        return "C0"
+        pass
+
     print("# Transition({},{})".format(x, y))
-    return "(({})*({}))".format(x, y)
+
+    return "(({})+({}))".format(x, y)
 
 
 # Interaction
 def Interaction(a, b, c, d):
     print("# Interaction({},{},{},{})".format(a, b, c, d))
-    return "(({})+({})+({})+({}))".format(a, b, c, d)
+    return "C0"
+    # return "(Concat(({})+({})+({})+({})))".format(a, b, c, d)
+    return "(({})*({})*({})*({}))".format(a, b, c, d)
 
 
 # Interpret leakage functions into expressions.
@@ -136,8 +146,12 @@ def ExpandExp(current, new, func=None):
     return "{}+{}".format(current, new)
 
 
-# Generate VerifMsi script from decoded expressions.
-def GenScriptBody(frameexps, frameno, indentlv=0, explist="frameexp", tempexp="tempexp"):
+# Generate VerifMsi script from decoded expressions with term compression.
+def GenScriptBodyCompressed(frameexps, frameno, indentlv=0, explist="frameexp", tempexp="rhs"):
+    # Leakage groups
+    lkggroups = {"Full": set(), "Linear": set(
+    ), "Transition": set(), "Interaction": set()}
+
     # Initialise RHS to 0
     rhs = "C0"
 
@@ -166,7 +180,63 @@ def GenScriptBody(frameexps, frameno, indentlv=0, explist="frameexp", tempexp="t
         lkgexp = IntepretLkgFunc(f, args)
 
         # Combile leakages by sum.
-        rhs = ExpandExp(rhs, lkgexp)
+        # rhs = ExpandExp(rhs, lkgexp) # Combine by directly summing.
+        lkggroups[f].add(lkgexp)
+        pass
+
+    # Construct RHS
+    # Unite all leakage groups to remove repetative terms.
+    allterms = set()
+    for lkgtype in lkggroups:
+        s = lkggroups[lkgtype]
+        allterms = allterms.union(s)
+        pass
+
+    # Expand the expression.
+    for i in allterms:
+        rhs = ExpandExp(rhs, i)
+        pass
+
+    # Statement for temporary expression.
+    tempexp_s = '\t'*indentlv + "{} = {}".format(tempexp, rhs)
+
+    # Add tempexp to the expression list.
+    vrfstatement = "{}\n{}.append({})".format(tempexp_s, explist, tempexp)
+
+    return vrfstatement
+
+
+# Generate VerifMsi script from decoded expressions. (Without term compression.)
+def GenScriptBody(frameexps, frameno, indentlv=0, explist="frameexp", tempexp="rhs"):
+    # Initialise RHS to 0
+    rhs = "C0"
+
+    # Interpret the leakage functions into strings.
+    for e in frameexps:
+        (f, args) = e
+
+        # Skip expressions with NULL.
+        if 'NULL' in args:
+            continue
+            pass
+
+        # Skip address leakages.
+        IsAddrArg = False
+        for a in args:
+            if a.startswith('&'):
+                IsAddrArg = True
+                break
+                pass
+            pass
+        if IsAddrArg:
+            continue
+            pass
+
+        # Interpret Leakage functions.
+        lkgexp = IntepretLkgFunc(f, args)
+
+        # Combile leakages by sum.
+        rhs = ExpandExp(rhs, lkgexp)  # Combine by directly summing.
         pass
 
     # Statement for temporary expression.
@@ -213,11 +283,15 @@ def ImportVerifyScript(importfile=None):
 
 # Main entry.
 def main(argc, argv):
-    global indentlv
+    global indentlv, COMPRESSTERMS
 
     if argc < 4 or '-h' in argv:
         PrintHelpMsg()
         return 0
+        pass
+
+    if '-c' in argv:
+        COMPRESSTERMS = True
         pass
 
     lkgfile = json.load(open(argv[1], 'r'))
@@ -237,7 +311,14 @@ def main(argc, argv):
 
         decodedexp = CompileSyms(syms)
 
-        s = GenScriptBody(decodedexp, frameno, indentlv=indentlv)
+        if COMPRESSTERMS:
+            s = GenScriptBodyCompressed(decodedexp, frameno, indentlv=indentlv)
+            pass
+        else:
+            s = GenScriptBody(decodedexp, frameno, indentlv=indentlv)
+            pass
+
+        # Print the Python statement.
         print(s)
         print('')
         pass
