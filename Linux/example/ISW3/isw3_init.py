@@ -2,6 +2,8 @@
 # Initialisation script. **ONLY** used as input to generation script.
 
 from VerifMSI import *
+import multiprocessing
+import tqdm
 
 # Secret values
 a = symbol('a', 'S', 32)
