@@ -4,6 +4,7 @@
 from VerifMSI import *
 import multiprocessing
 import tqdm
+import sys
 
 # Secret values
 a = symbol('a', 'S', 32)
