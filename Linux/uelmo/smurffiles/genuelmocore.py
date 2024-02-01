@@ -2,7 +2,7 @@
 
 import smurf
 
-core = smurf.Core()
+core = smurf.Core(ver=2)
 
 # Added for Smurf.
 core.NewComponent('TraceNo', 'UINT32')
