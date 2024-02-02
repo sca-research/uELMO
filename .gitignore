@@ -9,3 +9,4 @@ Windows/uELMO/ipch/*
 Windows/uELMO/uELMO/Debug/*
 Windows/uELMO/.vs/*
 *.swp
+__pycache__
