@@ -3,7 +3,7 @@ import sys
 import json
 import base64
 
-import smurf
+import seal
 
 FORCE_LINEAR = 0  # force all leakage to be linear
 
@@ -22,7 +22,7 @@ LSB_NEIGHBOUR = 1  # Allows for LSB based neibouring effect
 # Load uELMO Source of Leakage
 sol = json.load(open('uelmosol.json', 'r'))
 
-# Smurf Encoding dictionary for Symbols.
+# Seal Encoding dictionary for Symbols.
 symdict = None
 
 # Leakage functions.
@@ -58,7 +58,7 @@ def ExpandExpr(op, *symids):
     expr = str()
 
     # Return None string if all args are NULL.
-    if all(sym == smurf.SYM_ID_NULL for sym in symids):
+    if all(sym == seal.SYM_ID_NULL for sym in symids):
         return ""
         pass
 
@@ -121,7 +121,7 @@ def WriteLeakage(src, data, frame=None, expr=None):
 
         else:  # Symbol annotated in the trace.
             symid = frame.components[compname].symid[compidx]
-            if symid == smurf.SYM_ID_NULL:  # Symbol ID is NULL.
+            if symid == seal.SYM_ID_NULL:  # Symbol ID is NULL.
                 expr = "NO_SYMBOL"
                 pass
             else:  # Symbol annotated in uELMO.
@@ -707,12 +707,12 @@ def main(argc, argv):
         pass
 
     testtrace = argv[1]
-    core = smurf.Core.Load('uelmo.json')
-    trace = smurf.Trace(core)
+    core = seal.Core.Load('uelmo.json')
+    trace = seal.Trace(core)
     trace.Open(testtrace)
 
     if argc >= 3:
-        symdict = smurf.EncodeDict()
+        symdict = seal.EncodeDict()
         symdict.Import(argv[2])
         pass
 
