@@ -1,8 +1,8 @@
 #ifndef ULANGCMD_H
 #define ULANGCMD_H
 
-#ifdef USE_SMURF
-#include "smurf/smurfscript.h"
+#ifdef USE_SEAL
+#include "seal/sealscript.h"
 #include "symuelmo.h"
 
 #define INVALID_REG (-1)
@@ -14,7 +14,7 @@ int InitUlangCmd();
 void CleanUlangCmd();
 
 //Handler of src
-extern SmurfQueue *srcqueue;    //Queue for src command.
+extern SealQueue *srcqueue;     //Queue for src command.
 
 //Arguments of src command.
 struct srcArg {
@@ -29,7 +29,7 @@ void RequestSrc(int argc, char **argv);
 int ResolveSrc();
 
 //Handler of dst
-extern SmurfQueue *dstqueue;    //Queue for dst command.
+extern SealQueue *dstqueue;     //Queue for dst command.
 
 //Arguments of dst command.
 struct dstArg {

@@ -2,13 +2,13 @@
 import sys
 import numpy
 
-import smurf
-from smurf import LeakageModels
+import seal
+from seal import LeakageModels
 
 TESTCORE = "uelmo.json"
 TESTTRACE = None
 
-# Dictionary for Smurf Symbols
+# Dictionary for Seal Symbols
 symdict = None
 
 # MaskVerif proc name
@@ -166,14 +166,14 @@ def main(argc, argv):
     TESTTRACE = argv[1]
 
     # Dictionary file
-    symdict = smurf.EncodeDict()
+    symdict = seal.EncodeDict()
     symdict.Import(sys.argv[2])
 
     # Load Core.
-    core = smurf.Core.Load(TESTCORE)
+    core = seal.Core.Load(TESTCORE)
 
     # Load Trace.
-    st = smurf.Trace(core)
+    st = seal.Trace(core)
     st.Open(TESTTRACE)
 
     # Print MaskVerif header.

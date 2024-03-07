@@ -1,4 +1,4 @@
-#ifdef USE_SMURF
+#ifdef USE_SEAL
 //ULANG commands implementation.
 #include "stdio.h"
 #include "uelmo.h"
@@ -8,15 +8,15 @@
 //Initialisation and descrution of all commands.
 int InitUlangCmd()
 {
-    srcqueue = NewSmurfQueue();
-    dstqueue = NewSmurfQueue();
+    srcqueue = NewSealQueue();
+    dstqueue = NewSealQueue();
     return 0;
 }
 
 void CleanUlangCmd()
 {
-    DelSmurfQueue(dstqueue, NULL);
-    DelSmurfQueue(srcqueue, NULL);
+    DelSealQueue(dstqueue, NULL);
+    DelSealQueue(srcqueue, NULL);
     return;
 }
 
@@ -28,7 +28,7 @@ void CleanUlangCmd()
 //  Tag ${REG} with ${SYMBOL} when an instruction is in Decode.
 //Example:
 //  src r0 Key0
-SmurfQueue *srcqueue = NULL;    //Initialised in InitUlangCmd().
+SealQueue *srcqueue = NULL;     //Initialised in InitUlangCmd().
 
 //Send src requests to src queue.
 void RequestSrc(int argc, char **argv)
@@ -104,7 +104,7 @@ int ResolveSrc()
 //  Tag ${REG} with ${SYMBOL} when an instruction is in Execute.
 //Example:
 //  dst r0 Key0
-SmurfQueue *dstqueue = NULL;    //Initialise in InitUlangCmd().
+SealQueue *dstqueue = NULL;     //Initialise in InitUlangCmd().
 
 //Send dst requests to dst queue.
 void RequestDst(int argc, char **argv)

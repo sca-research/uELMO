@@ -7,15 +7,15 @@
 #define UELMO_ERROR (-1)
 #define MAX_PATH_LAN (255)
 
-#ifdef USE_SMURF
-#include "smurf/smurf.h"
-#include "smurf/emulator.h"
+#ifdef USE_SEAL
+#include "seal/seal.h"
+#include "seal/emulator.h"
 
-#define ELMO_CORE "./smurffiles/uelmo.json"
-extern SmurfIO *sio;
+#define ELMO_CORE "./sealfiles/uelmo.json"
+extern SealIO *sio;
 extern char *smftracepath;
 extern char *siopath;
-extern Smurf *smurf;
+extern Seal *seal;
 extern const char *scriptpath;
 #endif
 

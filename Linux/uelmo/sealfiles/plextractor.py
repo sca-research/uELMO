@@ -1,22 +1,12 @@
 #!/usr/bin/python3
 import sys
-import smurf
+import seal
 
 TESTCORE = "uelmo.json"
-TESTTRACE = None
-ASM_OUT = None
-INFO_OUT = None
+TESTTRACE = "/tmp/smuelmo.test"
 
-# Print help message.
-
-
-def PrintHelp():
-    print("Usage:\n\tpython3 {} TRACE_FILE".format(sys.argv[0]))
-    return
 
 # Parse components in a frame into a structured string.
-
-
 def ParseComponent(comp, seperator=":"):
     compname = comp.name
     comptype = comp.type
@@ -39,7 +29,7 @@ def ParseComponent(comp, seperator=":"):
             pass
         pass
     elif comp.type == 'STRING':
-        compval = "\'" + comp.val.strip("\0") + "\'"
+        compval = comp.val.strip("\0")
         pass
 
     elif comp.type in {'INT16', 'UINT16'}:
@@ -48,36 +38,29 @@ def ParseComponent(comp, seperator=":"):
             pass
     elif comp.type in {'INT32', 'UINT32'}:
         for i in range(comp.len):
-            compval += "{v:08X} ".format(v=comp.val[i])
+            compval += "{v:08X}({v:d}) ".format(v=comp.val[i])
             pass
     else:
         raise("Unknown Component type")
 
-    return "{n}{sep}{t}{sep}{l} = {v}".format(n=compname, t=comptype, l=complen, v=compval.strip(" "), sep=seperator)
+    return "{n}{sep}{t}{sep}{l}{sep}{v}".format(n=compname, t=comptype, l=complen, v=compval.strip(" "), sep=seperator)
 
 
 # Main function.
 def main(argc, argv):
     # Initialise
-    if argc < 2 or '-h' in argv:
-        PrintHelp()
-        exit(0)
-        pass
+    if len(argv) >= 1:
+        TESTTRACE = argv[1]
 
-    # Set file names
-    TESTTRACE = argv[1]
-    ASM_OUT = "{}.asm".format(TESTTRACE)
-    INFO_OUT = "{}.info".format(TESTTRACE)
-
-    # Load core specifications and Smurf trace file.
-    core = smurf.Core.Load(TESTCORE)
-    st = smurf.Trace(core)
+    # Load core specifications and Seal trace file.
+    core = seal.Core.Load(TESTCORE)
+    st = seal.Trace(core)
     st.Open(TESTTRACE)
     count = 0
 
     # Output files.
-    asmout = open(ASM_OUT, 'w')     # Only assembly.
-    infoout = open(INFO_OUT, 'w')   # Detailed execution trace.
+    asmout = open('./asm.txt', 'w')     # Only assembly.
+    infoout = open('./info.txt', 'w')   # Detailed execution trace.
 
     # Go through the whole trace.
     while True:
@@ -88,9 +71,19 @@ def main(argc, argv):
 
         traceno = frame.components["TraceNo"].val[0]  # Trace No
         frameno = frame.components["FrameNo"].val[0]  # Frame No
-        # Disassembled instruction in the Execution pipe line.
-        asm = frame.components["Execute_instr_disp"].val.replace(
-            'Execute: ', '').strip("\0")
+
+        # Pipeline infomation.
+        fetch = frame.components["Memory_instr_disp"].val.strip(
+            'Memory: ').strip("\0")  # Disassembled instruction in the Execution pipe line.
+        decode = frame.components["Decode_instr_disp"].val.strip(
+            'Decode: ').strip("\0")  # Disassembled instruction in the Execution pipe line.
+        execute = frame.components["Execute_instr_disp"].val.strip(
+            'Execute: ').strip("\0")  # Disassembled instruction in the Execution pipe line.
+
+        plinfo = "F:{:s}\nD:{:s}\nE:{:s}\n".format(fetch, decode, execute)
+
+
+
         detail = str()  # Detailed infomation to be parsed.
 
         # Parse each components into strings.
@@ -100,15 +93,13 @@ def main(argc, argv):
         info = "{:s}\n{:s}{:s}\n".format('{', detail, '}')
 
         # Write into the output files.
-        asmout.write("{:20s} \t//{:}:{:}\n\n".format(asm, traceno, frameno))
-        infoout.write("#{asm:s} //{tn}:{fn}\n{info:s}\n".format(
-            asm=asm, info=info, tn=traceno, fn=frameno))
+        #asmout.write("{:s}\n".format(asm))
+        asmout.write("{:s}\n".format(plinfo))
+
+        infoout.write("#{asm:s} ({tn}:{fn})\n{info:s}\n".format(
+            asm=plinfo, info=info, tn=traceno, fn=frameno))
         count += 1
         pass
-
-    print("Output generated:")
-    print("ASM: {}".format(ASM_OUT))
-    print("Info: {}".format(INFO_OUT))
 
     return 0
 

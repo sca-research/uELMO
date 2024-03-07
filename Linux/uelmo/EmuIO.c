@@ -1,5 +1,5 @@
 //This file describe the inpuut-output functions for the emulator
-//i.e. need to be rewritten for SMURF
+//i.e. need to be rewritten for SEAL
 #include "Configure.h"
 #include "core.h"
 #include "EmuIO.h"
@@ -11,21 +11,21 @@ FILE *outfp = NULL;
 FILE *datafp = NULL;
 
 //Close output stream, executiong trace file
-void Close_Output()             //SMURF_ADAPTING, change this
+void Close_Output()             //SEAL_ADAPTING, change this
 {
     if(outfp != NULL)
         fclose(outfp);
 };
 
 //Close input data stream, emulated input
-void Close_DataFile()           //SMURF_ADAPTING, change this
+void Close_DataFile()           //SEAL_ADAPTING, change this
 {
     if(outfp != NULL)
         fclose(datafp);
 }
 
 //open output file, executiong trace file
-void Open_OutputFile(char *filename)    //SMURF_ADAPTING, change this
+void Open_OutputFile(char *filename)    //SEAL_ADAPTING, change this
 {
     outfp = fopen(filename, "wb+");
     if(outfp == NULL)
@@ -36,7 +36,7 @@ void Open_OutputFile(char *filename)    //SMURF_ADAPTING, change this
 }
 
 //open input data file, emulated input
-void Open_DataFile(char *filename)      //SMURF_ADAPTING, change this
+void Open_DataFile(char *filename)      //SEAL_ADAPTING, change this
 {
     datafp = fopen(filename, "r");
     if(NULL == datafp)
@@ -47,8 +47,8 @@ void Open_DataFile(char *filename)      //SMURF_ADAPTING, change this
 }
 
 //Get input from IO , emulated input
-//SMURF_ADAPTING, change this
-#ifndef USE_SMURF
+//SEAL_ADAPTING, change this
+#ifndef USE_SEAL
 unsigned int Read_Byte()
 {
     char *str;
@@ -93,11 +93,11 @@ unsigned int Read_Byte()
     {
         ret = ReadFromFile();
     }
-    else if(ioSupported)        //Use Smurf IO.
+    else if(ioSupported)        //Use Seal IO.
     {
-        if(NULL == sio || SMURF_IO_READY != sio->stat)
+        if(NULL == sio || SEAL_IO_READY != sio->stat)
         {
-            INFO("#SmurfIO not ready.\n");
+            INFO("#SealIO not ready.\n");
             return 0;
         }
         ret = SioGetchar(sio);
@@ -118,35 +118,35 @@ void Write_Byte(uint8_t input)
         return;
     }
 
-    if(SMURF_IO_READY == sio->stat)
+    if(SEAL_IO_READY == sio->stat)
     {
         SioPutchar(sio, input);
     }
-    printf("#Trying to write but SmurfIO not ready: %x\n", input);
+    printf("#Trying to write but SealIO not ready: %x\n", input);
     return;
 }
 #endif
 
-//Get randomised input from IO (SMURF should not have this!!!)
-//SMURF_ADAPTING, delete this!
+//Get randomised input from IO (SEAL should not have this!!!)
+//SEAL_ADAPTING, delete this!
 unsigned int Rand_Byte()
 {
     return rand() & 0xff;
 }
 
 //Write out current cycle to Frame
-//SMURF_ADAPTING, rewrite this
+//SEAL_ADAPTING, rewrite this
 //Frame data in CORE_STATUS core_current
 void Write_Frame()
 {
     if(OnTrace == true)
     {
         fwrite(&core_current, sizeof(CORE_STATUS), 1, outfp);
-#ifdef USE_SMURF
-        if(useSmurfTrace)
+#ifdef USE_SEAL
+        if(useSealTrace)
         {
-            SmurfSync(smurf);
-            SmurfWrite(smurf);
+            SealSync(seal);
+            SealWrite(seal);
         }
 #endif
         frameno++;
@@ -155,7 +155,7 @@ void Write_Frame()
 }
 
 //Write out a flag that terminate the current trace
-//SMURF_ADAPTING, rewrite this
+//SEAL_ADAPTING, rewrite this
 void Write_EndofTrace()
 {
     bool flag = false;

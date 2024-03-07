@@ -16,6 +16,6 @@ extern int N;
 extern int N_ind;
 extern bool ioSupported;
 extern bool useInputFile;
-extern bool useSmurfTrace;
+extern bool useSealTrace;
 extern bool useScript;
 #endif

@@ -1,7 +1,7 @@
 TARGET=uelmo
 CFLAGS=-g -Wall -O2
-SMURFFLAGS=-lsmurf -lsmurfemulator -lsmurfscript -DUSE_SMURF
-SMURFLPATHFLAGS=-L${HOME}/.local/lib/ -I${HOME}/.local/header/
+SEALFLAGS=-lseal -lsealemulator -lsealscript -DUSE_SEAL
+SEALLPATHFLAGS=-L${HOME}/.local/lib/ -I${HOME}/.local/header/
 
 
 all: ${TARGET} Makefile
@@ -11,8 +11,8 @@ ${TARGET}: $(wildcard *.c *.h)
 	${CC} ${CFLAGS} *.o -o $@
 
 smuelmo: $(wildcard *.c *.h)
-	${CC} ${CFLAGS} -c $^ -DUSE_SMURF #-DDBG
-	${CC} ${CFLAGS} ${SMURFLPATHFLAGS} *.o -o $@ ${SMURFFLAGS} -DUSE_SMURF #-DDBG
+	${CC} ${CFLAGS} -c $^ -DUSE_SEAL #-DDBG
+	${CC} ${CFLAGS} ${SEALLPATHFLAGS} *.o -o $@ ${SEALFLAGS} -DUSE_SEAL #-DDBG
 
 clean:
 	rm -f *.o *~ *.bak ${TARGET} smuelmo *.gch

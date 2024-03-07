@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 
-import smurf
+import seal
 
-core = smurf.Core(ver=2)
+core = seal.Core(ver=2)
 
-# Added for Smurf.
+# Added for Seal.
 core.NewComponent('TraceNo', 'UINT32')
 core.NewComponent('FrameNo', 'UINT32')
 

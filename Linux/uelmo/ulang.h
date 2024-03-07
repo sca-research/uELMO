@@ -1,9 +1,9 @@
 #ifndef _ULANG_H
 #define _ULANG_H
 
-#ifdef USE_SMURF
+#ifdef USE_SEAL
 
-#include "smurf/smurfscript.h"
+#include "seal/sealscript.h"
 #include "symuelmo.h"
 
 #define ULANG_NOTIFIER (("@@$ "))
@@ -18,7 +18,7 @@
 typedef void (*UlangCmd)(int argc, char **argv);
 
 //The ULANG script.
-extern SmurfScript *script;
+extern SealScript *script;
 
 //Flag for first block.
 extern bool firstcmdblock;

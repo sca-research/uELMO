@@ -2,8 +2,8 @@
 import sys
 import numpy
 
-import smurf
-from smurf import LeakageModels
+import seal
+from seal import LeakageModels
 
 TESTCORE = "uelmo.json"
 TESTTRACE = "/tmp/smuelmo.test"
@@ -12,7 +12,7 @@ TESTTRACE = "/tmp/smuelmo.test"
 w1 = numpy.random.random((1, 32))[0]  # Weight of OP1
 w2 = numpy.random.random((1, 32))[0]  # Weight of OP2
 
-# Dictionary for Smurf Symbols
+# Dictionary for Seal Symbols
 symdict = None
 
 
@@ -120,10 +120,10 @@ def main(argc, argv):
         TESTTRACE = argv[1]
 
     # Load Core.
-    core = smurf.Core.Load(TESTCORE)
+    core = seal.Core.Load(TESTCORE)
 
     # Load Trace.
-    st = smurf.Trace(core)
+    st = seal.Trace(core)
     st.Open(TESTTRACE)
 
     # Extract leakage.
@@ -145,7 +145,7 @@ def main(argc, argv):
     # Symbol IDs of D2E regs.
     # Import Dictionary if provided.
     if len(sys.argv) >= 3:
-        symdict = smurf.EncodeDict()
+        symdict = seal.EncodeDict()
         symdict.Import(sys.argv[2])
         pass
     count = st.Extract(D2E_data_Sym)

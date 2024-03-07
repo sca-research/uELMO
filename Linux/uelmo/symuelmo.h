@@ -1,11 +1,11 @@
 #ifndef SYMUELMO_H
 #define SYMUELMO_H
-#ifdef USE_SMURF
+#ifdef USE_SEAL
 
 #include "uelmo.h"
 #include "Configure.h"
-#include "smurf/smurf.h"
-#include "smurf/symbolic.h"
+#include "seal/seal.h"
+#include "seal/symbolic.h"
 
 #define NON_ARRAY_SYM_COMP (-1)
 #define SYM_ENABLED ((useScript && OnTrace))
@@ -13,11 +13,11 @@
 typedef struct {
     const char *name;
     int index;                  //Index of this SymbolicComponent if it is an array typed.
-    SmurfSymId *sid_p;
+    SealSymId *sid_p;
 } SymbolicComponent;
 
 typedef struct {
-    SmurfSymId symid;
+    SealSymId symid;
 } uSymbol;
 
 //NULL Symbol.

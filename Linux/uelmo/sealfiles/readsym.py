@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import sys
-import smurf
+import seal
 
 UELMOCORE = "uelmo.json"
 tracefile = None
@@ -63,12 +63,12 @@ def main(argc, argv):
 
     # Read dictionary
     if usedict:
-        sdict = smurf.EncodeDict()
+        sdict = seal.EncodeDict()
         sdict.Import(DICTFILE)
         pass
 
-    core = smurf.Core.Load(UELMOCORE)
-    st = smurf.Trace(core)
+    core = seal.Core.Load(UELMOCORE)
+    st = seal.Trace(core)
     st.Open(tracefile)
     count = 0
     while True:

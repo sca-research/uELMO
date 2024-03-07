@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import sys
-import smurf
+import seal
 
 uelmocore = "uelmo.json"
 tracefile = None
@@ -60,12 +60,12 @@ def main(argc, argv):
         VERBOSE = True
         pass
 
-    core = smurf.Core.Load(uelmocore)
+    core = seal.Core.Load(uelmocore)
     if core.version >= 2:
         SYM_ENABLED = True
         pass
 
-    st = smurf.Trace(core)
+    st = seal.Trace(core)
     st.Open(tracefile)
     count = 0
     while True:

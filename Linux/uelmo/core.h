@@ -4,7 +4,7 @@
 #include "Configure.h"
 #include "uelmo.h"
 
-#ifdef USE_SMURF
+#ifdef USE_SEAL
 #include "symuelmo.h"
 extern uSymbol sym_memrd_pending;       //Pending symbol for memory read data.
 extern uSymbol sym_memwr_pending;       //Pending symbol for memory write data.
@@ -15,7 +15,7 @@ extern uSymbol sym_memwr_pending;       //Pending symbol for memory write data.
 #define CPSR_C (1<<29)
 #define CPSR_V (1<<28)
 #define CPSR_Q (1<<27)
-//SMURF_ADAPTING, this is the core definition
+//SEAL_ADAPTING, this is the core definition
 //Do not change anything here(unless you would like to rewrite Thumbulator)!
 typedef struct {
     //Registers:
@@ -95,7 +95,7 @@ void do_vflag(unsigned int, unsigned int, unsigned int);
 void do_cflag_bit(unsigned int);
 void do_vflag_bit(unsigned int);
 
-#ifdef USE_SMURF
+#ifdef USE_SEAL
 uSymbol sym_read_register(unsigned int);
 uSymbol sym_read_register_forward(unsigned int reg);
 void sym_write_register(unsigned int reg, uSymbol sym);

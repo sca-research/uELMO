@@ -9,8 +9,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#ifdef USE_SMURF
-#include "smurf/smurf.h"
+#ifdef USE_SEAL
+#include "seal/seal.h"
 #include "symuelmo.h"
 #include "ulang.h"
 #endif
@@ -19,7 +19,7 @@ bool fvr = false;
 int N = 0;
 int N_ind = 0;
 bool ioSupported = false;
-bool useSmurfTrace = false;
+bool useSealTrace = false;
 bool useInputFile = false;
 bool useScript = false;
 bool verbose = false;
@@ -27,11 +27,11 @@ bool verbose = false;
 //global flag that shows whether the current cycle is on the trace
 bool OnTrace = false;
 
-#ifdef USE_SMURF
-SmurfIO *sio = NULL;
+#ifdef USE_SEAL
+SealIO *sio = NULL;
 char *smftracepath = NULL;
 char *siopath = NULL;
-Smurf *smurf = NULL;
+Seal *seal = NULL;
 const char *scriptpath = NULL;  //DBG
 char dictpath[MAX_PATH_LAN] = { 0 };
 #endif
@@ -44,7 +44,7 @@ bool oflag = false;
 //Print help message.
 void PrintHelp()
 {
-#ifdef USE_SMURF
+#ifdef USE_SEAL
     printf("smuelmo ${TargetBinary} [OPTIONS]");
 #else
     printf("uelmo ${TargetBinary} [OPTIONS]");
@@ -55,23 +55,23 @@ void PrintHelp()
     printf("\t-o ${output} : Output into ${output}.\n");
     printf("\t-r ${input} : Use input file ${input}.\n");
     printf("\t--verbose : Print verbose emulation log.\n");
-#ifdef USE_SMURF
-    printf("Smurf Extensions:\n");
+#ifdef USE_SEAL
+    printf("Seal Extensions:\n");
     printf
         ("\t--io ${IFPATH}: Enable IO support at the path given by ${IFPATH}.\n");
     printf
-        ("\t--st ${SMURF_TRACE_PATH}: Smurf trace output at ${SMURF_TRACE_PATH}.\n");
+        ("\t--st ${SEAL_TRACE_PATH}: Seal trace output at ${SEAL_TRACE_PATH}.\n");
     printf("\t--sc ${SCRIPT_PATH}: Use ULANG script at ${SCRIPT_PATH}.\n");
 #endif
     return;
 }
 
-#ifdef USE_SMURF
+#ifdef USE_SEAL
 //Print Core info.
-void PrintCoreInfo(SmurfCore * core)
+void PrintCoreInfo(SealCore * core)
 {
     int i = 0;
-    SmurfCoreComponent *scc = NULL;
+    SealCoreComponent *scc = NULL;
 
     printf("Core version: %s\n", core->version);
     for (i = 0; i < core->ncomponents; i++)
@@ -85,17 +85,17 @@ void PrintCoreInfo(SmurfCore * core)
     return;
 }
 
-//Initialise Smurf data structures.
-static void Init_Smurf()
+//Initialise Seal data structures.
+static void Init_Seal()
 {
-    if(useSmurfTrace)
+    if(useSealTrace)
     {
-        smurf = InitSmurf(ELMO_CORE, smftracepath, SMURF_TRACE_MODE_CREATE);
-        SmurfBind(smurf, "TraceNo", &N_ind);
-        SmurfBind(smurf, "FrameNo", &frameno);
+        seal = InitSeal(ELMO_CORE, smftracepath, SEAL_TRACE_MODE_CREATE);
+        SealBind(seal, "TraceNo", &N_ind);
+        SealBind(seal, "FrameNo", &frameno);
 
         //Bind core components.
-#define Bind(x) SmurfBind(smurf, #x, &core_current.x)
+#define Bind(x) SealBind(seal, #x, &core_current.x)
         Bind(core_valid);
         Bind(reg);
         Bind(cpsr);
@@ -143,7 +143,7 @@ static void Init_Smurf()
 #undef Bind
     }
 
-    //Smurf IO init.
+    //Seal IO init.
     if(ioSupported)
     {
         sio = SioOpen(siopath);
@@ -164,8 +164,8 @@ static void Init_Smurf()
     return;
 }
 
-//Clean Smurf data structures.
-static void CleanSmurf()
+//Clean Seal data structures.
+static void CleanSeal()
 {
     if(useScript)
     {
@@ -179,9 +179,9 @@ static void CleanSmurf()
         SioClose(sio);
     }
 
-    if(useSmurfTrace)
+    if(useSealTrace)
     {
-        FreeSmurf(smurf);
+        FreeSeal(seal);
     }
 
     return;
@@ -263,7 +263,7 @@ int main(int argc, char *argv[])
         {
             verbose = true;
         }
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         else if(strcmp(argv[ra], "--io") == 0)
         {
             ioSupported = true;
@@ -272,7 +272,7 @@ int main(int argc, char *argv[])
         }
         else if(strcmp(argv[ra], "--st") == 0)
         {
-            useSmurfTrace = true;
+            useSealTrace = true;
             smftracepath = argv[ra + 1];
             ra++;
         }
@@ -280,15 +280,15 @@ int main(int argc, char *argv[])
         {
             useScript = true;
             scriptpath = argv[ra + 1];  //Script path.
-            snprintf(dictpath, sizeof(dictpath) - 1, "%s.sdc", scriptpath);     //Smurf dictionary path.
+            snprintf(dictpath, sizeof(dictpath) - 1, "%s.sdc", scriptpath);     //Seal dictionary path.
             ra++;
         }
 #endif
     }
 
-#ifdef USE_SMURF
-    //Initialise Smurf library.
-    Init_Smurf();
+#ifdef USE_SEAL
+    //Initialise Seal library.
+    Init_Seal();
 #endif
 
     //Load binary files to rom
@@ -327,8 +327,8 @@ int main(int argc, char *argv[])
         Close_DataFile();
 
     //system("pause");
-#ifdef USE_SMURF
-    CleanSmurf();
+#ifdef USE_SEAL
+    CleanSeal();
 #endif
     return (0);
 }

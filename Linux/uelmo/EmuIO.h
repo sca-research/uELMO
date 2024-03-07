@@ -19,8 +19,8 @@ void Close_DataFile();
 unsigned int Read_Byte();
 void Write_Byte(uint8_t);
 
-//Get randomised input from IO (SMURF should not have this!!!)
-#ifndef SMURF
+//Get randomised input from IO (SEAL should not have this!!!)
+#ifndef SEAL
 unsigned int Rand_Byte();
 #endif
 #endif

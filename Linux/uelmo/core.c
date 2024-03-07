@@ -1,12 +1,12 @@
 #include "Configure.h"
 #include "core.h"
 
-#if USE_SMURF
+#if USE_SEAL
 #include "symuelmo.h"
 #include "ulang.h"
 
-uSymbol sym_memrd_pending = {.symid = SMURF_SYM_NULL_ID };      //Pending symbol for memory read data.
-uSymbol sym_memwr_pending = {.symid = SMURF_SYM_NULL_ID };      //Pending symbol for memory write data.
+uSymbol sym_memrd_pending = {.symid = SEAL_SYM_NULL_ID };       //Pending symbol for memory read data.
+uSymbol sym_memwr_pending = {.symid = SEAL_SYM_NULL_ID };       //Pending symbol for memory write data.
 #endif
 
 CORE_STATUS core_current;
@@ -148,7 +148,7 @@ void do_vflag_bit(unsigned int x)
 //update the core registers with new value
 void Clock(bool pause)
 {
-#if USE_SMURF
+#if USE_SEAL
     PrintScriptLog("#Clock tick begins.\n");
 #endif
 
@@ -162,7 +162,7 @@ void Clock(bool pause)
         {
             write_register(core_current.Memory_read_targetreg_buf,
                            core_current.Memory_readbuf);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
             PrintScriptLog("#[%d] Mem -> reg\n", frameno);
             sym_write_register(core_current.Memory_read_targetreg_buf,
                                GetSym(sym_core_current.Memory_readbuf));
@@ -178,7 +178,7 @@ void Clock(bool pause)
         write_register(core_current.Execute_destination_regindex,
                        core_current.Execute_ALU_result);
         //core_current.Execute_destination_regindex=0xff;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         PrintScriptLog("#[%d] ALU -> reg\n", frameno);
         sym_write_register(core_current.Execute_destination_regindex,
                            GetSym(sym_core_current.Execute_ALU_result));
@@ -188,7 +188,7 @@ void Clock(bool pause)
     if(core_current.D2E_reg1_valid)
     {
         core_current.D2E_reg1 = core_current.D2E_reg1_data;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymCopy(sym_core_current.D2E_reg1, sym_core_current.D2E_reg1_data);
 #endif
     }
@@ -196,7 +196,7 @@ void Clock(bool pause)
     if(core_current.D2E_reg2_valid)
     {
         core_current.D2E_reg2 = core_current.D2E_reg2_data;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymCopy(sym_core_current.D2E_reg2, sym_core_current.D2E_reg2_data);
 #endif
     }
@@ -218,14 +218,14 @@ void Clock(bool pause)
         core_current.Fetch_valid = true;
     }
 
-#if USE_SMURF
+#if USE_SEAL
     PrintScriptLog("#Clock tick ends.\n");
 #endif
 
     return;
 }
 
-#ifdef USE_SMURF
+#ifdef USE_SEAL
 //Read register Symbol from current sym core status
 uSymbol sym_read_register(unsigned int reg)
 {

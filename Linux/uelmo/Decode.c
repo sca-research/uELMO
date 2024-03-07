@@ -2,7 +2,7 @@
 #include "core.h"
 #include "Decode.h"
 
-#ifdef USE_SMURF
+#ifdef USE_SEAL
 #include "symuelmo.h"
 #include "ulang.h"
 #include "ulangcmd.h"
@@ -20,7 +20,7 @@ void Decode_OneCycle(bool prev)
     if(!core_current.Decode_valid)      //Jump happens, no need to decode 
         return;
 
-#ifdef USE_SMURF
+#ifdef USE_SEAL
     //Resolve all src annotations.
     if(OnTrace && useScript)
     {
@@ -41,14 +41,14 @@ void Decode_OneCycle(bool prev)
         {
             core_current.glitchy_Decode_port_data[i] =
                 read_register(core_current.glitchy_Decode_port_regindex[i]);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
             SymCopy(sym_core_current.glitchy_Decode_port_data[i], sym_core_current.reg[core_current.glitchy_Decode_port_regindex[i]]);  //TODO ines: not sure
 #endif
         }
         else
         {
             core_current.glitchy_Decode_port_data[i] = 0;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
             SymClear(sym_core_current.Decode_port_data[i]);
 #endif
         }
@@ -68,7 +68,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -79,7 +79,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(ra_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -119,7 +119,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -130,7 +130,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//remain
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(rb_ind));
 #endif
@@ -166,7 +166,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = 0;   //Not used
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymClear(sym_core_current.Decode_port_data[1]);
@@ -176,7 +176,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//remain
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(ra_ind));
 #endif
@@ -212,7 +212,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rc_ind);
         core_current.Decode_port_data[2] = read_register(rb_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -224,7 +224,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         core_current.D2E_reg2_data = read_register_forward(rc_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(rb_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -264,7 +264,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -275,7 +275,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(ra_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -314,7 +314,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = 0;
         core_current.Decode_port_data[2] = 0;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymClear(sym_core_current.Decode_port_data[1]);
@@ -324,7 +324,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(15);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data, sym_read_register_forward(15));       //TODO ines: check 15
 #endif
 
@@ -359,7 +359,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(rd_ind);
         core_current.Decode_port_data[1] = 0;
         core_current.Decode_port_data[2] = 0;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(rd_ind));
         SymClear(sym_core_current.Decode_port_data[1]);
@@ -369,7 +369,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register(13);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg2_data,
                   sym_read_register_forward(13));
 #endif
@@ -404,7 +404,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(13);
         core_current.Decode_port_data[1] = 0;
         core_current.Decode_port_data[2] = 0;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymCopy(sym_core_current.Decode_port_data[0], sym_core_current.reg[13]);
         SymClear(sym_core_current.Decode_port_data[1]);
         SymClear(sym_core_current.Decode_port_data[2]);
@@ -413,7 +413,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(13);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(13));
 #endif
@@ -448,7 +448,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -459,7 +459,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(ra_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -496,7 +496,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -507,7 +507,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(rb_ind));
 #endif
@@ -541,7 +541,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -552,7 +552,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(ra_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -589,7 +589,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = 0;
         core_current.Decode_port_data[1] = 0;
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymClear(sym_core_current.Decode_port_data[0]);
         SymClear(sym_core_current.Decode_port_data[1]);
         SymClear(sym_core_current.Decode_port_data[2]);
@@ -628,7 +628,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = 0;
         core_current.Decode_port_data[1] = 0;
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymClear(sym_core_current.Decode_port_data[0]);
         SymClear(sym_core_current.Decode_port_data[1]);
         SymClear(sym_core_current.Decode_port_data[2]);
@@ -665,7 +665,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -676,7 +676,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(ra_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -720,7 +720,7 @@ void Decode_OneCycle(bool prev)
             core_current.Decode_port_data[0] = 0;
             core_current.Decode_port_data[1] = 0;
             core_current.Decode_port_data[2] = 0;       //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
             SymClear(sym_core_current.Decode_port_data[0]);
             SymClear(sym_core_current.Decode_port_data[1]);
             SymClear(sym_core_current.Decode_port_data[2]);
@@ -754,7 +754,7 @@ void Decode_OneCycle(bool prev)
             core_current.Decode_port_data[0] = 0;
             core_current.Decode_port_data[1] = 0;
             core_current.Decode_port_data[2] = 0;       //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
             SymClear(sym_core_current.Decode_port_data[0]);
             SymClear(sym_core_current.Decode_port_data[1]);
             SymClear(sym_core_current.Decode_port_data[2]);
@@ -786,7 +786,7 @@ void Decode_OneCycle(bool prev)
             core_current.Decode_port_data[0] = 0;
             core_current.Decode_port_data[1] = 0;
             core_current.Decode_port_data[2] = 0;       //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
             SymClear(sym_core_current.Decode_port_data[0]);
             SymClear(sym_core_current.Decode_port_data[1]);
             SymClear(sym_core_current.Decode_port_data[2]);
@@ -818,7 +818,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = 0;
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymClear(sym_core_current.Decode_port_data[1]);
@@ -828,7 +828,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(ra_ind));
 #endif
@@ -858,7 +858,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = 0;
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymClear(sym_core_current.Decode_port_data[1]);
@@ -868,7 +868,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(ra_ind));
 #endif
@@ -898,7 +898,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -909,7 +909,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(ra_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -946,7 +946,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = 0;   //Not used
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymClear(sym_core_current.Decode_port_data[1]);
@@ -956,7 +956,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//remain
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(ra_ind));
 #endif
@@ -990,7 +990,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -1001,7 +1001,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(ra_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -1038,7 +1038,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -1049,7 +1049,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(ra_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -1113,7 +1113,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -1124,7 +1124,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(ra_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -1160,7 +1160,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = 0;   //Not used
         core_current.Decode_port_data[1] = 0;   //Not used
         core_current.Decode_port_data[2] = read_register(rc_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymClear(sym_core_current.Decode_port_data[0]);
         SymClear(sym_core_current.Decode_port_data[1]);
         SymAssign(sym_core_current.Decode_port_data[2],
@@ -1170,7 +1170,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rc_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(rc_ind));
 #endif
@@ -1206,7 +1206,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -1217,7 +1217,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(rb_ind));
 #endif
@@ -1253,7 +1253,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = read_register(rc_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -1265,7 +1265,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         core_current.D2E_reg2_data = read_register_forward(rc_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(rb_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -1301,7 +1301,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = 0;   //Not used
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymClear(sym_core_current.Decode_port_data[1]);
@@ -1311,7 +1311,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(15) - 2;
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data, sym_read_register_forward(15));       //TODO ines: check 15
 #endif
 
@@ -1345,7 +1345,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = 0;   //Not used
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymClear(sym_core_current.Decode_port_data[1]);
@@ -1355,7 +1355,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(13);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(13));
 #endif
@@ -1390,7 +1390,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -1401,7 +1401,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(rb_ind));
 #endif
@@ -1437,7 +1437,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = read_register(rc_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -1449,7 +1449,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         core_current.D2E_reg2_data = read_register_forward(rc_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(rb_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -1488,7 +1488,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -1499,7 +1499,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(rb_ind));
 #endif
@@ -1534,7 +1534,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = read_register(rc_ind);       //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -1546,7 +1546,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         core_current.D2E_reg2_data = read_register_forward(rc_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(rb_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -1585,7 +1585,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = read_register(rc_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -1597,7 +1597,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         core_current.D2E_reg2_data = read_register_forward(rc_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(rb_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -1635,7 +1635,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = read_register(rc_ind);       //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -1647,7 +1647,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         core_current.D2E_reg2_data = read_register_forward(rc_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(rb_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -1685,7 +1685,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -1696,7 +1696,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(rb_ind));
 #endif
@@ -1732,7 +1732,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -1743,7 +1743,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(ra_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -1782,7 +1782,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -1793,7 +1793,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(rb_ind));
 #endif
@@ -1827,7 +1827,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -1838,7 +1838,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(ra_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -1877,7 +1877,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = 0;
         core_current.Decode_port_data[2] = 0;   //Not used                                               
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymClear(sym_core_current.Decode_port_data[1]);
@@ -1887,7 +1887,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(ra_ind));
 #endif
@@ -1921,7 +1921,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -1932,7 +1932,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(rb_ind));
 #endif
@@ -1969,7 +1969,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -1980,7 +1980,7 @@ void Decode_OneCycle(bool prev)
         //registers
         //core_current.D2E_reg1_data=core_current.Decode_port_data[0];
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(rb_ind));
 #endif
@@ -2015,7 +2015,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -2026,7 +2026,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(ra_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -2063,7 +2063,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -2074,7 +2074,7 @@ void Decode_OneCycle(bool prev)
         //registers
         //core_current.D2E_reg1_data=core_current.Decode_port_data[1];
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg2_data,
                   sym_read_register_forward(rb_ind));
 #endif
@@ -2109,7 +2109,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -2120,7 +2120,7 @@ void Decode_OneCycle(bool prev)
         //registers
         //core_current.D2E_reg1_data=core_current.Decode_port_data[1];
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg2_data,
                   sym_read_register_forward(rb_ind));
 #endif
@@ -2156,7 +2156,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -2167,7 +2167,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(ra_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -2201,7 +2201,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = 0;   //Not used
         core_current.Decode_port_data[1] = 0;   //Not used
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymClear(sym_core_current.Decode_port_data[0]);
         SymClear(sym_core_current.Decode_port_data[1]);
         SymClear(sym_core_current.Decode_port_data[2]);
@@ -2237,7 +2237,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = 0;   //Not used
         core_current.Decode_port_data[1] = 0;   //Not used
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymClear(sym_core_current.Decode_port_data[0]);
         SymClear(sym_core_current.Decode_port_data[1]);
         SymClear(sym_core_current.Decode_port_data[2]);
@@ -2276,7 +2276,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -2287,7 +2287,7 @@ void Decode_OneCycle(bool prev)
         //registers
         //core_current.D2E_reg1_data=core_current.Decode_port_data[1];
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg2_data,
                   sym_read_register_forward(rb_ind));
 #endif
@@ -2323,7 +2323,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -2334,7 +2334,7 @@ void Decode_OneCycle(bool prev)
         //registers
         //core_current.D2E_reg1_data=core_current.Decode_port_data[1];
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg2_data,
                   sym_read_register_forward(rb_ind));
 #endif
@@ -2369,7 +2369,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -2380,7 +2380,7 @@ void Decode_OneCycle(bool prev)
         //registers
         //core_current.D2E_reg1_data=core_current.Decode_port_data[1];
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg2_data,
                   sym_read_register_forward(rb_ind));
 #endif
@@ -2415,7 +2415,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -2426,7 +2426,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(ra_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -2463,7 +2463,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -2474,7 +2474,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(ra_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -2515,7 +2515,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = 0;   //Not used
         core_current.Decode_port_data[1] = 0;   //Not used
         core_current.Decode_port_data[2] = read_register(rc_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymClear(sym_core_current.Decode_port_data[0]);
         SymClear(sym_core_current.Decode_port_data[1]);
         SymAssign(sym_core_current.Decode_port_data[2],
@@ -2525,7 +2525,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rc_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(rc_ind));
 #endif
@@ -2560,7 +2560,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -2571,7 +2571,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         core_current.D2E_reg2_data = read_register_forward(ra_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(rb_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -2608,7 +2608,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = read_register(rc_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -2620,7 +2620,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         core_current.D2E_reg2_data = read_register_forward(rc_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(rb_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -2658,7 +2658,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = 0;
         core_current.Decode_port_data[1] = 0;   //Not used
         core_current.Decode_port_data[2] = read_register(rc_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymClear(sym_core_current.Decode_port_data[0]);
         SymClear(sym_core_current.Decode_port_data[1]);
         SymAssign(sym_core_current.Decode_port_data[2],
@@ -2668,7 +2668,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(13);
         core_current.D2E_reg2_data = read_register_forward(rc_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(13));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -2706,7 +2706,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);       //Not used
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -2717,7 +2717,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         core_current.D2E_reg2_data = read_register_forward(ra_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(rb_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -2755,7 +2755,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = read_register(rc_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -2767,7 +2767,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         core_current.D2E_reg2_data = read_register_forward(rc_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(rb_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -2805,7 +2805,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -2816,7 +2816,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         core_current.D2E_reg2_data = read_register_forward(ra_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(rb_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -2854,7 +2854,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = read_register(rc_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -2866,7 +2866,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         core_current.D2E_reg2_data = read_register_forward(rc_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(rb_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -2905,7 +2905,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -2916,7 +2916,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//remain
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(rb_ind));
 #endif
@@ -2952,7 +2952,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = 0;   //Not used
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymClear(sym_core_current.Decode_port_data[1]);
@@ -2962,7 +2962,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//remain
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(ra_ind));
 #endif
@@ -2999,7 +2999,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rc_ind);
         core_current.Decode_port_data[2] = read_register(rb_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -3011,7 +3011,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(rb_ind);
         core_current.D2E_reg2_data = read_register_forward(rc_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(rb_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -3048,7 +3048,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(13);
         core_current.Decode_port_data[1] = 0;
         core_current.Decode_port_data[2] = 0;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymCopy(sym_core_current.Decode_port_data[0], sym_core_current.reg[13]);
         SymClear(sym_core_current.Decode_port_data[1]);
         SymClear(sym_core_current.Decode_port_data[2]);
@@ -3057,7 +3057,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(13);
         //core_current.D2E_reg2_data=core_current.Decode_port_data[1];//Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(13));
 #endif
@@ -3106,7 +3106,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -3117,7 +3117,7 @@ void Decode_OneCycle(bool prev)
         //registers
         //core_current.D2E_reg1_data=core_current.Decode_port_data[1];
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg2_data,
                   sym_read_register_forward(rb_ind));
 #endif
@@ -3152,7 +3152,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -3163,7 +3163,7 @@ void Decode_OneCycle(bool prev)
         //registers
         //core_current.D2E_reg1_data=core_current.Decode_port_data[1];
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg2_data,
                   sym_read_register_forward(rb_ind));
 #endif
@@ -3199,7 +3199,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;   //Not used
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -3210,7 +3210,7 @@ void Decode_OneCycle(bool prev)
         //registers
         core_current.D2E_reg1_data = read_register_forward(ra_ind);
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg1_data,
                   sym_read_register_forward(ra_ind));
         SymAssign(sym_core_current.D2E_reg2_data,
@@ -3248,7 +3248,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -3259,7 +3259,7 @@ void Decode_OneCycle(bool prev)
         //registers
         //core_current.D2E_reg1_data=core_current.Decode_port_data[1];
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg2_data,
                   sym_read_register_forward(rb_ind));
 #endif
@@ -3294,7 +3294,7 @@ void Decode_OneCycle(bool prev)
         core_current.Decode_port_data[0] = read_register(ra_ind);
         core_current.Decode_port_data[1] = read_register(rb_ind);
         core_current.Decode_port_data[2] = 0;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Decode_port_data[0],
                   sym_read_register(ra_ind));
         SymAssign(sym_core_current.Decode_port_data[1],
@@ -3305,7 +3305,7 @@ void Decode_OneCycle(bool prev)
         //registers
         //core_current.D2E_reg1_data=core_current.Decode_port_data[1];
         core_current.D2E_reg2_data = read_register_forward(rb_ind);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.D2E_reg2_data,
                   sym_read_register_forward(rb_ind));
 #endif

@@ -242,7 +242,7 @@ bool Memory_OneCycle()
             core_current.Memory_read_targetreg;
         addr = core_current.Memory_addr & 0xfffffffc;   //align with 4
         core_current.Memory_data = read32(addr);        //read a 32-bit word
-#if USE_SMURF
+#if USE_SEAL
         if(IsSymNull(sym_memrd_pending))
         {
             SymClear(sym_core_current.Memory_data);
@@ -271,7 +271,7 @@ bool Memory_OneCycle()
             printf("Read Error!\n");
         }
         core_current.Memory_readbuf = value;
-#if USE_SMURF
+#if USE_SEAL
         SymCopy(sym_core_current.Memory_readbuf, sym_core_current.Memory_data);
 #endif
 
@@ -294,7 +294,7 @@ bool Memory_OneCycle()
     if(core_current.Write_valid_delayed == true)
     {
         core_current.Memory_writebuf_delayed = core_current.Memory_writebuf;
-#if USE_SMURF
+#if USE_SEAL
         SymCopy(sym_core_current.Memory_writebuf_delayed,
                 sym_core_current.Memory_writebuf);
 #endif
@@ -307,7 +307,7 @@ bool Memory_OneCycle()
         core_current.Write_valid = false;       //unset
         core_current.Write_valid_delayed = true;
         core_current.Memory_writebuf = core_current.Memory_data;
-#if USE_SMURF
+#if USE_SEAL
         SymCopy(sym_core_current.Memory_writebuf, sym_core_current.Memory_data);
 #endif
 

@@ -3,7 +3,7 @@
 #include "Execute.h"
 #include "Decode.h"
 
-#ifdef USE_SMURF
+#ifdef USE_SEAL
 #include "symuelmo.h"
 #include "ulang.h"
 #include "ulangcmd.h"
@@ -23,7 +23,7 @@ bool Execute_OneCylce(bool wait_mem)
         || ((inst & 0xFE00) == 0x5600) || ((inst & 0xFE00) == 0x5E00)
         || ((inst & 0xFE00) == 0xBC00) || ((inst & 0xF800) == 0xC800);
 
-#ifdef USE_SMURF
+#ifdef USE_SEAL
     DstRet dstret = { 0 };
     uSymbol sym_exe_result = SYM_NULL;
 #endif
@@ -31,7 +31,7 @@ bool Execute_OneCylce(bool wait_mem)
     if(!core_current.Execute_valid)     //Jump happens, no need to execute this instruction
         return false;
 
-#ifdef USE_SMURF
+#ifdef USE_SEAL
     //Resolve all dst annotations.
     if(OnTrace && useScript)
     {
@@ -52,7 +52,7 @@ bool Execute_OneCylce(bool wait_mem)
         Decode_OneCycle(true);
         core_current.D2E_reg1 = core_current.D2E_reg1_data;
         core_current.D2E_reg2 = core_current.D2E_reg2_data;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymCopy(sym_core_current.D2E_reg1, sym_core_current.D2E_reg1_data);
         SymCopy(sym_core_current.D2E_reg2, sym_core_current.D2E_reg2_data);
 #endif
@@ -94,7 +94,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
 
@@ -124,7 +124,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
 
@@ -155,7 +155,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
 
@@ -186,7 +186,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
 
@@ -219,7 +219,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
 
@@ -247,7 +247,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
 
@@ -277,7 +277,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
 
@@ -305,7 +305,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
 
@@ -338,7 +338,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
 
@@ -390,7 +390,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
 
@@ -447,7 +447,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
 
@@ -669,13 +669,13 @@ bool Execute_OneCylce(bool wait_mem)
         //{
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
 
         core_current.Execute_destination_regindex = 15;
         write_register(core_current.Execute_destination_regindex, core_current.Execute_ALU_result);     //TODO ines. 
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         //YY: sym_write_register added
         sym_write_register(core_current.Execute_destination_regindex,
                            GetSym(sym_core_current.Execute_ALU_result));
@@ -714,13 +714,13 @@ bool Execute_OneCylce(bool wait_mem)
         sprintf(core_current.Execute_instr_disp, "Execute: B 0x%08X", rb - 3);
         //Update ALU output
         core_current.Execute_ALU_result = rb;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
 
         core_current.Execute_destination_regindex = 15;
         write_register(core_current.Execute_destination_regindex, core_current.Execute_ALU_result);     //TODO ines
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         //YY: sym_write_register added
         sym_write_register(core_current.Execute_destination_regindex,
                            GetSym(sym_core_current.Execute_ALU_result));
@@ -758,7 +758,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
 
@@ -790,7 +790,7 @@ bool Execute_OneCylce(bool wait_mem)
             sprintf(core_current.Execute_instr_disp, "Execute: b1 pre-fix");
             //Update ALU output
             core_current.Execute_ALU_result = rb;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
             SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
             core_current.Execute_destination_regindex = 14;     //TODO ines: need in sym?
@@ -804,7 +804,7 @@ bool Execute_OneCylce(bool wait_mem)
             rb += 2;
             rd_ind = 15;
             write_register(14, (read_register(15) - 4) | 1);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
             sym_write_register(14, SYM_NULL);
 #endif
             if(DEBUG_CORE)
@@ -813,13 +813,13 @@ bool Execute_OneCylce(bool wait_mem)
                     "Execute: bl 0x%08X", rb - 3);
             //Update ALU output
             core_current.Execute_ALU_result = rb;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
             SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
 
             core_current.Execute_destination_regindex = 15;
             write_register(core_current.Execute_destination_regindex, core_current.Execute_ALU_result); //TODO ines
-#ifdef USE_SMURF
+#ifdef USE_SEAL
             //YY: sym_write_register added
             sym_write_register(core_current.Execute_destination_regindex,
                                GetSym(sym_core_current.Execute_ALU_result));
@@ -844,7 +844,7 @@ bool Execute_OneCylce(bool wait_mem)
             rd_ind = 15;
 
             write_register(14, (read_register(15) - 2) | 1);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
             sym_write_register(14, SYM_NULL);
 #endif
             if(DEBUG_CORE)
@@ -852,12 +852,12 @@ bool Execute_OneCylce(bool wait_mem)
 
             //Update ALU output
             core_current.Execute_ALU_result = rb;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
             SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
             core_current.Execute_destination_regindex = 15;
             write_register(core_current.Execute_destination_regindex, core_current.Execute_ALU_result); //TODO ines
-#ifdef USE_SMURF
+#ifdef USE_SEAL
             //YY: sym_write_register added
             sym_write_register(core_current.Execute_destination_regindex,
                                GetSym(sym_core_current.Execute_ALU_result));
@@ -890,13 +890,13 @@ bool Execute_OneCylce(bool wait_mem)
             sprintf(core_current.Execute_instr_disp, "Execute:blx r%u", ra_ind);
             //Update ALU output
             core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
             SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
 
             core_current.Execute_destination_regindex = 15;
             write_register(core_current.Execute_destination_regindex, core_current.Execute_ALU_result); //TODO ines
-#ifdef USE_SMURF
+#ifdef USE_SEAL
             //YY: sym_write_register added
             sym_write_register(core_current.Execute_destination_regindex,
                                GetSym(sym_core_current.Execute_ALU_result));
@@ -931,13 +931,13 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
 
         core_current.Execute_destination_regindex = 15;
         write_register(core_current.Execute_destination_regindex, core_current.Execute_ALU_result);     //TODO ines
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         //YY: sym_write_register added
         sym_write_register(core_current.Execute_destination_regindex,
                            GetSym(sym_core_current.Execute_ALU_result));
@@ -975,7 +975,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
 
@@ -1007,7 +1007,7 @@ bool Execute_OneCylce(bool wait_mem)
         //Update ALU output
         core_current.Execute_ALU_result = rc;
         core_current.Execute_destination_regindex = 0xff;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
         //sym_core_current.Execute_destination_regindex = 0xff;
 #endif
@@ -1039,7 +1039,7 @@ bool Execute_OneCylce(bool wait_mem)
         //Update ALU output
         core_current.Execute_ALU_result = rc;
         core_current.Execute_destination_regindex = 0xff;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
         //sym_core_current.Execute_destination_regindex = 0xff;
 #endif
@@ -1071,7 +1071,7 @@ bool Execute_OneCylce(bool wait_mem)
         //Update ALU output
         core_current.Execute_ALU_result = rc;
         core_current.Execute_destination_regindex = 0xff;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
         //sym_core_current.Execute_destination_regindex = 0xff;
 #endif
@@ -1129,7 +1129,7 @@ bool Execute_OneCylce(bool wait_mem)
         //Update ALU output
         core_current.Execute_ALU_result = rc;
         core_current.Execute_destination_regindex = ra_ind;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
         return false;
@@ -1150,7 +1150,7 @@ bool Execute_OneCylce(bool wait_mem)
             Decode_OneCycle(true);
             core_current.D2E_reg1 = core_current.D2E_reg1_data;
             core_current.D2E_reg2 = core_current.D2E_reg2_data;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
             SymCopy(sym_core_current.D2E_reg1, sym_core_current.D2E_reg1_data);
             SymCopy(sym_core_current.D2E_reg2, sym_core_current.D2E_reg2_data);
 #endif
@@ -1229,7 +1229,7 @@ bool Execute_OneCylce(bool wait_mem)
             Decode_OneCycle(true);
             core_current.D2E_reg1 = core_current.D2E_reg1_data;
             core_current.D2E_reg2 = core_current.D2E_reg2_data;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
             SymCopy(sym_core_current.D2E_reg1, sym_core_current.D2E_reg1_data);
             SymCopy(sym_core_current.D2E_reg2, sym_core_current.D2E_reg2_data);
 #endif
@@ -1247,7 +1247,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_ALU_result = rc;
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         sym_memrd_pending = sym_exe_result;
 #endif
 
@@ -1275,7 +1275,7 @@ bool Execute_OneCylce(bool wait_mem)
             Decode_OneCycle(true);
             core_current.D2E_reg1 = core_current.D2E_reg1_data;
             core_current.D2E_reg2 = core_current.D2E_reg2_data;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
             SymCopy(sym_core_current.D2E_reg1, sym_core_current.D2E_reg1_data);
             SymCopy(sym_core_current.D2E_reg2, sym_core_current.D2E_reg2_data);
 #endif
@@ -1294,7 +1294,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
 
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         sym_memrd_pending = sym_exe_result;
 #endif
         return false;
@@ -1323,7 +1323,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_ALU_result = rc;
         core_current.Execute_destination_regindex = 0xff;       //Let memory do this
         core_current.cpsr_valid = false;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         sym_memrd_pending = sym_exe_result;
 #endif
 
@@ -1351,7 +1351,7 @@ bool Execute_OneCylce(bool wait_mem)
             Decode_OneCycle(true);
             core_current.D2E_reg1 = core_current.D2E_reg1_data;
             core_current.D2E_reg2 = core_current.D2E_reg2_data;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
             SymCopy(sym_core_current.D2E_reg1, sym_core_current.D2E_reg1_data);
             SymCopy(sym_core_current.D2E_reg2, sym_core_current.D2E_reg2_data);
 #endif
@@ -1371,7 +1371,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
 
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         sym_memrd_pending = sym_exe_result;
 #endif
 
@@ -1398,7 +1398,7 @@ bool Execute_OneCylce(bool wait_mem)
             Decode_OneCycle(true);
             core_current.D2E_reg1 = core_current.D2E_reg1_data;
             core_current.D2E_reg2 = core_current.D2E_reg2_data;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
             SymCopy(sym_core_current.D2E_reg1, sym_core_current.D2E_reg1_data);
             SymCopy(sym_core_current.D2E_reg2, sym_core_current.D2E_reg2_data);
 #endif
@@ -1421,7 +1421,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_ALU_result = rc;
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         sym_memrd_pending = sym_exe_result;
 #endif
 
@@ -1450,7 +1450,7 @@ bool Execute_OneCylce(bool wait_mem)
             Decode_OneCycle(true);
             core_current.D2E_reg1 = core_current.D2E_reg1_data;
             core_current.D2E_reg2 = core_current.D2E_reg2_data;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
             SymCopy(sym_core_current.D2E_reg1, sym_core_current.D2E_reg1_data);
             SymCopy(sym_core_current.D2E_reg2, sym_core_current.D2E_reg2_data);
 #endif
@@ -1473,7 +1473,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_ALU_result = rc;
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         sym_memrd_pending = sym_exe_result;
 #endif
 
@@ -1501,7 +1501,7 @@ bool Execute_OneCylce(bool wait_mem)
             Decode_OneCycle(true);
             core_current.D2E_reg1 = core_current.D2E_reg1_data;
             core_current.D2E_reg2 = core_current.D2E_reg2_data;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
             SymCopy(sym_core_current.D2E_reg1, sym_core_current.D2E_reg1_data);
             SymCopy(sym_core_current.D2E_reg2, sym_core_current.D2E_reg2_data);
 #endif
@@ -1521,7 +1521,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
 
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         sym_memrd_pending = sym_exe_result;
 #endif
         return false;
@@ -1547,7 +1547,7 @@ bool Execute_OneCylce(bool wait_mem)
             Decode_OneCycle(true);
             core_current.D2E_reg1 = core_current.D2E_reg1_data;
             core_current.D2E_reg2 = core_current.D2E_reg2_data;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
             SymCopy(sym_core_current.D2E_reg1, sym_core_current.D2E_reg1_data);
             SymCopy(sym_core_current.D2E_reg2, sym_core_current.D2E_reg2_data);
 #endif
@@ -1567,7 +1567,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
 
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         sym_memrd_pending = sym_exe_result;
 #endif
         return false;
@@ -1595,7 +1595,7 @@ bool Execute_OneCylce(bool wait_mem)
             Decode_OneCycle(true);
             core_current.D2E_reg1 = core_current.D2E_reg1_data;
             core_current.D2E_reg2 = core_current.D2E_reg2_data;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
             SymCopy(sym_core_current.D2E_reg1, sym_core_current.D2E_reg1_data);
             SymCopy(sym_core_current.D2E_reg2, sym_core_current.D2E_reg2_data);
 #endif
@@ -1616,7 +1616,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
 
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         sym_memrd_pending = sym_exe_result;
 #endif
 
@@ -1644,7 +1644,7 @@ bool Execute_OneCylce(bool wait_mem)
             Decode_OneCycle(true);
             core_current.D2E_reg1 = core_current.D2E_reg1_data;
             core_current.D2E_reg2 = core_current.D2E_reg2_data;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
             SymCopy(sym_core_current.D2E_reg1, sym_core_current.D2E_reg1_data);
             SymCopy(sym_core_current.D2E_reg2, sym_core_current.D2E_reg2_data);
 #endif
@@ -1664,7 +1664,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
 
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         sym_memrd_pending = sym_exe_result;
 #endif
 
@@ -1703,7 +1703,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_ALU_result = rc;
         //SymAssign(sym_core_current.Execute_ALU_result,
         //          SymGetMemAddrAnnotation());
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
 
@@ -1759,7 +1759,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_ALU_result = rc;
         //SymAssign(sym_core_current.Execute_ALU_result,
         //          SymGetMemAddrAnnotation());
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
 
@@ -1800,7 +1800,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_ALU_result = rc;
         //SymAssign(sym_core_current.Execute_ALU_result,
         //          SymGetMemAddrAnnotation());
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
         return false;
@@ -1851,7 +1851,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_ALU_result = rc;
         //SymAssign(sym_core_current.Execute_ALU_result,
         //          SymGetMemAddrAnnotation());
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
         return false;
@@ -1881,7 +1881,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_ALU_result = rc;
         //SymAssign(sym_core_current.Execute_ALU_result,
         //          SymGetMemAddrAnnotation());
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
         return false;
@@ -1911,7 +1911,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         //YY: sym_write_register added
         //SymAssign(sym_core_current.Execute_ALU_result, SymGetMemAddrAnnotation());
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
@@ -1951,7 +1951,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_ALU_result = rc;
         //SymAssign(sym_core_current.Execute_ALU_result,
         //          SymGetMemAddrAnnotation());
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
         return false;
@@ -1981,7 +1981,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
         return false;
@@ -2012,7 +2012,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_ALU_result = rc;
         //SymAssign(sym_core_current.Execute_ALU_result,
         //          SymGetMemAddrAnnotation());
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
         return false;
@@ -2043,7 +2043,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_ALU_result = rc;
         //SymAssign(sym_core_current.Execute_ALU_result,
         //          SymGetMemAddrAnnotation());
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
         return false;
@@ -2073,7 +2073,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         //SymAssign(sym_core_current.Execute_ALU_result,
         //          SymGetMemAddrAnnotation());
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
@@ -2234,7 +2234,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
         return false;
@@ -2266,7 +2266,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
         return false;
@@ -2296,7 +2296,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
         return false;
@@ -2345,7 +2345,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
         return false;
@@ -2386,7 +2386,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
         return false;
@@ -2477,7 +2477,7 @@ bool Execute_OneCylce(bool wait_mem)
         //Update ALU output
         core_current.Execute_ALU_result = rb;
         core_current.Execute_destination_regindex = 0xff;       //do not update this
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymCopy(sym_core_current.Memory_data, sym_core_current.D2E_reg2);
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
@@ -2539,7 +2539,7 @@ bool Execute_OneCylce(bool wait_mem)
             core_current.Execute_destination_regindex = 0xff;   //do not update this
             core_current.cpsr_valid = false;
             //YY: Annotation happens as data flowed into ALU output.
-#ifdef USE_SMURF
+#ifdef USE_SEAL
             SymCopy(sym_core_current.Memory_data, sym_core_current.D2E_reg1);
             SymCopy(sym_core_current.Execute_ALU_result,
                     sym_core_current.D2E_reg1);
@@ -2574,7 +2574,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
         //YY: Annotation happens as data flowed into ALU output.
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymCopy(sym_core_current.Memory_data, sym_core_current.D2E_reg2);
         SymCopy(sym_core_current.Execute_ALU_result, sym_core_current.D2E_reg2);
 #endif
@@ -2607,7 +2607,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
 
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymCopy(sym_core_current.Memory_data, sym_core_current.D2E_reg2);
         SymCopy(sym_core_current.Execute_ALU_result, sym_core_current.D2E_reg2);
 #endif
@@ -2668,7 +2668,7 @@ bool Execute_OneCylce(bool wait_mem)
             core_current.Execute_ALU_result = ra;
             core_current.Execute_destination_regindex = 0xff;   //do not update this
             core_current.cpsr_valid = false;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
             SymCopy(sym_core_current.Memory_data, sym_core_current.D2E_reg1);
             SymCopy(sym_core_current.Execute_ALU_result,
                     sym_core_current.D2E_reg1);
@@ -2705,7 +2705,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.Execute_destination_regindex = 0xff;       //do not update this
         core_current.cpsr_valid = false;
         //YY: Annotation happens as data flowed into ALU output.
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Memory_data, sym_exe_result);
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
@@ -2767,7 +2767,7 @@ bool Execute_OneCylce(bool wait_mem)
             core_current.Execute_ALU_result = ra;
             core_current.Execute_destination_regindex = 0xff;   //do not update this
             //YY: Annotation happens as data flowed into ALU output.
-#ifdef USE_SMURF
+#ifdef USE_SEAL
             SymAssign(sym_core_current.Memory_data, sym_exe_result);
             SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
@@ -2803,7 +2803,7 @@ bool Execute_OneCylce(bool wait_mem)
         //Update destination register.
         //Patched by Si to fix pre-fetching ALU result.
         write_register(rd_ind, core_current.Execute_ALU_result);
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
         sym_write_register(rd_ind, GetSym(sym_core_current.Execute_ALU_result));
 #endif
@@ -2834,7 +2834,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
 
@@ -2866,7 +2866,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = true;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
         return false;
@@ -2894,7 +2894,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
         return false;
@@ -2944,7 +2944,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
         return false;
@@ -2979,7 +2979,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
         return false;
@@ -3011,7 +3011,7 @@ bool Execute_OneCylce(bool wait_mem)
         //Update ALU output
         core_current.Execute_ALU_result = rc;
         core_current.Execute_destination_regindex = 0xff;       //do not update this
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
         return false;
@@ -3040,7 +3040,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
         return false;
@@ -3069,7 +3069,7 @@ bool Execute_OneCylce(bool wait_mem)
         core_current.cpsr_valid = false;
         //Update ALU output
         core_current.Execute_ALU_result = rc;
-#ifdef USE_SMURF
+#ifdef USE_SEAL
         SymAssign(sym_core_current.Execute_ALU_result, sym_exe_result);
 #endif
         return false;

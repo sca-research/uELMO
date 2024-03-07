@@ -1,4 +1,4 @@
-#ifdef USE_SMURF
+#ifdef USE_SEAL
 #include <stdio.h>
 
 #include "symuelmo.h"
@@ -6,9 +6,9 @@
 #include "uelmo.h"
 #include "Configure.h"
 
-#include "smurf/frame.h"
-#include "smurf/symbolic.h"
-#include "smurf/version.h"
+#include "seal/frame.h"
+#include "seal/symbolic.h"
+#include "seal/version.h"
 
 //Flag to control symbolic operations.
 bool SymActive = true;
@@ -45,8 +45,8 @@ static inline void BindSymArray(const char *compname,
     int i;
     ComponentInstance ci = { 0 };
 
-    //Fetch ComponentInstace from Smurf buffered Frame.
-    SmurfFetchComp(&ci, smurf->frame, compname);
+    //Fetch ComponentInstace from Seal buffered Frame.
+    SealFetchComp(&ci, seal->frame, compname);
 
     //Set pointers to the Symbolic fileds in the Frame.
     for (i = 0; i < size; i++)
@@ -65,7 +65,7 @@ int InitSymCore()
     ComponentInstance ci = { 0 };
 
     //Check Core Version.
-    if(V2 > smurf->core->versionid)
+    if(V2 > seal->core->versionid)
     {
         printf("Symbolic feature requires Core Version >= 2.\n");
         exit(-1);
@@ -77,7 +77,7 @@ int InitSymCore()
 #define\
     BindSym(x)\
     {\
-        SmurfFetchComp(&ci,smurf->frame,#x);\
+        SealFetchComp(&ci,seal->frame,#x);\
         sym_core_current.x.name=ci.name;\
         sym_core_current.x.index=NON_ARRAY_SYM_COMP;\
         sym_core_current.x.sid_p=ci.ci.symid;\
@@ -181,7 +181,7 @@ int SymAssign(SymbolicComponent component, uSymbol symbol)
 //Copy the Symbol of a component to another.
 int SymCopy(SymbolicComponent dstcomp, SymbolicComponent srccomp)
 {
-    SmurfSymId t;
+    SealSymId t;
 
     if((!SYM_ENABLED) || (!SymActive))
     {
@@ -272,7 +272,7 @@ uSymbol SymEncode(const char *symstr)
     }
 
     //Attempt to find the Symbol.
-    if(SMURF_SYM_NULL_ID == (sym.symid = FindSymIdByName(uDict, symstr)))
+    if(SEAL_SYM_NULL_ID == (sym.symid = FindSymIdByName(uDict, symstr)))
     {
         //Not found.
         //Construct a new CodeEntry with Symbol ID being the count of Symbols.
@@ -291,7 +291,7 @@ uSymbol SymEncode(const char *symstr)
 const char *SymDecode(const uSymbol sym)
 {
     const char *symstr = NULL;
-    char errormsg[SMURF_INFO_MAXLEN] = { 0 };
+    char errormsg[SEAL_INFO_MAXLEN] = { 0 };
 
     if(!SYM_ENABLED)
     {

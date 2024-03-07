@@ -1,16 +1,16 @@
-#ifdef USE_SMURF
+#ifdef USE_SEAL
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
 
-#include "smurf/smurf.h"
+#include "seal/seal.h"
 #include "symuelmo.h"
 #include "uelmo.h"
 #include "ulangcmd.h"
 #include "ulang.h"
 
 //Script used in this simulation.
-SmurfScript *script = NULL;
+SealScript *script = NULL;
 
 //Flag for first block.
 bool firstcmdblock = true;
