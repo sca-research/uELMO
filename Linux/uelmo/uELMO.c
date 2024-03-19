@@ -29,7 +29,7 @@ bool OnTrace = false;
 
 #ifdef USE_SEAL
 SealIO *sio = NULL;
-char *smftracepath = NULL;
+char *sealtracepath = NULL;
 char *siopath = NULL;
 Seal *seal = NULL;
 const char *scriptpath = NULL;  //DBG
@@ -52,7 +52,7 @@ void PrintHelp()
     printf("OPTIONS:\n");
     printf("\t-h : Print this message.\n");
     printf("\t-N ${n} : Set number of traces to ${n}.\n");
-    printf("\t-o ${output} : Output into ${output}.\n");
+    printf("\t-o ${output} : Original uELMO output into ${output}.\n");
     printf("\t-r ${input} : Use input file ${input}.\n");
     printf("\t--verbose : Print verbose emulation log.\n");
 #ifdef USE_SEAL
@@ -90,7 +90,7 @@ static void Init_Seal()
 {
     if(useSealTrace)
     {
-        seal = InitSeal(ELMO_CORE, smftracepath, SEAL_TRACE_MODE_CREATE);
+        seal = InitSeal(ELMO_CORE, sealtracepath, SEAL_TRACE_MODE_CREATE);
         SealBind(seal, "TraceNo", &N_ind);
         SealBind(seal, "FrameNo", &frameno);
 
@@ -273,7 +273,7 @@ int main(int argc, char *argv[])
         else if(strcmp(argv[ra], "--st") == 0)
         {
             useSealTrace = true;
-            smftracepath = argv[ra + 1];
+            sealtracepath = argv[ra + 1];
             ra++;
         }
         else if(strcmp(argv[ra], "--sc") == 0)  //Use ULANG script.

@@ -13,7 +13,7 @@
 
 #define ELMO_CORE "./sealfiles/uelmo.json"
 extern SealIO *sio;
-extern char *smftracepath;
+extern char *sealtracepath;
 extern char *siopath;
 extern Seal *seal;
 extern const char *scriptpath;
