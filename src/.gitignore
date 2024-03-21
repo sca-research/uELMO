@@ -3,6 +3,7 @@
 *.bak
 uelmo
 smuelmo
+sealuelmo
 testrun.sh
 tags
 *.swp
