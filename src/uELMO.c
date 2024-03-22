@@ -233,7 +233,7 @@ int main(int argc, char *argv[])
         return (1);
     }
 
-    for (ra = 0; ra < argc; ra++)
+    for (ra = 2; ra < argc; ra++)
     {
         if(strcmp(argv[ra], "-h") == 0)
         {
@@ -284,6 +284,13 @@ int main(int argc, char *argv[])
             ra++;
         }
 #endif
+        else
+        {
+            printf("Unknown option: %s\n", argv[ra]);
+            PrintHelp();
+            exit(0);
+        }
+
     }
 
 #ifdef USE_SEAL
