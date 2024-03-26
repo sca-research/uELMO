@@ -245,11 +245,6 @@ int main(int argc, char *argv[])
             sscanf(argv[ra + 1], "%d", &N);
             ra++;
         }
-        else if(strcmp(argv[ra], "-o") == 0)
-        {
-            oindex = ra + 1;
-            oflag = true;
-        }
         else if(strcmp(argv[ra], "-r") == 0)
         {
             rindex = ra + 1;
@@ -326,9 +321,10 @@ int main(int argc, char *argv[])
             printf("########## TRACE %d\n", N_ind);
         run();                  //run one trace
     }
+
     //Close output file
-    if(oindex < argc)
-        Close_Output();
+    Close_Output();
+
     //Open data file
     if(rindex < argc)
         Close_DataFile();
