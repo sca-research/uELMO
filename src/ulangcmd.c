@@ -20,6 +20,14 @@ void CleanUlangCmd()
     return;
 }
 
+//Remove all pending requests in all queues.
+void ResetUlangCmd()
+{
+    CleanSrc();
+    CleanDst();
+    return;
+}
+
 //Command: 
 //  src
 //Format: 
@@ -94,6 +102,21 @@ int ResolveSrc()
     }
 
     return 0;
+}
+
+//Remove all pending requests on srcqueue.
+void CleanSrc()
+{
+    struct srcArg *sarg = NULL;
+
+    //Pull all existing requests.
+    while (NULL != (sarg = SqPop(srcqueue)))
+    {
+        //Free the arguments.
+        Free(sarg);
+    }
+
+    return;
 }
 
 //Command: 
@@ -174,4 +197,20 @@ DstRet ResolveDst()
 
     return ret;
 }
+
+//Remove all pending requests on dstqueue.
+void CleanDst()
+{
+    struct dstArg *darg = NULL;
+
+    //Pull all existing requests.
+    while (NULL != (darg = SqPop(dstqueue)))
+    {
+        //Free the arguments.
+        Free(darg);
+    }
+
+    return;
+}
+
 #endif

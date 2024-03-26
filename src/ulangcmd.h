@@ -13,6 +13,9 @@
 int InitUlangCmd();
 void CleanUlangCmd();
 
+//Remove all pending requests in all queues.
+void ResetUlangCmd();
+
 //Handler of src
 extern SealQueue *srcqueue;     //Queue for src command.
 
@@ -27,6 +30,9 @@ void RequestSrc(int argc, char **argv);
 
 //Resolve all src requests.
 int ResolveSrc();
+
+//Remove all pending requests on srcqueue.
+void CleanSrc();
 
 //Handler of dst
 extern SealQueue *dstqueue;     //Queue for dst command.
@@ -48,5 +54,9 @@ typedef struct __DstRet__ {
 
 //Returns the last Symbol in dst queue.
 DstRet ResolveDst();
+
+//Remove all pending requests on dstqueue.
+void CleanDst();
+
 #endif
 #endif

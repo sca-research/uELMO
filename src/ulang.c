@@ -226,6 +226,7 @@ int ReadNextCmdBlock()
 int ResetScript()
 {
     ResetCursor(script);
+    ResetUlangCmd();
     return 0;
 }
 
