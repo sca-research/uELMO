@@ -5,95 +5,12 @@
 #include "EmuIO.h"
 #include "uelmo.h"
 
-//global output file pointer
-FILE *outfp = NULL;
-//global input file pointer
-FILE *datafp = NULL;
-
-//Close output stream, executiong trace file
-void Close_Output()             //SEAL_ADAPTING, change this
-{
-    if(outfp != NULL)
-        fclose(outfp);
-};
-
-//Close input data stream, emulated input
-void Close_DataFile()           //SEAL_ADAPTING, change this
-{
-    if(outfp != NULL)
-        fclose(datafp);
-}
-
-//open output file, executiong trace file
-void Open_OutputFile(char *filename)    //SEAL_ADAPTING, change this
-{
-    outfp = fopen(filename, "wb+");
-    if(outfp == NULL)
-    {
-        printf("Error opening file [%s]\n", filename);
-        return;
-    }
-}
-
-//open input data file, emulated input
-void Open_DataFile(char *filename)      //SEAL_ADAPTING, change this
-{
-    datafp = fopen(filename, "r");
-    if(NULL == datafp)
-    {
-        printf("Error opening file [%s]\n", filename);
-        return;
-    }
-}
-
 //Get input from IO , emulated input
-//SEAL_ADAPTING, change this
-#ifndef USE_SEAL
-unsigned int Read_Byte()
-{
-    char *str;
-    unsigned int data = UELMO_ERROR;
-    size_t len = 20;
-    str = (char *)malloc(len);
-    //getline(&str, &len, datafile);//TEMP: get it back after moving back to Linux
-    if(NULL != fgets(str, len, datafp))
-        data = (long)strtol(str, NULL, 16);
-
-    //printf("%x\n", data);
-    free(str);
-    return data;
-}
-
-void Write_Byte(uint8_t input)
-{
-    printf("#uELMO outpus: %02X (%c)\n", input, input);
-    return;
-}
-#else
-unsigned int ReadFromFile()
-{
-    char *str;
-    unsigned int data = UELMO_ERROR;
-    size_t len = 20;
-    str = (char *)malloc(len);
-    //getline(&str, &len, datafile);//TEMP: get it back after moving back to Linux
-    if(NULL != fgets(str, len, datafp))
-        data = (long)strtol(str, NULL, 16);
-
-    //printf("%x\n", data);
-    free(str);
-    return data;
-}
-
 unsigned int Read_Byte()
 {
     unsigned int ret = 0;
 
-    if(useInputFile)            //Use input file.
-    {
-        ret = ReadFromFile();
-    }
-    else if(ioSupported)        //Use Seal IO.
+    if(ioSupported)             //Use Seal IO.
     {
         if(NULL == sio || SEAL_IO_READY != sio->stat)
         {
@@ -125,7 +42,6 @@ void Write_Byte(uint8_t input)
     printf("#Trying to write but SealIO not ready: %x\n", input);
     return;
 }
-#endif
 
 //Get randomised input from IO (SEAL should not have this!!!)
 //SEAL_ADAPTING, delete this!
@@ -141,7 +57,6 @@ void Write_Frame()
 {
     if(OnTrace == true)
     {
-        fwrite(&core_current, sizeof(CORE_STATUS), 1, outfp);
 #ifdef USE_SEAL
         if(useSealTrace)
         {
@@ -151,14 +66,5 @@ void Write_Frame()
 #endif
         frameno++;
     }
-    return;
-}
-
-//Write out a flag that terminate the current trace
-//SEAL_ADAPTING, rewrite this
-void Write_EndofTrace()
-{
-    bool flag = false;
-    fwrite(&flag, sizeof(bool), 1, outfp);
     return;
 }

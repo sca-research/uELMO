@@ -97,7 +97,6 @@ void write32(unsigned int addr, unsigned int data)
     case 0xF0000000:           //halt
         //Close execution traces
         core_current.core_valid = false;
-        Write_EndofTrace();
         return;
     case 0xE0000000:           //periph
         switch (addr)

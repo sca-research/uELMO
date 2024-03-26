@@ -19,7 +19,7 @@ bool fvr = false;
 int N = 0;
 int N_ind = 0;
 bool ioSupported = false;
-bool useSealTrace = false;
+bool useSealTrace = true;
 bool useInputFile = false;
 bool useScript = false;
 bool verbose = false;
@@ -29,7 +29,7 @@ bool OnTrace = false;
 
 #ifdef USE_SEAL
 SealIO *sio = NULL;
-char *sealtracepath = NULL;
+char *sealtracepath = "/dev/null";      //Use NULL device by default.
 char *siopath = NULL;
 Seal *seal = NULL;
 const char *scriptpath = NULL;  //DBG
@@ -52,8 +52,8 @@ void PrintHelp()
     printf("OPTIONS:\n");
     printf("\t-h : Print this message.\n");
     printf("\t-N ${n} : Set number of traces to ${n}.\n");
-    printf("\t-o ${output} : Original uELMO output into ${output}.\n");
-    printf("\t-r ${input} : Use input file ${input}.\n");
+    //printf("\t-o ${output} : Original uELMO output into ${output}.\n");
+    //printf("\t-r ${input} : Use input file ${input}.\n");
     printf("\t--verbose : Print verbose emulation log.\n");
 #ifdef USE_SEAL
     printf("Seal Extensions:\n");
@@ -88,9 +88,10 @@ void PrintCoreInfo(SealCore * core)
 //Initialise Seal data structures.
 static void Init_Seal()
 {
+    seal = InitSeal(ELMO_CORE, sealtracepath, SEAL_TRACE_MODE_CREATE);
+
     if(useSealTrace)
     {
-        seal = InitSeal(ELMO_CORE, sealtracepath, SEAL_TRACE_MODE_CREATE);
         SealBind(seal, "TraceNo", &N_ind);
         SealBind(seal, "FrameNo", &frameno);
 
@@ -211,15 +212,11 @@ void Read_Binary(char *filename)
 //main function: dealing with command line input/output
 //argv[0]=uELMO
 //argv[1]=xxx.bin  -- target binary arm code 
-// -o xxxx.dat --- output frame to xxxxx.dat
 // -N xxxx --- generate xxxx traces
-// -r xxxx.txt --- use randomness from xxxx.txt
 int main(int argc, char *argv[])
 {
     time_t timet;
     int ra = 0;
-    int oindex = argc;
-    int rindex = argc;
 
     fvr = false;
     N = 1;
@@ -244,11 +241,6 @@ int main(int argc, char *argv[])
         {
             sscanf(argv[ra + 1], "%d", &N);
             ra++;
-        }
-        else if(strcmp(argv[ra], "-r") == 0)
-        {
-            rindex = ra + 1;
-            useInputFile = true;
         }
         else if(strcmp(argv[ra], "-fvr") == 0)
         {
@@ -295,20 +287,6 @@ int main(int argc, char *argv[])
 
     //Load binary files to rom
     Read_Binary(argv[1]);
-    //Open output file
-    if(!oflag)
-    {
-        //Disable uELMO output by default.
-        Open_OutputFile("/dev/null");
-    }
-    else if(oindex < argc)
-    {
-        Open_OutputFile(argv[oindex]);
-    }
-
-    //Open data file
-    if(rindex < argc)
-        Open_DataFile(argv[rindex]);
 
     printf
         ("########################################\n\nGENERATING TRACES...\n\n");
@@ -320,14 +298,11 @@ int main(int argc, char *argv[])
         if(N_ind % 100 == 0)
             printf("########## TRACE %d\n", N_ind);
         run();                  //run one trace
+        if(useScript)
+        {
+            ResetScript();
+        }
     }
-
-    //Close output file
-    Close_Output();
-
-    //Open data file
-    if(rindex < argc)
-        Close_DataFile();
 
     //system("pause");
 #ifdef USE_SEAL
