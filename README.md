@@ -3,7 +3,7 @@ SEAL integrated uELMO.
 **FOR ORIGINAL uelmo, please see: https://github.com/sca-research/uELMO_Origin **
 
 ## License
-This program is released under license AGPLv3+.
+This program is released under license MIT.
 
 Get a summary of this license
 [here at choosealicense.com](https://choosealicense.com/licenses/mit/)
