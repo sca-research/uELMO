@@ -2,6 +2,8 @@ SEAL integrated uELMO.
 
 **FOR ORIGINAL uelmo, please see: https://github.com/sca-research/uELMO_Origin **
 
+or download from the [release page](https://github.com/sca-research/uELMO/releases/tag/v1.0).
+
 ## License
 This program is released under license MIT.
 
