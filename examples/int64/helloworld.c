@@ -4,7 +4,7 @@
 #include "elmoasmfunctionsdef.h"
 
 const char start[] = "start\n";
-const char end[] = "end\n";
+const char end[] = "\nend\n";
 
 static void PrintLine(const char *line, int len)
 {
@@ -84,7 +84,6 @@ static void br_aes_ct64_interleave_in1(uint64_t * q0, uint64_t * q1,
         //printbyte(((uint8_t *) (temp)) + i);
         PrintHex(temp[i]);
     }
-
 }
 
 int main(void)

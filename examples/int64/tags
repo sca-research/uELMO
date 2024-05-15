@@ -10,10 +10,10 @@
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	5.9.0	//
 HELLOWORLD_H	/home/salties/git/uELMO/examples/helloworld/helloworld.h	/^#define HELLOWORLD_H$/;"	d
-NibToHex	/home/salties/git/uELMO/examples/int64bug/helloworld.c	/^static char NibToHex(const char x)$/;"	f	typeref:typename:char	file:	signature:(const char x)
-PrintHex	/home/salties/git/uELMO/examples/int64bug/helloworld.c	/^static void PrintHex(const char x)$/;"	f	typeref:typename:void	file:	signature:(const char x)
-PrintLine	/home/salties/git/uELMO/examples/int64bug/helloworld.c	/^static void PrintLine(const char *line, int len)$/;"	f	typeref:typename:void	file:	signature:(const char * line,int len)
-br_aes_ct64_interleave_in1	/home/salties/git/uELMO/examples/int64bug/helloworld.c	/^static void br_aes_ct64_interleave_in1(uint64_t * q0, uint64_t * q1, uint32_t * w)$/;"	f	typeref:typename:void	file:	signature:(uint64_t * q0,uint64_t * q1,uint32_t * w)
-end	/home/salties/git/uELMO/examples/int64bug/helloworld.c	/^const char end[] = "end\\n";$/;"	v	typeref:typename:const char[]
-main	/home/salties/git/uELMO/examples/int64bug/helloworld.c	/^int main(void)$/;"	f	typeref:typename:int	signature:(void)
-start	/home/salties/git/uELMO/examples/int64bug/helloworld.c	/^const char start[] = "start\\n";$/;"	v	typeref:typename:const char[]
+NibToHex	/home/salties/git/uELMO/examples/int64/helloworld.c	/^static char NibToHex(const char x)$/;"	f	typeref:typename:char	file:	signature:(const char x)
+PrintHex	/home/salties/git/uELMO/examples/int64/helloworld.c	/^static void PrintHex(const char x)$/;"	f	typeref:typename:void	file:	signature:(const char x)
+PrintLine	/home/salties/git/uELMO/examples/int64/helloworld.c	/^static void PrintLine(const char *line, int len)$/;"	f	typeref:typename:void	file:	signature:(const char * line,int len)
+br_aes_ct64_interleave_in1	/home/salties/git/uELMO/examples/int64/helloworld.c	/^static void br_aes_ct64_interleave_in1(uint64_t * q0, uint64_t * q1,$/;"	f	typeref:typename:void	file:	signature:(uint64_t * q0,uint64_t * q1,uint32_t * w)
+end	/home/salties/git/uELMO/examples/int64/helloworld.c	/^const char end[] = "\\nend\\n";$/;"	v	typeref:typename:const char[]
+main	/home/salties/git/uELMO/examples/int64/helloworld.c	/^int main(void)$/;"	f	typeref:typename:int	signature:(void)
+start	/home/salties/git/uELMO/examples/int64/helloworld.c	/^const char start[] = "start\\n";$/;"	v	typeref:typename:const char[]
