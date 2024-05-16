@@ -1,0 +1,409 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/home/salties/Downloads/kyber768/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	//
+$(TARGET).images	Makefile	/^$(TARGET).images: $(TARGET).bin $(TARGET).list $(TARGET).map$/;"	t
+${OBJC}	Makefile	/^${OBJC} : %.o : %.c$/;"	t
+${TARGET}.bin	Makefile	/^${TARGET}.bin: ${TARGET}.elf$/;"	t
+${TARGET}.elf	Makefile	/^${TARGET}.elf ${TARGET}.map: $(OBJECTS)$/;"	t
+${TARGET}.list	Makefile	/^${TARGET}.list: ${TARGET}.elf$/;"	t
+${TARGET}.map	Makefile	/^${TARGET}.elf ${TARGET}.map: $(OBJECTS)$/;"	t
+%.o	Makefile	/^${OBJC} : %.o : %.c$/;"	t
+AES128_KEYBYTES	aes.h	/^#define AES128_KEYBYTES /;"	d
+AES192_KEYBYTES	aes.h	/^#define AES192_KEYBYTES /;"	d
+AES256CTR_BLOCKBYTES	aes256ctr.h	/^#define AES256CTR_BLOCKBYTES /;"	d
+AES256CTR_H	aes256ctr.h	/^#define AES256CTR_H$/;"	d
+AES256CTR_NAMESPACE	aes256ctr.h	/^#define AES256CTR_NAMESPACE(/;"	d
+AES256_CTR_DRBG_Update	rng.c	/^AES256_CTR_DRBG_Update(unsigned char *provided_data,$/;"	f	typeref:typename:void
+AES256_CTR_DRBG_struct	rng.h	/^} AES256_CTR_DRBG_struct;$/;"	t	typeref:struct:__anon104bf7c20208
+AES256_ECB	rng.c	/^void AES256_ECB(unsigned char *key, unsigned char *ctr, unsigned char *buffer)$/;"	f	typeref:typename:void
+AES256_KEYBYTES	aes.h	/^#define AES256_KEYBYTES /;"	d
+AESCTR_NONCEBYTES	aes.h	/^#define AESCTR_NONCEBYTES /;"	d
+AES_BLOCKBYTES	aes.h	/^#define AES_BLOCKBYTES /;"	d
+AES_H	aes.h	/^#define AES_H$/;"	d
+AES_XOF_struct	rng.h	/^} AES_XOF_struct;$/;"	t	typeref:struct:__anon104bf7c20108
+API_H	api.h	/^#define API_H$/;"	d
+ARCH_FLAGS	Makefile	/^ARCH_FLAGS	= -mthumb -mcpu=cortex-m0 $(FP_FLAGS)$/;"	m
+CBD_H	cbd.h	/^#define CBD_H$/;"	d
+CC	Makefile	/^CC		:= $(PREFIX)-gcc$/;"	m
+CRYPTO_ALGNAME	api.h	/^#define CRYPTO_ALGNAME /;"	d
+CRYPTO_BYTES	api.h	/^#define CRYPTO_BYTES /;"	d
+CRYPTO_CIPHERTEXTBYTES	api.h	/^#define CRYPTO_CIPHERTEXTBYTES /;"	d
+CRYPTO_PUBLICKEYBYTES	api.h	/^#define CRYPTO_PUBLICKEYBYTES /;"	d
+CRYPTO_SECRETKEYBYTES	api.h	/^#define CRYPTO_SECRETKEYBYTES /;"	d
+Ch	sha256.c	/^#define Ch(/;"	d	file:
+Ch	sha512.c	/^#define Ch(/;"	d	file:
+DRBG_ctx	rng.c	/^AES256_CTR_DRBG_struct DRBG_ctx;$/;"	v	typeref:typename:AES256_CTR_DRBG_struct
+ELMOASMFUNCTIONS	Makefile	/^ELMOASMFUNCTIONS = elmoasmfunctions.o$/;"	m
+EXPAND	sha256.c	/^#define EXPAND /;"	d	file:
+EXPAND	sha512.c	/^#define EXPAND /;"	d	file:
+F	sha256.c	/^#define F(/;"	d	file:
+F	sha512.c	/^#define F(/;"	d	file:
+FP_FLAGS	Makefile	/^FP_FLAGS	?= -msoft-float$/;"	m
+GEN_MATRIX_NBLOCKS	indcpa.c	/^#define GEN_MATRIX_NBLOCKS /;"	d	file:
+INDCPA_H	indcpa.h	/^#define INDCPA_H$/;"	d
+KAT_CRYPTO_FAILURE	/home/salties/git/uELMO/examples/kyber768/PQCgenKAT_kem.c	/^#define KAT_CRYPTO_FAILURE /;"	d	file:
+KAT_DATA_ERROR	/home/salties/git/uELMO/examples/kyber768/PQCgenKAT_kem.c	/^#define KAT_DATA_ERROR /;"	d	file:
+KAT_FILE_OPEN_ERROR	/home/salties/git/uELMO/examples/kyber768/PQCgenKAT_kem.c	/^#define KAT_FILE_OPEN_ERROR /;"	d	file:
+KAT_SUCCESS	/home/salties/git/uELMO/examples/kyber768/PQCgenKAT_kem.c	/^#define KAT_SUCCESS /;"	d	file:
+KEM_H	kem.h	/^#define KEM_H$/;"	d
+KYBER_90S	params.h	/^#define KYBER_90S /;"	d
+KYBER_CIPHERTEXTBYTES	params.h	/^#define KYBER_CIPHERTEXTBYTES /;"	d
+KYBER_ETA1	params.h	/^#define KYBER_ETA1 /;"	d
+KYBER_ETA2	params.h	/^#define KYBER_ETA2 /;"	d
+KYBER_INDCPA_BYTES	params.h	/^#define KYBER_INDCPA_BYTES /;"	d
+KYBER_INDCPA_MSGBYTES	params.h	/^#define KYBER_INDCPA_MSGBYTES /;"	d
+KYBER_INDCPA_PUBLICKEYBYTES	params.h	/^#define KYBER_INDCPA_PUBLICKEYBYTES /;"	d
+KYBER_INDCPA_SECRETKEYBYTES	params.h	/^#define KYBER_INDCPA_SECRETKEYBYTES /;"	d
+KYBER_K	params.h	/^#define KYBER_K /;"	d
+KYBER_N	params.h	/^#define KYBER_N /;"	d
+KYBER_NAMESPACE	params.h	/^#define KYBER_NAMESPACE(/;"	d
+KYBER_POLYBYTES	params.h	/^#define KYBER_POLYBYTES	/;"	d
+KYBER_POLYCOMPRESSEDBYTES	params.h	/^#define KYBER_POLYCOMPRESSEDBYTES /;"	d
+KYBER_POLYVECBYTES	params.h	/^#define KYBER_POLYVECBYTES	/;"	d
+KYBER_POLYVECCOMPRESSEDBYTES	params.h	/^#define KYBER_POLYVECCOMPRESSEDBYTES /;"	d
+KYBER_PUBLICKEYBYTES	params.h	/^#define KYBER_PUBLICKEYBYTES /;"	d
+KYBER_Q	params.h	/^#define KYBER_Q /;"	d
+KYBER_SECRETKEYBYTES	params.h	/^#define KYBER_SECRETKEYBYTES /;"	d
+KYBER_SSBYTES	params.h	/^#define KYBER_SSBYTES /;"	d
+KYBER_SYMBYTES	params.h	/^#define KYBER_SYMBYTES /;"	d
+Key	rng.h	/^    unsigned char Key[32];$/;"	m	struct:__anon104bf7c20208	typeref:typename:unsigned char[32]
+LD	Makefile	/^LD		:= $(PREFIX)-gcc$/;"	m
+LDSCRIPT	Makefile	/^LDSCRIPT	= $(TARGET).ld$/;"	m
+LoadN	elmoasmfunctions.s	/^LoadN:$/;"	l
+M	sha256.c	/^#define M(/;"	d	file:
+M	sha512.c	/^#define M(/;"	d	file:
+MAX_MARKER_LEN	/home/salties/git/uELMO/examples/kyber768/PQCgenKAT_kem.c	/^#define	MAX_MARKER_LEN	/;"	d	file:
+MONT	reduce.h	/^#define MONT /;"	d
+Maj	sha256.c	/^#define Maj(/;"	d	file:
+Maj	sha512.c	/^#define Maj(/;"	d	file:
+NTT_H	ntt.h	/^#define NTT_H$/;"	d
+NibToHex	/home/salties/git/uELMO/examples/kyber768/PQCgenKAT_kem.c	/^char NibToHex(const char x)$/;"	f	typeref:typename:char	signature:(const char x)
+NibToHex	/home/salties/git/uELMO/examples/kyber768/PQCgenKAT_kem.h	/^static char NibToHex(const char x)$/;"	f	typeref:typename:char	signature:(const char x)
+OBJC	Makefile	/^OBJC := $(patsubst %.c, %.o, $(SRCC))$/;"	m
+OBJCOPY	Makefile	/^OBJCOPY		:= $(PREFIX)-objcopy$/;"	m
+OBJD	Makefile	/^OBJD := $(patsubst %.c, %.d, $(SRCC))$/;"	m
+OBJDUMP	Makefile	/^OBJDUMP		:= $(PREFIX)-objdump$/;"	m
+OBJECTS	Makefile	/^OBJECTS := $(patsubst %.c, %.o, $(SRCC))$/;"	m
+ORIGIN	PQCgenKAT_kem.ld	/^	rom (rx) : ORIGIN = 0x08000000, LENGTH = 512K$/;"	s
+PARAMS_H	params.h	/^#define PARAMS_H$/;"	d
+POLYVEC_H	polyvec.h	/^#define POLYVEC_H$/;"	d
+POLY_H	poly.h	/^#define POLY_H$/;"	d
+PQCGENKAT_KEM_H	/home/salties/git/uELMO/examples/kyber768/PQCgenKAT_kem.h	/^#define PQCGENKAT_KEM_H$/;"	d
+PQC_AES128_STATESIZE	aes.h	/^#define PQC_AES128_STATESIZE /;"	d
+PQC_AES192_STATESIZE	aes.h	/^#define PQC_AES192_STATESIZE /;"	d
+PQC_AES256_STATESIZE	aes.h	/^#define PQC_AES256_STATESIZE /;"	d
+PREFIX	Makefile	/^PREFIX		?= arm-none-eabi$/;"	m
+PrintHex	/home/salties/git/uELMO/examples/kyber768/PQCgenKAT_kem.c	/^void PrintHex(const char x)$/;"	f	typeref:typename:void	signature:(const char x)
+PrintHex	/home/salties/git/uELMO/examples/kyber768/PQCgenKAT_kem.h	/^static void PrintHex(const char x)$/;"	f	typeref:typename:void	signature:(const char x)
+PrintLine	/home/salties/git/uELMO/examples/kyber768/PQCgenKAT_kem.c	/^void PrintLine(const char *line, int len)$/;"	f	typeref:typename:void	signature:(const char * line,int len)
+PrintLine	/home/salties/git/uELMO/examples/kyber768/PQCgenKAT_kem.h	/^static void PrintLine(const char *line, int len)$/;"	f	typeref:typename:void	signature:(const char * line,int len)
+QINV	reduce.h	/^#define QINV /;"	d
+REDUCE_H	reduce.h	/^#define REDUCE_H$/;"	d
+RNG_BAD_MAXLEN	rng.h	/^#define RNG_BAD_MAXLEN /;"	d
+RNG_BAD_OUTBUF	rng.h	/^#define RNG_BAD_OUTBUF /;"	d
+RNG_BAD_REQ_LEN	rng.h	/^#define RNG_BAD_REQ_LEN /;"	d
+RNG_SUCCESS	rng.h	/^#define RNG_SUCCESS /;"	d
+ROTR	sha256.c	/^#define ROTR(/;"	d	file:
+ROTR	sha512.c	/^#define ROTR(/;"	d	file:
+Rcon	aes.c	/^static const unsigned char Rcon[] = {$/;"	v	typeref:typename:const unsigned char[]	file:
+Rcon	aes256ctr.c	/^static const uint8_t Rcon[] = {$/;"	v	typeref:typename:const uint8_t[]	file:
+SHA2_NAMESPACE	sha2.h	/^#define SHA2_NAMESPACE(/;"	d
+SHA_2_H	sha2.h	/^#define SHA_2_H$/;"	d
+SHR	sha256.c	/^#define SHR(/;"	d	file:
+SHR	sha512.c	/^#define SHR(/;"	d	file:
+SWAP2	aes.c	/^#define SWAP2(/;"	d	file:
+SWAP2	aes256ctr.c	/^#define SWAP2(/;"	d	file:
+SWAP4	aes.c	/^#define SWAP4(/;"	d	file:
+SWAP4	aes256ctr.c	/^#define SWAP4(/;"	d	file:
+SWAP8	aes.c	/^#define SWAP8(/;"	d	file:
+SWAP8	aes256ctr.c	/^#define SWAP8(/;"	d	file:
+SWAPN	aes.c	/^#define SWAPN(/;"	d	file:
+SWAPN	aes256ctr.c	/^#define SWAPN(/;"	d	file:
+SYMMETRIC_H	symmetric.h	/^#define SYMMETRIC_H$/;"	d
+Sigma0	sha256.c	/^#define Sigma0(/;"	d	file:
+Sigma0	sha512.c	/^#define Sigma0(/;"	d	file:
+Sigma1	sha256.c	/^#define Sigma1(/;"	d	file:
+Sigma1	sha512.c	/^#define Sigma1(/;"	d	file:
+TARGET	Makefile	/^TARGET = PQCgenKAT_kem$/;"	m
+V	rng.h	/^    unsigned char V[16];$/;"	m	struct:__anon104bf7c20208	typeref:typename:unsigned char[16]
+VECTORS	Makefile	/^VECTORS = vector.o$/;"	m
+VERIFY_H	verify.h	/^#define VERIFY_H$/;"	d
+XOF_BLOCKBYTES	symmetric.h	/^#define XOF_BLOCKBYTES /;"	d
+__anon0f139ad40108	aes.h	/^typedef struct {$/;"	s
+__anon0f139ad40208	aes.h	/^typedef struct {$/;"	s
+__anon0f139ad40308	aes.h	/^typedef struct {$/;"	s
+__anon104bf7c20108	rng.h	/^typedef struct {$/;"	s
+__anon104bf7c20208	rng.h	/^typedef struct {$/;"	s
+__anon1536ad1f0108	poly.h	/^typedef struct {$/;"	s
+__anonf57b775d0108	polyvec.h	/^typedef struct {$/;"	s
+__anonf97e35fa0108	aes256ctr.h	/^typedef struct {$/;"	s
+__exidx_end	PQCgenKAT_kem.ld	/^		__exidx_end = .;$/;"	s
+__exidx_start	PQCgenKAT_kem.ld	/^		__exidx_start = .;$/;"	s
+__fini_array_end	PQCgenKAT_kem.ld	/^		__fini_array_end = .;$/;"	s
+__fini_array_start	PQCgenKAT_kem.ld	/^		__fini_array_start = .;$/;"	s
+__init_array_end	PQCgenKAT_kem.ld	/^		__init_array_end = .;$/;"	s
+__init_array_start	PQCgenKAT_kem.ld	/^		__init_array_start = .;$/;"	s
+__preinit_array_end	PQCgenKAT_kem.ld	/^		__preinit_array_end = .;$/;"	s
+__preinit_array_start	PQCgenKAT_kem.ld	/^		__preinit_array_start = .;$/;"	s
+_data	PQCgenKAT_kem.ld	/^		_data = .;$/;"	s
+_data_loadaddr	PQCgenKAT_kem.ld	/^	_data_loadaddr = LOADADDR(.data);$/;"	s
+_ebss	PQCgenKAT_kem.ld	/^		_ebss = .;$/;"	s
+_edata	PQCgenKAT_kem.ld	/^		_edata = .;$/;"	s
+_etext	PQCgenKAT_kem.ld	/^	_etext = .;$/;"	s
+_stack	PQCgenKAT_kem.ld	/^PROVIDE(_stack = ORIGIN(ram) + LENGTH(ram));$/;"	s
+add_round_key	aes.c	/^static inline void add_round_key(uint64_t * q, const uint64_t * sk)$/;"	f	typeref:typename:void	file:
+add_round_key	aes256ctr.c	/^static inline void add_round_key(uint64_t * q, const uint64_t * sk)$/;"	f	typeref:typename:void	file:
+aes128_ctr	aes.c	/^void aes128_ctr(unsigned char *out, size_t outlen, const unsigned char *iv,$/;"	f	typeref:typename:void
+aes128_ctr_keyexp	aes.c	/^void aes128_ctr_keyexp(aes128ctx * r, const unsigned char *key)$/;"	f	typeref:typename:void
+aes128_ctx_release	aes.c	/^void aes128_ctx_release(aes128ctx * r)$/;"	f	typeref:typename:void
+aes128_ecb	aes.c	/^void aes128_ecb(unsigned char *out, const unsigned char *in, size_t nblocks,$/;"	f	typeref:typename:void
+aes128_ecb_keyexp	aes.c	/^void aes128_ecb_keyexp(aes128ctx * r, const unsigned char *key)$/;"	f	typeref:typename:void
+aes128ctx	aes.h	/^} aes128ctx;$/;"	t	typeref:struct:__anon0f139ad40108
+aes192_ctr	aes.c	/^void aes192_ctr(unsigned char *out, size_t outlen, const unsigned char *iv,$/;"	f	typeref:typename:void
+aes192_ctr_keyexp	aes.c	/^void aes192_ctr_keyexp(aes192ctx * r, const unsigned char *key)$/;"	f	typeref:typename:void
+aes192_ctx_release	aes.c	/^void aes192_ctx_release(aes192ctx * r)$/;"	f	typeref:typename:void
+aes192_ecb	aes.c	/^void aes192_ecb(unsigned char *out, const unsigned char *in, size_t nblocks,$/;"	f	typeref:typename:void
+aes192_ecb_keyexp	aes.c	/^void aes192_ecb_keyexp(aes192ctx * r, const unsigned char *key)$/;"	f	typeref:typename:void
+aes192ctx	aes.h	/^} aes192ctx;$/;"	t	typeref:struct:__anon0f139ad40208
+aes256_ctr	aes.c	/^void aes256_ctr(unsigned char *out, size_t outlen, const unsigned char *iv,$/;"	f	typeref:typename:void
+aes256_ctr_keyexp	aes.c	/^void aes256_ctr_keyexp(aes256ctx * r, const unsigned char *key)$/;"	f	typeref:typename:void
+aes256_ctx_release	aes.c	/^void aes256_ctx_release(aes256ctx * r)$/;"	f	typeref:typename:void
+aes256_ecb	aes.c	/^void aes256_ecb(unsigned char *out, const unsigned char *in, size_t nblocks,$/;"	f	typeref:typename:void
+aes256_ecb_keyexp	aes.c	/^void aes256_ecb_keyexp(aes256ctx * r, const unsigned char *key)$/;"	f	typeref:typename:void
+aes256ctr_ctx	aes256ctr.h	/^} aes256ctr_ctx;$/;"	t	typeref:struct:__anonf97e35fa0108
+aes256ctr_init	aes256ctr.c	/^void aes256ctr_init(aes256ctr_ctx * s, const uint8_t * key,$/;"	f	typeref:typename:void
+aes256ctr_init	aes256ctr.h	/^#define aes256ctr_init /;"	d
+aes256ctr_prf	aes256ctr.c	/^void aes256ctr_prf(uint8_t * out, size_t outlen, const uint8_t * key,$/;"	f	typeref:typename:void
+aes256ctr_prf	aes256ctr.h	/^#define aes256ctr_prf /;"	d
+aes256ctr_squeezeblocks	aes256ctr.c	/^void aes256ctr_squeezeblocks(uint8_t * out, size_t nblocks, aes256ctr_ctx * s)$/;"	f	typeref:typename:void
+aes256ctr_squeezeblocks	aes256ctr.h	/^#define aes256ctr_squeezeblocks /;"	d
+aes256ctx	aes.h	/^} aes256ctx;$/;"	t	typeref:struct:__anon0f139ad40308
+aes_ctr	aes.c	/^static void aes_ctr(unsigned char *out, size_t outlen, const unsigned char *iv,$/;"	f	typeref:typename:void	file:
+aes_ctr4x	aes.c	/^static void aes_ctr4x(unsigned char out[64], uint32_t ivw[16],$/;"	f	typeref:typename:void	file:
+aes_ctr4x	aes256ctr.c	/^static void aes_ctr4x(uint8_t out[64], uint32_t ivw[16], uint64_t sk_exp[64])$/;"	f	typeref:typename:void	file:
+aes_ecb	aes.c	/^static void aes_ecb(unsigned char *out, const unsigned char *in, size_t nblocks,$/;"	f	typeref:typename:void	file:
+aes_ecb4x	aes.c	/^static void aes_ecb4x(unsigned char out[64], const uint32_t ivw[16],$/;"	f	typeref:typename:void	file:
+all	Makefile	/^all: elf bin list$/;"	t
+barrett_reduce	reduce.c	/^int16_t barrett_reduce(int16_t a)$/;"	f	typeref:typename:int16_t
+barrett_reduce	reduce.h	/^#define barrett_reduce /;"	d
+basemul	ntt.c	/^void basemul(int16_t r[2], const int16_t a[2], const int16_t b[2], int16_t zeta)$/;"	f	typeref:typename:void
+basemul	ntt.h	/^#define basemul /;"	d
+bin	Makefile	/^bin: $(TARGET).bin$/;"	t
+blocks	sha256.c	/^#define blocks /;"	d	file:
+blocks	sha512.c	/^#define blocks /;"	d	file:
+br_aes_ct64_bitslice_Sbox	aes.c	/^static void br_aes_ct64_bitslice_Sbox(uint64_t * q)$/;"	f	typeref:typename:void	file:
+br_aes_ct64_bitslice_Sbox	aes256ctr.c	/^static void br_aes_ct64_bitslice_Sbox(uint64_t * q)$/;"	f	typeref:typename:void	file:
+br_aes_ct64_ctr_init	aes256ctr.c	/^static void br_aes_ct64_ctr_init(uint64_t sk_exp[120], const uint8_t * key)$/;"	f	typeref:typename:void	file:
+br_aes_ct64_ctr_run	aes256ctr.c	/^static void br_aes_ct64_ctr_run(uint64_t sk_exp[120], const uint8_t * iv,$/;"	f	typeref:typename:void	file:
+br_aes_ct64_interleave_in	aes.c	/^void br_aes_ct64_interleave_in(uint64_t * q0, uint64_t * q1, const uint32_t * w)$/;"	f	typeref:typename:void
+br_aes_ct64_interleave_in	aes256ctr.c	/^static void br_aes_ct64_interleave_in(uint64_t * q0, uint64_t * q1,$/;"	f	typeref:typename:void	file:
+br_aes_ct64_interleave_in1	/home/salties/git/uELMO/examples/kyber768/PQCgenKAT_kem.c	/^void br_aes_ct64_interleave_in1(uint64_t * q0, uint64_t * q1,$/;"	f	typeref:typename:void	signature:(uint64_t * q0,uint64_t * q1,const uint32_t * w)
+br_aes_ct64_interleave_out	aes.c	/^static void br_aes_ct64_interleave_out(uint32_t * w, uint64_t q0, uint64_t q1)$/;"	f	typeref:typename:void	file:
+br_aes_ct64_interleave_out	aes256ctr.c	/^static void br_aes_ct64_interleave_out(uint32_t * w, uint64_t q0, uint64_t q1)$/;"	f	typeref:typename:void	file:
+br_aes_ct64_keysched	aes.c	/^static void br_aes_ct64_keysched(uint64_t * comp_skey, const unsigned char *key,$/;"	f	typeref:typename:void	file:
+br_aes_ct64_keysched	aes256ctr.c	/^static void br_aes_ct64_keysched(uint64_t * comp_skey, const uint8_t * key)$/;"	f	typeref:typename:void	file:
+br_aes_ct64_ortho	aes.c	/^static void br_aes_ct64_ortho(uint64_t * q)$/;"	f	typeref:typename:void	file:
+br_aes_ct64_ortho	aes256ctr.c	/^static void br_aes_ct64_ortho(uint64_t * q)$/;"	f	typeref:typename:void	file:
+br_aes_ct64_skey_expand	aes.c	/^static void br_aes_ct64_skey_expand(uint64_t * skey, const uint64_t * comp_skey,$/;"	f	typeref:typename:void	file:
+br_aes_ct64_skey_expand	aes256ctr.c	/^static void br_aes_ct64_skey_expand(uint64_t * skey, const uint64_t * comp_skey)$/;"	f	typeref:typename:void	file:
+br_dec32le	aes.c	/^static inline uint32_t br_dec32le(const unsigned char *src)$/;"	f	typeref:typename:uint32_t	file:
+br_dec32le	aes256ctr.c	/^static inline uint32_t br_dec32le(const uint8_t * src)$/;"	f	typeref:typename:uint32_t	file:
+br_enc32le	aes.c	/^static inline void br_enc32le(unsigned char *dst, uint32_t x)$/;"	f	typeref:typename:void	file:
+br_enc32le	aes256ctr.c	/^static inline void br_enc32le(uint8_t * dst, uint32_t x)$/;"	f	typeref:typename:void	file:
+br_range_dec32le	aes.c	/^static void br_range_dec32le(uint32_t * v, size_t num, const unsigned char *src)$/;"	f	typeref:typename:void	file:
+br_range_dec32le	aes256ctr.c	/^static void br_range_dec32le(uint32_t * v, size_t num, const uint8_t * src)$/;"	f	typeref:typename:void	file:
+br_range_enc32le	aes.c	/^static void br_range_enc32le(unsigned char *dst, const uint32_t * v, size_t num)$/;"	f	typeref:typename:void	file:
+br_range_enc32le	aes256ctr.c	/^static void br_range_enc32le(uint8_t * dst, const uint32_t * v, size_t num)$/;"	f	typeref:typename:void	file:
+br_swap32	aes.c	/^static inline uint32_t br_swap32(uint32_t x)$/;"	f	typeref:typename:uint32_t	file:
+br_swap32	aes256ctr.c	/^static inline uint32_t br_swap32(uint32_t x)$/;"	f	typeref:typename:uint32_t	file:
+buffer	rng.h	/^    unsigned char buffer[16];$/;"	m	struct:__anon104bf7c20108	typeref:typename:unsigned char[16]
+buffer_pos	rng.h	/^    int buffer_pos;$/;"	m	struct:__anon104bf7c20108	typeref:typename:int
+bx	elmoasmfunctions.s	/^bx lr$/;"	l
+cbd2	cbd.c	/^static void cbd2(poly * r, const uint8_t buf[2 * KYBER_N \/ 4])$/;"	f	typeref:typename:void	file:
+cbd3	cbd.c	/^static void cbd3(poly * r, const uint8_t buf[3 * KYBER_N \/ 4])$/;"	f	typeref:typename:void	file:
+cbd_eta1	cbd.c	/^void cbd_eta1(poly * r, const uint8_t buf[KYBER_ETA1 * KYBER_N \/ 4])$/;"	f	typeref:typename:void
+cbd_eta1	cbd.h	/^#define cbd_eta1 /;"	d
+cbd_eta2	cbd.c	/^void cbd_eta2(poly * r, const uint8_t buf[KYBER_ETA1 * KYBER_N \/ 4])$/;"	f	typeref:typename:void
+cbd_eta2	cbd.h	/^#define cbd_eta2 /;"	d
+clean	Makefile	/^clean:$/;"	t
+cmov	verify.c	/^void cmov(uint8_t * r, const uint8_t * x, size_t len, uint8_t b)$/;"	f	typeref:typename:void
+cmov	verify.h	/^#define cmov /;"	d
+coeffs	poly.h	/^    int16_t coeffs[KYBER_N];$/;"	m	struct:__anon1536ad1f0108	typeref:typename:int16_t[]
+crypto_hashblocks_sha256	sha256.c	/^static int crypto_hashblocks_sha256(uint8_t * statebytes, const uint8_t * in,$/;"	f	typeref:typename:int	file:
+crypto_hashblocks_sha512	sha512.c	/^static int crypto_hashblocks_sha512(uint8_t * statebytes, const uint8_t * in,$/;"	f	typeref:typename:int	file:
+crypto_kem_dec	api.h	/^#define crypto_kem_dec /;"	d
+crypto_kem_dec	kem.c	/^int crypto_kem_dec(unsigned char *ss,$/;"	f	typeref:typename:int
+crypto_kem_dec	kem.h	/^#define crypto_kem_dec /;"	d
+crypto_kem_enc	api.h	/^#define crypto_kem_enc /;"	d
+crypto_kem_enc	kem.c	/^int crypto_kem_enc(unsigned char *ct,$/;"	f	typeref:typename:int
+crypto_kem_enc	kem.h	/^#define crypto_kem_enc /;"	d
+crypto_kem_keypair	api.h	/^#define crypto_kem_keypair /;"	d
+crypto_kem_keypair	kem.c	/^int crypto_kem_keypair(unsigned char *pk, unsigned char *sk)$/;"	f	typeref:typename:int
+crypto_kem_keypair	kem.h	/^#define crypto_kem_keypair /;"	d
+csubq	reduce.c	/^int16_t csubq(int16_t a)$/;"	f	typeref:typename:int16_t
+csubq	reduce.h	/^#define csubq /;"	d
+ctr	rng.h	/^    unsigned char ctr[16];$/;"	m	struct:__anon104bf7c20108	typeref:typename:unsigned char[16]
+elf	Makefile	/^elf: $(TARGET).elf$/;"	t
+end	PQCgenKAT_kem.ld	/^	end = .;$/;"	s
+endprogram	elmoasmfunctions.s	/^endprogram:$/;"	l
+endtrigger	elmoasmfunctions.s	/^endtrigger:$/;"	l
+fqmul	ntt.c	/^static int16_t fqmul(int16_t a, int16_t b)$/;"	f	typeref:typename:int16_t	file:
+gen_a	indcpa.c	/^#define gen_a(/;"	d	file:
+gen_at	indcpa.c	/^#define gen_at(/;"	d	file:
+gen_matrix	indcpa.c	/^void gen_matrix(polyvec * a, const uint8_t seed[KYBER_SYMBYTES], int transposed)$/;"	f	typeref:typename:void
+gen_matrix	indcpa.h	/^#define gen_matrix /;"	d
+getruncount	elmoasmfunctions.s	/^getruncount:$/;"	l
+getstart	elmoasmfunctions.s	/^getstart:$/;"	l
+handleErrors	rng.c	/^void handleErrors(void)$/;"	f	typeref:typename:void
+hash_g	symmetric.h	/^#define hash_g(/;"	d
+hash_h	symmetric.h	/^#define hash_h(/;"	d
+images	Makefile	/^images: ${TARGET}.images$/;"	t
+inc4_be	aes.c	/^static void inc4_be(uint32_t * x)$/;"	f	typeref:typename:void	file:
+inc4_be	aes256ctr.c	/^static void inc4_be(uint32_t * x)$/;"	f	typeref:typename:void	file:
+indcpa_dec	indcpa.c	/^void indcpa_dec(uint8_t m[KYBER_INDCPA_MSGBYTES],$/;"	f	typeref:typename:void
+indcpa_dec	indcpa.h	/^#define indcpa_dec /;"	d
+indcpa_enc	indcpa.c	/^void indcpa_enc(uint8_t c[KYBER_INDCPA_BYTES],$/;"	f	typeref:typename:void
+indcpa_enc	indcpa.h	/^#define indcpa_enc /;"	d
+indcpa_keypair	indcpa.c	/^void indcpa_keypair(uint8_t pk[KYBER_INDCPA_PUBLICKEYBYTES],$/;"	f	typeref:typename:void
+indcpa_keypair	indcpa.h	/^#define indcpa_keypair /;"	d
+initialisemaskflow	elmoasmfunctions.s	/^initialisemaskflow:$/;"	l
+invntt	ntt.c	/^void invntt(int16_t r[256])$/;"	f	typeref:typename:void
+invntt	ntt.h	/^#define invntt /;"	d
+iv	sha256.c	/^static const uint8_t iv[32] = {$/;"	v	typeref:typename:const uint8_t[32]	file:
+iv	sha512.c	/^static const uint8_t iv[64] = {$/;"	v	typeref:typename:const uint8_t[64]	file:
+ivw	aes256ctr.h	/^    uint32_t ivw[16];$/;"	m	struct:__anonf97e35fa0108	typeref:typename:uint32_t[16]
+kdf	symmetric.h	/^#define kdf(/;"	d
+key	rng.h	/^    unsigned char key[32];$/;"	m	struct:__anon104bf7c20108	typeref:typename:unsigned char[32]
+kyber_aes256ctr_prf	symmetric-aes.c	/^void kyber_aes256ctr_prf(uint8_t * out,$/;"	f	typeref:typename:void
+kyber_aes256ctr_prf	symmetric.h	/^#define kyber_aes256ctr_prf /;"	d
+kyber_aes256xof_absorb	symmetric-aes.c	/^void kyber_aes256xof_absorb(aes256ctr_ctx * state,$/;"	f	typeref:typename:void
+kyber_aes256xof_absorb	symmetric.h	/^#define kyber_aes256xof_absorb /;"	d
+kyber_shake128_absorb	symmetric.h	/^#define kyber_shake128_absorb /;"	d
+kyber_shake256_prf	symmetric.h	/^#define kyber_shake256_prf /;"	d
+length_remaining	rng.h	/^    unsigned long length_remaining;$/;"	m	struct:__anon104bf7c20108	typeref:typename:unsigned long
+list	Makefile	/^list: $(TARGET).list$/;"	t
+load24_littleendian	cbd.c	/^static uint32_t load24_littleendian(const uint8_t x[3])$/;"	f	typeref:typename:uint32_t	file:
+load32_littleendian	cbd.c	/^static uint32_t load32_littleendian(const uint8_t x[4])$/;"	f	typeref:typename:uint32_t	file:
+load_bigendian	sha256.c	/^static uint32_t load_bigendian(const uint8_t * x)$/;"	f	typeref:typename:uint32_t	file:
+load_bigendian	sha512.c	/^static uint64_t load_bigendian(const uint8_t * x)$/;"	f	typeref:typename:uint64_t	file:
+main	/home/salties/git/uELMO/examples/kyber768/PQCgenKAT_kem.c	/^int main()$/;"	f	typeref:typename:int	signature:()
+mix_columns	aes.c	/^static inline void mix_columns(uint64_t * q)$/;"	f	typeref:typename:void	file:
+mix_columns	aes256ctr.c	/^static inline void mix_columns(uint64_t * q)$/;"	f	typeref:typename:void	file:
+montgomery_reduce	reduce.c	/^int16_t montgomery_reduce(int32_t a)$/;"	f	typeref:typename:int16_t
+montgomery_reduce	reduce.h	/^#define montgomery_reduce /;"	d
+ntt	ntt.c	/^void ntt(int16_t r[256])$/;"	f	typeref:typename:void
+ntt	ntt.h	/^#define ntt /;"	d
+pack_ciphertext	indcpa.c	/^static void pack_ciphertext(uint8_t r[KYBER_INDCPA_BYTES],$/;"	f	typeref:typename:void	file:
+pack_pk	indcpa.c	/^static void pack_pk(uint8_t r[KYBER_INDCPA_PUBLICKEYBYTES],$/;"	f	typeref:typename:void	file:
+pack_sk	indcpa.c	/^static void pack_sk(uint8_t r[KYBER_INDCPA_SECRETKEYBYTES], polyvec * sk)$/;"	f	typeref:typename:void	file:
+poly	poly.h	/^} poly;$/;"	t	typeref:struct:__anon1536ad1f0108
+poly_add	/home/salties/git/uELMO/examples/kyber768/poly.c	/^void poly_add(poly * r, const poly * a, const poly * b)$/;"	f	typeref:typename:void	signature:(poly * r,const poly * a,const poly * b)
+poly_add	poly.h	/^#define poly_add /;"	d
+poly_basemul_montgomery	/home/salties/git/uELMO/examples/kyber768/poly.c	/^void poly_basemul_montgomery(poly * r, const poly * a, const poly * b)$/;"	f	typeref:typename:void	signature:(poly * r,const poly * a,const poly * b)
+poly_basemul_montgomery	poly.h	/^#define poly_basemul_montgomery /;"	d
+poly_compress	/home/salties/git/uELMO/examples/kyber768/poly.c	/^void poly_compress(uint8_t r[KYBER_POLYCOMPRESSEDBYTES], poly * a)$/;"	f	typeref:typename:void	signature:(uint8_t r[KYBER_POLYCOMPRESSEDBYTES],poly * a)
+poly_compress	poly.h	/^#define poly_compress /;"	d
+poly_csubq	/home/salties/git/uELMO/examples/kyber768/poly.c	/^void poly_csubq(poly * r)$/;"	f	typeref:typename:void	signature:(poly * r)
+poly_csubq	poly.h	/^#define poly_csubq /;"	d
+poly_decompress	/home/salties/git/uELMO/examples/kyber768/poly.c	/^void poly_decompress(poly * r, const uint8_t a[KYBER_POLYCOMPRESSEDBYTES])$/;"	f	typeref:typename:void	signature:(poly * r,const uint8_t a[KYBER_POLYCOMPRESSEDBYTES])
+poly_decompress	poly.h	/^#define poly_decompress /;"	d
+poly_frombytes	/home/salties/git/uELMO/examples/kyber768/poly.c	/^void poly_frombytes(poly * r, const uint8_t a[KYBER_POLYBYTES])$/;"	f	typeref:typename:void	signature:(poly * r,const uint8_t a[KYBER_POLYBYTES])
+poly_frombytes	poly.h	/^#define poly_frombytes /;"	d
+poly_frommsg	/home/salties/git/uELMO/examples/kyber768/poly.c	/^void poly_frommsg(poly * r, const uint8_t msg[KYBER_INDCPA_MSGBYTES])$/;"	f	typeref:typename:void	signature:(poly * r,const uint8_t msg[KYBER_INDCPA_MSGBYTES])
+poly_frommsg	poly.h	/^#define poly_frommsg /;"	d
+poly_getnoise_eta1	/home/salties/git/uELMO/examples/kyber768/poly.c	/^void poly_getnoise_eta1(poly * r, const uint8_t seed[KYBER_SYMBYTES],$/;"	f	typeref:typename:void	signature:(poly * r,const uint8_t seed[KYBER_SYMBYTES],uint8_t nonce)
+poly_getnoise_eta1	poly.h	/^#define poly_getnoise_eta1 /;"	d
+poly_getnoise_eta2	/home/salties/git/uELMO/examples/kyber768/poly.c	/^void poly_getnoise_eta2(poly * r, const uint8_t seed[KYBER_SYMBYTES],$/;"	f	typeref:typename:void	signature:(poly * r,const uint8_t seed[KYBER_SYMBYTES],uint8_t nonce)
+poly_getnoise_eta2	poly.h	/^#define poly_getnoise_eta2 /;"	d
+poly_invntt_tomont	/home/salties/git/uELMO/examples/kyber768/poly.c	/^void poly_invntt_tomont(poly * r)$/;"	f	typeref:typename:void	signature:(poly * r)
+poly_invntt_tomont	poly.h	/^#define poly_invntt_tomont /;"	d
+poly_ntt	/home/salties/git/uELMO/examples/kyber768/poly.c	/^void poly_ntt(poly * r)$/;"	f	typeref:typename:void	signature:(poly * r)
+poly_ntt	poly.h	/^#define poly_ntt /;"	d
+poly_reduce	/home/salties/git/uELMO/examples/kyber768/poly.c	/^void poly_reduce(poly * r)$/;"	f	typeref:typename:void	signature:(poly * r)
+poly_reduce	poly.h	/^#define poly_reduce /;"	d
+poly_sub	/home/salties/git/uELMO/examples/kyber768/poly.c	/^void poly_sub(poly * r, const poly * a, const poly * b)$/;"	f	typeref:typename:void	signature:(poly * r,const poly * a,const poly * b)
+poly_sub	poly.h	/^#define poly_sub /;"	d
+poly_tobytes	/home/salties/git/uELMO/examples/kyber768/poly.c	/^void poly_tobytes(uint8_t r[KYBER_POLYBYTES], poly * a)$/;"	f	typeref:typename:void	signature:(uint8_t r[KYBER_POLYBYTES],poly * a)
+poly_tobytes	poly.h	/^#define poly_tobytes /;"	d
+poly_tomont	/home/salties/git/uELMO/examples/kyber768/poly.c	/^void poly_tomont(poly * r)$/;"	f	typeref:typename:void	signature:(poly * r)
+poly_tomont	poly.h	/^#define poly_tomont /;"	d
+poly_tomsg	/home/salties/git/uELMO/examples/kyber768/poly.c	/^void poly_tomsg(uint8_t msg[KYBER_INDCPA_MSGBYTES], poly * a)$/;"	f	typeref:typename:void	signature:(uint8_t msg[KYBER_INDCPA_MSGBYTES],poly * a)
+poly_tomsg	poly.h	/^#define poly_tomsg /;"	d
+polyvec	polyvec.h	/^} polyvec;$/;"	t	typeref:struct:__anonf57b775d0108
+polyvec_add	polyvec.c	/^void polyvec_add(polyvec * r, const polyvec * a, const polyvec * b)$/;"	f	typeref:typename:void
+polyvec_add	polyvec.h	/^#define polyvec_add /;"	d
+polyvec_compress	polyvec.c	/^void polyvec_compress(uint8_t r[KYBER_POLYVECCOMPRESSEDBYTES], polyvec * a)$/;"	f	typeref:typename:void
+polyvec_compress	polyvec.h	/^#define polyvec_compress /;"	d
+polyvec_csubq	polyvec.c	/^void polyvec_csubq(polyvec * r)$/;"	f	typeref:typename:void
+polyvec_csubq	polyvec.h	/^#define polyvec_csubq /;"	d
+polyvec_decompress	polyvec.c	/^void polyvec_decompress(polyvec * r,$/;"	f	typeref:typename:void
+polyvec_decompress	polyvec.h	/^#define polyvec_decompress /;"	d
+polyvec_frombytes	polyvec.c	/^void polyvec_frombytes(polyvec * r, const uint8_t a[KYBER_POLYVECBYTES])$/;"	f	typeref:typename:void
+polyvec_frombytes	polyvec.h	/^#define polyvec_frombytes /;"	d
+polyvec_invntt_tomont	polyvec.c	/^void polyvec_invntt_tomont(polyvec * r)$/;"	f	typeref:typename:void
+polyvec_invntt_tomont	polyvec.h	/^#define polyvec_invntt_tomont /;"	d
+polyvec_ntt	polyvec.c	/^void polyvec_ntt(polyvec * r)$/;"	f	typeref:typename:void
+polyvec_ntt	polyvec.h	/^#define polyvec_ntt /;"	d
+polyvec_pointwise_acc_montgomery	polyvec.c	/^void polyvec_pointwise_acc_montgomery(poly * r,$/;"	f	typeref:typename:void
+polyvec_pointwise_acc_montgomery	polyvec.h	/^#define polyvec_pointwise_acc_montgomery /;"	d
+polyvec_reduce	polyvec.c	/^void polyvec_reduce(polyvec * r)$/;"	f	typeref:typename:void
+polyvec_reduce	polyvec.h	/^#define polyvec_reduce /;"	d
+polyvec_tobytes	polyvec.c	/^void polyvec_tobytes(uint8_t r[KYBER_POLYVECBYTES], polyvec * a)$/;"	f	typeref:typename:void
+polyvec_tobytes	polyvec.h	/^#define polyvec_tobytes /;"	d
+prf	symmetric.h	/^#define prf(/;"	d
+printbyte	elmoasmfunctions.s	/^printbyte:$/;"	l
+randbyte	elmoasmfunctions.s	/^randbyte:$/;"	l
+randombytes	rng.c	/^int randombytes(unsigned char *x, unsigned long long xlen)$/;"	f	typeref:typename:int
+randombytes_init	rng.c	/^randombytes_init(unsigned char *entropy_input,$/;"	f	typeref:typename:void
+readbyte	elmoasmfunctions.s	/^readbyte:$/;"	l
+rej_uniform	indcpa.c	/^static unsigned int rej_uniform(int16_t * r,$/;"	f	typeref:typename:unsigned int	file:
+reseed_counter	rng.h	/^    int reseed_counter;$/;"	m	struct:__anon104bf7c20208	typeref:typename:int
+resetdatafile	elmoasmfunctions.s	/^resetdatafile:$/;"	l
+resetmaskflow	elmoasmfunctions.s	/^resetmaskflow:$/;"	l
+rng_h	rng.h	/^#define rng_h$/;"	d
+rotr32	aes.c	/^static inline uint64_t rotr32(uint64_t x)$/;"	f	typeref:typename:uint64_t	file:
+rotr32	aes256ctr.c	/^static inline uint64_t rotr32(uint64_t x)$/;"	f	typeref:typename:uint64_t	file:
+seedexpander	rng.c	/^int seedexpander(AES_XOF_struct * ctx, unsigned char *x, unsigned long xlen)$/;"	f	typeref:typename:int
+seedexpander_init	rng.c	/^seedexpander_init(AES_XOF_struct * ctx,$/;"	f	typeref:typename:int
+setmaskflowstart	elmoasmfunctions.s	/^setmaskflowstart:$/;"	l
+sha256	sha2.h	/^#define sha256 /;"	d
+sha256	sha256.c	/^void sha256(uint8_t * out, const uint8_t * in, size_t inlen)$/;"	f	typeref:typename:void
+sha512	sha2.h	/^#define sha512 /;"	d
+sha512	sha512.c	/^void sha512(uint8_t * out, const uint8_t * in, size_t inlen)$/;"	f	typeref:typename:void
+shift_rows	aes.c	/^static inline void shift_rows(uint64_t * q)$/;"	f	typeref:typename:void	file:
+shift_rows	aes256ctr.c	/^static inline void shift_rows(uint64_t * q)$/;"	f	typeref:typename:void	file:
+sigma0	sha256.c	/^#define sigma0(/;"	d	file:
+sigma0	sha512.c	/^#define sigma0(/;"	d	file:
+sigma1	sha256.c	/^#define sigma1(/;"	d	file:
+sigma1	sha512.c	/^#define sigma1(/;"	d	file:
+sk_exp	aes.h	/^    uint64_t *sk_exp;$/;"	m	struct:__anon0f139ad40108	typeref:typename:uint64_t *
+sk_exp	aes.h	/^    uint64_t *sk_exp;$/;"	m	struct:__anon0f139ad40208	typeref:typename:uint64_t *
+sk_exp	aes.h	/^    uint64_t *sk_exp;$/;"	m	struct:__anon0f139ad40308	typeref:typename:uint64_t *
+sk_exp	aes256ctr.h	/^    uint64_t sk_exp[120];$/;"	m	struct:__anonf97e35fa0108	typeref:typename:uint64_t[120]
+starttrigger	elmoasmfunctions.s	/^starttrigger:$/;"	l
+store_bigendian	sha256.c	/^static void store_bigendian(uint8_t * x, uint32_t u)$/;"	f	typeref:typename:void	file:
+store_bigendian	sha512.c	/^static void store_bigendian(uint8_t * x, uint64_t u)$/;"	f	typeref:typename:void	file:
+sub_word	aes.c	/^static uint32_t sub_word(uint32_t x)$/;"	f	typeref:typename:uint32_t	file:
+sub_word	aes256ctr.c	/^static uint32_t sub_word(uint32_t x)$/;"	f	typeref:typename:uint32_t	file:
+unpack_ciphertext	indcpa.c	/^static void unpack_ciphertext(polyvec * b,$/;"	f	typeref:typename:void	file:
+unpack_pk	indcpa.c	/^static void unpack_pk(polyvec * pk,$/;"	f	typeref:typename:void	file:
+unpack_sk	indcpa.c	/^static void unpack_sk(polyvec * sk,$/;"	f	typeref:typename:void	file:
+vec	polyvec.h	/^    poly vec[KYBER_K];$/;"	m	struct:__anonf57b775d0108	typeref:typename:poly[]
+verify	verify.c	/^int verify(const uint8_t * a, const uint8_t * b, size_t len)$/;"	f	typeref:typename:int
+verify	verify.h	/^#define verify /;"	d
+xof_absorb	symmetric.h	/^#define xof_absorb(/;"	d
+xof_squeezeblocks	symmetric.h	/^#define xof_squeezeblocks(/;"	d
+xof_state	symmetric.h	/^typedef aes256ctr_ctx xof_state;$/;"	t	typeref:typename:aes256ctr_ctx
+xof_state	symmetric.h	/^typedef keccak_state xof_state;$/;"	t	typeref:typename:keccak_state
+zetas	ntt.c	/^const int16_t zetas[128] = {$/;"	v	typeref:typename:const int16_t[128]
+zetas	ntt.h	/^#define zetas /;"	d
+zetas_inv	ntt.c	/^const int16_t zetas_inv[128] = {$/;"	v	typeref:typename:const int16_t[128]
+zetas_inv	ntt.h	/^#define zetas_inv /;"	d
