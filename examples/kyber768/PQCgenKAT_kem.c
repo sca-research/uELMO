@@ -7,7 +7,7 @@
 //
 #include <stdio.h>
 #include <stdlib.h>
-//#include <string.h>
+#include <string.h>
 //#include <ctype.h>
 #include "rng.h"
 #include "api.h"
@@ -19,6 +19,10 @@
 #define KAT_FILE_OPEN_ERROR -1
 #define KAT_DATA_ERROR      -3
 #define KAT_CRYPTO_FAILURE  -4
+
+#include "PQCgenKAT_kem.h"
+
+const char failstr[] = "failed\n";
 
 void PrintLine(const char *line, int len)
 {
@@ -62,8 +66,8 @@ void PrintHex(const char x)
 }
 
 //#include "aes.h"
-void br_aes_ct64_interleave_in1(uint64_t * q0, uint64_t * q1,
-                                const uint32_t * w)
+static void br_aes_ct64_interleave_in1(uint64_t * q0, uint64_t * q1,
+                                       const uint32_t * w)
 {
     uint64_t x0, x1, x2, x3;
     uint8_t temp[8];
@@ -101,7 +105,7 @@ void br_aes_ct64_interleave_in1(uint64_t * q0, uint64_t * q1,
 
 }
 
-int main()
+int main(void)
 {
     //char                fn_req[32], fn_rsp[32];
     //FILE                *fp_req, *fp_rsp;
@@ -112,7 +116,7 @@ int main()
     //int                 done;
     unsigned char pk[CRYPTO_PUBLICKEYBYTES], sk[CRYPTO_SECRETKEYBYTES];
     int ret_val;
-    uint8_t res;
+    //uint8_t res;
 
     for (int i = 0; i < 48; i++)
         readbyte(entropy_input + i);
@@ -128,6 +132,7 @@ int main()
         //printf("crypto_kem_keypair returned <%d>\n", ret_val);
         return KAT_CRYPTO_FAILURE;
     }
+    printbyte((unsigned char *)"\n");
     //for(int i=0;i<CRYPTO_BYTES;i++)
     //  printbyte(sk+i);
     //printBstr("pk = ", pk, CRYPTO_PUBLICKEYBYTES);
@@ -137,26 +142,29 @@ int main()
         //printf("crypto_kem_enc returned <%d>\n", ret_val);
         return KAT_CRYPTO_FAILURE;
     }
+    printbyte((unsigned char *)"\n");
 
     //printBstr( "ct = ", ct, CRYPTO_CIPHERTEXTBYTES);
     //printBstr("ss = ", ss, CRYPTO_BYTES);
 
     //printf("\n");
-/*
-    if ( (ret_val = crypto_kem_dec(ss1, ct, sk)) != 0) {
-          //printf("crypto_kem_dec returned <%d>\n", ret_val);
-          //return KAT_CRYPTO_FAILURE;
-           endprogram();
+    if((ret_val = crypto_kem_dec(ss1, ct, sk)) != 0)
+    {
+        //printf("crypto_kem_dec returned <%d>\n", ret_val);
+        //return KAT_CRYPTO_FAILURE;
+        PrintLine(failstr, sizeof(failstr));
+        endprogram();
     }
-;
-    if ( memcmp(ss, ss1, CRYPTO_BYTES) ) {
-          //printf("crypto_kem_dec returned bad 'ss' value\n");
-              endprogram();
-          //return KAT_CRYPTO_FAILURE;
-    }
-    */
 
-    printbyte("\n");
+    if(memcmp(ss, ss1, CRYPTO_BYTES))
+    {
+        //printf("crypto_kem_dec returned bad 'ss' value\n");
+        PrintLine(failstr, sizeof(failstr));
+        endprogram();
+        //return KAT_CRYPTO_FAILURE;
+    }
+
+    printbyte((unsigned char *)"\n");
 
     endprogram();
     return 0;
