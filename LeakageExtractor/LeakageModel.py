@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import os
 import sys
 import json
 import base64
@@ -36,7 +37,7 @@ outfile = dict()
 # Print help message.
 def PrintHelp():
     print(
-        "Usage:\tpython3 LeakageExtractor.py {TARGET_TRACE} [DICTIONARY_FILE]")
+        "Usage:\tpython3 {} {{TARGET_TRACE}} [DICTIONARY_FILE]".format(os.path.basename(__file__)))
     return
 
 
