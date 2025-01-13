@@ -41,6 +41,31 @@ int cyclecount = 0;
 
 bool oflag = false;
 
+//Check cmd args.
+static bool ArgsValid(const int argc, char *argv[])
+{
+    int i = 0;
+
+    //Number of args.
+    if(2 > argc)
+    {
+        return false;
+    }
+    else                        //Help option.
+    {
+        for (i = 1; i < argc; i++)
+        {
+            if((0 == strncmp("-h", argv[i], 255))
+               || (0 == strncmp("--help", argv[i], 255)))
+            {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
 //Print help message.
 void PrintHelp()
 {
@@ -50,7 +75,7 @@ void PrintHelp()
     printf("uelmo ${TargetBinary} [OPTIONS]");
 #endif
     printf("OPTIONS:\n");
-    printf("\t-h : Print this message.\n");
+    printf("\t-h|--help : Print this message.\n");
     printf("\t-N ${n} : Set number of traces to ${n}.\n");
     //printf("\t-o ${output} : Original uELMO output into ${output}.\n");
     //printf("\t-r ${input} : Use input file ${input}.\n");
@@ -223,21 +248,16 @@ int main(int argc, char *argv[])
     N_ind = 0;
     srand((unsigned)time(&timet));
 
-    if(argc < 2)
+    if(!ArgsValid(argc, argv))
     {
-        printf("bin file not specified\n");
+        //printf("bin file not specified\n");
         PrintHelp();
         return (1);
     }
 
     for (ra = 2; ra < argc; ra++)
     {
-        if(strcmp(argv[ra], "-h") == 0)
-        {
-            PrintHelp();
-            exit(0);
-        }
-        else if(strcmp(argv[ra], "-N") == 0)
+        if(strcmp(argv[ra], "-N") == 0)
         {
             sscanf(argv[ra + 1], "%d", &N);
             ra++;
