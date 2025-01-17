@@ -3,3 +3,4 @@
 *.elf
 *.d
 *.list
+!*/elmoasmfunctions.o
