@@ -99,9 +99,9 @@ class Elmo(seal.LeakageModel.Transition):
         t2 = f0['D2E_reg2_data'][0] ^ f1['D2E_reg2_data'][0]
 
         # Leakage of ELMO leakage model
-        l = Delta(inst0, inst1)
-        + Mul(o1, self.coe['O1']) + Mul(o2, self.coe['O2'])
-        + Mul(t1, self.coe['T1']) + Mul(t2, self.coe['T2'])
+        l = Delta(inst0, inst1) + \
+            Mul(o1, self.coe['O1']) + Mul(o2, self.coe['O2']) + \
+            Mul(t1, self.coe['T1']) + Mul(t2, self.coe['T2'])
 
         return (TraceNo, FrameNo, l)
 
