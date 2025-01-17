@@ -4,4 +4,6 @@
 *.d
 *.list
 *.o
+*~
+*/tags
 !*/elmoasmfunctions.o
