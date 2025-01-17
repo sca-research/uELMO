@@ -1,5 +1,8 @@
 SEAL integrated uELMO.
 
+To download the SEAL library:
+https://github.com/sca-research/SEAL_release
+
 **FOR ORIGINAL uelmo, please see: https://github.com/sca-research/uELMO_Origin **
 
 or download from the [release page](https://github.com/sca-research/uELMO/releases/tag/v1.0).
