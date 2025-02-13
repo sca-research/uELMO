@@ -40,7 +40,7 @@ int IsSymNull(uSymbol sym)
 
 //Bind array typed Symbol.
 static inline void BindSymArray(const char *compname,
-                                SymbolicComponent * symcomp, int size)
+                                SymbolicComponent *symcomp, int size)
 {
     int i;
     ComponentInstance ci = { 0 };
