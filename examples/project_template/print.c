@@ -3,7 +3,6 @@
 #include "elmoasmfunctionsdef.h"
 #include "print.h"
 
-
 //Nibble to hex.
 inline static char ntohex(int nib)
 {
@@ -26,22 +25,31 @@ inline static void u8tohex(uint8_t in, char *out)
     return;
 }
 
+//Print a char.
+void PrintChar(unsigned char u8)
+{
+    char bytestr[2] = { 0 };
+    u8tohex(u8, bytestr);
+    printbyte((unsigned char *)&bytestr[0]);
+    printbyte((unsigned char *)&bytestr[1]);
+    return;
+}
+
+//Print an u32 int.
 void PrintInt(uint32_t u32)
 {
     int i;
     const uint8_t *u8 = (void *)&u32;
 
-    for(i = 0; i < 4; i++)
+    for (i = 0; i < 4; i++)
     {
-        char bytestr[2] = {0};
-        u8tohex(u8[3-i], bytestr);
-        printbyte((unsigned char*)&bytestr[0]);
-        printbyte((unsigned char*)&bytestr[1]);
+        PrintChar(u8[3 - i]);
     }
 
     return;
 }
 
+//Print a string of length len.
 void PrintStr(const char *str, int len)
 {
     int i;
@@ -52,5 +60,3 @@ void PrintStr(const char *str, int len)
     }
     return;
 }
-
-

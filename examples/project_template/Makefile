@@ -41,16 +41,18 @@
 ##
 
 
-# Remove to display makefile output
-Q		:= @
+# Enable to hide makefile output
+#Q		:= @
 
 # Target main project.
 BINARY = main
 
 # Depdent projects.
-DEP = print # Change this list to the dependencies.
+DEP = print MaskedAES_R1 Aes
+DEPSRC:= print.c MaskedAES_R1.c Aes.S
 DEPOBJ:=$(addsuffix '.o',${DEP})
 DEPD:=$(addsuffix '.d',${DEP})
+
 
 VECTORS = vector.o
 FP_FLAGS	?= -msoft-float
@@ -120,13 +122,13 @@ $(BINARY).list: $(BINARY).elf
 	$(Q)$(OBJDUMP) -S $(BINARY).elf > $(BINARY).list
 
 $(BINARY).elf $(BINARY).map: $(OBJS) $(LDSCRIPT)
-	$(Q)$(LD) $(LDFLAGS) $(VECTORS) $(ARCH_FLAGS) $(BINARY).S $(OBJS) ${DEPOBJ} $(ELMOASMFUNCTIONS) $(LDLIBS) -o $(BINARY).elf
+	$(Q)$(LD) $(LDFLAGS) $(VECTORS) $(ARCH_FLAGS) $(OBJS) $(ELMOASMFUNCTIONS) $(LDLIBS) -o $(BINARY).elf ${DEPOBJ}
 
-$(BINARY).o: $(BINARY).c ${DEP}
-	$(Q)$(CC) $(CFLAGS) $(CPPFLAGS) $(ARCH_FLAGS) -o $(BINARY).o -c $(BINARY).c
+$(BINARY).o: $(BINARY).c ${DEPOBJ}
+	$(Q)$(CC) $(CFLAGS) $(CPPFLAGS) $(ARCH_FLAGS) -o $(BINARY).o -c $(BINARY).c ${DEPOBJ}
 
-$(DEP): $@.c
-	$(Q)$(CC) $(CFLAGS) $(CPPFLAGS) $(ARCH_FLAGS) -c $@.c
+$(DEPOBJ): ${DEPSRC}
+	$(Q)$(CC) $(CFLAGS) $(CPPFLAGS) $(ARCH_FLAGS) -c $^
 
 clean:
-	$(Q)$(RM) $(BINARY).o ${DEPOBJ} ${DEPD} $(BINARY).d $(BINARY).elf $(BINARY).bin $(BINARY).list $(BINARY).map *~
+	$(Q)$(RM) $(BINARY).o ${DEPOBJ} ${DEPD} $(BINARY).d $(BINARY).elf $(BINARY).bin $(BINARY).list $(BINARY).map *~ .map
