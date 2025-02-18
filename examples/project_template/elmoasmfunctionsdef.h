@@ -39,6 +39,8 @@
  * Enquiries about further applications and development opportunities
  * are welcome. Please contact elisabeth.oswald@bristol.ac.uk
  */
+#ifndef ELMOASMFUNCTIONSDEF_H
+#define ELMOASMFUNCTIONSDEF_H
 
 extern void starttrigger(void);
 extern void endtrigger(void);
@@ -53,3 +55,4 @@ extern void initialisemaskflow(unsigned char *pointer);
 extern void resetmaskflow(void);
 extern void setmaskflowstart(unsigned int start);
 extern void resetdatafile(void);
+#endif
