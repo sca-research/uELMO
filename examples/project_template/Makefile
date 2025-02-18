@@ -48,7 +48,7 @@ Q		:= @
 BINARY = main
 
 # Depdent projects.
-DEP = dep1 dep2 # Change this list to the dependencies.
+DEP = print # Change this list to the dependencies.
 DEPOBJ:=$(addsuffix '.o',${DEP})
 DEPD:=$(addsuffix '.d',${DEP})
 
