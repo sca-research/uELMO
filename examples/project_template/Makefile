@@ -50,8 +50,8 @@ BINARY = main
 # Depdent projects.
 DEP = print MaskedAES_R1 Aes
 DEPSRC:= print.c MaskedAES_R1.c Aes.S
-DEPOBJ:=$(addsuffix '.o',${DEP})
-DEPD:=$(addsuffix '.d',${DEP})
+DEPOBJ:=$(addsuffix .o, ${DEP})
+DEPD:=$(addsuffix .d,${DEP})
 
 
 VECTORS = vector.o
@@ -72,6 +72,7 @@ OBJDUMP		:= $(PREFIX)-objdump
 
 LDSCRIPT	= $(BINARY).ld
 OBJS		+= $(BINARY).o
+OBJS		+= $(DEPOBJ)
 ELMOASMFUNCTIONS = elmoasmfunctions.o
 
 
@@ -122,12 +123,12 @@ $(BINARY).list: $(BINARY).elf
 	$(Q)$(OBJDUMP) -S $(BINARY).elf > $(BINARY).list
 
 $(BINARY).elf $(BINARY).map: $(OBJS) $(LDSCRIPT)
-	$(Q)$(LD) $(LDFLAGS) $(VECTORS) $(ARCH_FLAGS) $(OBJS) $(ELMOASMFUNCTIONS) $(LDLIBS) -o $(BINARY).elf ${DEPOBJ}
+	$(Q)$(LD) $(LDFLAGS) $(VECTORS) $(ARCH_FLAGS) $(OBJS) $(ELMOASMFUNCTIONS) $(LDLIBS) -o $(BINARY).elf
 
-$(BINARY).o: $(BINARY).c ${DEPOBJ}
-	$(Q)$(CC) $(CFLAGS) $(CPPFLAGS) $(ARCH_FLAGS) -o $(BINARY).o -c $(BINARY).c ${DEPOBJ}
+$(BINARY).o: $(BINARY).c deps
+	$(Q)$(CC) $(CFLAGS) $(CPPFLAGS) $(ARCH_FLAGS) -o $(BINARY).o -c $(BINARY).c
 
-$(DEPOBJ): ${DEPSRC}
+deps: ${DEPSRC}
 	$(Q)$(CC) $(CFLAGS) $(CPPFLAGS) $(ARCH_FLAGS) -c $^
 
 clean:
