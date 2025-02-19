@@ -1,5 +1,3 @@
-#TODO: Unexpectedly generates file '.c'
-
 ##
 ## University of Bristol – Open Access Software Licence
 ## Copyright (c) 2016, The University of Bristol, a chartered
@@ -43,16 +41,18 @@
 ##
 
 
-# Remove to display makefile output
-Q		:= @
+# Enable to hide makefile output
+#Q		:= @
 
 # Target main project.
 BINARY = main
 
 # Depdent projects.
 DEP = fips202 ntt packing poly polyvec randombytes reduce rounding sign symmetric
-DEPOBJ:=$(addsuffix '.o',${DEP})
-DEPD:=$(addsuffix '.d',${DEP})
+DEPSRC:= $(addsuffix .c, ${DEP})
+DEPOBJ:=$(addsuffix .o, ${DEP})
+DEPD:=$(addsuffix .d,${DEP})
+
 
 VECTORS = vector.o
 FP_FLAGS	?= -msoft-float
@@ -72,16 +72,18 @@ OBJDUMP		:= $(PREFIX)-objdump
 
 LDSCRIPT	= $(BINARY).ld
 OBJS		+= $(BINARY).o
+OBJS		+= $(DEPOBJ)
 ELMOASMFUNCTIONS = elmoasmfunctions.o
 
 
 ###############################################################################
 # C flags
 
-CFLAGS += -Os -g -DUELMO -DDILITHUM_MODE=2
+CFLAGS += -Os -g
 CFLAGS += -Wextra -Wshadow -Wimplicit-function-declaration
 CFLAGS += -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes
 CFLAGS += -fno-common -ffunction-sections -fdata-sections
+CFLAGS += -DUELMO
 
 ###############################################################################
 # C & C++ preprocessor common flags
@@ -122,13 +124,13 @@ $(BINARY).list: $(BINARY).elf
 	$(Q)$(OBJDUMP) -S $(BINARY).elf > $(BINARY).list
 
 $(BINARY).elf $(BINARY).map: $(OBJS) $(LDSCRIPT)
-	$(Q)$(LD) $(LDFLAGS) $(VECTORS) $(ARCH_FLAGS) $(BINARY).S $(OBJS) ${DEPOBJ} $(ELMOASMFUNCTIONS) $(LDLIBS) -o $(BINARY).elf
+	$(Q)$(LD) $(LDFLAGS) $(VECTORS) $(ARCH_FLAGS) $(OBJS) $(ELMOASMFUNCTIONS) $(LDLIBS) -o $(BINARY).elf
 
-$(BINARY).o: $(BINARY).c ${DEP}
+$(BINARY).o: $(BINARY).c deps
 	$(Q)$(CC) $(CFLAGS) $(CPPFLAGS) $(ARCH_FLAGS) -o $(BINARY).o -c $(BINARY).c
 
-$(DEP): $@.c
-	$(Q)$(CC) $(CFLAGS) $(CPPFLAGS) $(ARCH_FLAGS) -c $@.c
+deps: ${DEPSRC}
+	$(Q)$(CC) $(CFLAGS) $(CPPFLAGS) $(ARCH_FLAGS) -c $^
 
 clean:
-	$(Q)$(RM) $(BINARY).o ${DEPOBJ} ${DEPD} $(BINARY).d $(BINARY).elf $(BINARY).bin $(BINARY).list $(BINARY).map *~ .c
+	$(Q)$(RM) $(BINARY).o ${DEPOBJ} ${DEPD} $(BINARY).d $(BINARY).elf $(BINARY).bin $(BINARY).list $(BINARY).map *~ *.map
