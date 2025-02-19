@@ -2,6 +2,7 @@
 #define DUMMYMASK_H
 
 #include "elmoasmfunctionsdef.h"
+#include "print.h"
 
 #include  <stdio.h>
 #include <stdint.h>

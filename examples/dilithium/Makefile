@@ -48,7 +48,7 @@
 BINARY = main
 
 # Depdent projects.
-DEP = fips202 ntt packing poly polyvec randombytes reduce rounding sign symmetric
+DEP = print fips202 ntt packing poly polyvec randombytes reduce rounding sign symmetric
 DEPSRC:= $(addsuffix .c, ${DEP})
 DEPOBJ:=$(addsuffix .o, ${DEP})
 DEPD:=$(addsuffix .d,${DEP})
