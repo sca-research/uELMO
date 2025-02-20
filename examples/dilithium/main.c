@@ -38,6 +38,15 @@ static void Randint32(int32_t *rint)
 
     return;
 }
+
+static void RandMtx(int32_t *nttarray)
+{
+    for (int i = 0; i < N; i++)
+    {
+        Randint32(&nttarray[i]);
+    }
+    return;
+}
 #else
 static int32_t ReadInt(void)
 {
@@ -55,13 +64,15 @@ static int32_t ReadInt(void)
     return ri;
 }
 
-static void ReadMtx(int32_t *nttarray)
+//Returns 0 when the input is a zero matrix.
+static int ReadMtx(int32_t *nttarray)
 {
+    int ret = 0;
     for (int i = 0; i < N; i++)
     {
-        nttarray[i] = ReadInt();
+        ret |= (nttarray[i] = ReadInt());
     }
-    return;
+    return ret;
 }
 #endif
 
@@ -75,20 +86,22 @@ int main(void)
     {
 #if RAND_MTX
         //Randomise NTT input matrix.
-        for (int i = 0; i < N; i++)
-        {
-            Randint32(&nttarray[i]);
-        }
+        RandMtx(nttarray);
 #else
         //Read NTT input matrix from GPIO.
-        ReadMtx(nttarray);
+        if(0 == ReadMtx(nttarray))
+        {
+            break;
+        }
 #endif
         PrintNttArray(nttarray);
 
         starttrigger();         //Trace start.
         ntt(nttarray);
         endtrigger();           //Trace end.
-
+#if RAND_MTX
+        break;
+#endif
         PrintNttArray(nttarray);
     }
 
