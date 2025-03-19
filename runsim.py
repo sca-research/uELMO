@@ -28,6 +28,8 @@ def CmdArgs():
 def RunSim(binfile, tracefile="/dev/null", N=1, client=None):
     global uelmosrc
 
+    simret = True
+
     # Store current pwd.
     pwd = os.getcwd()
 
@@ -39,9 +41,9 @@ def RunSim(binfile, tracefile="/dev/null", N=1, client=None):
             targetbin=binfile, N=N, tracefile=tracefile)
 
         # Run uelmo without a client.
-        if client == None:
+        if client is None:
             print("#Command = '{}'".format(uelmocmd))
-            subprocess.run(uelmocmd.split())
+            uelmoret = subprocess.run(uelmocmd.split())
             pass
 
         # Run uelmo with a client.
@@ -50,22 +52,33 @@ def RunSim(binfile, tracefile="/dev/null", N=1, client=None):
             print("#Command = '{client} | {uelmocmd}'".format(
                 client=client, uelmocmd=uelmocmd))
 
+            # Start uELMO in uelmo/src.
             puelmo = subprocess.Popen(uelmocmd.split(), stdin=subprocess.PIPE)
-
+            # Start client in current folder.
             os.chdir(pwd)
             pclient = subprocess.Popen(client.split(), stdout=puelmo.stdin)
 
             pclient.wait()
             puelmo.wait()
 
-            print('#Simulation completed.')
+            if puelmo.returncode != 0 or pclient.returncode != 0:
+                simret = False
+                pass
+            else:
+                print('#Simulation completed.')
+                pass
             pass
+
+    except Exception as e:
+        print(e)
+        simret = False
+        pass
 
     finally:
         os.chdir(pwd)
         pass
 
-    return
+    return simret
 
 
 # Extract leakage from uelmo trace.
@@ -78,7 +91,7 @@ def ExtractTrace(extractor, tracefile, outpath=None):
         try:
             outfile = open(outpath, 'w')
         except Exception as e:
-            print("Error {}".format(e))
+            print("#Error {}".format(e))
             outfile = sys.stdout
             pass
         pass
@@ -91,7 +104,7 @@ def ExtractTrace(extractor, tracefile, outpath=None):
         # Run extractor.
         cmd = "python3 {extractor} {tracefile}".format(
             extractor=extractor, tracefile=tracefile)
-        print("Command = {}".format(cmd))
+        print("#Command = {}".format(cmd))
         pextractor = subprocess.Popen(cmd.split(), stdout=outfile)
         pextractor.wait()
         pass
@@ -144,7 +157,9 @@ def main(argc, argv):
         pass
 
     # Run uELMO simulation.
-    RunSim(targetbin, tracefile=tracefile, N=ntrace, client=client)
+    if not RunSim(targetbin, tracefile=tracefile, N=ntrace, client=client):
+        print('#Simulation error\n')
+        return -1
 
     # Extract leakage.
     if extractor is not None:
