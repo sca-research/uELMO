@@ -6,6 +6,24 @@ import subprocess
 import argparse
 
 
+# Command line args parser.
+def CmdArgs():
+    parser = argparse.ArgumentParser('Script to run uELMO simulation.')
+
+    parser.add_argument('TargetBin', help='Target binary.')
+    parser.add_argument('-t', '--trace', help='Output trace file.')
+    parser.add_argument(
+        '-N', '--ntrace', help='Number of traces (Default = 1).')
+    parser.add_argument('-c', '--client', help='Client executable.')
+    parser.add_argument('-le', '--leakageextractor', help='Leakage extractor.')
+    parser.add_argument('-lt', '--leakagetrace',
+                        help='Extracted leakage trace.')
+
+    args = parser.parse_args()
+
+    return args
+
+
 # Run uelmo without a script.
 def RunSim(binfile, tracefile="/dev/null", N=1, client=None):
     global uelmosrc
@@ -82,23 +100,6 @@ def ExtractTrace(extractor, tracefile, outpath=None):
         pass
 
     return
-
-
-# Command line args parser.
-def CmdArgs():
-    parser = argparse.ArgumentParser('Script to run uELMO simulation.')
-
-    parser.add_argument('TargetBin', help='Target binary.')
-    parser.add_argument('-t', '--trace', help='Output trace file.')
-    parser.add_argument('-N', '--ntrace', help='Number of traces.')
-    parser.add_argument('-c', '--client', help='Client executable.')
-    parser.add_argument('-le', '--leakageextractor', help='Leakage extractor.')
-    parser.add_argument('-lt', '--leakagetrace',
-                        help='Extracted leakage trace.')
-
-    args = parser.parse_args()
-
-    return args
 
 
 def main(argc, argv):
