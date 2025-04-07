@@ -10,14 +10,9 @@ unsigned int Read_Byte()
 {
     unsigned int ret = 0;
 
-    if(ioSupported)             //Use Seal IO.
+    if(ioSupported)             //Use SealVirtualPort.
     {
-        if(NULL == sio || SEAL_IO_READY != sio->stat)
-        {
-            INFO("#SealIO not ready.\n");
-            return 0;
-        }
-        ret = SioGetchar(sio);
+        ret = SealGetchar(sealport);
     }
     else                        //Use stdin by default.
     {
@@ -28,18 +23,16 @@ unsigned int Read_Byte()
 
 void Write_Byte(uint8_t input)
 {
-    if(NULL == sio)
+    if(ioSupported)             //Use SealVirtualPort.
     {
-        //INFO("SIO not initialised.\n");
+        SealPutchar(sealport, input);
+    }
+    else                        //Use stdout by default.
+    {
         putchar(input);
         return;
     }
 
-    if(SEAL_IO_READY == sio->stat)
-    {
-        SioPutchar(sio, input);
-    }
-    printf("#Trying to write but SealIO not ready: %x\n", input);
     return;
 }
 

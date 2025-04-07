@@ -12,9 +12,9 @@
 #include "seal/emulator.h"
 
 #define ELMO_CORE "./sealfiles/uelmo.json"
-extern SealIO *sio;
+extern SealVirtualPort *sealport;
 extern char *sealtracepath;
-extern char *siopath;
+extern char *portpath;
 extern Seal *seal;
 extern const char *scriptpath;
 #endif

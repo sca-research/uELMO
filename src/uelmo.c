@@ -28,9 +28,9 @@ bool verbose = false;
 bool OnTrace = false;
 
 #ifdef USE_SEAL
-SealIO *sio = NULL;
+SealVirtualPort *sealport = NULL;
 char *sealtracepath = "/dev/null";      //Use NULL device by default.
-char *siopath = NULL;
+char *portpath = NULL;
 Seal *seal = NULL;
 const char *scriptpath = NULL;  //DBG
 char dictpath[MAX_PATH_LAN] = { 0 };
@@ -93,7 +93,7 @@ void PrintHelp()
 
 #ifdef USE_SEAL
 //Print Core info.
-void PrintCoreInfo(SealCore * core)
+void PrintCoreInfo(SealCore *core)
 {
     int i = 0;
     SealCoreComponent *scc = NULL;
@@ -172,13 +172,15 @@ static void Init_Seal()
     //Seal IO init.
     if(ioSupported)
     {
-        sio = SioOpen(siopath);
-        INFO("#Waiting for connection...\n");
-        SioWaitConn(sio);
+        SealCleanPort(portpath);
+        if(NULL == (sealport = SealOpenPort(portpath)))
+        {
+            INFO("#Failed to initiate SEAL port.");
+        }
     }
     else
     {
-        sio = NULL;
+        sealport = NULL;
     }
 
     if(useScript)
@@ -202,7 +204,7 @@ static void CleanSeal()
 
     if(ioSupported)
     {
-        SioClose(sio);
+        SealClosePort(&sealport);
     }
 
     if(useSealTrace)
@@ -274,7 +276,7 @@ int main(int argc, char *argv[])
         else if(strcmp(argv[ra], "--io") == 0)
         {
             ioSupported = true;
-            siopath = argv[ra + 1];
+            portpath = argv[ra + 1];
             ra++;
         }
         else if(strcmp(argv[ra], "--st") == 0)
