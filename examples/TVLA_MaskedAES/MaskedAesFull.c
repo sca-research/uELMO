@@ -287,25 +287,28 @@ static void Encrypt(uint8_t *key)
     UV = 0;
     SRMask = 0;
 
-    PrintLine("Expect Input: Plaintext[16], U[1], V[1]\n", MAX_LINE_LEN);
+    PrintLine("Expect input: plaintext[16]\n", MAX_LINE_LEN);
 
     for (int i = 0; i < 16; i++)
     {
-        readbyte(plain + i);
+        readbyte(&plain[i]);
     }
 
     randbyte(&U);
     randbyte(&V);
 
     KeyExpansion(key);
+
     GenMaskedSbox();
+
     MaskingPlaintext(plain, cipher);
+
     AES_encrypt(plain, cipher);
 
     //Send back the ciphertext.
     for (int i = 0; i < 16; i++)
     {
-        printbyte(cipher[i]);
+        printbyte(&cipher[i]);
     }
 
     return;

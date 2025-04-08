@@ -23,6 +23,14 @@ ntrace = 1
 # Flags
 userandom = False
 usetestvector = False
+enduelmo = False
+
+
+def Print(*objects, **kwargs):
+    if port != None:
+        print(*objects, **kwargs)
+        pass
+    return
 
 
 def Args():
@@ -34,6 +42,8 @@ def Args():
         '-r', '--random', help='Use random input', action='store_true')
     parser.add_argument(
         '--testvector', help='Use AES test vector', action='store_true')
+    parser.add_argument('-e', '--enduelmo',
+                        help='End uELMO', action='store_true')
 
     return parser.parse_args()
 
@@ -80,7 +90,8 @@ def Putchar(c):
 
 
 # Read a line from port.
-def ReadLine(port):
+def ReadLine():
+    global port
     line = bytes([])
     while True:
         b = Getchar()
@@ -110,9 +121,11 @@ def GenKey():
 
 
 # Set encryption key.
-def SetKey(port, key):
+def SetKey(key):
+    global port
+
     # Command
-    print("# Command = {}".format(CMD_SET_KEY))
+    Print("#Command={}".format(CMD_SET_KEY))
     Putchar(CMD_SET_KEY)
 
     # Send key
@@ -120,8 +133,8 @@ def SetKey(port, key):
         Putchar(key[i])
         pass
 
-    ack = ReadLine(port)
-    print('(uelmo)', ack, end='')
+    ack = ReadLine()
+    Print('(uelmo)', ack, end='')
 
     return
 
@@ -137,14 +150,16 @@ def GenInput():
         p = random.randbytes(16)
         pass
 
-    u = random.randbytes(1)
-    v = random.randbytes(1)
+    # u = random.randbytes(1)
+    # v = random.randbytes(1)
 
-    return (p, u, v)
+    return (p)
 
 
 # Send inputs and receive outputs.
-def Encrypt(port, p, u, v):
+def Encrypt(p):
+    global port
+
     c = bytes([])
 
     # Send plaintext
@@ -153,10 +168,10 @@ def Encrypt(port, p, u, v):
         pass
 
     # Send u
-    Putchar(u)
+    # Putchar(u)
 
     # Send v
-    Putchar(v)
+    # Putchar(v)
 
     # Read ciphertext
     for i in range(16):
@@ -167,7 +182,7 @@ def Encrypt(port, p, u, v):
 
 
 def main(argc, argv):
-    global ntrace, port, usetestvector, userandom
+    global ntrace, port, usetestvector, userandom, enduelmo
 
     args = Args()
 
@@ -186,32 +201,46 @@ def main(argc, argv):
         userandom = True
         pass
 
-    # Set key.
-    key = GenKey()
-    print("#Key={}".format(key.hex()))
-    SetKey(port, key)
+    if args.enduelmo:
+        enduelmo = True
+        pass
+
+    if not userandom:  # Use a fixed key for all encryptions.
+        key = GenKey()
+        Print("#Key={}".format(key.hex()))
+        SetKey(key)
+        pass
 
     # Encrypt
     while ntrace > 0:
+        if userandom:  # Use a random key for each encryption.
+            key = GenKey()
+            Print("#Key={}".format(key.hex()))
+            SetKey(key)
+            pass
+
         # Command
-        print("#  Command = {}".format(CMD_ENCRYPT))
+        Print("#Command={}".format(CMD_ENCRYPT))
         Putchar(CMD_ENCRYPT)
-        msg = ReadLine(port)
-        print('(uelmo)', msg, end='')
+        msg = ReadLine()
+        Print('(uelmo)', msg, end='')
 
         # Generate inputs.
-        (p, u, v) = GenInput()
-        print("#P={}, U={}, V={}".format(p.hex(), u.hex(), v.hex()))
+        p = GenInput()
+
+        Print("#P={}".format(p.hex()))
 
         # Encrypt.
-        c = Encrypt(port, p, u, v)
-        print("#Ciphertext:", c.hex())
+        c = Encrypt(p)
+        Print("#C={}".format(c.hex()))
         ntrace -= 1
         time.sleep(1)
         pass
 
-    # Send exit.
-    Putchar(CMD_EXIT)
+    if enduelmo:
+        # Send exit.
+        Putchar(CMD_EXIT)
+        pass
 
     del port  # Activly close the port.
     return 0
