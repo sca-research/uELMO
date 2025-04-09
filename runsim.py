@@ -18,6 +18,7 @@ def CmdArgs():
     parser.add_argument('-le', '--leakageextractor', help='Leakage extractor.')
     parser.add_argument('-lt', '--leakagetrace',
                         help='Extracted leakage trace.')
+    parser.add_argument('-p', '--sealport', help='Use SEAL VirtulPort')
 
     args = parser.parse_args()
 
@@ -25,7 +26,7 @@ def CmdArgs():
 
 
 # Run uelmo without a script.
-def RunSim(binfile, tracefile="/dev/null", N=1, client=None):
+def RunSim(binfile, tracefile="/dev/null", N=1, client=None, port=None):
     global uelmosrc
 
     simret = True
@@ -40,14 +41,36 @@ def RunSim(binfile, tracefile="/dev/null", N=1, client=None):
         uelmocmd = "./sealuelmo {targetbin} -N {N} --st {tracefile}".format(
             targetbin=binfile, N=N, tracefile=tracefile)
 
-        # Run uelmo without a client.
+        if port is not None:  # Enable SEAL VirtualPort for uELMO.
+            uelmocmd += " --io {port}".format(port=port)
+            pass
+
+        # No client.
         if client is None:
             print("#Command = '{}'".format(uelmocmd))
             uelmoret = subprocess.run(uelmocmd.split())
             pass
 
-        # Run uelmo with a client.
-        else:
+        elif port is not None:  # Client with VirtualPort.
+            # Start uELMO in uelmo/src.
+            puelmo = subprocess.Popen(uelmocmd.split())
+            # Start client in current folder.
+            os.chdir(pwd)
+            pclient = subprocess.Popen(client.split())
+
+            # Wait for procedures to end.
+            pclient.wait()
+            puelmo.wait()
+
+            if puelmo.returncode != 0 or pclient.returncode != 0:
+                simret = False
+                pass
+            else:
+                print('#Simulation completed.')
+                pass
+            pass
+
+        else:  # Client without VirtualPort. Connect via PIPE.
             # Start uELMO and client. Pipe their stdIO.
             print("#Command = '{client} | {uelmocmd}'".format(
                 client=client, uelmocmd=uelmocmd))
@@ -130,6 +153,7 @@ def main(argc, argv):
     client = None  # Client executable
     extractor = None  # Leakage extractor
     leakagetrace = None  # Extracted leakage trace
+    port = None  # SEAL VirtualPort
 
     # Parse command line args.
     args = CmdArgs()
@@ -156,8 +180,12 @@ def main(argc, argv):
         client = args.client
         pass
 
+    if args.sealport:
+        port = args.sealport
+        pass
+
     # Run uELMO simulation.
-    if not RunSim(targetbin, tracefile=tracefile, N=ntrace, client=client):
+    if not RunSim(targetbin, tracefile=tracefile, N=ntrace, client=client, port=port):
         print('#Simulation error\n')
         return -1
 
