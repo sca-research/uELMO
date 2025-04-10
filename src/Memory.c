@@ -117,6 +117,8 @@ void write32(unsigned int addr, unsigned int data)
                 {
                     //Trigger end
                     OnTrace = false;
+                    traceno++;
+                    frameno = 0;
                 }
                 break;
             }
