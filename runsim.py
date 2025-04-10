@@ -53,15 +53,17 @@ def RunSim(binfile, tracefile="/dev/null", N=1, client=None, port=None):
 
         # No client.
         if client is None:
-            print("#Command = '{}'".format(uelmocmd))
+            print("#uelmo command = '{}'".format(uelmocmd))
             uelmoret = subprocess.run(uelmocmd.split())
             pass
 
         elif port is not None:  # Client with VirtualPort.
             # Start uELMO in uelmo/src.
+            print("#uelmo command = '{}'".format(uelmocmd))
             puelmo = subprocess.Popen(uelmocmd.split())
             # Start client in current folder.
             os.chdir(pwd)
+            print("#Client command = '{}'".format(client.split()))
             pclient = subprocess.Popen(client.split())
 
             # Wait for procedures to end.
@@ -78,7 +80,7 @@ def RunSim(binfile, tracefile="/dev/null", N=1, client=None, port=None):
 
         else:  # Client without VirtualPort. Connect via PIPE.
             # Start uELMO and client. Pipe their stdIO.
-            print("#Command = '{client} | {uelmocmd}'".format(
+            print("#Piped command = '{client} | {uelmocmd}'".format(
                 client=client, uelmocmd=uelmocmd))
 
             # Start uELMO in uelmo/src.
@@ -101,6 +103,7 @@ def RunSim(binfile, tracefile="/dev/null", N=1, client=None, port=None):
     except Exception as e:
         print(e)
         simret = False
+        raise e
         pass
 
     finally:
@@ -112,7 +115,7 @@ def RunSim(binfile, tracefile="/dev/null", N=1, client=None, port=None):
 
 # Extract leakage from uelmo trace.
 def ExtractTrace(extractor, tracefile, outpath=None):
-    pwd = os.getcwd()
+    global pwd
     if outpath is None:  # Use stdout if no output file specified.
         outfile = sys.stdout
         pass
@@ -133,7 +136,7 @@ def ExtractTrace(extractor, tracefile, outpath=None):
         # Run extractor.
         cmd = "python3 {extractor} {tracefile}".format(
             extractor=extractor, tracefile=tracefile)
-        print("#Command = {}".format(cmd))
+        print("#Extractor command = {}".format(cmd))
         pextractor = subprocess.Popen(cmd.split(), stdout=outfile)
         pextractor.wait()
         pass
