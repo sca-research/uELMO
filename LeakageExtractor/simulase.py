@@ -79,6 +79,11 @@ class Simulase(seal.LeakageModel.Transition):
         f0 = frameseries[0]
         f1 = frameseries[1]
 
+        # Skip if the Frames are from difference traces.
+        if f0['TraceNo'][0] != f1['TraceNo'][0]:
+            return (TraceNo, FrameNo, 'N/A')
+            pass
+
         # TraceNo and FrameNo
         TraceNo = f0['TraceNo'][0]
         FrameNo = f0['FrameNo'][0]
