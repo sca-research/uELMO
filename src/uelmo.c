@@ -36,6 +36,7 @@ const char *scriptpath = NULL;  //DBG
 char dictpath[MAX_PATH_LAN] = { 0 };
 #endif
 
+uint32_t traceno = 0;
 uint32_t frameno = 0;
 int cyclecount = 0;
 
@@ -117,7 +118,7 @@ static void Init_Seal()
 
     if(useSealTrace)
     {
-        SealBind(seal, "TraceNo", &N_ind);
+        SealBind(seal, "TraceNo", &traceno);
         SealBind(seal, "FrameNo", &frameno);
 
         //Bind core components.

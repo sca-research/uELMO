@@ -20,6 +20,7 @@ extern const char *scriptpath;
 #endif
 
 extern int cyclecount;
+extern uint32_t traceno;
 extern uint32_t frameno;
 extern bool OnTrace;
 extern bool verbose;
