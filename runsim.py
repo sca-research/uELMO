@@ -5,6 +5,15 @@ import sys
 import subprocess
 import argparse
 
+# uELMO root folder.
+uelmoroot = os.path.dirname(os.path.abspath(__file__))
+
+# uELMO binary folder.
+uelmosrc = uelmoroot + "/src/"
+
+# Current working directory.
+pwd = os.getcwd()
+
 
 # Command line args parser.
 def CmdArgs():
@@ -27,12 +36,9 @@ def CmdArgs():
 
 # Run uelmo without a script.
 def RunSim(binfile, tracefile="/dev/null", N=1, client=None, port=None):
-    global uelmosrc
+    global uelmosrc, pwd
 
     simret = True
-
-    # Store current pwd.
-    pwd = os.getcwd()
 
     try:
         # Set working directory
@@ -140,12 +146,6 @@ def ExtractTrace(extractor, tracefile, outpath=None):
 
 def main(argc, argv):
     global uelmoroot, uelmosrc
-
-    # uELMO root folder.
-    uelmoroot = os.path.dirname(os.path.abspath(__file__))
-
-    # uELMO binary folder.
-    uelmosrc = uelmoroot + "/src/"
 
     # Default arguments.
     tracefile = os.path.abspath('/dev/null')  # Output trace file
