@@ -82,14 +82,14 @@ class Elmo(seal.LeakageModel.Transition):
         f0 = frameseries[0]
         f1 = frameseries[1]
 
+        # TraceNo and FrameNo
+        TraceNo = f0['TraceNo'][0]
+        FrameNo = f0['FrameNo'][0]
+
         # Skip if the Frames are from difference traces.
         if f0['TraceNo'][0] != f1['TraceNo'][0]:
             return (TraceNo, FrameNo, 'N/A')
             pass
-
-        # TraceNo and FrameNo
-        TraceNo = f0['TraceNo'][0]
-        FrameNo = f0['FrameNo'][0]
 
         # Instructions
         inst0 = ExtractInst(f0.components['Execute_instr_disp'].val)
