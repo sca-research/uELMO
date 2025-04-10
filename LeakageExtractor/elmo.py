@@ -88,7 +88,7 @@ class Elmo(seal.LeakageModel.Transition):
 
         # Skip if the Frames are from difference traces.
         if f0['TraceNo'][0] != f1['TraceNo'][0]:
-            return (TraceNo, FrameNo, 'N/A')
+            return (TraceNo, FrameNo, 0)
             pass
 
         # Instructions
