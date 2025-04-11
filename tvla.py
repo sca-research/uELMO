@@ -6,7 +6,7 @@ import tempfile
 import shutil
 import numpy as np
 import shlex
-# import scalib
+from scalib.metrics import Ttest
 
 import runsim
 
@@ -52,9 +52,31 @@ def SortTrace(T):
 
 
 # Run t-test of fixed and random traces.
-def Test(fixed, random):
+def Test(fixed, random, method='tvla', output_path="/tmp/"):
 
-    return
+    # number of traces for fixed and random traces
+    n_1 = np.shape(fixed)[0]
+    n_2 = np.shape(random)[0]
+
+    # number of trace points
+    n_points = np.shape(fixed)[1]
+
+    # Combine the traces and define the binary variable ('scalib' framework)
+    Tr_comb = np.concatenate((fixed, random))
+    X = np.repeat([0, 1], (n_1, n_2))
+
+    if method == 'tvla':
+
+        ttest_ = Ttest(d=1, ns=n_points)
+        ttest_.fit_u(Tr_comb.astype(np.int16), X.astype(np.uint16))
+        results = ttest_.get_ttest()
+        pass
+
+    # store the p_values in a '.npy' file
+    np.save(os.fspath("{outpath}/leakage_detection_{fname}.npy".format(
+        outpath=output_path, fname=method)), results)
+
+    return results
 
 
 def main(argc, argv):
@@ -134,7 +156,7 @@ def main(argc, argv):
     np.savetxt(outdir+'/random.csv', randomtrace, fmt="%d")
 
     # TODO: use SCALib to perform t-test over fixedtrace and randomtrace
-    testresult = Test(fixedtrace, randomtrace)
+    testresult = Test(fixedtrace, randomtrace, output_path=outdir)
     print(testresult)
 
     return 0
