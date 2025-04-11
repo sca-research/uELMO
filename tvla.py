@@ -5,7 +5,8 @@ import argparse
 import tempfile
 import shutil
 import numpy as np
-#import scalib
+import shlex
+# import scalib
 
 import runsim
 
@@ -57,18 +58,18 @@ def main(argc, argv):
 
     if args.fixed is None:
         print("#Command for fixed client:")
-        fixedclient = sys.stdin.readline()
+        fixedclient = shlex.split(sys.stdin.readline())
         pass
     else:
-        fixedclient = args.fixed
+        fixedclient = shlex.split(args.fixed)
         pass
 
     if args.random is None:
         print("#Command for random client:")
-        randomclient = sys.stdin.readline()
+        randomclient = shlex.split(sys.stdin.readline())
         pass
     else:
-        randomclient = args.random
+        randomclient = shlex.split(args.random)
         pass
 
     if args.dir is None:
@@ -126,7 +127,7 @@ def main(argc, argv):
     np.savetxt(outdir+'/fixed.csv', fixedtrace, fmt="%d")
     np.savetxt(outdir+'/random.csv', randomtrace, fmt="%d")
 
-    #TODO: use SCALib to perform t-test over fixedtrace and randomtrace
+    # TODO: use SCALib to perform t-test over fixedtrace and randomtrace
 
     return 0
 

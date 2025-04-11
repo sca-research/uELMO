@@ -4,6 +4,7 @@ import os
 import sys
 import subprocess
 import argparse
+import shlex
 
 # uELMO root folder.
 uelmoroot = os.path.dirname(os.path.abspath(__file__))
@@ -44,27 +45,27 @@ def RunSim(binfile, tracefile="/dev/null", N=1, client=None, port=None):
         # Set working directory
         # print("#Switch to: {}".format(uelmosrc))
         os.chdir(uelmosrc)
-        uelmocmd = "./sealuelmo {targetbin} -N {N} --st {tracefile}".format(
-            targetbin=binfile, N=N, tracefile=tracefile)
+        uelmocmd = ['./sealuelmo',
+                    os.fspath(binfile), '-N', str(N), '--st', tracefile]
 
         if port is not None:  # Enable SEAL VirtualPort for uELMO.
-            uelmocmd += " --io {port}".format(port=port)
+            uelmocmd += ['--io', port]
             pass
 
         # No client.
         if client is None:
             print("#uelmo command = '{}'".format(uelmocmd))
-            uelmoret = subprocess.run(uelmocmd.split())
+            uelmoret = subprocess.run(uelmocmd)
             pass
 
         elif port is not None:  # Client with VirtualPort.
             # Start uELMO in uelmo/src.
             print("#uelmo command = '{}'".format(uelmocmd))
-            puelmo = subprocess.Popen(uelmocmd.split())
+            puelmo = subprocess.Popen(uelmocmd)
             # Start client in current folder.
             os.chdir(pwd)
-            print("#Client command = '{}'".format(client.split()))
-            pclient = subprocess.Popen(client.split())
+            print("#Client command = '{}'".format(client))
+            pclient = subprocess.Popen(client)
 
             # Wait for procedures to end.
             pclient.wait()
@@ -84,10 +85,10 @@ def RunSim(binfile, tracefile="/dev/null", N=1, client=None, port=None):
                 client=client, uelmocmd=uelmocmd))
 
             # Start uELMO in uelmo/src.
-            puelmo = subprocess.Popen(uelmocmd.split(), stdin=subprocess.PIPE)
+            puelmo = subprocess.Popen(uelmocmd, stdin=subprocess.PIPE)
             # Start client in current folder.
             os.chdir(pwd)
-            pclient = subprocess.Popen(client.split(), stdout=puelmo.stdin)
+            pclient = subprocess.Popen(client, stdout=puelmo.stdin)
 
             pclient.wait()
             puelmo.wait()
@@ -121,7 +122,7 @@ def ExtractTrace(extractor, tracefile, outpath=None):
         pass
     else:
         try:
-            outfile = open(outpath, 'w')
+            outfile = open(os.fspath(outpath), 'w')
         except Exception as e:
             print("#Error {}".format(e))
             outfile = sys.stdout
@@ -134,10 +135,10 @@ def ExtractTrace(extractor, tracefile, outpath=None):
         os.chdir(extractorwd)
 
         # Run extractor.
-        cmd = "python3 {extractor} {tracefile}".format(
-            extractor=extractor, tracefile=tracefile)
-        print("#Extractor command = {}".format(cmd))
-        pextractor = subprocess.Popen(cmd.split(), stdout=outfile)
+        extractorcmd = ['python3', os.fspath(extractor), os.fspath(tracefile)]
+
+        print("#Extractor command = {}".format(extractorcmd))
+        pextractor = subprocess.Popen(extractorcmd, stdout=outfile)
         pextractor.wait()
         pass
     finally:
@@ -161,6 +162,7 @@ def main(argc, argv):
     # Parse command line args.
     args = CmdArgs()
     targetbin = os.path.abspath(args.TargetBin)  # Target binary
+    print(targetbin)
 
     if args.trace:
         tracefile = os.path.abspath(args.trace)
@@ -180,7 +182,7 @@ def main(argc, argv):
         pass
 
     if args.client:
-        client = args.client
+        client = shlex.split(args.client)
         pass
 
     if args.sealport:
