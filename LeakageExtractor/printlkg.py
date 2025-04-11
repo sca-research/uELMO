@@ -21,7 +21,7 @@ def PrintLeakage(name, leakage):
 
     # Ignore sources without an expression.
     if sym == NO_SYM:
-        #print("Skipped {}".format(name))
+        # print("Skipped {}".format(name))
         return
         pass
 

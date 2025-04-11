@@ -230,7 +230,7 @@ def UelmoHeader(core):
         pass
 
     if CPSR and TRANSITION:
-        #CPSR, linear
+        # CPSR, linear
         LeakageType("Previous CPSR", 1)
         LeakageType("CPSR HD", 1)
         pass
@@ -488,7 +488,7 @@ def Generate_Leakage_Transition(prev, current, header):
         pass
 
     if CPSR and TRANSITION:
-        #CPSR, linear
+        # CPSR, linear
         # Previous CPSR -> PrevCPSR
         (src, rec) = WriteLeakage("PrevCPSR", prev['cpsr'][0], prev)
         outfile[traceno][frameno][src] = rec
@@ -686,7 +686,7 @@ def TestExtractorBody(frame):
 
     if frame[1]['core_valid'][0]:
         header = False
-        #Generate_Leakage_Instr(frame[1], header)
+        # Generate_Leakage_Instr(frame[1], header)
         Generate_Leakage_Select(frame[1])
         Generate_Leakage_Transition(frame[0], frame[1], header)
         Generate_Leakage_Interaction(frame[0], frame[1])
