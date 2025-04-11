@@ -24,6 +24,7 @@ ntrace = 1
 userandom = False
 usetestvector = False
 enduelmo = False
+waitsec = 1
 
 
 def Print(*objects, **kwargs):
@@ -44,6 +45,8 @@ def Args():
         '--testvector', help='Use AES test vector', action='store_true')
     parser.add_argument('-e', '--enduelmo',
                         help='End uELMO', action='store_true')
+    parser.add_argument('-w', '--wait', type=float, default=1,
+                        help='Seconds waiting between each encryption')
 
     return parser.parse_args()
 
@@ -182,7 +185,7 @@ def Encrypt(p):
 
 
 def main(argc, argv):
-    global ntrace, port, usetestvector, userandom, enduelmo
+    global ntrace, port, usetestvector, userandom, enduelmo, waitsec
 
     args = Args()
 
@@ -211,6 +214,8 @@ def main(argc, argv):
         SetKey(key)
         pass
 
+    waitsec = args.wait
+
     # Encrypt
     while ntrace > 0:
         if userandom:  # Use a random key for each encryption.
@@ -234,7 +239,7 @@ def main(argc, argv):
         c = Encrypt(p)
         Print("#C={}".format(c.hex()))
         ntrace -= 1
-        time.sleep(1)
+        time.sleep(waitsec)
         pass
 
     if enduelmo:
