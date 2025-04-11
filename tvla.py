@@ -50,6 +50,12 @@ def SortTrace(T):
     return T_sorted
 
 
+# Run t-test of fixed and random traces.
+def Test(fixed, random):
+
+    return
+
+
 def main(argc, argv):
     args = ParseArgs()
 
@@ -126,7 +132,9 @@ def main(argc, argv):
     np.savetxt(outdir+'/fixed.csv', fixedtrace, fmt="%d")
     np.savetxt(outdir+'/random.csv', randomtrace, fmt="%d")
 
-    #TODO: use SCALib to perform t-test over fixedtrace and randomtrace
+    # TODO: use SCALib to perform t-test over fixedtrace and randomtrace
+    testresult = Test(fixedtrace, randomtrace)
+    print(testresult)
 
     return 0
 
