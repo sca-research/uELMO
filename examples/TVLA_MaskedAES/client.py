@@ -1,6 +1,6 @@
 import sys
 import seal
-import random
+import secrets
 import time
 import argparse
 
@@ -112,7 +112,7 @@ def GenKey():
         key = bytes([i for i in range(16)])
         pass
     elif userandom:
-        key = random.randbytes(16)
+        key = secrets.token_bytes(16)
         pass
     else:
         key = bytes([i for i in range(16)])
@@ -147,11 +147,11 @@ def GenInput():
             length=16, byteorder='big')
         pass
     else:
-        p = random.randbytes(16)
+        p = secrets.token_bytes(16)
         pass
 
-    # u = random.randbytes(1)
-    # v = random.randbytes(1)
+    # u = secrets.token_bytes(1)
+    # v = secrets.token_bytes(1)
 
     return (p)
 
