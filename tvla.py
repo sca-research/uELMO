@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+
+# T-test implemented by Aakash Chowdhury (aakah140494@gmail.com).
+
 import sys
 import os
 import argparse
@@ -20,10 +23,12 @@ def ParseArgs():
     parser.add_argument('-r', '--random',
                         help='Client for random input.')
     parser.add_argument('-le', '--leakageextractor', help='Leakage extractor.')
-    parser.add_argument('-n', '--ntrace', default=1,
-                        type=int, help='Number of trace')
+    parser.add_argument('-n', '--ntrace',
+                        type=int, help='Number of trace (Default: 1)', default=1)
     parser.add_argument('-p', '--port', help='Seal Virtualport.')
     parser.add_argument('-d', '--dir', help='Directory for the output.')
+    parser.add_argument(
+        '-m', '--method', help='Testing method. (Default: ttest)', default='ttest')
 
     args = parser.parse_args()
     return args
@@ -52,8 +57,7 @@ def SortTrace(T):
 
 
 # Run t-test of fixed and random traces.
-def Test(fixed, random, method='tvla', output_path="/tmp/"):
-
+def Test(fixed, random, method='ttest', outputpath="/tmp/"):
     # number of traces for fixed and random traces
     n_1 = np.shape(fixed)[0]
     n_2 = np.shape(random)[0]
@@ -65,21 +69,24 @@ def Test(fixed, random, method='tvla', output_path="/tmp/"):
     Tr_comb = np.concatenate((fixed, random))
     X = np.repeat([0, 1], (n_1, n_2))
 
-    if method == 'tvla':
-
+    if method == 'ttest':
         ttest_ = Ttest(d=1, ns=n_points)
         ttest_.fit_u(Tr_comb.astype(np.int16), X.astype(np.uint16))
         results = ttest_.get_ttest()
         pass
+    else:
+        raise TypeError("Unsupported method: {}".format(method))
+        pass
 
     # store the p_values in a '.npy' file
-    np.save(os.fspath("{outpath}/leakage_detection_{fname}.npy".format(
-        outpath=output_path, fname=method)), results)
+    np.save(os.fspath("{outputpath}/leakage_detection_{fname}.npy".format(
+        outputpath=outputpath, fname=method)), results)
 
     return results
 
 
 def main(argc, argv):
+    # Parse arguments.
     args = ParseArgs()
 
     targetbin = os.path.abspath(args.TargetBin)
@@ -117,6 +124,7 @@ def main(argc, argv):
 
     ntrace = args.ntrace
     port = args.port
+    method = args.method
 
     # Output files.
     # Execution Traces.
@@ -156,7 +164,8 @@ def main(argc, argv):
     np.savetxt(outdir+'/random.csv', randomtrace, fmt="%d")
 
     # TODO: use SCALib to perform t-test over fixedtrace and randomtrace
-    testresult = Test(fixedtrace, randomtrace, output_path=outdir)
+    testresult = Test(fixedtrace, randomtrace,
+                      method=method, outputpath=outdir)
     print(testresult)
 
     return 0
