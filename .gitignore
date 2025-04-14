@@ -10,3 +10,4 @@ Windows/uELMO/uELMO/Debug/*
 Windows/uELMO/.vs/*
 *.swp
 __pycache__
+tvla/
